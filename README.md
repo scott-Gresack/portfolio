@@ -15,7 +15,7 @@ Results-driven Martech and Data Governance Specialist with extensive experience 
 ### **Manager - Data Collection and Tagging Implementation**  
 **CVS Health | Remote | Apr 2023 - Present**  
 - Spearheaded the migration of web and mobile applications to Adobe Web SDK and Mobile SDK, enhancing user engagement and data collection quality.  
-- Transitioned app measurement to Adobe Experience Platform (AEP) using advanced tools like Adobe Web SDK, Adobe Mobile SDK, Dataprep, and XDM schema markup.  
+- Transitioned app measurement to Adobe Experience Platform (AEP) using advanced tools like Adobe Web SDK, Adobe Mobile SDK, Dataprep, and XDM schema mapping for event-based and identity-based schemas.  
 - Migrated legacy Adobe Mobile libraries (ACP) to Adobe Experience Edge and Adobe Edge Core, ensuring compliance with Apple’s App Tracking Transparency (ATT).  
 - Designed scalable data solutions integrating Customer Data Platforms (CDPs) and data warehouses, centralizing data governance and improving operational efficiency.  
 - Enabled cross-device data sharing between native mobile apps and web views, enhancing customer journey analytics and engagement.  
@@ -28,7 +28,7 @@ Results-driven Martech and Data Governance Specialist with extensive experience 
 **BlastX | Remote | Aug 2020 - Apr 2023**  
 - Supported a large healthcare government client as co-lead for analytics implementation.  
 - Led the migration from GAU to GA4 via GTM for childcare clients, improving data tracking and analysis.  
-- Utilized Adobe Web SDK, AEP, Dataprep, and XDM schema markup to transition from GAU/GA4 to Adobe via Tealium iQ.  
+- Utilized Adobe Web SDK, AEP, Dataprep, and XDM schema mapping for event-based and identity-based schemas to transition from GAU/GA4 to Adobe via Tealium iQ.  
 - Ensured compliance with data governance standards, including prevention of PII collection.  
 - Developed client-side analytics implementations using GTM and Tealium iQ.  
 - Collaborated with teams to enhance multi-organization data management and governance processes.  
@@ -60,6 +60,10 @@ Adobe Assurance, Charles Proxy, Data Transformation with Adobe Data Prep (AEP), 
 
 ### **CDPs:**  
 Adobe Experience Platform  
+
+### **XDM Schema Expertise:**  
+- **Event-Based Schemas:** Mapping schemas for behavioral events like page views, button clicks, and conversions, enabling real-time analytics and insights.  
+- **Identity-Based Schemas:** Managing schemas for user attributes, authentication, and consent management, ensuring seamless personalization and compliance with data regulations.  
 
 ---
 
