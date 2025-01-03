@@ -1,72 +1,84 @@
+# Scott Gresack  
+**Email:** [gresack.scott@gmail.com](mailto:gresack.scott@gmail.com)  
+**LinkedIn:** [Scott Gresack](https://www.linkedin.com/in/scottgresack)  
+**Phone:** 908.420.8125  
 
-Scott Gresack - Portfolio
+---
 
-Contact Information
-	•	Email: gresack.scott@gmail.com
-	•	LinkedIn: linkedin.com/in/scottgresack
-	•	Phone: 908-420-8125
+## Professional Summary  
+Results-driven Martech and Data Governance Specialist with extensive experience in designing and implementing enterprise-level data collection strategies. Skilled in ensuring data quality and compliance with privacy regulations (e.g., GDPR, CCPA) while enabling seamless integrations across platforms such as Adobe Launch, Tealium iQ, and Google Tag Manager. Adept at scaling data architectures, defining data standards, and optimizing customer journeys to deliver measurable business outcomes. Proven ability to bridge business and technical teams, foster data literacy, and mentor cross-functional teams. Demonstrated expertise in Adobe Experience Platform, mobile SDKs, XDM schemas, and API integrations to deliver compliant, high-quality user experiences and impactful results.
 
-Professional Summary
+---
 
-Martech Engineer with expertise in Adobe Launch, Adobe Event Forwarding, Tealium iQ, and advanced data collection strategies. Proficient in scaling enterprise data solutions, architecting scalable frameworks, and integrating Customer Data Platforms (CDPs) with data warehouses.
+## Work Experience  
 
-Skilled in Adobe Experience Platform, Google Tag Manager, and Customer Journey Analytics. Adept at leading cross-functional teams, mentoring professionals, and fostering data-driven decision-making within organizations.
+### **Manager - Data Collection and Tagging Implementation**  
+**CVS Health | Remote | Apr 2023 - Present**  
+- Spearheaded the migration of web and mobile applications to Adobe Web SDK and Mobile SDK, enhancing user engagement and data collection quality.  
+- Transitioned app measurement to Adobe Experience Platform (AEP) using advanced tools like Adobe Web SDK, Adobe Mobile SDK, Dataprep, and XDM schema markup.  
+- Migrated legacy Adobe Mobile libraries (ACP) to Adobe Experience Edge and Adobe Edge Core, ensuring compliance with Apple’s App Tracking Transparency (ATT).  
+- Designed scalable data solutions integrating Customer Data Platforms (CDPs) and data warehouses, centralizing data governance and improving operational efficiency.  
+- Enabled cross-device data sharing between native mobile apps and web views, enhancing customer journey analytics and engagement.  
+- Delivered training programs on Adobe Launch, Tealium iQ, and Adobe Assurance, empowering teams in data flow management.  
+- Mentored teams on data democratization, fostering actionable insights and data-driven decision-making.  
+- Optimized campaign targeting by implementing client-side pixels for advertising platforms.  
+- Resolved technical challenges related to Adobe Launch, Tealium iQ, JavaScript, and APIs, ensuring reliable analytics workflows.  
 
-Proficient in front-end web development, APIs, and mobile SDKs, with experience in Swift and Kotlin. Demonstrated success in delivering HIPAA-compliant, personalized user experiences and ensuring strict adherence to data governance standards.
+### **Analytics Implementation Consultant II**  
+**BlastX | Remote | Aug 2020 - Apr 2023**  
+- Supported a large healthcare government client as co-lead for analytics implementation.  
+- Led the migration from GAU to GA4 via GTM for childcare clients, improving data tracking and analysis.  
+- Utilized Adobe Web SDK, AEP, Dataprep, and XDM schema markup to transition from GAU/GA4 to Adobe via Tealium iQ.  
+- Ensured compliance with data governance standards, including prevention of PII collection.  
+- Developed client-side analytics implementations using GTM and Tealium iQ.  
+- Collaborated with teams to enhance multi-organization data management and governance processes.  
 
-Professional Experience
+### **Analytics Implementation Engineer**  
+**Search Discovery (Further) | Cleveland, Ohio | Jan - Jul 2020**  
+- Designed and built client-side analytics implementations using Adobe and Google Marketing Clouds.  
+- Developed three custom applications within Domo using Node.js and Vue.js.  
+- Completed a rigorous 3-month training program in analytics development best practices.  
 
-Manager, Data Collection and Tagging Implementation
+---
 
-CVS Health | Remote | Apr 2023 – Present
-	•	Led migration of web and mobile apps to Adobe Web and Mobile SDKs, enhancing data collection and user engagement.
-	•	Spearheaded app measurement transition to Adobe Experience Platform (AEP), leveraging Adobe Web SDK, Mobile SDK, Data Prep, and XDM schema.
-	•	Directed migration from legacy Adobe Mobile libraries (ACP) to Adobe Experience Edge, ensuring compliance with Apple’s App Tracking Transparency (ATT).
-	•	Designed scalable data solutions integrating CDPs and data warehouses, improving operational efficiency.
-	•	Enabled cross-device sharing of customer data, enhancing journey analysis and engagement.
-	•	Delivered training programs on Adobe Launch, Tealium iQ, and Adobe Assurance, empowering teams.
-	•	Mentored teams on data democratization, fostering actionable insights and stakeholder empowerment.
-	•	Implemented client-side pixels for advertising platforms, optimizing campaign targeting.
-	•	Addressed challenges in Adobe Launch, Tealium iQ, JavaScript, and APIs, ensuring reliable analytics systems.
-	•	Established validation best practices, delivering high-quality data for critical decisions.
-	•	Ensured HIPAA compliance and presented demos to diverse audiences, fostering collaboration.
+## Skills  
 
-Analytics Implementation Consultant II
+### **Languages:**  
+JavaScript, Swift, Kotlin, Firebase SDK (A/B Testing, Remote Config, Mobile Analytics), MobileCore (iOS/Android), HTML5, CSS3, Node.js, SQL, MongoDB, Xcode, C#  
 
-BlastX | Aug 2020 – Apr 2023
-	•	Provided analytics implementation support for large healthcare government clients.
-	•	Led migration from GAU to GA4 via GTM for childcare clients, improving data tracking.
-	•	Leveraged Adobe Web SDK, AEP, Data Prep, and XDM schema for transitions to Adobe via Tealium iQ.
-	•	Collaborated with stakeholders to achieve business objectives, ensuring PII and HIPAA compliance.
-	•	Integrated client-side advertising pixels for platforms like Google Ads, Facebook, Snapchat, and TikTok.
-	•	Streamlined processes for multi-organization data collection and management.
+### **Frameworks | Libraries:**  
+React.js, Angular, Vue.js, AEP Edge (iOS/Android), App Measurement (Adobe Analytics), Target (at.js), AEP Edge Bridge, Mobile Core (iOS/Android), Adobe Journey Optimizer (AJO Web and Mobile), Alloy.js (Alloy Web SDK), Express.js (Node.js), Mongoose.js (Node.js NoSQL Library), Bootstrap, jQuery, .NET, MySQL  
 
-Analytics Implementation Engineer
+### **Collaboration Tools:**  
+JIRA, Trello, Basecamp, Rally, Slack, Microsoft Teams, Miro, Kanban, Zoom, Confluence, Asana, Notion  
 
-Search Discovery | Jan 2020 – Jul 2020
-	•	Designed client-side analytics implementations using Adobe and Google Marketing Clouds.
-	•	Developed custom apps within Domo using Node.js and Vue.js.
-	•	Completed rigorous training in analytics development best practices.
+### **Analytics Tools:**  
+Adobe Analytics, Adobe Launch, Adobe Web SDK, Tealium iQ, Google Analytics (Universal/GA4), Google Tag Manager (GTM, Web and sGTM), Adobe Server Side (Event Forwarding), Customer Journey Analytics (CJA), Quantum Metric, Matomo, Microsoft Clarity, Medallia, OneTrust, Facebook Business Manager (cAPI), GCP, Azure Data Storage (via Server Side)  
 
-Technical Skills
-	•	Programming Languages: HTML5, CSS3, JavaScript, SQL, Node.js, C#, Swift, Kotlin, MongoDB
-	•	Frameworks & Libraries: Express.js, React.js, Vue.js, .NET, Bootstrap, jQuery, MySQL
-	•	Analytics Tools: Adobe Launch, Adobe Analytics, Adobe Web SDK, Tealium iQ, GTM, Customer Journey Analytics (CJA), Google Analytics (GAU/GA4)
-	•	Collaboration Tools: JIRA, Trello, Basecamp
-	•	Other Skills: Data Governance, Data Layer Design, Mobile SDK Integration (Adobe Edge, AEP Mobile SDK, Firebase SDKs), CDPs, XDM Schemas
+### **Other Skills:**  
+Adobe Assurance, Charles Proxy, Data Transformation with Adobe Data Prep (AEP), Chrome Dev Tools, Omnibug, Advanced Excel Analytics  
 
-Education and Certifications
+### **CDPs:**  
+Adobe Experience Platform  
 
-Master’s in Talmudic Law
+---
 
-Telshe Rabbinical College | Cleveland, OH | 2010 – 2017
+## Education and Certifications  
 
-Cleveland Codes: Coding Bootcamp
-	•	Trained in ASP.NET, C#, SQL, HTML5, CSS3, Bootstrap, JavaScript, and relational databases
+### **Google Analytics IQ**  
+Certified (GAU/GA4)  
 
-Certifications:
-	•	Google Analytics IQ Certified (GAU/GA4)
-	•	Tealium iQ Certified – Basic & Advanced
-	•	MTA: Database Fundamentals
-	•	MTA: Programming Using HTML, CSS, and JavaScript
+### **TealiumIQ**  
+Certified - Basic & Advanced  
 
+### **Coding Bootcamp**  
+**Cleveland Codes | Cleveland, Ohio | Sep - Dec 2019**  
+Trained in ASP.NET, C#, SQL, HTML5, CSS3, Bootstrap, JavaScript, and relational databases  
+
+### **MTA Certifications**  
+- Database Fundamentals - Certified 2019  
+- Introduction to Programming Using HTML and CSS - Certified 2019  
+- Introduction to Programming Using JavaScript - Certified 2019  
+
+### **Master’s in Talmudic Law**  
+**Telshe Rabbinical College | Cleveland, Ohio | 2010 - 2017**  
