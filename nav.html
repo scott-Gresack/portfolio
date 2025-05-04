@@ -3,49 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Scott Gresack | Martech Portfolio</title>
-
-  <!-- Open Graph & Twitter Card -->
   <meta name="description" content="Martech Engineer portfolio of Scott Gresack featuring Adobe AEP, Tealium iQ, GA4, and scalable data governance strategies." />
   <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Governance, Tag Management, GA4, Analytics, Attribution" />
   <meta name="author" content="Scott Gresack" />
   <meta name="robots" content="index, follow" />
+  <title>Scott Gresack | XDM Object Comparator</title>
 
-  <meta property="og:title" content="Scott Gresack | Martech Engineer Portfolio" />
-  <meta property="og:description" content="Explore data collection workflows, AEP XDM schemas, and tag management tools built for scale." />
+  <!-- Open Graph Meta -->
+  <meta property="og:title" content="Scott Gresack | XDM Object Comparator" />
+  <meta property="og:description" content="Compare Adobe Web SDK u.map objects across environments to align XDM mappings." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/" />
+  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/xdm_comparator.html" />
   <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
 
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Scott Gresack | Martech Engineer Portfolio" />
+  <meta name="twitter:title" content="Scott Gresack | XDM Object Comparator" />
   <meta name="twitter:description" content="Tealium, Adobe Experience Platform, GTM, and privacy-driven tag governance examples." />
   <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-
-  <!-- TailwindCSS + Custom Animations -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          animation: {
-            fadeIn: 'fadeIn 1s ease-in forwards',
-            slideDown: 'slideDown 0.5s ease-in-out'
-          },
-          keyframes: {
-            fadeIn: {
-              '0%': { opacity: 0 },
-              '100%': { opacity: 1 }
-            },
-            slideDown: {
-              '0%': { transform: 'translateY(-100%)', opacity: 0 },
-              '100%': { transform: 'translateY(0)', opacity: 1 }
-            }
-          }
-        }
-      }
-    }
-  </script>
 
   <!-- Google Tag Manager -->
   <script>
@@ -53,60 +28,163 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NH95HXQ');
+  })(window,document,'script','dataLayer','GTM-NH95HXQ');
   </script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-100 text-gray-800 antialiased">
 
-<body class="bg-gray-50 text-gray-900 font-sans">
-  <!-- GTM (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NH95HXQ"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
+  <!-- Include Nav -->
+  <div id="nav-container"></div> <!-- This will hold the navigation bar -->
 
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+  <!-- Vue App for XDM Comparator -->
+  <div id="app" class="min-h-screen flex flex-col items-center pt-12 pb-24 px-4">
+
+    <!-- Main Card -->
+    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
+
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-primary to-accent text-white p-6">
+        <h1 class="text-3xl font-bold drop-shadow">✨ XDM Object Comparator ✨</h1>
+        <p class="mt-2 text-primary-100">
+          Compare <code class="bg-white/20 px-1 rounded">u.map</code> objects from different environments (e.g., Prod vs. Stage) for Adobe Web SDK to align XDM mappings!
+        </p>
+      </div>
+
+      <!-- Instructions Toggle -->
+      <div class="p-6 border-b">
+        <button @click="toggleInstructions"
+                class="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition">
+          <span v-if="showInstructions">🔽</span>
+          <span v-else>🔼</span>
+          <span>Instructions</span>
+        </button>
+        <transition name="fade">
+          <div v-if="showInstructions" class="mt-4 bg-gray-50 p-4 rounded-lg space-y-4 text-sm">
+            <div>
+              <h2 class="font-semibold text-gray-700">🚀 Purpose</h2>
+              <p>Compare <code class="bg-gray-200 px-1 rounded">u.map</code> objects from Adobe Web SDK across environments (e.g., Prod vs Stage) to validate and align XDM mappings.</p>
+            </div>
+            <div>
+              <h2 class="font-semibold text-gray-700">🛠 How to Use</h2>
+              <ol class="list-decimal list-inside space-y-1">
+                <li>Describe the comparison (e.g., "Prod vs Stage").</li>
+                <li>Paste two `u.map` objects from different environments.</li>
+                <li>Click "Compare" to see differences and similarities.</li>
+                <li>Review the results and use the detailed summary to pinpoint discrepancies.</li>
+              </ol>
+            </div>
+          </div>
+        </transition>
+      </div>
+
+      <!-- Input for Objects to Compare -->
+      <div class="p-6 space-y-4 border-b">
+        <h3 class="font-semibold text-gray-700">📝 Paste Objects for Comparison</h3>
+        <div class="space-y-4">
+          <label><strong>1. Describe the comparison:</strong></label>
+          <input type="text" v-model="comparisonLabel" placeholder="e.g. Comparing u.map from Prod vs Stage" class="px-3 py-2 border rounded-lg focus:ring w-full" />
+          
+          <label><strong>2. Paste Object A (JSON):</strong></label>
+          <textarea v-model="objectAInput" placeholder="Paste full u.map = { ... }; from environment A" class="w-full p-3 border rounded-lg"></textarea>
+          
+          <label><strong>3. Paste Object B (JSON):</strong></label>
+          <textarea v-model="objectBInput" placeholder="Paste full u.map = { ... }; from environment B" class="w-full p-3 border rounded-lg"></textarea>
+        </div>
+        <button @click="compare" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">Compare</button>
+      </div>
+
+      <!-- Error Message -->
+      <div v-if="errorMessage" class="error-message text-red-500 mt-4">{{ errorMessage }}</div>
+
+      <!-- Results Section -->
+      <div v-if="compared" class="results-section mt-8">
+        <h2 class="text-xl font-semibold mb-4">🎉 Quick Comparison Snapshot</h2>
+        <p><strong>🕵️‍♂️ Total Differences:</strong> {{ totalDifferences }}</p>
+        <p><strong>🤝 Similarities:</strong> {{ matchingValues.length }} keys are in sync!</p>
+        
+        <h3 class="mt-4">📄 Detailed Comparison</h3>
+        <pre>{{ comparisonSummary }}</pre>
+
+        <!-- Comparison Table -->
+        <table class="mt-4 w-full table-auto">
+          <thead>
+            <tr>
+              <th class="p-2 bg-gray-200">Key</th>
+              <th class="p-2 bg-gray-200">Value in A</th>
+              <th class="p-2 bg-gray-200">Value in B</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="key in allKeys" :key="key">
+              <td class="p-2">{{ key }}</td>
+              <td class="p-2">{{ objectA[key] ?? '—' }}</td>
+              <td class="p-2">{{ objectB[key] ?? '—' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vue.js Integration -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-Y8617TLMYK');
-  </script>
+    new Vue({
+      el: '#app',
+      data: {
+        comparisonLabel: '',
+        objectAInput: '',
+        objectBInput: '',
+        errorMessage: '',
+        compared: false,
+        totalDifferences: 0,
+        matchingValues: [],
+        allKeys: [],
+        objectA: {},
+        objectB: {},
+      },
+      methods: {
+        compare() {
+          try {
+            // Clear any previous results
+            this.errorMessage = '';
+            this.compared = false;
 
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "pmp4efispy");
-  </script>
+            // Parse the JSON input objects
+            this.objectA = JSON.parse(this.objectAInput.replace('u.map =', '').trim());
+            this.objectB = JSON.parse(this.objectBInput.replace('u.map =', '').trim());
 
-  <!-- Piwik PRO -->
-  <script type="text/javascript">
-    (function(window, document, dataLayerName, id) {
-      window[dataLayerName]=window[dataLayerName]||[];
-      window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
-      var scripts=document.getElementsByTagName('script')[0],
-          tags=document.createElement('script'),
-          qP=[];
-      if(dataLayerName!=="dataLayer") qP.push("data_layer_name="+dataLayerName);
-      tags.async=!0;
-      tags.src="https://scott-gresack.containers.piwik.pro/"+id+".js"+(qP.length?"?"+qP.join("&"):"");
-      scripts.parentNode.insertBefore(tags,scripts);
-    })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
-  </script>
+            // Perform the comparison
+            this.allKeys = [...new Set([...Object.keys(this.objectA), ...Object.keys(this.objectB)])];
+            this.totalDifferences = 0;
+            this.matchingValues = [];
 
-  <!-- Floating Navbar -->
-  <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50
-              bg-white shadow-lg rounded-full px-6 py-3 flex space-x-6
-              text-sm sm:text-base font-semibold text-blue-600
-              animate-slideDown backdrop-blur-sm">
-    <a href="/portfolio/index.html"      class="hover:underline">About Me</a>
-    <a href="/portfolio/index.html#swimlanes" class="hover:underline">Diagrams</a>
-    <a href="/portfolio/index.html#codepen"    class="hover:underline">CodePens</a>
-    <a href="/portfolio/tag_generator.html"  class="hover:underline">Tag Generator</a>
-    <a href="/portfolio/index.html#contact"  class="hover:underline">Contact</a>
-  </nav>
+            this.allKeys.forEach(key => {
+              if (this.objectA[key] === this.objectB[key]) {
+                this.matchingValues.push(key);
+              } else {
+                this.totalDifferences++;
+              }
+            });
+
+            this.compared = true;
+          } catch (error) {
+            this.errorMessage = 'Invalid JSON input. Please check the formatting.';
+          }
+        },
+      },
+      computed: {
+        comparisonSummary() {
+          return `Comparison of: ${this.comparisonLabel}\n\n` +
+            `Matching keys: ${this.matchingValues.length}\n` +
+            `Total differences: ${this.totalDifferences}`;
+        }
+      }
+    });
+  </script>
 </body>
 </html>
