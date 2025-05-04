@@ -1,121 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Scott Gresack | Martech Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Martech Engineer portfolio of Scott Gresack featuring Adobe AEP, Tealium iQ, GA4, and scalable data governance strategies." />
+    <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Governance, Tag Management, GA4, Analytics, Attribution" />
+    <meta name="author" content="Scott Gresack" />
+    <meta name="robots" content="index, follow" />
+    <title>Scott Gresack | Martech Engineer Portfolio</title>
 
-  <!-- Tailwind + Animations Config -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          animation: {
-            fadeIn: 'fadeIn 1s ease-in forwards',
-            slideDown: 'slideDown 0.5s ease-in-out'
-          },
-          keyframes: {
-            fadeIn: {
-              '0%': { opacity: 0 },
-              '100%': { opacity: 1 }
-            },
-            slideDown: {
-              '0%': { transform: 'translateY(-100%)', opacity: 0 },
-              '100%': { transform: 'translateY(0)', opacity: 1 }
-            }
-          }
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="Scott Gresack | Martech Engineer Portfolio" />
+    <meta property="og:description" content="Explore data collection workflows, AEP XDM schemas, and tag management tools built for scale." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://scott-gresack.github.io/portfolio/" />
+    <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Scott Gresack | Martech Engineer Portfolio" />
+    <meta name="twitter:description" content="Tealium, Adobe Experience Platform, GTM, and privacy-driven tag governance examples." />
+    <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NH95HXQ');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
         }
-      }
-    }
-  </script>
+        gtag('js', new Date());
+        gtag('config', 'G-Y8617TLMYK');
+    </script>
 
-  <!-- Include head snippets from nav.html -->
-  <script>
-    fetch('/portfolio/nav.html')
-      .then(r => r.text())
-      .then(html => {
-        // everything before the <nav> element
-        const headSnips = html.split('<nav')[0];
-        document.head.insertAdjacentHTML('beforeend', headSnips);
-      });
-  </script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        fadeIn: 'fadeIn 1s ease-in forwards',
+                        slideDown: 'slideDown 0.5s ease-in-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-100%)', opacity: 0 },
+                            '100%': { transform: 'translateY(0)', opacity: 1 }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            padding-top: 0;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-900 font-sans">
 
-  <!-- Placeholder for GTM noscript + Floating Navbar -->
-  <div id="nav-placeholder"></div>
-  <script>
-    fetch('/portfolio/nav.html')
-      .then(r => r.text())
-      .then(html => {
-        // inject from <nav ...> through the end
-        const navAndNoscript = html.slice(html.indexOf('<nav'));
-        document.getElementById('nav-placeholder').innerHTML = navAndNoscript;
-      });
-  </script>
+    <!-- Placeholder for GTM noscript + Floating Navbar -->
+    <div id="nav-placeholder"></div> <!-- This will hold the navigation bar -->
 
-  <!-- About Section -->
-  <header id="about" class="pt-24 pb-12 px-6 max-w-3xl mx-auto text-center animate-fadeIn">
-    <h1 class="text-4xl font-bold text-blue-700 mb-4">Scott Gresack</h1>
-    <p class="text-gray-700">
-      Human-first Martech Engineer helping organizations drive smarter decisions using scalable, privacy-respecting analytics and data integration.
-      Specializing in Adobe Experience Platform, Tealium iQ, and tag specification governance across web and mobile ecosystems.
-    </p>
-  </header>
+    <!-- Load Navbar -->
+    <script>
+        fetch('nav.html')
+            .then(r => r.text())
+            .then(html => {
+                const navAndNoscript = html.slice(html.indexOf('<nav'));
+                document.getElementById('nav-placeholder').innerHTML = navAndNoscript;
+            });
+    </script>
 
-  <!-- Swimlanes Section -->
-  <section id="swimlanes" class="max-w-6xl mx-auto px-6 pb-16">
-    <h2 class="text-2xl font-bold text-blue-500 mb-6">🛠️ Swimlanes Diagram Gallery</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Diagram blocks -->
-      <div class="bg-white rounded-xl shadow p-4 animate-fadeIn">
-        <h3 class="text-lg font-semibold mb-2">Identity Stitching Pipeline</h3>
-        <img src="https://static.swimlanes.io/u/fpieL8s-QX.png?rev=2" alt="" class="rounded">
-      </div>
-      <div class="bg-white rounded-xl shadow p-4 animate-fadeIn">
-        <h3 class="text-lg font-semibold mb-2">CVS Patient Data ERD</h3>
-        <img src="https://static.swimlanes.io/u/axhHFyXhTP.png?rev=2" alt="" class="rounded">
-      </div>
-      <div class="bg-white rounded-xl shadow p-4 animate-fadeIn">
-        <h3 class="text-lg font-semibold mb-2">Web SDK + CMP (Tealium)</h3>
-        <img src="https://static.swimlanes.io/u/7FM-mlXr3h.png?rev=4" alt="" class="rounded">
-      </div>
-      <div class="bg-white rounded-xl shadow p-4 animate-fadeIn">
-        <h3 class="text-lg font-semibold mb-2">Identity Flow: Primary vs IdentityMap</h3>
-        <img src="https://static.swimlanes.io/u/-CdjvHduZK.png?rev=2" alt="" class="rounded">
-      </div>
-      <!-- add other diagrams as needed -->
+    <!-- Main Content -->
+    <div id="app" class="min-h-screen flex flex-col items-center pt-12 pb-24 px-4">
+        <!-- Vue App with Navigation -->
+        <div v-if="currentPage === 'about'" class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
+            <!-- About Me Section -->
+            <section id="about" class="pt-12 pb-6 px-6 max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl font-bold text-blue-700 mb-4">Scott Gresack</h1>
+                <p class="text-gray-700">
+                    Human-first Martech Engineer helping organizations drive smarter decisions using scalable, privacy-respecting analytics and data integration. 
+                    Specializing in Adobe Experience Platform, Tealium iQ, and tag specification governance across web and mobile ecosystems.
+                </p>
+            </section>
+        </div>
+
+        <div v-if="currentPage === 'tagGenerator'" class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
+            <!-- Tag Generator Section -->
+            <div class="bg-gradient-to-r from-primary to-accent text-white p-6">
+                <h1 class="text-3xl font-bold drop-shadow">✨ Web Tag Spec Generator ✨</h1>
+                <p class="mt-2 text-primary-100">
+                    Build dynamic <code class="bg-white/20 px-1 rounded">utag.view()</code> &amp;
+                    <code class="bg-white/20 px-1 rounded">utag.link()</code> payloads + XDM!
+                </p>
+            </div>
+
+            <div class="p-6 space-y-4 border-b">
+                <button @click="toggleInstructions" class="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition">
+                    <span v-if="showInstructions">🔽</span>
+                    <span v-else>🔼</span>
+                    <span>Instructions</span>
+                </button>
+
+                <transition name="fade">
+                    <div v-if="showInstructions" class="mt-4 bg-gray-50 p-4 rounded-lg space-y-4 text-sm">
+                        <h2 class="font-semibold text-gray-700">🚀 Purpose</h2>
+                        <p>
+                            Dynamically generate <code class="bg-gray-200 px-1 rounded">utag.view()</code> or 
+                            <code class="bg-gray-200 px-1 rounded">utag.link()</code> payloads for Adobe Web SDK, auto‑building eVar/prop/event mappings and previewable XDM objects.
+                        </p>
+                    </div>
+                </transition>
+            </div>
+
+            <div class="flex space-x-4 p-6 border-b">
+                <button @click="setEventType('utag.view()')" :class="eventType === 'utag.view()' ? 'bg-primary text-white' : 'bg-gray-100'" class="flex-1 py-2 rounded-lg font-medium hover:opacity-90 transition pop">
+                    📊 utag.view()
+                </button>
+                <button @click="setEventType('utag.link()')" :class="eventType === 'utag.link()' ? 'bg-primary text-white' : 'bg-gray-100'" class="flex-1 py-2 rounded-lg font-medium hover:opacity-90 transition pop">
+                    🔗 utag.link()
+                </button>
+            </div>
+        </div>
+
+        <div v-if="currentPage === 'codepen'" class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
+            <!-- CodePen Section -->
+            <h2 class="text-2xl font-bold text-blue-500 mb-6">🔧 CodePen Projects</h2>
+            <div class="grid grid-cols-1 gap-6">
+                <div class="bg-white rounded-xl shadow p-4 animate-fadeIn">
+                    <h3 class="text-lg font-semibold mb-2">Web Tag Spec Builder</h3>
+                    <iframe class="rounded w-full h-[500px]" src="https://codepen.io/scott-gresack/full/xbKRyQB"></iframe>
+                </div>
+                <div class="bg-white rounded-xl shadow p-4 animate-fadeIn">
+                    <h3 class="text-lg font-semibold mb-2">Mobile Tag Spec Creator</h3>
+                    <iframe class="rounded w-full h-[500px]" src="https://codepen.io/scott-gresack/full/ogvYawV"></iframe>
+                </div>
+                <div class="bg-white rounded-xl shadow p-4 animate-fadeIn">
+                    <h3 class="text-lg font-semibold mb-2">Mobile XDM Comparison Tool</h3>
+                    <iframe class="rounded w-full h-[500px]" src="https://codepen.io/scott-gresack/full/NPPKJpb"></iframe>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <!-- CodePen Section -->
-  <section id="codepen" class="max-w-6xl mx-auto px-6 pb-16">
-    <h2 class="text-2xl font-bold text-blue-500 mb-6">🔧 CodePen Projects</h2>
-    <div class="grid grid-cols-1 gap-6">
-      <div class="bg-white rounded-xl shadow p-4 animate-fadeIn">
-        <h3 class="text-lg font-semibold mb-2">Web Tag Spec Builder</h3>
-        <iframe class="rounded w-full h-[500px]" src="https://codepen.io/scott-gresack/full/xbKRyQB"></iframe>
-      </div>
-      <div class="bg-white rounded-xl shadow p-4 animate-fadeIn">
-        <h3 class="text-lg font-semibold mb-2">Mobile Tag Spec Creator</h3>
-        <iframe class="rounded w-full h-[500px]" src="https://codepen.io/scott-gresack/full/ogvYawV"></iframe>
-      </div>
-      <div class="bg-white rounded-xl shadow p-4 animate-fadeIn">
-        <h3 class="text-lg font-semibold mb-2">Mobile XDM Comparison Tool</h3>
-        <iframe class="rounded w-full h-[500px]" src="https://codepen.io/scott-gresack/full/NPPKJpb"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="max-w-4xl mx-auto px-6 pb-20">
-    <h2 class="text-2xl font-bold text-blue-500 mb-4">📬 Contact</h2>
-    <p>Email: <a class="text-blue-600 underline" href="mailto:gresack.scott@gmail.com">gresack.scott@gmail.com</a></p>
-    <p>LinkedIn: <a class="text-blue-600 underline" href="https://www.linkedin.com/in/scottgresack" target="_blank">Scott Gresack</a></p>
-    <p>Phone: (440) 390‑3237</p>
-  </section>
-
+    <!-- Vue.js Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                currentPage: 'about', // initial page to show
+                showInstructions: true,
+                eventType: 'utag.view()',
+                keyValuePairs: [],
+                showModal: false,
+                modalType: '',
+            },
+            computed: {
+                formattedSnippet() {
+                    if (!this.keyValuePairs.length) return this.eventType + '({});';
+                    const p = {};
+                    this.keyValuePairs.forEach(o => {
+                        if (o.key && o.value) p[o.key] = o.value;
+                    });
+                    return this.eventType + '(' + JSON.stringify(p, null, 2) + ');';
+                }
+            },
+            methods: {
+                setEventType(t) {
+                    this.eventType = t;
+                },
+                toggleInstructions() {
+                    this.showInstructions = !this.showInstructions;
+                },
+                changePage(page) {
+                    this.currentPage = page;
+                },
+                addKeyValuePair() {
+                    this.keyValuePairs.push({
+                        key: '',
+                        value: '',
+                        analyticsKey: ''
+                    });
+                },
+                removeKeyValuePair(i) {
+                    this.keyValuePairs.splice(i, 1);
+                }
+            }
+        });
+    </script>
 </body>
+
 </html>
