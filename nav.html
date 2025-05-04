@@ -1,0 +1,63 @@
+<!-- nav.html -->
+<!-- HEAD SNIFFETS (GTM, GA4, Clarity, Piwik Pro) -->
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NH95HXQ');
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+<script>
+  window.dataLayer = window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Y8617TLMYK');
+</script>
+
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "pmp4efispy");
+</script>
+
+<script type="text/javascript">
+  (function(window, document, dataLayerName, id) {
+    window[dataLayerName]=window[dataLayerName]||[];
+    window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
+    var s=document.getElementsByTagName('script')[0],
+        t=document.createElement('script'),
+        q=[]; dataLayerName!=="dataLayer"&& q.push("data_layer_name="+dataLayerName);
+    t.async=true;
+    t.src="https://scott-gresack.containers.piwik.pro/"+id+".js"+(q.length?("?"+q.join("&")):"");
+    s.parentNode.insertBefore(t,s);
+    !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++){
+      (function(i){a[n][i]=a[n][i]||{};a[n][i].api=a[n][i].api||function(){
+        var args=[].slice.call(arguments,0);
+        "string"==typeof args[0]&&window[dataLayerName].push({
+          event:n+"."+i+":"+args[0],parameters:args.slice(1)
+        });
+      }})(i[c]);
+    }}(window,"ppms",["tm","cm"]);
+  })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
+</script>
+
+<!-- FLOATING NAV BAR (to drop right under <body>) -->
+<nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50
+            bg-white shadow-lg rounded-full px-6 py-3 flex gap-6
+            text-blue-600 font-semibold animate-slideDown backdrop-blur-sm">
+  <a href="/portfolio/index.html"        class="hover:underline">About Me</a>
+  <a href="/portfolio/index.html#swimlanes" class="hover:underline">Diagrams</a>
+  <a href="/portfolio/index.html#codepen"   class="hover:underline">CodePens</a>
+  <a href="/portfolio/tag-spec-generator.html" class="hover:underline">Tag Spec Generator</a>
+  <a href="/portfolio/index.html#contact"   class="hover:underline">Contact</a>
+</nav>
+
+<!-- GTM noscript fallback -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NH95HXQ"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
