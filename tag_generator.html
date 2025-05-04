@@ -28,28 +28,9 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NH95HXQ');
+  })(window,document,'script','dataLayer','GTM-NH95HXQ');
   </script>
   <!-- End Google Tag Manager -->
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Scott Gresack",
-    "url": "https://scott-gresack.github.io/portfolio/",
-    "jobTitle": "Martech Engineer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Healthcare Technology Company"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/scottgresack",
-      "https://codepen.io/scott-gresack"
-    ]
-  }
-  </script>
 
   <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
@@ -60,39 +41,8 @@
     gtag('config', 'G-Y8617TLMYK');
   </script>
 
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "pmp4efispy");
-  </script>
-
-  <!-- Tailwind + Animations -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { primary: '#3B82F6', accent: '#F59E0B' },
-          animation: {
-            fadeIn: 'fadeIn 0.5s ease-out forwards',
-            pop:   'pop 0.3s ease-out forwards',
-          },
-          keyframes: {
-            fadeIn: { '0%':{opacity:0}, '100%':{opacity:1} },
-            pop:    { '0%':{transform:'scale(0.95)',opacity:0}, '100%':{transform:'scale(1)',opacity:1} }
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    /* ensure body doesn’t jump when GTM noscript is inserted */
-    body { padding-top:0; margin:0; }
-  </style>
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
 
@@ -102,12 +52,13 @@
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
 
+  <!-- Nav Include -->
+  <div id="nav-container"></div> <!-- This will hold the navigation bar -->
+
   <!-- Vue App -->
   <div id="app" class="min-h-screen flex flex-col items-center pt-12 pb-24 px-4">
-
     <!-- Main Card -->
     <div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
-
       <!-- Header -->
       <div class="bg-gradient-to-r from-primary to-accent text-white p-6">
         <h1 class="text-3xl font-bold drop-shadow">✨ Web Tag Spec Generator ✨</h1>
@@ -147,7 +98,6 @@
           </div>
         </transition>
       </div>
-
       <!-- Event Type Buttons -->
       <div class="flex space-x-4 p-6 border-b">
         <button @click="setEventType('utag.view()')"
