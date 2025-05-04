@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Martech Engineer portfolio of Scott Gresack featuring Adobe AEP, Tealium iQ, GA4, and scalable data governance strategies." />
+  <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Governance, Tag Management, GA4, Analytics, Attribution" />
+  <meta name="author" content="Scott Gresack" />
+  <meta name="robots" content="index, follow" />
+  <title>Scott Gresack | Martech Engineer Portfolio</title>
+
+  <!-- Open Graph Meta -->
+  <meta property="og:title" content="Scott Gresack | Martech Engineer Portfolio" />
+  <meta property="og:description" content="Explore data collection workflows, AEP XDM schemas, and tag management tools built for scale." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/" />
+  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Scott Gresack | Martech Engineer Portfolio" />
+  <meta name="twitter:description" content="Tealium, Adobe Experience Platform, GTM, and privacy-driven tag governance examples." />
+  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NH95HXQ');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Scott Gresack",
+    "url": "https://scott-gresack.github.io/portfolio/",
+    "jobTitle": "Martech Engineer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Healthcare Technology Company"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/scottgresack",
+      "https://codepen.io/scott-gresack"
+    ]
+  }
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y8617TLMYK');
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "pmp4efispy");
+  </script>
+
+  <!-- Tailwind + Animations -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#3B82F6', accent: '#F59E0B' },
+          animation: {
+            fadeIn: 'fadeIn 0.5s ease-out forwards',
+            pop:   'pop 0.3s ease-out forwards',
+          },
+          keyframes: {
+            fadeIn: { '0%':{opacity:0}, '100%':{opacity:1} },
+            pop:    { '0%':{transform:'scale(0.95)',opacity:0}, '100%':{transform:'scale(1)',opacity:1} }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ensure body doesn’t jump when GTM noscript is inserted */
+    body { padding-top:0; margin:0; }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased">
+
+  <!-- GTM (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NH95HXQ"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+
+  <!-- Vue App -->
+  <div id="app" class="min-h-screen flex flex-col items-center pt-12 pb-24 px-4">
+
+    <!-- Main Card -->
+    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
+
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-primary to-accent text-white p-6">
+        <h1 class="text-3xl font-bold drop-shadow">✨ Web Tag Spec Generator ✨</h1>
+        <p class="mt-2 text-primary-100">
+          Build dynamic <code class="bg-white/20 px-1 rounded">utag.view()</code> &amp; 
+          <code class="bg-white/20 px-1 rounded">utag.link()</code> payloads + XDM!
+        </p>
+      </div>
+
+      <!-- Instructions Toggle -->
+      <div class="p-6 border-b">
+        <button @click="toggleInstructions"
+                class="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition">
+          <span v-if="showInstructions">🔽</span>
+          <span v-else>🔼</span>
+          <span>Instructions</span>
+        </button>
+        <transition name="fade">
+          <div v-if="showInstructions" class="mt-4 bg-gray-50 p-4 rounded-lg space-y-4 text-sm">
+            <div>
+              <h2 class="font-semibold text-gray-700">🚀 Purpose</h2>
+              <p>
+                Dynamically generate <code class="bg-gray-200 px-1 rounded">utag.view()</code> or 
+                <code class="bg-gray-200 px-1 rounded">utag.link()</code> payloads for Adobe Web SDK,
+                auto‑building eVar/prop/event mappings and previewable XDM objects.
+              </p>
+            </div>
+            <div>
+              <h2 class="font-semibold text-gray-700">🛠 Instructions</h2>
+              <ol class="list-decimal list-inside space-y-1">
+                <li>Select event type.</li>
+                <li>Add key/value + analytics key (eVar#, prop#, event#).</li>
+                <li>Preview Tag Spec &amp; XDM below.</li>
+                <li>Click “Copy” to use in your console or TMS.</li>
+              </ol>
+            </div>
+          </div>
+        </transition>
+      </div>
+
+      <!-- Event Type Buttons -->
+      <div class="flex space-x-4 p-6 border-b">
+        <button @click="setEventType('utag.view()')"
+                :class="eventType==='utag.view()'? 'bg-primary text-white':'bg-gray-100'"
+                class="flex-1 py-2 rounded-lg font-medium hover:opacity-90 transition pop">
+          📊 utag.view()
+        </button>
+        <button @click="setEventType('utag.link()')"
+                :class="eventType==='utag.link()'? 'bg-primary text-white':'bg-gray-100'"
+                class="flex-1 py-2 rounded-lg font-medium hover:opacity-90 transition pop">
+          🔗 utag.link()
+        </button>
+      </div>
+
+      <!-- Key–Value Pairs -->
+      <div class="p-6 space-y-4 border-b">
+        <h3 class="font-semibold text-gray-700">🧩 Key–Value Pairs</h3>
+        <div v-for="(pair,i) in keyValuePairs" :key="i" class="flex space-x-2">
+          <input v-model="pair.key"         placeholder="Key"         class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
+          <input v-model="pair.value"       placeholder="Value"       class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
+          <input v-model="pair.analyticsKey"placeholder="eVar#/prop#/event#" class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
+          <button @click="removeKeyValuePair(i)" class="px-3 bg-red-400 hover:bg-red-500 text-white rounded-lg transition pop">✕</button>
+        </div>
+        <button @click="addKeyValuePair" class="px-4 py-2 bg-green-400 hover:bg-green-500 text-white rounded-lg transition pop">
+          ➕ Add Pair
+        </button>
+      </div>
+
+      <!-- Outputs -->
+      <div class="p-6 space-y-8">
+        <!-- Tag Spec -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-semibold text-gray-800">✨ Tag Spec</h4>
+            <button @click="copyToClipboard(formattedSnippet,'Tag Spec')"
+                    class="px-3 py-1 bg-primary text-white rounded-lg hover:bg-blue-700 transition pop">
+              📋 Copy
+            </button>
+          </div>
+          <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">{{ formattedSnippet }}</pre>
+        </div>
+        <!-- XDM Object -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-semibold text-gray-800">🌐 XDM Object</h4>
+            <button @click="copyToClipboard(xdmObject,'XDM Object')"
+                    class="px-3 py-1 bg-primary text-white rounded-lg hover:bg-blue-700 transition pop">
+              📋 Copy
+            </button>
+          </div>
+          <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">{{ xdmObject }}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <transition name="fade">
+      <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black/50">
+        <div class="bg-white p-6 rounded-2xl shadow-xl max-w-xs text-center animate-pop">
+          <h3 class="text-xl font-bold mb-2">🎉 Copied!</h3>
+          <p your>{{ modalType }} is on your clipboard.</p>
+          <button @click="closeModal"
+                  class="mt-4 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+            Close
+          </button>
+        </div>
+      </div>
+    </transition>
+  </div>
+
+  <!-- Vue 2 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        showInstructions:true,
+        eventType:'utag.view()',
+        keyValuePairs:[],
+        showModal:false,
+        modalType:'',
+      },
+      computed:{
+        formattedSnippet(){
+          if(!this.keyValuePairs.length) return this.eventType+'({});';
+          const p={};
+          this.keyValuePairs.forEach(o=>{
+            if(o.key&&o.value) p[o.key]=o.value;
+          });
+          return this.eventType+'('+JSON.stringify(p,null,2)+');';
+        },
+        xdmObject(){
+          const xdm={ xdm:{ _experience:{ analytics:{ customDimensions:{ eVars:{},props:{} }, events:{} } } } };
+          this.keyValuePairs.forEach(o=>{
+            const k=o.analyticsKey, v=o.value;
+            if(/^evar\d+/i.test(k))    xdm.xdm._experience.analytics.customDimensions.eVars[k]=v;
+            else if(/^prop\d+/i.test(k))xdm.xdm._experience.analytics.customDimensions.props[k]=v;
+            else if(/^event\d+/i.test(k))xdm.xdm._experience.analytics.events[k]=v;
+          });
+          return JSON.stringify(xdm,null,2);
+        }
+      },
+      methods:{
+        toggleInstructions(){this.showInstructions=!this.showInstructions},
+        setEventType(t){this.eventType=t},
+        addKeyValuePair(){this.keyValuePairs.push({key:'',value:'',analyticsKey:''})},
+        removeKeyValuePair(i){this.keyValuePairs.splice(i,1)},
+        copyToClipboard(txt,type){
+          navigator.clipboard.writeText(txt).then(()=>{
+            this.modalType=type;this.showModal=true;
+            setTimeout(this.closeModal,1200);
+          });
+        },
+        closeModal(){this.showModal=false}
+      }
+    });
+  </script>
+</body>
+</html>
