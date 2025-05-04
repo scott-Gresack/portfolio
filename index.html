@@ -9,18 +9,8 @@
   <meta name="robots" content="index, follow" />
   <title>Scott Gresack | Martech Engineer Portfolio</title>
 
-  <!-- Open Graph Meta -->
-  <meta property="og:title" content="Scott Gresack | Martech Engineer Portfolio" />
-  <meta property="og:description" content="Explore data collection workflows, AEP XDM schemas, and tag management tools built for scale." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/" />
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Scott Gresack | Martech Engineer Portfolio" />
-  <meta name="twitter:description" content="Tealium, Adobe Experience Platform, GTM, and privacy-driven tag governance examples." />
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+  <!-- Vue.js -->
+  <script src="https://unpkg.com/vue@3.4.21/dist/vue.global.prod.js"></script>
 
   <!-- Google Tag Manager -->
   <script>
@@ -29,25 +19,6 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NH95HXQ');
-  </script>
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Scott Gresack",
-    "url": "https://scott-gresack.github.io/portfolio/",
-    "jobTitle": "Martech Engineer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Healthcare Technology Company"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/scottgresack",
-      "https://codepen.io/scott-gresack"
-    ]
-  }
   </script>
 
   <!-- GA4 -->
@@ -66,6 +37,35 @@
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "pmp4efispy");
+  </script>
+
+  <!-- Piwik PRO -->
+  <script type="text/javascript">
+    (function(window, document, dataLayerName, id) {
+      window[dataLayerName] = window[dataLayerName] || [];
+      window[dataLayerName].push({ start: (new Date).getTime(), event: "stg.start" });
+      var scripts = document.getElementsByTagName('script')[0],
+          tags = document.createElement('script');
+      var qP = [];
+      dataLayerName !== "dataLayer" && qP.push("data_layer_name=" + dataLayerName);
+      var qPString = qP.length > 0 ? ("?" + qP.join("&")) : "";
+      tags.async = true;
+      tags.src = "https://scott-gresack.containers.piwik.pro/" + id + ".js" + qPString;
+      scripts.parentNode.insertBefore(tags, scripts);
+      !function(a, n, i) {
+        a[n] = a[n] || {};
+        for (var c = 0; c < i.length; c++) !function(i) {
+          a[n][i] = a[n][i] || {};
+          a[n][i].api = a[n][i].api || function() {
+            var a = [].slice.call(arguments, 0);
+            "string" == typeof a[0] && window[dataLayerName].push({
+              event: n + "." + i + ":" + a[0],
+              parameters: [].slice.call(arguments, 1)
+            });
+          }
+        }(i[c]);
+      }(window, "ppms", ["tm", "cm"]);
+    })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
   </script>
 
   <style>
@@ -95,41 +95,52 @@
     ul {
       padding-left: 1.2rem;
     }
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity 0.5s;
+    }
+    .fade-enter-from, .fade-leave-to {
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NH95HXQ"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NH95HXQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
 
-  <h1>Scott Gresack | Martech Portfolio</h1>
-  <p><strong>Email:</strong> <a href="mailto:gresack.scott@gmail.com">gresack.scott@gmail.com</a></p>
-  <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/scottgresack" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></p>
-  <p><strong>Phone:</strong> (440) 390-3237</p>
+  <div id="app">
+    <transition name="fade">
+      <div>
+        <h1>Scott Gresack | Martech Portfolio</h1>
+        <p><strong>Email:</strong> <a href="mailto:gresack.scott@gmail.com">gresack.scott@gmail.com</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/scottgresack" target="_blank">LinkedIn Profile</a></p>
+        <p><strong>Phone:</strong> (440) 390-3237</p>
 
-  <h2>Professional Summary</h2>
-  <p>
-    Martech and Data Governance Engineer specializing in scalable, privacy-conscious data collection across web and mobile platforms. Expert in Adobe Experience Platform, GA4, Tealium iQ, and schema governance. Proven success leading enterprise tag management, hybrid personalization, and actionable XDM design.
-  </p>
+        <h2>Featured Diagrams</h2>
+        <ul>
+          <li v-for="item in diagrams" :key="item.id">
+            <a :href="item.url" target="_blank">{{ item.title }}</a><br/>
+            <small>{{ item.desc }}</small>
+          </li>
+        </ul>
+      </div>
+    </transition>
+  </div>
 
-  <h2>Featured Projects</h2>
-  <ul>
-    <li><a href="https://codepen.io/scott-gresack/pen/pvzGjQX" target="_blank" rel="noopener noreferrer">Adobe Web SDK Debug Monitor</a></li>
-    <li><a href="https://codepen.io/collection/ojEjdV" target="_blank" rel="noopener noreferrer">Tag Spec Generators (Web & Mobile)</a></li>
-  </ul>
-
-  <h2>Featured Diagrams</h2>
-  <ul>
-    <li><a href="https://swimlanes.io/u/fpieL8s-QX" target="_blank" rel="noopener noreferrer">🧬 Identity Stitching Pipeline</a></li>
-    <li><a href="https://swimlanes.io/u/axhHFyXhTP" target="_blank" rel="noopener noreferrer">📊 CVS Patient Data ERD</a></li>
-    <li><a href="https://swimlanes.io/u/7FM-mlXr3h" target="_blank" rel="noopener noreferrer">⚙️ Web SDK + CMP (Tealium)</a></li>
-    <li><a href="https://swimlanes.io/u/-CdjvHduZK" target="_blank" rel="noopener noreferrer">🔁 Identity Flow: Primary vs IdentityMap</a></li>
-    <li><a href="https://swimlanes.io/u/ETB9f7TFu1" target="_blank" rel="noopener noreferrer">🩺 HIPAA Web Schema Risk Map</a></li>
-    <li><a href="https://swimlanes.io/u/EIT0nw6cfO" target="_blank" rel="noopener noreferrer">📦 Branch + Email Identity Stitching</a></li>
-    <li><a href="https://swimlanes.io/u/5L0Ddwt4tS" target="_blank" rel="noopener noreferrer">🧾 proxyID Strategy</a></li>
-    <li><a href="https://swimlanes.io/u/6N5xqemN06" target="_blank" rel="noopener noreferrer">🌐 Hybrid Personalization Model</a></li>
-    <li><a href="https://swimlanes.io/u/HE5L-gO7HH" target="_blank" rel="noopener noreferrer">🔧 Personalization Workflow</a></li>
-    <li><a href="https://swimlanes.io/u/6IoFeUsUyo" target="_blank" rel="noopener noreferrer">📲 Deep Linking 2026</a></li>
-    <li><a href="https://swimlanes.io/u/GIVyVnUr7B" target="_blank" rel="noopener noreferrer">📈 AppsFlyer Attribution Flow</a></li>
-  </ul>
+  <script>
+    const { createApp } = Vue;
+    createApp({
+      data() {
+        return {
+          diagrams: [
+            { id: 1, title: '🧬 Identity Stitching Pipeline', url: 'https://swimlanes.io/u/fpieL8s-QX', desc: 'Combines ECID, hashed email, and proxyID into unified AEP profiles.' },
+            { id: 2, title: '📊 CVS Patient Data ERD', url: 'https://swimlanes.io/u/axhHFyXhTP', desc: 'Entity relationships for patient data flowing into Adobe Experience Platform.' },
+            { id: 3, title: '⚙️ Web SDK + CMP (Tealium)', url: 'https://swimlanes.io/u/7FM-mlXr3h', desc: 'Consent-aware SDK initialization with OneTrust and Tealium iQ.' },
+            { id: 4, title: '🔁 Identity Flow: Primary vs IdentityMap', url: 'https://swimlanes.io/u/-CdjvHduZK', desc: 'Visualizing potential profile collapse using different identity handling techniques.' }
+          ]
+        }
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>
