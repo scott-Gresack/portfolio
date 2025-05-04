@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Scott Gresack | Martech Diagram Gallery</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Swimlane diagrams and data stitching workflows by Scott Gresack, Martech Engineer specializing in AEP, identity resolution, and scalable analytics.">
-  <meta name="keywords" content="Scott Gresack, AEP, Adobe Experience Platform, Swimlanes.io, Identity Graph, Hybrid Personalization, Web SDK, Tealium, Martech, Analytics">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Scott Gresack's Martech Engineer portfolio featuring Adobe AEP, Tealium iQ, GA4, and Swimlanes.io architecture diagrams." />
+  <meta name="keywords" content="Scott Gresack, Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Governance, GA4, Swimlanes.io, Identity Stitching, Personalization" />
+  <meta name="author" content="Scott Gresack" />
+  <meta name="robots" content="index, follow" />
+  <title>Scott Gresack | Martech Engineer Portfolio</title>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700|Source+Code+Pro:400,500,600" rel="stylesheet">
   <script src="https://unpkg.com/vue@3"></script>
   <style>
@@ -13,16 +15,17 @@
       font-family: 'Source Sans Pro', sans-serif;
       background: #f8f9fa;
       color: #333;
-      margin: 0;
-      padding: 0;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
     }
     nav {
-      background: #004085;
-      color: white;
-      padding: 1rem;
       display: flex;
-      gap: 2rem;
-      justify-content: center;
+      justify-content: space-around;
+      background: #0A79DF;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
     }
     nav a {
       color: white;
@@ -32,25 +35,12 @@
     nav a:hover {
       text-decoration: underline;
     }
-    main {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 2rem;
-    }
-    section {
-      margin-bottom: 3rem;
-    }
-    .diagram-block {
+    .diagram-block, .contact-block, .about-block {
       background: #fff;
       border-radius: 12px;
       padding: 1.5rem;
       margin-bottom: 2rem;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
-    .diagram-block h2 {
-      margin-top: 0;
-      font-size: 1.25rem;
-      color: #0056b3;
     }
     iframe {
       width: 100%;
@@ -58,7 +48,57 @@
       border-radius: 8px;
     }
   </style>
+</head>
+<body>
+  <div id="app">
+    <nav>
+      <a href="#" @click.prevent="section = 'about'">About Me</a>
+      <a href="#" @click.prevent="section = 'diagrams'">Diagrams</a>
+      <a href="#" @click.prevent="section = 'contact'">Contact</a>
+    </nav>
+
+    <div v-if="section === 'about'" class="about-block">
+      <h1>Scott Gresack | Martech Engineer</h1>
+      <p>Dedicated to helping organizations leverage tools like Adobe AEP, GA4, and Tealium to derive actionable insights and enable effective decision management through data governance and personalization strategies.</p>
+    </div>
+
+    <div v-if="section === 'diagrams'">
+      <div class="diagram-block" v-for="diagram in diagrams" :key="diagram.id">
+        <h2>{{ diagram.title }}</h2>
+        <iframe :id="'__sw-io-' + diagram.id" scrolling="no" :src="'https://cdn.swimlanes.io/dist/embeded.html#' + diagram.id"></iframe>
+      </div>
+    </div>
+
+    <div v-if="section === 'contact'" class="contact-block">
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> <a href="mailto:gresack.scott@gmail.com">gresack.scott@gmail.com</a></p>
+      <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/scottgresack" target="_blank">scottgresack</a></p>
+      <p><strong>Phone:</strong> (440) 390-3237</p>
+    </div>
+  </div>
+
   <script>
+    Vue.createApp({
+      data() {
+        return {
+          section: 'about',
+          diagrams: [
+            { id: 'fpieL8s-QX', title: '🧬 Identity Stitching Pipeline' },
+            { id: 'axhHFyXhTP', title: '📊 CVS Patient Data ERD' },
+            { id: '7FM-mlXr3h', title: '⚙️ Adobe Web SDK Initialization with OneTrust CMP' },
+            { id: '-CdjvHduZK', title: '🔁 AEP Identity Flow – Primary vs IdentityMap' },
+            { id: 'ETB9f7TFu1', title: '🩺 HIPAA Schema Options and Risk Outcomes' },
+            { id: 'EIT0nw6cfO', title: '📦 Identity via Branch + Email' },
+            { id: '5L0Ddwt4tS', title: '🧾 proxyID: Primary vs Non-Primary' },
+            { id: '6N5xqemN06', title: '🌐 Hybrid Personalization: Edge API + Web SDK' },
+            { id: 'HE5L-gO7HH', title: '🔧 Personalization Implementation Workflow' },
+            { id: '6IoFeUsUyo', title: '📲 Deep Linking 2026' },
+            { id: 'GIVyVnUr7B', title: '📈 AppsFlyer + Adobe Analytics Integration' }
+          ]
+        }
+      }
+    }).mount('#app');
+
     window.addEventListener("message", function(e) {
       const parts = e.data.split(":");
       if (parts[0] === "swimlanes-io" && parts[1] && parts[2]) {
@@ -67,86 +107,5 @@
       }
     });
   </script>
-</head>
-<body>
-<div id="app">
-  <nav>
-    <a href="#about">About Me</a>
-    <a href="#diagrams">Diagrams</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <main>
-    <section id="about">
-      <h1>About Me</h1>
-      <p>I'm Scott Gresack, a Martech Engineer who helps organizations unlock decision-making power through clean data collection, robust identity stitching, and scalable tagging solutions. I bring a human, cross-functional approach to enterprise analytics platforms like Adobe AEP, GA4, Tealium iQ, and more.</p>
-    </section>
-
-    <section id="diagrams">
-      <h1>Swimlane Diagrams – Martech & AEP Flows</h1>
-
-      <div class="diagram-block">
-        <h2>🧬 Identity Stitching Pipeline</h2>
-        <iframe id="__sw-io-fpieL8s-QX" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#fpieL8s-QX"></iframe>
-      </div>
-
-      <div class="diagram-block">
-        <h2>📊 CVS Patient Data ERD</h2>
-        <iframe id="__sw-io-axhHFyXhTP" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#axhHFyXhTP"></iframe>
-      </div>
-
-      <div class="diagram-block">
-        <h2>⚙️ Adobe Web SDK Initialization with OneTrust CMP</h2>
-        <iframe id="__sw-io-7FM-mlXr3h" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#7FM-mlXr3h"></iframe>
-      </div>
-
-      <div class="diagram-block">
-        <h2>🔁 AEP Identity Flow – Primary vs Non-Primary vs IdentityMap</h2>
-        <iframe id="__sw-io--CdjvHduZK" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#-CdjvHduZK"></iframe>
-      </div>
-
-      <div class="diagram-block">
-        <h2>🩺 HIPAA Schema Options and Risk Outcomes</h2>
-        <iframe id="__sw-io-ETB9f7TFu1" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#ETB9f7TFu1"></iframe>
-      </div>
-
-      <div class="diagram-block">
-        <h2>📦 Identity via Branch + Email (Healthcare App Arrival)</h2>
-        <iframe id="__sw-io-EIT0nw6cfO" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#EIT0nw6cfO"></iframe>
-      </div>
-
-      <div class="diagram-block">
-        <h2>🧾 proxyID: Primary vs Non-Primary Behavior</h2>
-        <iframe id="__sw-io-5L0Ddwt4tS" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#5L0Ddwt4tS"></iframe>
-      </div>
-
-      <div class="diagram-block">
-        <h2>🌐 Hybrid Personalization: Edge API + Web SDK</h2>
-        <iframe id="__sw-io-6N5xqemN06" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#6N5xqemN06"></iframe>
-      </div>
-
-      <div class="diagram-block">
-        <h2>🔧 Hybrid Personalization Implementation Workflow</h2>
-        <iframe id="__sw-io-HE5L-gO7HH" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#HE5L-gO7HH"></iframe>
-      </div>
-
-      <div class="diagram-block">
-        <h2>📲 Deep Linking Alignment with 2026 Roadmap</h2>
-        <iframe id="__sw-io-6IoFeUsUyo" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#6IoFeUsUyo"></iframe>
-      </div>
-
-      <div class="diagram-block">
-        <h2>📈 AppsFlyer + Adobe Analytics Integration</h2>
-        <iframe id="__sw-io-GIVyVnUr7B" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#GIVyVnUr7B"></iframe>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h1>Contact</h1>
-      <p>Email: <a href="mailto:gresack.scott@gmail.com">gresack.scott@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/scottgresack" target="_blank" rel="noopener">linkedin.com/in/scottgresack</a></p>
-      <p>Phone: (440) 390-3237</p>
-    </section>
-  </main>
-</div>
 </body>
 </html>
