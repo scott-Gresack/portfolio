@@ -95,11 +95,13 @@
     ul {
       padding-left: 1.2rem;
     }
-    .fade-enter-active, .fade-leave-active {
-      transition: opacity 0.5s;
-    }
-    .fade-enter-from, .fade-leave-to {
-      opacity: 0;
+    iframe {
+      width: 100%;
+      height: 900px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      margin-top: 2rem;
+      transition: all 0.5s ease-in-out;
     }
   </style>
 </head>
@@ -109,38 +111,20 @@
   </noscript>
 
   <div id="app">
-    <transition name="fade">
-      <div>
-        <h1>Scott Gresack | Martech Portfolio</h1>
-        <p><strong>Email:</strong> <a href="mailto:gresack.scott@gmail.com">gresack.scott@gmail.com</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/scottgresack" target="_blank">LinkedIn Profile</a></p>
-        <p><strong>Phone:</strong> (440) 390-3237</p>
+    <h1>Scott Gresack | Martech Portfolio</h1>
+    <p><strong>Email:</strong> <a href="mailto:gresack.scott@gmail.com">gresack.scott@gmail.com</a></p>
+    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/scottgresack" target="_blank">LinkedIn Profile</a></p>
+    <p><strong>Phone:</strong> (440) 390-3237</p>
 
-        <h2>Featured Diagrams</h2>
-        <ul>
-          <li v-for="item in diagrams" :key="item.id">
-            <a :href="item.url" target="_blank">{{ item.title }}</a><br/>
-            <small>{{ item.desc }}</small>
-          </li>
-        </ul>
-      </div>
+    <h2>Resume</h2>
+    <transition name="fade">
+      <iframe src="https://scott-gresack.github.io/portfolio/assets/Scott_Gresack_Resume_.pdf" title="Scott Gresack Resume"></iframe>
     </transition>
   </div>
 
   <script>
     const { createApp } = Vue;
-    createApp({
-      data() {
-        return {
-          diagrams: [
-            { id: 1, title: '🧬 Identity Stitching Pipeline', url: 'https://swimlanes.io/u/fpieL8s-QX', desc: 'Combines ECID, hashed email, and proxyID into unified AEP profiles.' },
-            { id: 2, title: '📊 CVS Patient Data ERD', url: 'https://swimlanes.io/u/axhHFyXhTP', desc: 'Entity relationships for patient data flowing into Adobe Experience Platform.' },
-            { id: 3, title: '⚙️ Web SDK + CMP (Tealium)', url: 'https://swimlanes.io/u/7FM-mlXr3h', desc: 'Consent-aware SDK initialization with OneTrust and Tealium iQ.' },
-            { id: 4, title: '🔁 Identity Flow: Primary vs IdentityMap', url: 'https://swimlanes.io/u/-CdjvHduZK', desc: 'Visualizing potential profile collapse using different identity handling techniques.' }
-          ]
-        }
-      }
-    }).mount('#app');
+    createApp({}).mount('#app');
   </script>
 </body>
 </html>
