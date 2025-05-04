@@ -40,6 +40,17 @@
   <!-- Include Nav -->
   <div id="nav-container"></div> <!-- This will hold the navigation bar -->
 
+  <script>
+    // Fetch and inject navigation HTML from nav.html
+    fetch('/portfolio/nav.html')
+      .then(r => r.text())
+      .then(html => {
+        // Inject nav content into the page
+        const navAndNoscript = html.slice(html.indexOf('<nav'));
+        document.getElementById('nav-container').innerHTML = navAndNoscript;
+      });
+  </script>
+
   <!-- Vue App for XDM Comparator -->
   <div id="app" class="min-h-screen flex flex-col items-center pt-12 pb-24 px-4">
 
