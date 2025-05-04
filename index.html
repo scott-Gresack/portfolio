@@ -5,38 +5,8 @@
   <title>Swimlanes Diagram Gallery | Scott Gresack</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Swimlanes.io diagram showcase by Scott Gresack on topics like AEP identity, personalization, and data stitching." />
-  <meta name="keywords" content="Swimlanes, AEP, Adobe Web SDK, Identity Stitching, Martech, Scott Gresack, Tealium iQ, Adobe Experience Platform" />
+  <meta name="keywords" content="Swimlanes, AEP, Adobe Web SDK, Identity Stitching, Martech, Scott Gresack, Tealium iQ, Adobe Experience Platform, Tag Spec, CodePen" />
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700|Source+Code+Pro:400,500,600" rel="stylesheet">
-  
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Y8617TLMYK');
-  </script>
-
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "pmp4efispy");
-  </script>
-
-  <!-- Piwik PRO -->
-  <script type="text/javascript">
-    (function(window, document, dataLayerName, id) {
-      window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
-      var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
-      var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName);var qPString=qP.length>0?("?"+qP.join("&")):"";
-      tags.async=!0,tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js"+qPString,scripts.parentNode.insertBefore(tags,scripts);
-      !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
-    })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
-  </script>
-
   <style>
     body {
       font-family: 'Source Sans Pro', sans-serif;
@@ -46,14 +16,14 @@
       max-width: 1000px;
       margin: auto;
     }
-    .diagram-block {
+    .diagram-block, .codepen-block {
       background: #fff;
       border-radius: 12px;
       padding: 1.5rem;
       margin-bottom: 2rem;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
-    .diagram-block h2 {
+    .diagram-block h2, .codepen-block h2 {
       margin-top: 0;
       font-size: 1.25rem;
       color: #0056b3;
@@ -62,28 +32,91 @@
       width: 100%;
       border: none;
       border-radius: 8px;
-    }
-    a {
-      color: #0077cc;
+      min-height: 600px;
     }
   </style>
+  <script>
+    window.addEventListener("message", function(e) {
+      const parts = e.data.split(":");
+      if (parts[0] === "swimlanes-io" && parts[1] && parts[2]) {
+        const frame = document.getElementById("__sw-io-" + parts[1]);
+        if (frame) frame.style.height = parts[2] + "px";
+      }
+    });
+  </script>
 </head>
 <body>
   <h1>Swimlane Diagrams – Martech & AEP Flows</h1>
 
-  <h2>Featured Diagrams</h2>
-  <ul>
-    <li><a href="https://swimlanes.io/u/fpieL8s-QX" target="_blank" rel="noopener noreferrer">🧬 Identity Stitching Pipeline</a></li>
-    <li><a href="https://swimlanes.io/u/axhHFyXhTP" target="_blank" rel="noopener noreferrer">📊 CVS Patient Data ERD</a></li>
-    <li><a href="https://swimlanes.io/u/7FM-mlXr3h" target="_blank" rel="noopener noreferrer">⚙️ Web SDK + CMP (Tealium)</a></li>
-    <li><a href="https://swimlanes.io/u/-CdjvHduZK" target="_blank" rel="noopener noreferrer">🔁 Identity Flow: Primary vs IdentityMap</a></li>
-    <li><a href="https://swimlanes.io/u/ETB9f7TFu1" target="_blank" rel="noopener noreferrer">🩺 HIPAA Web Schema Risk Map</a></li>
-    <li><a href="https://swimlanes.io/u/EIT0nw6cfO" target="_blank" rel="noopener noreferrer">📦 Branch + Email Identity Stitching</a></li>
-    <li><a href="https://swimlanes.io/u/5L0Ddwt4tS" target="_blank" rel="noopener noreferrer">🧾 proxyID Strategy</a></li>
-    <li><a href="https://swimlanes.io/u/6N5xqemN06" target="_blank" rel="noopener noreferrer">🌐 Hybrid Personalization Model</a></li>
-    <li><a href="https://swimlanes.io/u/HE5L-gO7HH" target="_blank" rel="noopener noreferrer">🔧 Personalization Workflow</a></li>
-    <li><a href="https://swimlanes.io/u/6IoFeUsUyo" target="_blank" rel="noopener noreferrer">📲 Deep Linking 2026</a></li>
-    <li><a href="https://swimlanes.io/u/GIVyVnUr7B" target="_blank" rel="noopener noreferrer">📈 AppsFlyer Attribution Flow</a></li>
-  </ul>
+  <div class="diagram-block">
+    <h2>🧬 Identity Stitching Pipeline</h2>
+    <iframe id="__sw-io-fpieL8s-QX" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#fpieL8s-QX"></iframe>
+  </div>
+
+  <div class="diagram-block">
+    <h2>📊 CVS Patient Data ERD</h2>
+    <iframe id="__sw-io-axhHFyXhTP" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#axhHFyXhTP"></iframe>
+  </div>
+
+  <div class="diagram-block">
+    <h2>⚙️ Adobe Web SDK Initialization with OneTrust CMP</h2>
+    <iframe id="__sw-io-7FM-mlXr3h" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#7FM-mlXr3h"></iframe>
+  </div>
+
+  <div class="diagram-block">
+    <h2>🔁 AEP Identity Flow – Primary vs Non-Primary vs IdentityMap</h2>
+    <iframe id="__sw-io--CdjvHduZK" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#-CdjvHduZK"></iframe>
+  </div>
+
+  <div class="diagram-block">
+    <h2>🩺 HIPAA Schema Options and Risk Outcomes</h2>
+    <iframe id="__sw-io-ETB9f7TFu1" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#ETB9f7TFu1"></iframe>
+  </div>
+
+  <div class="diagram-block">
+    <h2>📦 Identity via Branch + Email (Healthcare App Arrival)</h2>
+    <iframe id="__sw-io-EIT0nw6cfO" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#EIT0nw6cfO"></iframe>
+  </div>
+
+  <div class="diagram-block">
+    <h2>🧾 proxyID: Primary vs Non-Primary Behavior</h2>
+    <iframe id="__sw-io-5L0Ddwt4tS" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#5L0Ddwt4tS"></iframe>
+  </div>
+
+  <div class="diagram-block">
+    <h2>🌐 Hybrid Personalization: Edge API + Web SDK</h2>
+    <iframe id="__sw-io-6N5xqemN06" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#6N5xqemN06"></iframe>
+  </div>
+
+  <div class="diagram-block">
+    <h2>🔧 Hybrid Personalization Implementation Workflow</h2>
+    <iframe id="__sw-io-HE5L-gO7HH" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#HE5L-gO7HH"></iframe>
+  </div>
+
+  <div class="diagram-block">
+    <h2>📲 Deep Linking Alignment with 2026 Roadmap</h2>
+    <iframe id="__sw-io-6IoFeUsUyo" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#6IoFeUsUyo"></iframe>
+  </div>
+
+  <div class="diagram-block">
+    <h2>📈 AppsFlyer + Adobe Analytics Integration</h2>
+    <iframe id="__sw-io-GIVyVnUr7B" scrolling="no" src="https://cdn.swimlanes.io/dist/embeded.html#GIVyVnUr7B"></iframe>
+  </div>
+
+  <div class="codepen-block">
+    <h2>🛠️ Web Tag Specs Generator</h2>
+    <iframe height="650" style="width: 100%;" scrolling="no" title="Web Tag Specs" src="https://codepen.io/scott-gresack/full/xbKRyQB" allowfullscreen="true"></iframe>
+  </div>
+
+  <div class="codepen-block">
+    <h2>📱 Mobile Tag Specs Generator</h2>
+    <iframe height="650" style="width: 100%;" scrolling="no" title="Mobile Tag Specs" src="https://codepen.io/scott-gresack/full/ogvYawV" allowfullscreen="true"></iframe>
+  </div>
+
+  <div class="codepen-block">
+    <h2>📊 Mobile XDM Comparison Tool</h2>
+    <iframe height="650" style="width: 100%;" scrolling="no" title="Mobile XDM Comparison Tool" src="https://codepen.io/scott-gresack/full/NPPKJpb" allowfullscreen="true"></iframe>
+  </div>
+
 </body>
 </html>
