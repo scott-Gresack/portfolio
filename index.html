@@ -95,11 +95,10 @@
 
     <!-- Load Navbar -->
     <script>
-        fetch('nav.html')
+        fetch('nav.html')  // Ensure 'nav.html' is in the correct path
             .then(r => r.text())
             .then(html => {
-                const navAndNoscript = html.slice(html.indexOf('<nav'));
-                document.getElementById('nav-placeholder').innerHTML = navAndNoscript;
+                document.getElementById('nav-placeholder').innerHTML = html;
             });
     </script>
 
