@@ -1,63 +1,112 @@
-<!-- nav.html -->
-<!-- HEAD SNIFFETS (GTM, GA4, Clarity, Piwik Pro) -->
-<script>
-  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-NH95HXQ');
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scott Gresack | Martech Portfolio</title>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
-<script>
-  window.dataLayer = window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-Y8617TLMYK');
-</script>
+  <!-- Open Graph & Twitter Card -->
+  <meta name="description" content="Martech Engineer portfolio of Scott Gresack featuring Adobe AEP, Tealium iQ, GA4, and scalable data governance strategies." />
+  <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Governance, Tag Management, GA4, Analytics, Attribution" />
+  <meta name="author" content="Scott Gresack" />
+  <meta name="robots" content="index, follow" />
 
-<script type="text/javascript">
-  (function(c,l,a,r,i,t,y){
-    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window, document, "clarity", "script", "pmp4efispy");
-</script>
+  <meta property="og:title" content="Scott Gresack | Martech Engineer Portfolio" />
+  <meta property="og:description" content="Explore data collection workflows, AEP XDM schemas, and tag management tools built for scale." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/" />
+  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
 
-<script type="text/javascript">
-  (function(window, document, dataLayerName, id) {
-    window[dataLayerName]=window[dataLayerName]||[];
-    window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
-    var s=document.getElementsByTagName('script')[0],
-        t=document.createElement('script'),
-        q=[]; dataLayerName!=="dataLayer"&& q.push("data_layer_name="+dataLayerName);
-    t.async=true;
-    t.src="https://scott-gresack.containers.piwik.pro/"+id+".js"+(q.length?("?"+q.join("&")):"");
-    s.parentNode.insertBefore(t,s);
-    !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++){
-      (function(i){a[n][i]=a[n][i]||{};a[n][i].api=a[n][i].api||function(){
-        var args=[].slice.call(arguments,0);
-        "string"==typeof args[0]&&window[dataLayerName].push({
-          event:n+"."+i+":"+args[0],parameters:args.slice(1)
-        });
-      }})(i[c]);
-    }}(window,"ppms",["tm","cm"]);
-  })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
-</script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Scott Gresack | Martech Engineer Portfolio" />
+  <meta name="twitter:description" content="Tealium, Adobe Experience Platform, GTM, and privacy-driven tag governance examples." />
+  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
 
-<!-- FLOATING NAV BAR (to drop right under <body>) -->
-<nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50
-            bg-white shadow-lg rounded-full px-6 py-3 flex gap-6
-            text-blue-600 font-semibold animate-slideDown backdrop-blur-sm">
-  <a href="/portfolio/index.html"        class="hover:underline">About Me</a>
-  <a href="/portfolio/index.html#swimlanes" class="hover:underline">Diagrams</a>
-  <a href="/portfolio/index.html#codepen"   class="hover:underline">CodePens</a>
-  <a href="/portfolio/tag-spec-generator.html" class="hover:underline">Tag Spec Generator</a>
-  <a href="/portfolio/index.html#contact"   class="hover:underline">Contact</a>
-</nav>
+  <!-- TailwindCSS + Custom Animations -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            fadeIn: 'fadeIn 1s ease-in forwards',
+            slideDown: 'slideDown 0.5s ease-in-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: 0 },
+              '100%': { opacity: 1 }
+            },
+            slideDown: {
+              '0%': { transform: 'translateY(-100%)', opacity: 0 },
+              '100%': { transform: 'translateY(0)', opacity: 1 }
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-<!-- GTM noscript fallback -->
-<noscript>
-  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NH95HXQ"
-          height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NH95HXQ');
+  </script>
+</head>
+
+<body class="bg-gray-50 text-gray-900 font-sans">
+  <!-- GTM (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NH95HXQ"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-Y8617TLMYK');
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "pmp4efispy");
+  </script>
+
+  <!-- Piwik PRO -->
+  <script type="text/javascript">
+    (function(window, document, dataLayerName, id) {
+      window[dataLayerName]=window[dataLayerName]||[];
+      window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
+      var scripts=document.getElementsByTagName('script')[0],
+          tags=document.createElement('script'),
+          qP=[];
+      if(dataLayerName!=="dataLayer") qP.push("data_layer_name="+dataLayerName);
+      tags.async=!0;
+      tags.src="https://scott-gresack.containers.piwik.pro/"+id+".js"+(qP.length?"?"+qP.join("&"):"");
+      scripts.parentNode.insertBefore(tags,scripts);
+    })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
+  </script>
+
+  <!-- Floating Navbar -->
+  <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50
+              bg-white shadow-lg rounded-full px-6 py-3 flex space-x-6
+              text-sm sm:text-base font-semibold text-blue-600
+              animate-slideDown backdrop-blur-sm">
+    <a href="/portfolio/index.html"      class="hover:underline">About Me</a>
+    <a href="/portfolio/index.html#swimlanes" class="hover:underline">Diagrams</a>
+    <a href="/portfolio/index.html#codepen"    class="hover:underline">CodePens</a>
+    <a href="/portfolio/tag_generator.html"  class="hover:underline">Tag Generator</a>
+    <a href="/portfolio/index.html#contact"  class="hover:underline">Contact</a>
+  </nav>
+</body>
+</html>
