@@ -3,319 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Scott Gresack | Martech Engineer</title>
-
-<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-
-  <!-- Tailwind CSS -->
+  <title>Scott Gresack | Martech Engineer Portfolio</title>
+  <meta name="description" content="Portfolio of Scott Gresack, Martech Engineer. Includes Web Tag Spec Generator, Mobile Tracking Specs, AEP/CDP architecture diagrams, and toolset links." />
+  <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Layer, Tag Management, XDM, Analytics, Diagrams, CDP, Identity" />
+  <meta name="author" content="Scott Gresack" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-<script type="text/javascript">
-(function(window, document, dataLayerName, id) {
-window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
-var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName);var qPString=qP.length>0?("?"+qP.join("&")):"";
-tags.async=!0,tags.src="https://scott-gresack.containers.piwik.pro/"+id+".js"+qPString,scripts.parentNode.insertBefore(tags,scripts);
-!function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
-})(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
-</script>
-
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #5b2c6f, #2874a6);
-      color: #fff;
-    }
-    .code {
-      background: #1c2833;
-      color: #f7dc6f;
-      padding: 15px;
-      border-radius: 8px;
-      overflow-x: auto;
-      font-family: monospace;
-    }
-  </style>
-
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-Y8617TLMYK");
+  </script>
+  <script>
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "pmp4efispy");
   </script>
-
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'GT-MQBSZT8H');
+  <script type="text/javascript">
+    (function(window, document, dataLayerName, id) {
+      window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
+      var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
+      var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName);
+      var qPString=qP.length>0?("?"+qP.join("&")):"";
+      tags.async=!0;
+      tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js"+qPString;
+      scripts.parentNode.insertBefore(tags,scripts);
+      !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
+    })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
   </script>
-
-  <!-- Google Tag -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag("js", new Date());
-    gtag("config", "G-Y8617TLMYK");
-  </script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+    }
+    .nav-link.active {
+      border-bottom: 2px solid #3b82f6;
+      font-weight: 600;
+    }
+  </style>
 </head>
+<body>
+  <div id="app" class="min-h-screen flex flex-col">
+    <header class="bg-white shadow sticky top-0 z-50">
+      <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between text-sm font-medium text-gray-800">
+        <div>Scott Gresack</div>
+        <div class="space-x-4">
+          <button @click="navigate('about')" :class="{ 'nav-link active': view === 'about' }">About</button>
+          <button @click="navigate('contact')" :class="{ 'nav-link active': view === 'contact' }">Contact</button>
+          <button @click="navigate('tools')" :class="{ 'nav-link active': view === 'tools' }">Tools</button>
+          <button @click="navigate('diagrams')" :class="{ 'nav-link active': view === 'diagrams' }">Diagrams</button>
+        </div>
+      </nav>
+    </header>
 
-<body class="min-h-screen bg-white text-black">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQ8RNJ6H"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
+    <main class="flex-grow max-w-7xl mx-auto p-6">
+      <section v-show="view === 'about'" class="space-y-4">
+        <h1 class="text-2xl font-bold">Hi, I'm Scott Gresack</h1>
+        <p>A Martech Engineer specializing in Adobe Experience Platform, Tealium iQ, CDP architecture, and analytics instrumentation. I build scalable solutions for enterprise data collection and customer journey activation across web and mobile ecosystems.</p>
+        <a href="https://www.linkedin.com/in/scottgresack/" class="text-blue-600 underline" target="_blank">Connect with me on LinkedIn</a>
+      </section>
 
-  <div id="app">
-      <!-- Header & Navigation -->
-      <header class="fixed top-0 left-0 right-0 bg-white text-gray-900 shadow z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between h-16 items-center">
-            <div class="text-lg font-semibold">Scott Gresack</div>
-            <nav class="space-x-4">
-              <button @click="navigate('about')" 
-                      :class="{ 'font-bold underline': activeView === 'about' }" 
-                      class="text-sm hover:text-blue-600">About</button>
-              <button @click="navigate('mobile')" 
-                      :class="{ 'font-bold underline': activeView === 'mobile' }" 
-                      class="text-sm hover:text-blue-600">Mobile Spec</button>
-              <button @click="navigate('web')" 
-                      :class="{ 'font-bold underline': activeView === 'web' }" 
-                      class="text-sm hover:text-blue-600">Web Spec</button>
-              <button @click="navigate('xdm')" 
-                      :class="{ 'font-bold underline': activeView === 'xdm' }" 
-                      class="text-sm hover:text-blue-600">XDM Comparison</button>
-            </nav>
+      <section v-show="view === 'contact'" class="space-y-4">
+        <h1 class="text-2xl font-bold">Contact</h1>
+        <p>For speaking, collaboration, or technical consulting inquiries, please reach out via <a href="https://www.linkedin.com/in/scottgresack/" class="text-blue-600 underline" target="_blank">LinkedIn</a>.</p>
+      </section>
+
+      <section v-show="view === 'tools'" class="space-y-4">
+        <h1 class="text-2xl font-bold">🧰 Tools</h1>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+            <a href="https://codepen.io/scott-gresack/full/xbKRyQB" target="_blank" class="block text-lg font-semibold text-blue-600 hover:underline">Tag Spec Generator</a>
+          </div>
+          <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+            <a href="https://codepen.io/scott-gresack/full/ogvYawV" target="_blank" class="block text-lg font-semibold text-blue-600 hover:underline">Mobile Tracker Config</a>
+          </div>
+          <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+            <a href="https://codepen.io/scott-gresack/full/NPPKJpb" target="_blank" class="block text-lg font-semibold text-blue-600 hover:underline">XDM Schema Comparator</a>
           </div>
         </div>
-      </header>
+      </section>
 
-      <main class="pt-20 max-w-5xl mx-auto px-4 space-y-8">
-
-        <!-- About Section -->
-        <section v-show="activeView === 'about'" class="p-6 bg-gray-100 text-gray-800 rounded-lg">
-          <h1 class="text-2xl font-bold mb-4">About Scott Gresack</h1>
-          <p>Martech Engineer with deep experience across Adobe Experience Platform, Tealium iQ, GTM, and scalable data collection strategies for web and mobile applications.</p>
-        </section>
-
-        <!-- Mobile Tag Spec Generator -->
-        <section v-show="activeView === 'mobile'" class="bg-gray-900 text-white p-6 rounded-xl shadow-xl">
-          <h2 class="text-2xl font-bold text-cyan-300 mb-4 text-center">Mobile Tag Spec Generator</h2>
-          <div class="flex justify-center flex-wrap gap-4 mb-6">
-            <button @click="setActionType('trackAction')" :class="actionTypeClass('trackAction')" class="px-4 py-2 rounded text-white transition">Track Action</button>
-            <button @click="setActionType('trackState')" :class="actionTypeClass('trackState')" class="px-4 py-2 rounded text-white transition">Track State</button>
-            <button @click="setActionType('sendXdm')" :class="actionTypeClass('sendXdm')" class="px-4 py-2 rounded text-white transition">Send XDM</button>
+      <section v-show="view === 'diagrams'" class="space-y-4">
+        <h1 class="text-2xl font-bold">🧠 Technical Diagrams</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div v-for="url in diagramUrls" :key="url">
+            <img :src="url" alt="diagram" class="rounded shadow hover:scale-105 transition-transform duration-200" />
           </div>
-          <div class="space-y-2">
-            <div v-for="(pair,index) in keyValuePairs" :key="index" class="flex flex-col sm:flex-row gap-2 items-center">
-              <input v-model="pair.key" placeholder="Key" class="w-full sm:w-1/2 px-3 py-2 rounded bg-gray-700 text-white border border-blue-400" />
-              <input v-model="pair.value" placeholder="Value" class="w-full sm:w-1/2 px-3 py-2 rounded bg-gray-700 text-white border border-blue-400" />
-              <button @click="removePair(index)" class="bg-red-600 px-3 py-2 rounded text-white">Remove</button>
-            </div>
-          </div>
-          <button @click="addPair" class="bg-green-600 px-4 py-2 rounded text-white mt-4">+ Add Pair</button>
-          <div class="mt-8">
-            <h3 class="text-lg font-semibold text-cyan-400 mb-2">Swift Code</h3>
-            <pre class="code">{{ swiftCode }}</pre>
-            <button @click="copyToClipboard(swiftCode,'Swift')" class="bg-yellow-500 px-4 py-2 rounded mt-2">Copy Swift</button>
-          </div>
-          <div class="mt-8">
-            <h3 class="text-lg font-semibold text-cyan-400 mb-2">Android Code</h3>
-            <pre class="code">{{ androidCode }}</pre>
-            <button @click="copyToClipboard(androidCode,'Android')" class="bg-yellow-500 px-4 py-2 rounded mt-2">Copy Android</button>
-          </div>
-        </section>
-
-        <!-- Web Tag Spec Generator -->
-        <section v-show="activeView === 'web'" class="bg-gray-900 text-white p-6 rounded-xl shadow-xl">
-          <h2 class="text-2xl font-bold text-cyan-300 mb-4 text-center">Web Tag Spec Generator</h2>
-          <div class="space-y-2">
-            <div v-for="(pair,index) in keyValuePairs" :key="index" class="flex flex-col sm:flex-row gap-2 items-center">
-              <input v-model="pair.key" placeholder="Key" class="w-full sm:w-1/2 px-3 py-2 rounded bg-gray-700 text-white border border-blue-400" />
-              <input v-model="pair.value" placeholder="Value" class="w-full sm:w-1/2 px-3 py-2 rounded bg-gray-700 text-white border border-blue-400" />
-              <button @click="removePair(index)" class="bg-red-600 px-3 py-2 rounded text-white">Remove</button>
-            </div>
-          </div>
-          <button @click="addPair" class="bg-green-600 px-4 py-2 rounded text-white mt-4">+ Add Pair</button>
-          <div class="mt-8">
-            <h3 class="text-lg font-semibold text-cyan-400 mb-2">Sample Tag Payload</h3>
-            <pre class="code">{{ JSON.stringify(buildPayload(), null, 2) }}</pre>
-            <button @click="copyToClipboard(JSON.stringify(buildPayload(), null, 2),'WebPayload')" class="bg-yellow-500 px-4 py-2 rounded mt-2">Copy Payload</button>
-          </div>
-        </section>
-  </main>
+        </div>
+      </section>
+    </main>
   </div>
 
   <script>
     const { createApp } = Vue;
-
     createApp({
       data() {
         return {
-          // Navigation & Views
-          activeView: 'about',
-
-          // Instructions & Modal
-          showInstructions: true,
-          showModal: false,
-          modalType: '',
-
-          // Tag Spec Generator
-          eventType: 'utag.view()',
-          keyValuePairs: [],
-
-          // Mobile/Web Spec
-          actionType: 'trackAction',
-
-          // XDM Comparator
-          objectAInput: '',
-          objectBInput: '',
-          objectA: {},
-          objectB: {},
-          onlyInA: [],
-          onlyInB: [],
-          differingValues: [],
-          matchingValues: [],
-          compared: false,
-          errorMessage: ''
+          view: 'about',
+          diagramUrls: [
+            "https://static.swimlanes.io/u/fpieL8s-QX.png?rev=2",
+            "https://static.swimlanes.io/u/axhHFyXhTP.png?rev=2",
+            "https://static.swimlanes.io/u/7FM-mlXr3h.png?rev=4",
+            "https://static.swimlanes.io/u/-CdjvHduZK.png?rev=2",
+            "https://static.swimlanes.io/u/ETB9f7TFu1.png?rev=3",
+            "https://static.swimlanes.io/u/EIT0nw6cfO.png?rev=3",
+            "https://static.swimlanes.io/u/5L0Ddwt4tS.png?rev=2",
+            "https://static.swimlanes.io/u/PhOJdOXl6t.png?rev=2",
+            "https://static.swimlanes.io/u/6N5xqemN06.png?rev=2",
+            "https://static.swimlanes.io/u/HE5L-gO7HH.png?rev=2",
+            "https://static.swimlanes.io/u/6IoFeUsUyo.png?rev=2",
+            "https://static.swimlanes.io/u/GIVyVnUr7B.png?rev=2",
+            "https://static.swimlanes.io/u/XkZ9ADuj1j.png?rev=2"
+          ]
         };
       },
-      computed: {
-        // Swift & Android code for mobile spec
-        swiftCode() {
-          const payload = this.buildPayload();
-          if (this.actionType === 'trackAction') {
-            return `MobileCore.track(action: "sampleAction", data: ${JSON.stringify(payload, null, 2)})`;
-          } else if (this.actionType === 'trackState') {
-            return `MobileCore.track(state: "sampleState", data: ${JSON.stringify(payload, null, 2)})`;
-          }
-          return `let xdmData: [String: Any] = ${JSON.stringify(payload, null, 2)}\nEdge.sendEvent(experienceEvent: ExperienceEvent(xdm: xdmData))`;
-        },
-        androidCode() {
-          const payload = this.buildPayload();
-          if (this.actionType === 'trackAction') {
-            return `MobileCore.trackAction("sampleAction", ${JSON.stringify(payload, null, 2)});`;
-          } else if (this.actionType === 'trackState') {
-            return `MobileCore.trackState("sampleState", ${JSON.stringify(payload, null, 2)});`;
-          }
-          return `Map<String, Object> xdmData = ${JSON.stringify(payload, null, 2)};\nExperienceEvent experienceEvent = new ExperienceEvent.Builder()\n  .setXdmSchema(xdmData)\n  .build();\nEdge.sendEvent(experienceEvent, null);`;
-        },
-        // Web Tag Spec Generator
-        formattedSnippet() {
-          if (this.keyValuePairs.length === 0) return `${this.eventType}({});`;
-          const payload = this.keyValuePairs.reduce((acc, p) => {
-            if (p.key.trim() && p.value.trim()) acc[p.key] = p.value;
-            return acc;
-          }, {});
-          return `${this.eventType}(${JSON.stringify(payload, null, 2)});`;
-        },
-        // XDM Object builder
-        xdmObject() {
-          const xdmTemplate = {
-            xdm: { _experience: { analytics: { customDimensions: { eVars: {}, props: {} }, events: {} } } }
-          };
-          function getEventRange(n) {
-            const start = Math.floor((n - 1) / 100) * 100 + 1;
-            return `event${start}to${start+99}`;
-          }
-          this.keyValuePairs.forEach(p => {
-            const type = this.getKeyType(p.analyticsKey);
-            if (type === 'events') {
-              const num = parseInt(p.analyticsKey.replace('event',''),10);
-              const range = getEventRange(num);
-              if (!xdmTemplate.xdm._experience.analytics[range]) xdmTemplate.xdm._experience.analytics[range] = {};
-              xdmTemplate.xdm._experience.analytics[range][p.analyticsKey] = { value: p.value };
-            } else if (type) {
-              xdmTemplate.xdm._experience.analytics.customDimensions[type][p.analyticsKey] = p.value;
-            }
-          });
-          return JSON.stringify(xdmTemplate, null, 2);
-        },
-        totalDifferences() {
-          return this.onlyInA.length + this.onlyInB.length + this.differingValues.length;
-        },
-        summaryMessage() {
-          if (!this.compared) return '';
-          if (this.totalDifferences === 0) return '🎉 Perfect match! Both schemas are identical.';
-          if (this.totalDifferences < 5) return '🤔 A few differences found.';
-          return '⚠️ Several differences detected.';
-        }
-      },
       methods: {
-        // Navigation
-        navigate(view) { this.activeView = view; },
-
-        // Mobile/Web Spec
-        setActionType(type) { this.actionType = type; },
-        actionTypeClass(type) { return this.actionType === type ? 'bg-green-600' : 'bg-blue-600'; },
-        addPair() { this.keyValuePairs.push({ key:'', value:'', analyticsKey:'' }); },
-        removePair(i) { this.keyValuePairs.splice(i,1); },
-        buildPayload() {
-          return this.keyValuePairs.reduce((a,p) => { if(p.key&&p.value) a[p.key]=p.value; return a; }, {});
-        },
-        copyToClipboard(content,label) {
-          navigator.clipboard.writeText(content).then(()=>alert('Copied!'));
-        },
-
-        // XDM Comparator
-        cleanAndParse(input) {
-          const match = input.match(/\{[\s\S]*\}/);
-          if(!match) throw new Error('Invalid JSON.');
-          return JSON.parse(match[0].replace(/,\s*}/g,'}').replace(/,\s*]/g,']'));
-        },
-        compare() {
-          try {
-            this.errorMessage='';
-            this.objectA = this.cleanAndParse(this.objectAInput);
-            this.objectB = this.cleanAndParse(this.objectBInput);
-            const all = [...new Set([...Object.keys(this.objectA), ...Object.keys(this.objectB)])];
-            this.onlyInA = all.filter(k=>!(k in this.objectB));
-            this.onlyInB = all.filter(k=>!(k in this.objectA));
-            this.differingValues = all.filter(k=> this.objectA[k]!==this.objectB[k] && k in this.objectA && k in this.objectB);
-            this.matchingValues = all.filter(k=> this.objectA[k]===this.objectB[k]);
-            this.compared = true;
-          } catch(e) {
-            this.errorMessage=e.message; this.compared=false;
-          }
-        },
-
-        // Instructions & Modal for Tag Spec Generator
-        toggleInstructions() { this.showInstructions = !this.showInstructions; },
-        addKeyValuePair(){ this.keyValuePairs.push({ key:'', value:'', analyticsKey:'' }); },
-        removeKeyValuePair(i){ this.keyValuePairs.splice(i,1); },
-        handleTagGenerated(type){ this.modalType = type==='tagSpec'?'Tag Spec':'XDM Object'; this.showModal=true; },
-        closeModal(){ this.showModal=false; },
-
-        // Tracking helpers
-        getKeyType(key) {
-          if(/^evar\d+/i.test(key)) return 'eVars';
-          if(/^prop\d+/i.test(key)) return 'props';
-          if(/^event\d+/i.test(key)) return 'events';
-          return null;
-        },
-        trackClarityEvent(name, details) {
-          if(window.clarity) clarity('event', name, details);
-        },
-        addClickListeners(){
-          document.querySelectorAll('button, a').forEach(el => {
-            el.addEventListener('click', e=>{
-              this.trackClarityEvent('ButtonClick',{ text:e.target.textContent });
-              gtag('event','click',{ event_category:'Interaction', event_label:e.target.textContent });
-            });
-          });
+        navigate(section) {
+          this.view = section;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-      },
-      mounted() {
-        this.addClickListeners();
-        this.trackClarityEvent('PageView',{ pageTitle: document.title });
       }
-    }).mount('#app');
+    }).mount("#app");
   </script>
 </body>
 </html>
