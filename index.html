@@ -4,7 +4,66 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scott Gresack | Martech Engineer</title>
+<script>
+// Example: Destination Interface for the Mixpanel SDK. Replace the Mixpanel implementation with your own tracking SDK methods
+const destinationInterface = {
 
+  make: function(env, apiKey) {
+    // TODO: Replace the call below with a call to your destination
+    // Note: Initializing your destination in the make method is optional, you can skip it if you've already initialized your destination
+    mixpanel.init(apiKey);
+  },
+
+  logEvent: function(eventName, eventProperties) {
+    // TODO: Replace the call below with a call to your destination
+    mixpanel.track(eventName, eventProperties);
+  },
+
+  setUserProperties: function(userId, userProperties) {
+    // TODO: Replace the call below with a call to your destination
+    mixpanel.people.set(userProperties);
+  },
+
+  identify: function(userId) {
+    // TODO: Replace the call below with a call to your destination
+    mixpanel.identify(userId);
+  },
+
+  unidentify: function() {
+    // TODO: Replace the call below with a call to your destination
+    mixpanel.reset();
+  },
+
+  revenue: function(amount, eventProperties) {
+    // TODO: Replace the call below with a call to your destination
+    mixpanel.people.track_charge(amount, eventProperties);
+  },
+
+  page: function(pageName, eventProperties) {
+    // TODO: Replace the call below with a call to your destination
+    // Note: Mixpanel does not provide a native method for page or screen tracking, so we send an event instead. Other SDKs may have a dedicated page tracking method.
+    mixpanel.track("Page Viewed", Object.assign(eventProperties, {"pageName": pageName}));
+  },
+
+  // The following methods are used for group analytics and are not required
+  setGroupProperties(groupType, groupId, groupProperties) {
+    // TODO: Replace the call below with a call to your destination
+    mixpanel.get_group(groupType, groupId).set(groupProperties);
+  },
+
+  addCurrentUserToGroup: function (groupType, groupId, groupProperties) {
+    // TODO: Replace the call below with a call to your destination
+    mixpanel.set_group(groupType, groupId);
+    mixpanel.get_group(groupType, groupId).set(groupProperties);
+  },
+
+  logEventWithGroups: function (eventName, eventProperties, groupTypesToGroupIds) {
+    // TODO: Replace the call below with a call to your destination
+    mixpanel.track_with_groups(eventName, eventProperties, groupTypesToGroupIds);
+  },
+
+};
+</script>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 <script>
