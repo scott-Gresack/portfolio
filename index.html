@@ -5,28 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scott Gresack | Martech Engineer</title>
 
-  <!-- Mixpanel Destination Interface -->
-  <script>
-    const destinationInterface = {
-      make(env, apiKey) { mixpanel.init(apiKey); },
-      logEvent(eventName, eventProperties) { mixpanel.track(eventName, eventProperties); },
-      setUserProperties(userId, userProperties) { mixpanel.people.set(userProperties); },
-      identify(userId) { mixpanel.identify(userId); },
-      unidentify() { mixpanel.reset(); },
-      revenue(amount, eventProperties) { mixpanel.people.track_charge(amount, eventProperties); },
-      page(pageName, eventProperties) { mixpanel.track("Page Viewed", Object.assign(eventProperties, {"pageName": pageName})); },
-      setGroupProperties(groupType, groupId, groupProperties) {
-        mixpanel.get_group(groupType, groupId).set(groupProperties);
-      },
-      addCurrentUserToGroup(groupType, groupId, groupProperties) {
-        mixpanel.set_group(groupType, groupId);
-        mixpanel.get_group(groupType, groupId).set(groupProperties);
-      },
-      logEventWithGroups(eventName, eventProperties, groupTypesToGroupIds) {
-        mixpanel.track_with_groups(eventName, eventProperties, groupTypesToGroupIds);
-      },
-    };
-  </script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
