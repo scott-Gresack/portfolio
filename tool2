@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alloy Payload Analyzer</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .container {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 24px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .instructions {
+      background: #f8fafc;
+      border-left: 4px solid #007bff;
+      padding: 16px;
+      margin-bottom: 24px;
+      border-radius: 4px;
+    }
+    .instructions h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .instructions ol {
+      padding-left: 20px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 12px;
+      font-family: 'Courier New', Courier, monospace;
+      resize: vertical;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 8px 0;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #filterInput {
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background: #f8f9fa;
+      font-weight: 600;
+    }
+    .nested {
+      cursor: pointer;
+      color: #007bff;
+    }
+    .nested:hover {
+      text-decoration: underline;
+    }
+    .highlight {
+      background: #e6f3ff;
+    }
+    .download-btn {
+      background: #28a745;
+    }
+    .download-btn:hover {
+      background: #218838;
+    }
+    pre {
+      background: #f8f9fa;
+      padding: 8px;
+      border-radius: 4px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Alloy Payload Analyzer</h1>
+    <div class="instructions">
+      <h2>Instructions</h2>
+      <ol>
+        <li>Obtain the Alloy event payloads JSON (e.g., from sessionStorage or another source).</li>
+        <li>Copy the JSON array of events.</li>
+        <li>Paste it into the textarea below.</li>
+        <li>Click "Parse Payloads" to analyze the events.</li>
+        <li>Use the filter to search for specific fields or values.</li>
+        <li>Click on "[Object]" links to expand/collapse nested details.</li>
+        <li>Click "Download as JSON" to save the payloads.</li>
+      </ol>
+    </div>
+    <textarea id="payloadInput" placeholder="Paste Alloy event payloads JSON array here..."></textarea>
+    <button onclick="parsePayloads()">Parse Payloads</button>
+    <button class="download-btn" onclick="downloadJSON()" style="display: none;" id="downloadBtn">Download as JSON</button>
+    <input type="text" id="filterInput" placeholder="Filter by field or value..." oninput="filterTable()">
+    <table id="payloadTable">
+      <thead>
+        <tr>
+          <th>Event Type</th>
+          <th>Timestamp</th>
+          <th>Payload Details</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    let payloads = [];
+
+    function parsePayloads() {
+      const input = document.getElementById('payloadInput').value;
+      try {
+        payloads = JSON.parse(input);
+        if (!Array.isArray(payloads)) {
+          throw new Error('Input must be a JSON array of events');
+        }
+        document.getElementById('downloadBtn').style.display = 'inline-block';
+        renderTable(payloads);
+      } catch (e) {
+        alert('Error parsing payloads: ' + e.message);
+      }
+    }
+
+    function renderTable(events) {
+      const tbody = document.querySelector('#payloadTable tbody');
+      tbody.innerHTML = '';
+      events.forEach(event => {
+        const row = document.createElement('tr');
+        const timestamp = event.timestamp ? new Date(event.timestamp).toLocaleString() : 'N/A';
+        let details = '';
+
+        // Process xdm and data
+        ['xdm', 'data'].forEach(key => {
+          if (event[key]) {
+            details += `<strong>${key}:</strong><ul>`;
+            Object.entries(event[key]).forEach(([k, v]) => {
+              const isWebField = key === 'xdm' && k === 'web';
+              const className = isWebField ? 'highlight' : '';
+              if (typeof v === 'object' && v !== null) {
+                const id = `nested-${Math.random().toString(36).slice(2)}`;
+                details += `<li class="${className}">${k}: <span class="nested" onclick="toggleNested('${id}')">[Object]</span><pre id="${id}" style="display: none;">${JSON.stringify(v, null, 2)}</pre></li>`;
+              } else {
+                details += `<li class="${className}">${k}: ${v}</li>`;
+              }
+            });
+            details += '</ul>';
+          }
+        });
+
+        row.innerHTML = `
+          <td>${event.eventType || 'N/A'}</td>
+          <td>${timestamp}</td>
+          <td>${details}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function toggleNested(id) {
+      const el = document.getElementById(id);
+      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function filterTable() {
+      const filter = document.getElementById('filterInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#payloadTable tbody tr');
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? '' : 'none';
+      });
+    }
+
+    function downloadJSON() {
+      const blob = new Blob([JSON.stringify(payloads, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'alloy_payloads.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
