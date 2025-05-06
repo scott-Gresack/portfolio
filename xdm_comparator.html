@@ -44,6 +44,7 @@
       justify-content: space-between;
       align-items: center;
       border-radius: 12px;
+      margin-bottom: 1rem;
     }
     .navbar a {
       color: white;
@@ -53,22 +54,10 @@
     .navbar a:hover {
       text-decoration: underline;
     }
-    .notion-section {
-      margin-bottom: 2rem;
-    }
     .notion-section-title {
       font-size: 1.5rem;
       font-weight: 600;
       margin-bottom: 1rem;
-    }
-    .input-container {
-      display: grid;
-      gap: 20px;
-    }
-    .input-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
     }
     .result-table th,
     .result-table td {
@@ -79,9 +68,6 @@
     .result-table th {
       background-color: #007bff;
       color: #fff;
-    }
-    .results-section {
-      margin-top: 20px;
     }
     .fun-summary {
       background: #e9ffe9;
@@ -94,10 +80,11 @@
 <body>
 
 <div id="app" class="notion-container">
-  <!-- Navigation Header -->
   <div class="navbar">
-    <a href="index.html">🏠 Back to Home</a>
-    <span>Adobe Web SDK Object Comparator</span>
+    <a href="https://scott-gresack.github.io/portfolio/" target="_blank" class="text-white font-bold text-lg flex items-center">
+      <span class="mr-2">🔙</span> Back to Portfolio
+    </a>
+    <span class="text-white text-lg font-semibold">Adobe Web SDK Object Comparator</span>
   </div>
 
   <header class="notion-header">
@@ -105,40 +92,44 @@
   </header>
 
   <section class="notion-section">
-    <p><strong>Welcome!</strong> This tool helps you compare <code>u.map</code> objects from Adobe Web SDK implementations, used in Adobe Experience Platform (AEP) to map custom data to Experience Data Model (XDM) schemas. Whether you're debugging, validating, or aligning configurations across environments (e.g., Prod vs. Stage), this comparator highlights differences and matches to ensure accurate XDM mappings.</p>
+    <p><strong>Welcome!</strong> This tool helps you compare <code>u.map</code> objects from Adobe Web SDK implementations. Whether you're debugging, validating, or aligning configurations across environments (e.g., Prod vs. Stage), this comparator highlights differences and matches to ensure accurate XDM mappings.</p>
     <p><a href="https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/xdm.html" target="_blank" class="text-blue-600 underline">Learn More about XDM and AEP</a></p>
   </section>
 
   <section class="notion-section">
     <h2 class="notion-section-title">🛠 How to Use This Tool</h2>
-    <ol>
-      <li><strong>Describe Your Comparison:</strong> Enter a label (e.g., "Prod vs. Stage") to contextualize your analysis.</li>
-      <li><strong>Paste Object A:</strong> Input the first <code>u.map</code> object from one environment. The tool strips <code>u.map =</code> and semicolons automatically.</li>
-      <li><strong>Paste Object B:</strong> Input the second <code>u.map</code> object from another environment.</li>
-      <li><strong>Compare:</strong> Click the button to analyze differences and similarities.</li>
-      <li><strong>Review Results:</strong> Scroll to see a fun summary, detailed differences, and a copy-pasteable export.</li>
+    <ol class="list-decimal list-inside space-y-1">
+      <li><strong>Describe Your Comparison:</strong> Label your analysis (e.g., "Prod vs Stage").</li>
+      <li><strong>Paste Object A:</strong> Input the first <code>u.map</code> object.</li>
+      <li><strong>Paste Object B:</strong> Input the second <code>u.map</code> object.</li>
+      <li><strong>Compare:</strong> Click to analyze.</li>
+      <li><strong>Review Results:</strong> See summary and detailed table.</li>
     </ol>
   </section>
 
   <section class="notion-section">
     <h2 class="notion-section-title">📝 Paste Objects for Comparison</h2>
-    <div class="input-container">
+    <div class="space-y-4">
       <div>
-        <label><strong>1. Describe the comparison:</strong></label>
+        <label class="block font-semibold">1. Describe the comparison:</label>
         <input type="text" v-model="comparisonLabel" placeholder="e.g., Comparing Prod vs Stage" class="w-full px-3 py-2 border rounded-lg" />
       </div>
-      <div class="input-columns">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label><strong>2. Paste Object A (JSON):</strong></label>
-          <textarea v-model="objectAInput" placeholder="Paste full u.map = { ... }; from environment A" class="w-full p-3 border rounded-lg"></textarea>
+          <label class="block font-semibold">2. Paste Object A (JSON):</label>
+          <textarea v-model="objectAInput" rows="10" placeholder="Paste full u.map = { ... };" class="w-full p-3 border rounded-lg"></textarea>
         </div>
         <div>
-          <label><strong>3. Paste Object B (JSON):</strong></label>
-          <textarea v-model="objectBInput" placeholder="Paste full u.map = { ... }; from environment B" class="w-full p-3 border rounded-lg"></textarea>
+          <label class="block font-semibold">3. Paste Object B (JSON):</label>
+          <textarea v-model="objectBInput" rows="10" placeholder="Paste full u.map = { ... };" class="w-full p-3 border rounded-lg"></textarea>
         </div>
       </div>
+      <button @click="compare" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" aria-label="Run Comparison">Compare</button>
     </div>
-    <button @click="compare" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Compare</button>
+
+    <div v-if="errorMessage" class="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+      <strong>Error:</strong> {{ errorMessage }}
+    </div>
   </section>
 
   <section v-if="compared" class="results-section">
@@ -211,6 +202,7 @@ createApp({
     },
     compare() {
       try {
+        this.errorMessage = '';
         this.compared = false;
         this.objectA = this.cleanAndParse(this.objectAInput, 'Object A');
         this.objectB = this.cleanAndParse(this.objectBInput, 'Object B');
@@ -230,9 +222,3 @@ createApp({
 
 </body>
 </html>
-<div class="navbar">
-  <a href="https://scott-gresack.github.io/portfolio/" target="_blank" class="text-white font-bold text-lg flex items-center">
-    <span class="mr-2">🔙</span> Back to Portfolio
-  </a>
-  <span class="text-white text-lg font-semibold">Adobe Web SDK Object Comparator</span>
-</div>
