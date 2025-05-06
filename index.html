@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Define character encoding for the document -->
   <meta charset="UTF-8" />
+  <!-- Ensure responsive design for mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Page title displayed in browser tab -->
   <title>Scott Gresack | Martech Engineer Portfolio</title>
+  <!-- Meta description for SEO and search engine snippets -->
   <meta name="description" content="Portfolio of Scott Gresack, Martech Engineer. Includes Web Tag Spec Generator, Mobile Tracking Specs, AEP/CDP architecture diagrams, and toolset links." />
+  <!-- Keywords for search engine optimization -->
   <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Layer, Tag Management, XDM, Analytics, Diagrams, CDP, Identity" />
+  <!-- Author of the page -->
   <meta name="author" content="Scott Gresack" />
+  <!-- Allow search engines to index and follow links -->
   <meta name="robots" content="index, follow" />
+  <!-- Canonical URL to prevent duplicate content issues -->
   <link rel="canonical" href="https://scott-gresack.github.io/portfolio/" />
+  <!-- Google site verification for Search Console -->
   <meta name="google-site-verification" content="LTi0sO_AWGNd4v7uJivsQWdkhrGDBDX2uLFTSIFNgbs" />
-  <!-- Open Graph -->
+
+  <!-- Open Graph tags for social media sharing (e.g., Facebook, LinkedIn) -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://scott-gresack.github.io/portfolio/" />
   <meta property="og:title" content="Scott Gresack | Martech Engineer | AEP, Web SDK, CDP Integration Expert" />
   <meta property="og:description" content="Discover Scott Gresack's advanced implementations of Adobe Web SDK, Tealium iQ, and Customer Data Platforms. Hands-on tools for tag governance, XDM mapping, and identity stitching." />
   <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
 
-  <!-- Twitter Card -->
+  <!-- Twitter Card tags for Twitter sharing -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Scott Gresack | Martech Engineer | CDP + Adobe AEP" />
   <meta name="twitter:description" content="Explore the portfolio of a Martech engineer specializing in Adobe Experience Platform, Web SDK, and Tealium iQ integrations. Interactive tag specs and scalable identity solutions." />
   <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
 
-  <!-- Schema.org Structured Data -->
+  <!-- Schema.org structured data for search engine understanding of the person -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -53,16 +63,22 @@
   }
   </script>
 
+  <!-- Load Poppins font from Google Fonts for consistent typography -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Include Tailwind CSS for utility-first styling -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Include Vue.js for reactive front-end functionality -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <!-- Load Google Analytics script asynchronously -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+  <!-- Initialize Google Analytics with dataLayer and tracking ID -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag("js", new Date());
     gtag("config", "G-Y8617TLMYK");
   </script>
+  <!-- Initialize Microsoft Clarity for user behavior analytics -->
   <script>
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -70,6 +86,7 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "pmp4efispy");
   </script>
+  <!-- Initialize Piwik Pro for additional analytics and tag management -->
   <script type="text/javascript">
     (function(window, document, dataLayerName, id) {
       window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
@@ -82,6 +99,7 @@
       !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
     })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
   </script>
+  <!-- Inline CSS for basic styling and active navigation link -->
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -95,49 +113,65 @@
   </style>
 </head>
 <body>
+  <!-- Root element for Vue.js app, using flexbox for full-height layout -->
   <div id="app" class="min-h-screen flex flex-col">
+    <!-- Header with sticky navigation bar -->
     <header class="bg-white shadow sticky top-0 z-50">
+      <!-- Navigation with Tailwind CSS for styling and layout -->
       <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between text-sm font-medium text-gray-800">
+        <!-- Branding or name display -->
         <div>Scott Gresack</div>
+        <!-- Navigation links with Vue.js event handling and external link -->
         <div class="space-x-4">
           <button @click="navigate('about')" :class="{ 'nav-link active': view === 'about' }">About</button>
           <button @click="navigate('contact')" :class="{ 'nav-link active': view === 'contact' }">Contact</button>
           <button @click="navigate('tools')" :class="{ 'nav-link active': view === 'tools' }">Tools</button>
           <button @click="navigate('diagrams')" :class="{ 'nav-link active': view === 'diagrams' }">Diagrams</button>
+          <!-- External link to Another Tool page -->
+          <a href="https://scott-gresack.github.io/portfolio/tool2.html" class="nav-link">Another Tool</a>
         </div>
       </nav>
     </header>
 
+    <!-- Main content area with centered layout -->
     <main class="flex-grow max-w-7xl mx-auto p-6">
+      <!-- About section, shown when view is 'about' -->
       <section v-show="view === 'about'" class="space-y-4">
         <h1 class="text-2xl font-bold">Hi, I'm Scott Gresack</h1>
         <p>A Martech Engineer specializing in Adobe Experience Platform, Tealium iQ, CDP architecture, and analytics instrumentation. I build scalable solutions for enterprise data collection and customer journey activation across web and mobile ecosystems.</p>
         <a href="https://www.linkedin.com/in/scottgresack/" class="text-blue-600 underline" target="_blank">Connect with me on LinkedIn</a>
       </section>
 
+      <!-- Contact section, shown when view is 'contact' -->
       <section v-show="view === 'contact'" class="space-y-4">
         <h1 class="text-2xl font-bold">Contact</h1>
         <p>For speaking, collaboration, or technical consulting inquiries, please reach out via <a href="https://www.linkedin.com/in/scottgresack/" class="text-blue-600 underline" target="_blank">LinkedIn</a>.</p>
       </section>
 
+      <!-- Tools section, shown when view is 'tools' -->
       <section v-show="view === 'tools'" class="space-y-4">
         <h1 class="text-2xl font-bold">🧰 Tools</h1>
+        <!-- Grid layout for tool cards -->
         <div class="grid sm:grid-cols-2 gap-6">
+          <!-- Tool card for Web Tag Spec Generator -->
           <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
             <a href="/portfolio/tag_spec_generator" class="block text-lg font-semibold text-blue-600 hover:underline">
               Web Tag Spec Generator
             </a>
           </div>
+          <!-- Tool card for Adobe Web SDK Object Comparator -->
           <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
             <a href="/portfolio/xdm_comparator" class="block text-lg font-semibold text-blue-600 hover:underline">
               Adobe Web SDK Object Comparator
             </a>
           </div>
+          <!-- Tool card for Mobile Tracker Config -->
           <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
             <a href="https://codepen.io/scott-gresack/full/ogvYawV" target="_blank" class="block text-lg font-semibold text-blue-600 hover:underline">
               Mobile Tracker Config (CodePen)
             </a>
           </div>
+          <!-- Tool card for XDM Schema Comparator -->
           <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
             <a href="https://codepen.io/scott-gresack/full/NPPKJpb" target="_blank" class="block text-lg font-semibold text-blue-600 hover:underline">
               XDM Schema Comparator (CodePen)
@@ -146,9 +180,12 @@
         </div>
       </section>
 
+      <!-- Diagrams section, shown when view is 'diagrams' -->
       <section v-show="view === 'diagrams'" class="space-y-4">
         <h1 class="text-2xl font-bold">🧠 Technical Diagrams</h1>
+        <!-- Responsive grid for diagram images -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <!-- Loop through diagram URLs to display images -->
           <div v-for="url in diagramUrls" :key="url">
             <img :src="url" alt="diagram" class="rounded shadow hover:scale-105 transition-transform duration-200" />
           </div>
@@ -157,12 +194,18 @@
     </main>
   </div>
 
+  <!-- Vue.js application script -->
   <script>
+    // Import createApp from Vue.js to initialize the app
     const { createApp } = Vue;
+    // Create and mount the Vue app to #app element
     createApp({
+      // Define reactive data properties
       data() {
         return {
+          // Current view (about, contact, tools, diagrams)
           view: 'about',
+          // Array of diagram image URLs from swimlanes.io
           diagramUrls: [
             "https://static.swimlanes.io/u/fpieL8s-QX.png?rev=2",
             "https://static.swimlanes.io/u/axhHFyXhTP.png?rev=2",
@@ -180,7 +223,9 @@
           ]
         };
       },
+      // Define methods for the Vue app
       methods: {
+        // Navigate to a section and scroll to top
         navigate(section) {
           this.view = section;
           window.scrollTo({ top: 0, behavior: 'smooth' });
