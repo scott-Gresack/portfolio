@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alloy Payload Analyzer</title>
-  <meta name="description" content="Portfolio of Scott Gresack, Martech Engineer. Includes Web Tag Spec Generator, Mobile Tracking Specs, AEP/CDP architecture diagrams, and toolset links." />
-  <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Layer, Tag Management, XDM, Analytics, Diagrams, CDP, Identity" />
+  <!-- Define character encoding -->
+  <meta charset="UTF-8" />
+  <!-- Ensure responsive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Tool-specific title -->
+  <title>Alloy Payload Analyzer | Scott Gresack Portfolio</title>
+  <!-- SEO description for the tool -->
+  <meta name="description" content="Analyze Adobe Alloy event payloads with Scott Gresack's tool. Parse JSON, view detailed tables, filter data, and download results." />
+  <!-- Relevant keywords -->
+  <meta name="keywords" content="Martech, Adobe Alloy, Adobe Experience Platform, AEP, Web SDK, XDM, Analytics, Tag Management, Data Layer, Scott Gresack" />
+  <!-- Author -->
   <meta name="author" content="Scott Gresack" />
+  <!-- Allow indexing -->
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/" />
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/tool2.html" />
+  <!-- Google site verification -->
   <meta name="google-site-verification" content="LTi0sO_AWGNd4v7uJivsQWdkhrGDBDX2uLFTSIFNgbs" />
-  <!-- Open Graph -->
+
+  <!-- Open Graph tags -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/" />
-  <meta property="og:title" content="Scott Gresack | Martech Engineer | AEP, Web SDK, CDP Integration Expert" />
-  <meta property="og:description" content="Discover Scott Gresack's advanced implementations of Adobe Web SDK, Tealium iQ, and Customer Data Platforms. Hands-on tools for tag governance, XDM mapping, and identity stitching." />
+  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tool2.html" />
+  <meta property="og:title" content="Alloy Payload Analyzer | Scott Gresack Portfolio" />
+  <meta property="og:description" content="Explore Scott Gresack's Alloy Payload Analyzer for parsing and analyzing Adobe Alloy event payloads with interactive filtering and JSON export." />
   <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <!-- Twitter Card -->
+
+  <!-- Twitter Card tags -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Scott Gresack | Martech Engineer | CDP + Adobe AEP" />
-  <meta name="twitter:description" content="Explore the portfolio of a Martech engineer specializing in Adobe Experience Platform, Web SDK, and Tealium iQ integrations. Interactive tag specs and scalable identity solutions." />
+  <meta name="twitter:title" content="Alloy Payload Analyzer | Scott Gresack Portfolio" />
+  <meta name="twitter:description" content="Use Scott Gresack's tool to analyze Adobe Alloy payloads, featuring dynamic tables, filtering, and JSON download capabilities." />
   <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <!-- Schema.org Structured Data -->
+
+  <!-- Schema.org structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Scott Gresack",
     "url": "https://scott-gresack.github.io/portfolio/",
-    "sameAs": [
-      "https://www.linkedin.com/in/scottgresack/"
-    ],
+    "sameAs": ["https://www.linkedin.com/in/scottgresack/"],
     "jobTitle": "Martech Engineer | AEP + CDP Expert",
     "worksFor": {
       "@type": "Organization",
@@ -50,16 +60,22 @@
     ]
   }
   </script>
+
+  <!-- Poppins font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Vue.js for navigation -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag("js", new Date());
-    gtag("config", "G-Y8617TLMYK");
+    gtag("config", "G-Y8617TLMYK", { anonymize_ip: true }); // Anonymize IP for GDPR compliance
   </script>
+  <!-- Microsoft Clarity -->
   <script>
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -67,6 +83,7 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "pmp4efispy");
   </script>
+  <!-- Piwik Pro -->
   <script type="text/javascript">
     (function(window, document, dataLayerName, id) {
       window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
@@ -79,157 +96,210 @@
       !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
     })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
   </script>
+  <!-- Minimal inline CSS -->
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      background: #f5f5f5;
-      color: #333;
-    }
-    .container {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      padding: 24px;
-    }
-    h1 {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-    .instructions {
-      background: #f8fafc;
-      border-left: 4px solid #007bff;
-      padding: 16px;
-      margin-bottom: 24px;
-      border-radius: 4px;
-    }
-    .instructions h2 {
-      font-size: 18px;
-      margin-bottom: 12px;
-    }
-    .instructions ol {
-      padding-left: 20px;
-    }
-    textarea {
-      width: 100%;
-      min-height: 150px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 12px;
-      font-family: 'Courier New', Courier, monospace;
-      resize: vertical;
-    }
-    button {
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin: 8px 0;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    #filterInput {
-      padding: 8px;
-      width: 100%;
-      max-width: 300px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      margin-bottom: 16px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 12px;
-      text-align: left;
-    }
-    th {
-      background: #f8f9fa;
-      font-weight: 600;
-    }
-    .nested {
-      cursor: pointer;
-      color: #007bff;
-    }
-    .nested:hover {
-      text-decoration: underline;
-    }
-    .highlight {
-      background: #e6f3ff;
-    }
-    .download-btn {
-      background: #28a745;
-    }
-    .download-btn:hover {
-      background: #218838;
-    }
-    pre {
-      background: #f8f9fa;
-      padding: 8px;
-      border-radius: 4px;
-      max-height: 300px;
-      overflow-y: auto;
-    }
+    textarea { font-family: 'Courier New', Courier, monospace; resize: vertical; }
+    pre { max-height: 300px; overflow-y: auto; }
   </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Alloy Payload Analyzer</h1>
-    <div class="instructions">
-      <h2>Instructions</h2>
-      <ol>
-        <li>Obtain the Alloy event payloads JSON (e.g., from sessionStorage or another source).</li>
-        <li>Copy the JSON array of events.</li>
-        <li>Paste it into the textarea below.</li>
-        <li>Click "Parse Payloads" to analyze the events.</li>
-        <li>Use the filter to search for specific fields or values.</li>
-        <li>Click on "[Object]" links to expand/collapse nested details.</li>
-        <li>Click "Download as JSON" to save the payloads.</li>
-      </ol>
-    </div>
-    <textarea id="payloadInput" placeholder="Paste Alloy event payloads JSON array here..."></textarea>
-    <button onclick="parsePayloads()">Parse Payloads</button>
-    <button class="download-btn" onclick="downloadJSON()" style="display: none;" id="downloadBtn">Download as JSON</button>
-    <input type="text" id="filterInput" placeholder="Filter by field or value..." oninput="filterTable()">
-    <table id="payloadTable">
-      <thead>
-        <tr>
-          <th>Event Type</th>
-          <th>Timestamp</th>
-          <th>Payload Details</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+<body class="font-sans bg-gray-100 text-gray-800">
+  <!-- Navigation bar -->
+  <div id="nav-app">
+    <header class="bg-white shadow sticky top-0 z-50">
+      <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between text-sm font-medium text-gray-800">
+        <div>Scott Gresack</div>
+        <div class="space-x-4">
+          <button @click="navigate('about')" :class="{ 'border-b-2 border-blue-500 font-semibold': view === 'about' }" class="hover:text-blue-500">About</button>
+          <button @click="navigate('contact')" :class="{ 'border-b-2 border-blue-500 font-semibold': view === 'contact' }" class="hover:text-blue-500">Contact</button>
+          <button @click="navigate('tools')" :class="{ 'border-b-2 border-blue-500 font-semibold': view === 'tools' }" class="hover:text-blue-500">Tools</button>
+          <button @click="navigate('diagrams')" :class="{ 'border-b-2 border-blue-500 font-semibold': view === 'diagrams' }" class="hover:text-blue-500">Diagrams</button>
+          <a href="https://scott-gresack.github.io/portfolio/tool2.html" class="hover:text-blue-500">Another Tool</a>
+        </div>
+      </nav>
+    </header>
   </div>
 
-  <script>
-    let payloads = [];
+  <!-- Main content -->
+  <main class="max-w-5xl mx-auto p-6">
+    <section class="bg-white rounded-lg shadow-md p-6">
+      <h1 class="text-2xl font-semibold mb-4">Alloy Payload Analyzer</h1>
+      <!-- Business Value -->
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
+        <h2 class="text-lg font-medium mb-3">Business Value</h2>
+        <p class="mb-2">The Alloy Payload Analyzer streamlines Adobe Alloy implementations by providing a user-friendly interface to inspect, filter, and export event payloads. It enhances Martech workflows by:</p>
+        <ul class="list-disc pl-5">
+          <li><strong>Accelerating Debugging</strong>: Quickly identify and resolve data layer issues with a clear, interactive table view.</li>
+          <li><strong>Ensuring Data Quality</strong>: Validate XDM schema compliance, with highlighted web fields for easy verification.</li>
+          <li><strong>Improving Collaboration</strong>: Export payloads as JSON to share with developers and analysts, reducing communication overhead.</li>
+          <li><strong>Real-Time Monitoring</strong>: Capture payloads automatically via sessionStorage, enabling immediate analysis during AEP testing.</li>
+        </ul>
+      </div>
+      <!-- Instructions -->
+      <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
+        <h2 class="text-lg font-medium mb-3">Instructions</h2>
+        <ol class="pl-5 list-decimal">
+          <li>Ensure the Alloy monitor script is running (check console for captured payloads).</li>
+          <li>Payloads are auto-loaded from sessionStorage, or paste a JSON array of events into the textarea.</li>
+          <li>Click "Parse Payloads" to analyze or "Refresh Payloads" to update from sessionStorage.</li>
+          <li>Use the filter to search for specific fields or values.</li>
+          <li>Click "[Object]" links to expand/collapse nested details.</li>
+          <li>Click "Download as JSON" to save the payloads.</li>
+        </ol>
+      </div>
+      <!-- Error message -->
+      <div id="errorMessage" class="hidden text-red-600 mb-4"></div>
+      <!-- Loading indicator -->
+      <div id="loadingIndicator" class="hidden text-blue-600 mb-4">Processing...</div>
+      <!-- JSON input -->
+      <textarea id="payloadInput" class="w-full min-h-[150px] border border-gray-300 rounded p-3 mb-4" placeholder="Paste Alloy event payloads JSON array here or auto-load from sessionStorage..." aria-label="JSON payload input"></textarea>
+      <!-- Action buttons -->
+      <div class="flex space-x-4 mb-4">
+        <button onclick="parsePayloads()" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" aria-label="Parse JSON payloads">Parse Payloads</button>
+        <button onclick="refreshPayloads()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" aria-label="Refresh payloads from sessionStorage">Refresh Payloads</button>
+        <button onclick="downloadJSON()" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 hidden" id="downloadBtn" aria-label="Download JSON file">Download as JSON</button>
+      </div>
+      <!-- Filter input -->
+      <input type="text" id="filterInput" class="p-2 w-full max-w-xs border border-gray-300 rounded mb-4" placeholder="Filter by field or value..." aria-label="Filter table data" />
+      <!-- Payload table -->
+      <table id="payloadTable" class="w-full border-collapse">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border border-gray-300 p-3 text-left font-semibold">Event Type</th>
+            <th class="border border-gray-300 p-3 text-left font-semibold">Timestamp</th>
+            <th class="border border-gray-300 p-3 text-left font-semibold">Payload Details</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
 
-    function parsePayloads() {
-      const input = document.getElementById('payloadInput').value;
+  <!-- JavaScript logic -->
+  <script>
+    // Initialize Vue.js for navigation
+    const { createApp } = Vue;
+    createApp({
+      data() {
+        return { view: 'tools' }; // Default view
+      },
+      methods: {
+        navigate(section) {
+          this.view = section;
+          // Track navigation in analytics
+          gtag('event', 'navigation_click', { section });
+          window.clarity('event', `navigation_${section}`);
+          window.dataLayer.push({ event: 'ppms.cm:navigation', section });
+        }
+      }
+    }).mount('#nav-app');
+
+    // Debounce utility
+    function debounce(fn, wait) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn.apply(this, args), wait);
+      };
+    }
+
+    // Alloy monitor to capture payloads
+    window.__alloyMonitors = window.__alloyMonitors || [];
+    window.__alloyMonitors.push({
+      // Capture and store events in sessionStorage
+      onBeforeNetworkRequest(data) {
+        const key = 'alloyEventPayloads';
+        const existing = sessionStorage.getItem(key);
+        const payloads = existing ? JSON.parse(existing) : [];
+        const event = data?.payload?.events?.[0];
+        if (event) {
+          payloads.push(event);
+          sessionStorage.setItem(key, JSON.stringify(payloads));
+          // Track payload capture
+          gtag('event', 'payload_captured', { event_type: event.eventType || 'unknown' });
+          window.clarity('event', 'payload_captured');
+          window.dataLayer.push({ event: 'ppms.cm:payload_captured', event_type: event.eventType || 'unknown' });
+        } else {
+          console.warn('[Alloy Monitor] No events[0] found in payload:', data.payload);
+        }
+      },
+      onCommandResolved(data) {
+        console.log("Command Resolved:", data);
+      },
+      onNetworkResponse(data) {
+        console.log("Network Response:", data);
+      },
+      onNetworkError(data) {
+        console.warn("Network Error:", data);
+        // Track network errors
+        gtag('event', 'network_error', { error: data.error });
+        window.clarity('event', 'network_error');
+        window.dataLayer.push({ event: 'ppms.cm:network_error', error: data.error });
+      }
+    });
+
+    // Parse and render payloads
+    function parsePayloads(input) {
+      const errorMessage = document.getElementById('errorMessage');
+      const loadingIndicator = document.getElementById('loadingIndicator');
+      errorMessage.classList.add('hidden');
+      loadingIndicator.classList.remove('hidden');
+
       try {
-        payloads = JSON.parse(input);
+        const payloads = JSON.parse(input);
         if (!Array.isArray(payloads)) {
           throw new Error('Input must be a JSON array of events');
         }
-        document.getElementById('downloadBtn').style.display = 'inline-block';
+        document.getElementById('downloadBtn').classList.remove('hidden');
         renderTable(payloads);
+        // Track successful parse
+        gtag('event', 'parse_payloads', { status: 'success', payload_count: payloads.length });
+        window.clarity('event', 'parse_payloads_success');
+        window.dataLayer.push({ event: 'ppms.cm:parse_payloads', status: 'success', payload_count: payloads.length });
+        return payloads;
       } catch (e) {
-        alert('Error parsing payloads: ' + e.message);
+        errorMessage.textContent = `Error: ${e.message}. Ensure the input is a valid JSON array.`;
+        errorMessage.classList.remove('hidden');
+        // Track failed parse
+        gtag('event', 'parse_payloads', { status: 'failure', error: e.message });
+        window.clarity('event', 'parse_payloads_failure');
+        window.dataLayer.push({ event: 'ppms.cm:parse_payloads', status: 'failure', error: e.message });
+        return null;
+      } finally {
+        loadingIndicator.classList.add('hidden');
       }
     }
 
+    // Refresh payloads from sessionStorage
+    function refreshPayloads() {
+      const key = 'alloyEventPayloads';
+      const stored = sessionStorage.getItem(key);
+      const payloadInput = document.getElementById('payloadInput');
+      const errorMessage = document.getElementById('errorMessage');
+      const loadingIndicator = document.getElementById('loadingIndicator');
+      errorMessage.classList.add('hidden');
+      loadingIndicator.classList.remove('hidden');
+
+      if (!stored) {
+        errorMessage.textContent = 'No payloads found in sessionStorage. Ensure the Alloy monitor is running.';
+        errorMessage.classList.remove('hidden');
+        // Track failed refresh
+        gtag('event', 'refresh_payloads', { status: 'failure', error: 'no_payloads' });
+        window.clarity('event', 'refresh_payloads_failure');
+        window.dataLayer.push({ event: 'ppms.cm:refresh_payloads', status: 'failure', error: 'no_payloads' });
+        loadingIndicator.classList.add('hidden');
+        return;
+      }
+
+      payloadInput.value = stored;
+      parsePayloads(stored);
+      // Track successful refresh
+      gtag('event', 'refresh_payloads', { status: 'success' });
+      window.clarity('event', 'refresh_payloads_success');
+      window.dataLayer.push({ event: 'ppms.cm:refresh_payloads', status: 'success' });
+      loadingIndicator.classList.add('hidden');
+    }
+
+    // Render table
     function renderTable(events) {
       const tbody = document.querySelector('#payloadTable tbody');
       tbody.innerHTML = '';
@@ -238,16 +308,15 @@
         const timestamp = event.timestamp ? new Date(event.timestamp).toLocaleString() : 'N/A';
         let details = '';
 
-        // Process xdm and data
         ['xdm', 'data'].forEach(key => {
           if (event[key]) {
             details += `<strong>${key}:</strong><ul>`;
             Object.entries(event[key]).forEach(([k, v]) => {
               const isWebField = key === 'xdm' && k === 'web';
-              const className = isWebField ? 'highlight' : '';
+              const className = isWebField ? 'bg-blue-100' : '';
               if (typeof v === 'object' && v !== null) {
                 const id = `nested-${Math.random().toString(36).slice(2)}`;
-                details += `<li class="${className}">${k}: <span class="nested" onclick="toggleNested('${id}')">[Object]</span><pre id="${id}" style="display: none;">${JSON.stringify(v, null, 2)}</pre></li>`;
+                details += `<li class="${className}">${k}: <span class="text-blue-500 cursor-pointer hover:underline" onclick="toggleNested('${id}')" aria-expanded="false" aria-controls="${id}">[Object]</span><pre id="${id}" class="bg-gray-50 p-2 rounded hidden">${JSON.stringify(v, null, 2)}</pre></li>`;
               } else {
                 details += `<li class="${className}">${k}: ${v}</li>`;
               }
@@ -257,37 +326,63 @@
         });
 
         row.innerHTML = `
-          <td>${event.eventType || 'N/A'}</td>
-          <td>${timestamp}</td>
-          <td>${details}</td>
+          <td class="border border-gray-300 p-3">${event.eventType || 'N/A'}</td>
+          <td class="border border-gray-300 p-3">${timestamp}</td>
+          <td class="border border-gray-300 p-3">${details}</td>
         `;
         tbody.appendChild(row);
       });
     }
 
+    // Toggle nested object visibility
     function toggleNested(id) {
       const el = document.getElementById(id);
-      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+      const trigger = document.querySelector(`[aria-controls="${id}"]`);
+      const isHidden = el.classList.contains('hidden');
+      el.classList.toggle('hidden');
+      trigger.setAttribute('aria-expanded', isHidden);
+      // Track toggle action
+      gtag('event', 'toggle_nested', { state: isHidden ? 'expanded' : 'collapsed', element_id: id });
+      window.clarity('event', `toggle_nested_${isHidden ? 'expanded' : 'collapsed'}`);
+      window.dataLayer.push({ event: 'ppms.cm:toggle_nested', state: isHidden ? 'expanded' : 'collapsed', element_id: id });
     }
 
-    function filterTable() {
+    // Filter table rows
+    const filterTable = debounce(() => {
       const filter = document.getElementById('filterInput').value.toLowerCase();
       const rows = document.querySelectorAll('#payloadTable tbody tr');
       rows.forEach(row => {
         const text = row.textContent.toLowerCase();
         row.style.display = text.includes(filter) ? '' : 'none';
       });
+      // Track filter action
+      gtag('event', 'filter_table', { filter_value: filter });
+      window.clarity('event', 'filter_table');
+      window.dataLayer.push({ event: 'ppms.cm:filter_table', filter_value: filter });
+    }, 300);
+
+    // Download payloads as JSON
+    function downloadJSON() {
+      const input = document.getElementById('payloadInput').value;
+      const payloads = parsePayloads(input);
+      if (payloads) {
+        const blob = new Blob([JSON.stringify(payloads, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'alloy_payloads.json';
+        a.click();
+        URL.revokeObjectURL(url);
+        // Track download action
+        gtag('event', 'download_json', { payload_count: payloads.length });
+        window.clarity('event', 'download_json');
+        window.dataLayer.push({ event: 'ppms.cm:download_json', payload_count: payloads.length });
+      }
     }
 
-    function downloadJSON() {
-      const blob = new Blob([JSON.stringify(payloads, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'alloy_payloads.json';
-      a.click();
-      URL.revokeObjectURL(url);
-    }
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      refreshPayloads();
+      document.getElementById('filterInput').addEventListener('input', filterTable);
+    });
   </script>
-</body>
-</html>
