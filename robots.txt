@@ -1,4 +1,11 @@
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 User-agent: *
+Disallow: /private/
 Allow: /
 
 Sitemap: https://scott-gresack.github.io/portfolio/sitemap.xml
