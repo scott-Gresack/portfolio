@@ -7,7 +7,7 @@
   <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Governance, Tag Management, GA4, Analytics, Attribution" />
   <meta name="author" content="Scott Gresack" />
   <meta name="robots" content="index, follow" />
-  <title>Scott Gresack | Martech Engineer Portfolio</title>
+  <title>Scott Gresack | Web Tag Spec Generator</title>
 
   <!-- Open Graph Meta -->
   <meta property="og:title" content="Scott Gresack | Martech Engineer Portfolio" />
@@ -22,58 +22,36 @@
   <meta name="twitter:description" content="Tealium, Adobe Experience Platform, GTM, and privacy-driven tag governance examples." />
   <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
 
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-NH95HXQ');
-  </script>
-  <!-- End Google Tag Manager -->
-
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Y8617TLMYK');
-  </script>
-
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
-
-  <!-- GTM (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NH95HXQ"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-
-  <!-- Nav Include -->
-  <div id="nav-container"></div> <!-- This will hold the navigation bar -->
-
-  <!-- Vue App -->
+<!-- Navigation Bar -->
+<div class="w-full max-w-4xl mx-auto px-4">
+  <div class="bg-blue-600 text-white rounded-xl mt-6 mb-6 p-4 flex justify-between items-center shadow-md">
+    <a href="https://scott-gresack.github.io/portfolio/" class="font-semibold hover:underline">
+      ← Back to Portfolio
+    </a>
+    <a href="https://scott-gresack.github.io/portfolio/xdm_comparator" class="font-semibold hover:underline">
+      Compare XDM
+    </a>
+  </div>
+</div>
   <div id="app" class="min-h-screen flex flex-col items-center pt-12 pb-24 px-4">
-    <!-- Main Card -->
     <div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
-      <!-- Header -->
-      <div class="bg-gradient-to-r from-primary to-accent text-white p-6">
-        <h1 class="text-3xl font-bold drop-shadow">✨ Web Tag Spec Generator ✨</h1>
-        <p class="mt-2 text-primary-100">
-          Build dynamic <code class="bg-white/20 px-1 rounded">utag.view()</code> &amp; 
-          <code class="bg-white/20 px-1 rounded">utag.link()</code> payloads + XDM!
+      <div class="bg-blue-600 text-white p-6">
+        <h1 class="text-3xl font-bold">✨ Web Tag Spec Generator ✨</h1>
+        <p class="mt-2 text-blue-100">
+          Dynamically generate <code class="bg-white/20 px-1 rounded">utag.view()</code> and 
+          <code class="bg-white/20 px-1 rounded">utag.link()</code> payloads, plus mapped XDM.
         </p>
       </div>
 
-      <!-- Instructions Toggle -->
+      <!-- Instructions -->
       <div class="p-6 border-b">
         <button @click="toggleInstructions"
-                class="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition">
-          <span v-if="showInstructions">🔽</span>
-          <span v-else>🔼</span>
+                class="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition font-medium">
+          <span>{{ showInstructions ? '🔽' : '🔼' }}</span>
           <span>Instructions</span>
         </button>
         <transition name="fade">
@@ -81,70 +59,65 @@
             <div>
               <h2 class="font-semibold text-gray-700">🚀 Purpose</h2>
               <p>
-                Dynamically generate <code class="bg-gray-200 px-1 rounded">utag.view()</code> or 
-                <code class="bg-gray-200 px-1 rounded">utag.link()</code> payloads for Adobe Web SDK,
-                auto‑building eVar/prop/event mappings and previewable XDM objects.
+                Build valid <code class="bg-gray-200 px-1 rounded">utag.view()</code> or 
+                <code class="bg-gray-200 px-1 rounded">utag.link()</code> events, with mapped Adobe Web SDK eVars, props, and events.
               </p>
             </div>
             <div>
               <h2 class="font-semibold text-gray-700">🛠 Instructions</h2>
               <ol class="list-decimal list-inside space-y-1">
-                <li>Select event type.</li>
-                <li>Add key/value + analytics key (eVar#, prop#, event#).</li>
-                <li>Preview Tag Spec &amp; XDM below.</li>
-                <li>Click “Copy” to use in your console or TMS.</li>
+                <li>Select the type of event.</li>
+                <li>Add key/value pairs and analytics mapping.</li>
+                <li>Copy the formatted Tag Spec or XDM object.</li>
               </ol>
             </div>
           </div>
         </transition>
       </div>
-      <!-- Event Type Buttons -->
+
+      <!-- Event Selection -->
       <div class="flex space-x-4 p-6 border-b">
-        <button @click="setEventType('utag.view()')"
-                :class="eventType==='utag.view()'? 'bg-primary text-white':'bg-gray-100'"
-                class="flex-1 py-2 rounded-lg font-medium hover:opacity-90 transition pop">
+        <button @click="setEventType('utag.view()')" 
+                :class="eventType==='utag.view()' ? 'bg-blue-600 text-white' : 'bg-gray-100'"
+                class="flex-1 py-2 rounded-lg font-medium hover:opacity-90 transition">
           📊 utag.view()
         </button>
-        <button @click="setEventType('utag.link()')"
-                :class="eventType==='utag.link()'? 'bg-primary text-white':'bg-gray-100'"
-                class="flex-1 py-2 rounded-lg font-medium hover:opacity-90 transition pop">
+        <button @click="setEventType('utag.link()')" 
+                :class="eventType==='utag.link()' ? 'bg-blue-600 text-white' : 'bg-gray-100'"
+                class="flex-1 py-2 rounded-lg font-medium hover:opacity-90 transition">
           🔗 utag.link()
         </button>
       </div>
 
-      <!-- Key–Value Pairs -->
+      <!-- Input Fields -->
       <div class="p-6 space-y-4 border-b">
         <h3 class="font-semibold text-gray-700">🧩 Key–Value Pairs</h3>
         <div v-for="(pair,i) in keyValuePairs" :key="i" class="flex space-x-2">
-          <input v-model="pair.key"         placeholder="Key"         class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
-          <input v-model="pair.value"       placeholder="Value"       class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
-          <input v-model="pair.analyticsKey"placeholder="eVar#/prop#/event#" class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
-          <button @click="removeKeyValuePair(i)" class="px-3 bg-red-400 hover:bg-red-500 text-white rounded-lg transition pop">✕</button>
+          <input v-model="pair.key" placeholder="Key" class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
+          <input v-model="pair.value" placeholder="Value" class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
+          <input v-model="pair.analyticsKey" placeholder="eVar#/prop#/event#" class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
+          <button @click="removeKeyValuePair(i)" class="px-3 bg-red-400 hover:bg-red-500 text-white rounded-lg transition">✕</button>
         </div>
-        <button @click="addKeyValuePair" class="px-4 py-2 bg-green-400 hover:bg-green-500 text-white rounded-lg transition pop">
+        <button @click="addKeyValuePair" class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition">
           ➕ Add Pair
         </button>
       </div>
 
       <!-- Outputs -->
       <div class="p-6 space-y-8">
-        <!-- Tag Spec -->
         <div>
           <div class="flex justify-between items-center mb-2">
             <h4 class="font-semibold text-gray-800">✨ Tag Spec</h4>
-            <button @click="copyToClipboard(formattedSnippet,'Tag Spec')"
-                    class="px-3 py-1 bg-primary text-white rounded-lg hover:bg-blue-700 transition pop">
+            <button @click="copyToClipboard(formattedSnippet, 'Tag Spec')" class="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
               📋 Copy
             </button>
           </div>
           <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">{{ formattedSnippet }}</pre>
         </div>
-        <!-- XDM Object -->
         <div>
           <div class="flex justify-between items-center mb-2">
             <h4 class="font-semibold text-gray-800">🌐 XDM Object</h4>
-            <button @click="copyToClipboard(xdmObject,'XDM Object')"
-                    class="px-3 py-1 bg-primary text-white rounded-lg hover:bg-blue-700 transition pop">
+            <button @click="copyToClipboard(xdmObject, 'XDM Object')" class="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
               📋 Copy
             </button>
           </div>
@@ -153,14 +126,13 @@
       </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Copied Modal -->
     <transition name="fade">
       <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black/50">
         <div class="bg-white p-6 rounded-2xl shadow-xl max-w-xs text-center animate-pop">
           <h3 class="text-xl font-bold mb-2">🎉 Copied!</h3>
-          <p your>{{ modalType }} is on your clipboard.</p>
-          <button @click="closeModal"
-                  class="mt-4 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+          <p>{{ modalType }} is now on your clipboard.</p>
+          <button @click="closeModal" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
             Close
           </button>
         </div>
@@ -172,46 +144,69 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script>
     new Vue({
-      el:'#app',
-      data:{
-        showInstructions:true,
-        eventType:'utag.view()',
-        keyValuePairs:[],
-        showModal:false,
-        modalType:'',
+      el: '#app',
+      data: {
+        showInstructions: true,
+        eventType: 'utag.view()',
+        keyValuePairs: [],
+        showModal: false,
+        modalType: '',
       },
-      computed:{
-        formattedSnippet(){
-          if(!this.keyValuePairs.length) return this.eventType+'({});';
-          const p={};
-          this.keyValuePairs.forEach(o=>{
-            if(o.key&&o.value) p[o.key]=o.value;
+      computed: {
+        formattedSnippet() {
+          if (!this.keyValuePairs.length) return this.eventType + '({});';
+          const p = {};
+          this.keyValuePairs.forEach(o => {
+            if (o.key && o.value) p[o.key] = o.value;
           });
-          return this.eventType+'('+JSON.stringify(p,null,2)+');';
+          return this.eventType + '(' + JSON.stringify(p, null, 2) + ');';
         },
-        xdmObject(){
-          const xdm={ xdm:{ _experience:{ analytics:{ customDimensions:{ eVars:{},props:{} }, events:{} } } } };
-          this.keyValuePairs.forEach(o=>{
-            const k=o.analyticsKey, v=o.value;
-            if(/^evar\d+/i.test(k))    xdm.xdm._experience.analytics.customDimensions.eVars[k]=v;
-            else if(/^prop\d+/i.test(k))xdm.xdm._experience.analytics.customDimensions.props[k]=v;
-            else if(/^event\d+/i.test(k))xdm.xdm._experience.analytics.events[k]=v;
+        xdmObject() {
+          const xdm = {
+            xdm: {
+              _experience: {
+                analytics: {
+                  customDimensions: {
+                    eVars: {},
+                    props: {}
+                  },
+                  events: {}
+                }
+              }
+            }
+          };
+          this.keyValuePairs.forEach(o => {
+            const k = o.analyticsKey?.toLowerCase() || '', v = o.value;
+            if (k.startsWith('evar')) xdm.xdm._experience.analytics.customDimensions.eVars[o.analyticsKey] = v;
+            else if (k.startsWith('prop')) xdm.xdm._experience.analytics.customDimensions.props[o.analyticsKey] = v;
+            else if (k.startsWith('event')) xdm.xdm._experience.analytics.events[o.analyticsKey] = v;
           });
-          return JSON.stringify(xdm,null,2);
+          return JSON.stringify(xdm, null, 2);
         }
       },
-      methods:{
-        toggleInstructions(){this.showInstructions=!this.showInstructions},
-        setEventType(t){this.eventType=t},
-        addKeyValuePair(){this.keyValuePairs.push({key:'',value:'',analyticsKey:''})},
-        removeKeyValuePair(i){this.keyValuePairs.splice(i,1)},
-        copyToClipboard(txt,type){
-          navigator.clipboard.writeText(txt).then(()=>{
-            this.modalType=type;this.showModal=true;
-            setTimeout(this.closeModal,1200);
+      methods: {
+        toggleInstructions() {
+          this.showInstructions = !this.showInstructions;
+        },
+        setEventType(type) {
+          this.eventType = type;
+        },
+        addKeyValuePair() {
+          this.keyValuePairs.push({ key: '', value: '', analyticsKey: '' });
+        },
+        removeKeyValuePair(i) {
+          this.keyValuePairs.splice(i, 1);
+        },
+        copyToClipboard(txt, type) {
+          navigator.clipboard.writeText(txt).then(() => {
+            this.modalType = type;
+            this.showModal = true;
+            setTimeout(this.closeModal, 1200);
           });
         },
-        closeModal(){this.showModal=false}
+        closeModal() {
+          this.showModal = false;
+        }
       }
     });
   </script>
