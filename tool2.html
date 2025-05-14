@@ -99,20 +99,102 @@
   </script>
   <!-- Inline CSS -->
   <style>
-    textarea { font-family: 'Courier New', Courier, monospace; resize: vertical; }
-    pre { max-height: 300px; overflow-y: auto; }
-    .nested-indent { margin-left: 1rem; }
-    .error-message { background: #fee2e2; padding: 1rem; border-radius: 0.5rem; }
-    .success-message { background: #d1fae5; padding: 1rem; border-radius: 0.5rem; }
+    textarea {
+      font-family: 'Courier New', Courier, monospace;
+      resize: vertical;
+    }
+    pre {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .nested-indent {
+      margin-left: 1rem;
+    }
+    .error-message {
+      background: #fee2e2;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+    .success-message {
+      background: #d1fae5;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+    /* Responsive table wrapper */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    /* Table styling */
+    #payloadTable {
+      min-width: 100%;
+      table-layout: auto;
+    }
+    #payloadTable th, #payloadTable td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* Responsive column widths */
+    #payloadTable th:nth-child(1), #payloadTable td:nth-child(1) { /* Event Type */
+      min-width: 120px;
+      max-width: 200px;
+    }
+    #payloadTable th:nth-child(2), #payloadTable td:nth-child(2) { /* Timestamp */
+      min-width: 140px;
+      max-width: 220px;
+    }
+    #payloadTable th:nth-child(3), #payloadTable td:nth-child(3) { /* Page URL */
+      min-width: 150px;
+      max-width: 300px;
+    }
+    #payloadTable th:nth-child(4), #payloadTable td:nth-child(4) { /* Page Name */
+      min-width: 120px;
+      max-width: 200px;
+    }
+    #payloadTable th:nth-child(5), #payloadTable td:nth-child(5) { /* Interaction */
+      min-width: 120px;
+      max-width: 200px;
+    }
+    #payloadTable th:nth-child(6), #payloadTable td:nth-child(6) { /* Data */
+      min-width: 100px;
+      max-width: 250px;
+    }
+    #payloadTable th:nth-child(7), #payloadTable td:nth-child(7) { /* Full Payload */
+      min-width: 100px;
+      max-width: 250px;
+    }
+    /* Nested content */
+    #payloadTable pre {
+      white-space: pre-wrap;
+      max-height: 200px;
+    }
+    /* Mobile adjustments */
+    @media (max-width: 640px) {
+      #payloadTable th, #payloadTable td {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+      }
+      #payloadTable th:nth-child(3), #payloadTable td:nth-child(3),
+      #payloadTable th:nth-child(4), #payloadTable td:nth-child(4),
+      #payloadTable th:nth-child(5), #payloadTable td:nth-child(5) {
+        max-width: 150px;
+      }
+      #payloadTable th:nth-child(6), #payloadTable td:nth-child(6),
+      #payloadTable th:nth-child(7), #payloadTable td:nth-child(7) {
+        max-width: 100px;
+      }
+    }
   </style>
 </head>
 <body class="font-sans bg-gray-100 text-gray-800">
   <!-- Navigation bar -->
   <div id="nav-app">
     <header class="bg-white shadow sticky top-0 z-50">
-      <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between text-sm font-medium text-gray-800">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between text-sm font-medium text-gray-800">
         <div>Scott Gresack</div>
-        <div class="space-x-4">
+        <div class="space-x-2 sm:space-x-4">
           <button @click="navigate('about')" :class="{ 'border-b-2 border-blue-500 font-semibold': view === 'about' }" class="hover:text-blue-500">About</button>
           <button @click="navigate('contact')" :class="{ 'border-b-2 border-blue-500 font-semibold': view === 'contact' }" class="hover:text-blue-500">Contact</button>
           <button @click="navigate('tools')" :class="{ 'border-b-2 border-blue-500 font-semibold': view === 'tools' }" class="hover:text-blue-500">Tools</button>
@@ -124,9 +206,9 @@
   </div>
 
   <!-- Main content -->
-  <main class="max-w-5xl mx-auto p-6">
-    <section class="bg-white rounded-lg shadow-md p-6">
-      <h1 class="text-2xl font-semibold mb-4">Alloy Payload Analyzer</h1>
+  <main class="mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full max-w-7xl">
+    <section class="bg-white rounded-lg shadow-md p-4 sm:p-6">
+      <h1 class="text-xl sm:text-2xl font-semibold mb-4">Alloy Payload Analyzer</h1>
       <!-- Business Value -->
       <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
         <h2 class="text-lg font-medium mb-3">Business Value</h2>
@@ -194,7 +276,7 @@
         eventType: ev.eventType || ev.xdm?.eventType || 'N/A',
         timestamp: ev.xdm?.timestamp || 'N/A',
         url: ev.xdm?.web?.webPageDetails?.URL || 'N/A',
-        pageName: ev.xdm?.web?.webPageDetails?.name || 'N/A',
+        pageName: eaev.xdm?.web?.webPageDetails?.name || 'N/A',
         interaction: ev.xdm?.web?.webInteraction?.name || ''
       }));
       console.log(
@@ -248,24 +330,30 @@
       <!-- JSON input -->
       <textarea id="payloadInput" class="w-full min-h-[150px] border border-gray-300 rounded p-3 mb-4" placeholder="Paste Alloy event payloads JSON array here or auto-load from sessionStorage..." aria-label="JSON payload input"></textarea>
       <!-- Action buttons -->
-      <div class="flex space-x-4 mb-4">
-        <button onclick="parsePayloads()" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" aria-label="Parse JSON payloads">Parse Payloads</button>
-        <button onclick="refreshPayloads()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" aria-label="Refresh payloads from sessionStorage">Refresh Payloads</button>
-        <button onclick="downloadJSON()" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 hidden" id="downloadBtn" aria-label="Download JSON file">Download as JSON</button>
+      <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4 space-y-2 sm:space-y-0">
+        <button onclick="parsePayloads()" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto" aria-label="Parse JSON payloads">Parse Payloads</button>
+        <button onclick="refreshPayloads()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full sm:w-auto" aria-label="Refresh payloads from sessionStorage">Refresh Payloads</button>
+        <button onclick="downloadJSON()" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full sm:w-auto hidden" id="downloadBtn" aria-label="Download JSON file">Download as JSON</button>
       </div>
       <!-- Filter input -->
-      <input type="text" id="filterInput" class="p-2 w-full max-w-xs border border-gray-300 rounded mb-4" placeholder="Filter by field or value..." aria-label="Filter table data" />
+      <input type="text" id="filterInput" class="p-2 w-full sm:max-w-xs border border-gray-300 rounded mb-4" placeholder="Filter by field or value..." aria-label="Filter table data" />
       <!-- Payload table -->
-      <table id="payloadTable" class="w-full border-collapse">
-        <thead>
-          <tr class="bg-gray-100">
-            <th class="border border-gray-300 p-3 text-left font-semibold">Event Type</th>
-            <th class="border border-gray-300 p-3 text-left font-semibold">Timestamp</th>
-            <th class="border border-gray-300 p-3 text-left font-semibold">Payload Details</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <div class="table-wrapper">
+        <table id="payloadTable" class="w-full border-collapse">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 p-3 text-left font-semibold">Event Type</th>
+              <th class="border border-gray-300 p-3 text-left font-semibold">Timestamp</th>
+              <th class="border border-gray-300 p-3 text-left font-semibold">Page URL</th>
+              <th class="border border-gray-300 p-3 text-left font-semibold">Page Name</th>
+              <th class="border border-gray-300 p-3 text-left font-semibold">Interaction</th>
+              <th class="border border-gray-300 p-3 text-left font-semibold">Data</th>
+              <th class="border border-gray-300 p-3 text-left font-semibold">Full Payload</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </section>
   </main>
 
@@ -280,12 +368,74 @@
       methods: {
         navigate(section) {
           this.view = section;
-          gtag('event', 'navigation_click', { section });
+          trackNavigation(section);
           window.clarity('event', `navigation_${section}`);
           window.dataLayer.push({ event: 'ppms.cm:navigation', section });
         }
       }
     }).mount('#nav-app');
+
+    // --- Alloy Payload Analyzer GA4 Enhanced Tracking ---
+
+    // Tool loaded/session started (fires once at load)
+    gtag('event', 'tool_loaded', {
+      tool_name: 'Alloy Payload Analyzer',
+      tool_version: '1.1.0',
+      page_location: window.location.href
+    });
+
+    // Heartbeat for active engagement (fires every 30 seconds)
+    setInterval(() => {
+      gtag('event', 'tool_heartbeat', {
+        tool_name: 'Alloy Payload Analyzer',
+        timestamp: new Date().toISOString()
+      });
+    }, 30000);
+
+    // Tracking functions
+    function trackJsonParsed(payloads) {
+      gtag('event', 'json_parsed', {
+        payload_count: payloads.length,
+        event_types: Array.from(new Set(payloads.map(e => e.eventType || 'unknown'))).join(','),
+        tool_name: 'Alloy Payload Analyzer'
+      });
+    }
+
+    function trackJsonDownload(payloads) {
+      gtag('event', 'json_download', {
+        payload_count: payloads.length,
+        event_types: Array.from(new Set(payloads.map(e => e.eventType || 'unknown'))).join(','),
+        tool_name: 'Alloy Payload Analyzer'
+      });
+    }
+
+    function trackScriptCopied() {
+      gtag('event', 'script_copied', {
+        tool_name: 'Alloy Payload Analyzer'
+      });
+    }
+
+    function trackFilterUsed(filter) {
+      gtag('event', 'filter_used', {
+        filter_value: filter,
+        tool_name: 'Alloy Payload Analyzer'
+      });
+    }
+
+    function trackNavigation(section) {
+      gtag('event', 'navigation_click', {
+        section,
+        tool_name: 'Alloy Payload Analyzer'
+      });
+    }
+
+    function trackToolError(e) {
+      gtag('event', 'tool_error', {
+        error_type: e.name || 'Error',
+        error_message: e.message || 'Unknown',
+        tool_name: 'Alloy Payload Analyzer'
+      });
+    }
 
     // Debounce utility
     function debounce(fn, wait) {
@@ -365,6 +515,7 @@
         gtag('event', 'parse_payloads', { status: 'failure', error: 'empty_input' });
         window.clarity('event', 'parse_payloads_failure');
         window.dataLayer.push({ event: 'ppms.cm:parse_payloads', status: 'failure', error: 'empty_input' });
+        trackToolError({ name: 'Error', message: 'Empty input' });
         loadingIndicator.classList.add('hidden');
         return;
       }
@@ -385,11 +536,7 @@
         renderTable(payloads);
         successMessage.textContent = `Successfully parsed ${payloads.length} events.`;
         successMessage.classList.remove('hidden');
-        gtag('event', 'parse_payloads', {
-          status: 'success',
-          payload_count: payloads.length,
-          event_types: payloads.map(e => e.eventType || 'unknown').join(',')
-        });
+        trackJsonParsed(payloads);
         window.clarity('event', 'parse_payloads_success');
         window.dataLayer.push({
           event: 'ppms.cm:parse_payloads',
@@ -404,6 +551,7 @@
           ? 'Invalid JSON syntax. Check for missing brackets, commas, or invalid characters and try again.'
           : `Error: ${e.message}. Ensure the input is a valid JSON array or object of events.`;
         errorMessage.classList.remove('hidden');
+        trackToolError(e);
         gtag('event', 'parse_payloads', { status: 'failure', error: e.name === 'SyntaxError' ? 'syntax_error' : e.message });
         window.clarity('event', 'parse_payloads_failure');
         window.dataLayer.push({
@@ -436,6 +584,7 @@
         gtag('event', 'refresh_payloads', { status: 'failure', error: 'no_payloads' });
         window.clarity('event', 'refresh_payloads_failure');
         window.dataLayer.push({ event: 'ppms.cm:refresh_payloads', status: 'failure', error: 'no_payloads' });
+        trackToolError({ name: 'Error', message: 'No payloads in sessionStorage' });
         loadingIndicator.classList.add('hidden');
         return;
       }
@@ -448,29 +597,43 @@
       loadingIndicator.classList.add('hidden');
     }
 
-    // Render table
+    // Render table with multiple columns based on nested payload structure
     function renderTable(events) {
       const tbody = document.querySelector('#payloadTable tbody');
       tbody.innerHTML = '';
+
       events.forEach((event, index) => {
         const row = document.createElement('tr');
+
+        // Extract nested fields with safe access
+        const eventType = event.eventType || event.xdm?.eventType || 'N/A';
         const timestamp = event.xdm?.timestamp ? new Date(event.xdm.timestamp).toLocaleString() : 'N/A';
-        let details = '';
+        const pageURL = event.xdm?.web?.webPageDetails?.URL || 'N/A';
+        const pageName = event.xdm?.web?.webPageDetails?.name || 'N/A';
+        const interaction = event.xdm?.web?.webInteraction?.name || 'N/A';
 
-        // Process xdm and data
-        ['xdm', 'data'].forEach(key => {
-          if (event[key]) {
-            details += `<strong>${key}:</strong>`;
-            details += renderNestedObject(event[key]);
-          } else {
-            details += `<strong>${key}:</strong> N/A`;
-          }
-        });
+        // Handle data field (render as nested object or string)
+        let dataContent = 'N/A';
+        if (event.data && typeof event.data === 'object') {
+          const dataId = `data-nested-${Math.random().toString(36).slice(2)}`;
+          dataContent = `<span class="text-blue-500 cursor-pointer hover:underline" onclick="toggleNested('${dataId}')" aria-expanded="false" aria-controls="${dataId}">[Object]</span><pre id="${dataId}" class="bg-gray-50 p-2 rounded hidden">${renderNestedObject(event.data, 1)}</pre>`;
+        } else if (event.data) {
+          dataContent = String(event.data);
+        }
 
+        // Full payload for detailed inspection
+        const fullPayloadId = `full-payload-${Math.random().toString(36).slice(2)}`;
+        const fullPayloadContent = `<span class="text-blue-500 cursor-pointer hover:underline" onclick="toggleNested('${fullPayloadId}')" aria-expanded="false" aria-controls="${fullPayloadId}">[Object]</span><pre id="${fullPayloadId}" class="bg-gray-50 p-2 rounded hidden">${renderNestedObject(event, 1)}</pre>`;
+
+        // Populate row with column data
         row.innerHTML = `
-          <td class="border border-gray-300 p-3">${event.eventType || 'N/A'}</td>
+          <td class="border border-gray-300 p-3">${eventType}</td>
           <td class="border border-gray-300 p-3">${timestamp}</td>
-          <td class="border border-gray-300 p-3">${details}</td>
+          <td class="border border-gray-300 p-3">${pageURL}</td>
+          <td class="border border-gray-300 p-3">${pageName}</td>
+          <td class="border border-gray-300 p-3">${interaction}</td>
+          <td class="border border-gray-300 p-3">${dataContent}</td>
+          <td class="border border-gray-300 p-3">${fullPayloadContent}</td>
         `;
         tbody.appendChild(row);
       });
@@ -496,7 +659,7 @@
         const text = row.textContent.toLowerCase();
         row.style.display = text.includes(filter) ? '' : 'none';
       });
-      gtag('event', 'filter_table', { filter_value: filter });
+      trackFilterUsed(filter);
       window.clarity('event', 'filter_table');
       window.dataLayer.push({ event: 'ppms.cm:filter_table', filter_value: filter });
     }, 300);
@@ -513,7 +676,7 @@
         a.download = 'alloy_payloads.json';
         a.click();
         URL.revokeObjectURL(url);
-        gtag('event', 'download_json', { payload_count: payloads.length });
+        trackJsonDownload(payloads);
         window.clarity('event', 'download_json');
         window.dataLayer.push({ event: 'ppms.cm:download_json', payload_count: payloads.length });
       }
@@ -527,7 +690,7 @@
         successMessage.textContent = 'Script copied to clipboard!';
         successMessage.classList.remove('hidden');
         setTimeout(() => successMessage.classList.add('hidden'), 3000);
-        gtag('event', 'copy_script', { status: 'success' });
+        trackScriptCopied();
         window.clarity('event', 'copy_script_success');
         window.dataLayer.push({ event: 'ppms.cm:copy_script', status: 'success' });
       }).catch(err => {
@@ -535,6 +698,7 @@
         errorMessage.textContent = 'Failed to copy script. Please select and copy manually.';
         errorMessage.classList.remove('hidden');
         console.error('Copy failed:', err);
+        trackToolError(err);
         gtag('event', 'copy_script', { status: 'failure', error: err.message });
         window.clarity('event', 'copy_script_failure');
         window.dataLayer.push({ event: 'ppms.cm:copy_script', status: 'failure', error: err.message });
