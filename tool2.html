@@ -141,6 +141,97 @@
       <!-- Instructions -->
       <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
         <h2 class="text-lg font-medium mb-3">Instructions</h2>
+        <h3 class="text-md font-medium mb-2">Setup Alloy Monitor Script</h3>
+        <ol class="pl-5 list-decimal mb-4">
+          <li>Copy the Alloy monitor script below:
+            <div class="relative mt-2 mb-2">
+              <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto"><code id="alloyScript">(function () {
+  const STORAGE_KEY = 'alloyEventPayloads';
+
+  // Insert monitor if not present
+  if (!window.__alloyMonitors) window.__alloyMonitors = [];
+  if (!window.__alloyMonitors.some(m => m.__isScottMonitor)) {
+    window.__alloyMonitors.push({
+      __isScottMonitor: true,
+      onBeforeNetworkRequest(data) {
+        try {
+          const events = data?.payload?.events;
+          if (!Array.isArray(events) || !events.length) return;
+          const stored = sessionStorage.getItem(STORAGE_KEY);
+          let payloads = stored ? JSON.parse(stored) : [];
+          payloads.push(events[0]);
+          sessionStorage.setItem(STORAGE_KEY, JSON.stringify(payloads));
+          console.info('%c[AlloyMonitor] Captured Alloy event:', 'color:#3b82f6;font-weight:bold', events[0]);
+        } catch (err) {
+          console.warn('[AlloyMonitor] Failed to capture event:', err);
+        }
+      },
+      onCommandResolved() {},
+      onNetworkResponse() {},
+      onNetworkError() {}
+    });
+    console.info(
+      '%c[AlloyMonitor] Monitor ACTIVE. Events stored in sessionStorage under "' +
+      STORAGE_KEY +
+      '".\nOpen the Analyzer tool and click "Refresh Payloads".',
+      'background:#f1f5f9;color:#1e293b;font-weight:bold'
+    );
+  }
+
+  // Polling log function every 6 seconds
+  if (!window.__alloyMonitorSummaryInterval) {
+    window.__alloyMonitorSummaryInterval = setInterval(() => {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        console.log(
+          '%c[AlloyMonitor] No Alloy event payloads in sessionStorage.',
+          'color:red;font-weight:bold'
+        );
+        return;
+      }
+      const events = JSON.parse(raw);
+      const rows = events.map(ev => ({
+        eventType: ev.eventType || ev.xdm?.eventType || 'N/A',
+        timestamp: ev.xdm?.timestamp || 'N/A',
+        url: ev.xdm?.web?.webPageDetails?.URL || 'N/A',
+        pageName: ev.xdm?.web?.webPageDetails?.name || 'N/A',
+        interaction: ev.xdm?.web?.webInteraction?.name || ''
+      }));
+      console.log(
+        '%c[AlloyMonitor] Event Summary Table (last ' + events.length + '):',
+        'background:#e0e7ff;color:#312e81;font-weight:bold;padding:4px 12px;font-size:14px;'
+      );
+      console.table(rows);
+
+      // Copy full array to clipboard for Analyzer use
+      const json = JSON.stringify(events, null, 2);
+      navigator.clipboard
+        .writeText(json)
+        .then(() =>
+          console.log(
+            '%c[AlloyMonitor] Full event array copied to clipboard for Alloy Analyzer.',
+            'background:#22c55e;color:#fff;font-weight:bold;padding:2px 8px;'
+          )
+        )
+        .catch(() =>
+          console.log(
+            '%c[AlloyMonitor] Could not copy to clipboard automatically. Please copy from below:',
+            'color:orange;font-weight:bold;'
+          )
+        );
+    }, 6000);
+  }
+})();
+</code></pre>
+              <button onclick="copyScript()" class="absolute top-2 right-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600" aria-label="Copy script to clipboard">Copy</button>
+            </div>
+          </li>
+          <li>Open your browser's developer tools (F12 or right-click > Inspect) and go to the Console tab.</li>
+          <li>Paste the script into the console and press Enter to run it. The console will show "[AlloyMonitor] Monitor ACTIVE" if successful.</li>
+          <li>Verify the script is capturing events by checking for messages like "[AlloyMonitor] Captured Alloy event" and a summary table every 6 seconds.</li>
+          <li>Events are stored in sessionStorage under the key <code>alloyEventPayloads</code>. To view, go to Application > Session Storage > [your domain] > <code>alloyEventPayloads</code> in developer tools.</li>
+        </ol>
+        <h3 class="text-md font-medium mb-2">Analyze Payloads</h3>
         <ol class="pl-5 list-decimal">
           <li>Ensure the Alloy monitor script is running (check console for captured payloads).</li>
           <li>Payloads are auto-loaded from sessionStorage, or paste a JSON array of events into the textarea.</li>
@@ -428,9 +519,33 @@
       }
     }
 
+    // Copy script to clipboard
+    function copyScript() {
+      const scriptText = document.getElementById('alloyScript').textContent;
+      navigator.clipboard.writeText(scriptText).then(() => {
+        const successMessage = document.getElementById('successMessage');
+        successMessage.textContent = 'Script copied to clipboard!';
+        successMessage.classList.remove('hidden');
+        setTimeout(() => successMessage.classList.add('hidden'), 3000);
+        gtag('event', 'copy_script', { status: 'success' });
+        window.clarity('event', 'copy_script_success');
+        window.dataLayer.push({ event: 'ppms.cm:copy_script', status: 'success' });
+      }).catch(err => {
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = 'Failed to copy script. Please select and copy manually.';
+        errorMessage.classList.remove('hidden');
+        console.error('Copy failed:', err);
+        gtag('event', 'copy_script', { status: 'failure', error: err.message });
+        window.clarity('event', 'copy_script_failure');
+        window.dataLayer.push({ event: 'ppms.cm:copy_script', status: 'failure', error: err.message });
+      });
+    }
+
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       refreshPayloads();
       document.getElementById('filterInput').addEventListener('input', filterTable);
     });
   </script>
+</body>
+</html>
