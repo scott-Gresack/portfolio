@@ -283,7 +283,7 @@
         eventType: ev.eventType || ev.xdm?.eventType || 'N/A',
         timestamp: ev.xdm?.timestamp || 'N/A',
         url: ev.xdm?.web?.webPageDetails?.URL || 'N/A',
-        pageName: eaev.xdm?.web?.webPageDetails?.name || 'N/A',
+        pageName: ev.xdm?.web?.webPageDetails?.name || 'N/A',
         interaction: ev.xdm?.web?.webInteraction?.name || ''
       }));
       console.log(
