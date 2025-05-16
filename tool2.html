@@ -206,8 +206,9 @@
       <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
         <h2 class="text-lg font-medium mb-3">Instructions</h2>
         <h3 class="text-md font-medium mb-2">Setup Alloy Flattening Script</h3>
+        <p class="mb-2">This tool analyzes flattened Adobe Alloy event payloads. To capture these payloads, run the provided script on a website using Adobe Alloy (Web SDK).</p>
         <ol class="pl-5 list-decimal mb-4">
-          <li>Copy the Alloy flattening script below:
+          <li>Copy the flattening script below:
             <div class="relative mt-2 mb-2">
               <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto"><code id="alloyScript">(function () {
   const STORAGE_KEY = 'flattenedAlloyEvents';
@@ -287,19 +288,30 @@
               <button onclick="copyScript()" class="absolute top-2 right-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600" aria-label="Copy script to clipboard">Copy</button>
             </div>
           </li>
-          <li>Open your browser's developer tools (F12 or right-click > Inspect) and go to the Console tab.</li>
-          <li>Paste the script into the console and press Enter to run it. The console will show "[AlloyMonitor] Payload flattener active" if successful.</li>
-          <li>Verify the script is capturing events by checking for messages like "[AlloyMonitor] Flattened Event Detected" and a summary table after 5 seconds.</li>
-          <li>Events are stored in sessionStorage under the key <code>flattenedAlloyEvents</code>. To view, go to Application > Session Storage > [your domain] > <code>flattenedAlloyEvents</code> in developer tools.</li>
+          <li>Open your browser’s developer tools (F12 or right-click > Inspect) and navigate to the Console tab on a website using Adobe Alloy.</li>
+          <li>Paste the script into the console and press Enter. You should see a message: <code>[AlloyMonitor] Payload flattener active</code>.</li>
+          <li>Interact with the website (e.g., click links or load pages) to generate Alloy events. Check the console for messages like <code>[AlloyMonitor] Flattened Event Detected</code> and a table of captured events after 5 seconds.</li>
+          <li>To confirm payloads are stored, go to Application > Session Storage > [website domain] > <code>flattenedAlloyEvents</code> in developer tools.</li>
         </ol>
         <h3 class="text-md font-medium mb-2">Analyze Flattened Payloads</h3>
-        <ol class="pl-5 list-decimal">
-          <li>Ensure the Alloy flattening script is running (check console for captured payloads).</li>
-          <li>Payloads are auto-loaded from sessionStorage, or paste a JSON array of flattened events into the textarea.</li>
-          <li>Click "Parse Payloads" to analyze or "Refresh Payloads" to update from sessionStorage.</li>
-          <li>Use the filter to search for specific fields or values.</li>
-          <li>Click "Download as JSON" to save the flattened payloads.</li>
+        <p class="mb-2">Once the script is running, use this tool to view and analyze the captured payloads.</p>
+        <ol class="pl-5 list-decimal mb-4">
+          <li>Load captured payloads automatically from <code>sessionStorage</code> by clicking <strong>Refresh Payloads</strong>. Alternatively, paste a JSON array of flattened payloads into the textarea.</li>
+          <li>Click <strong>Parse Payloads</strong> to display the data in a dynamic table, with columns generated based on all unique fields in the JSON.</li>
+          <li>Use the filter input to search for specific fields (e.g., <code>xdm.eventType</code>) or values (e.g., <code>web.webPageDetails.pageViews</code>).</li>
+          <li>Click <strong>Download as JSON</strong> to save the analyzed payloads for sharing or further analysis.</li>
+          <li>Clear <code>sessionStorage</code> in developer tools to reset captured data if needed.</li>
         </ol>
+        <h3 class="text-md font-medium mb-2">Why This Tool Differs from Adobe Assurance</h3>
+        <p class="mb-2">Unlike Adobe Assurance, which is a proprietary debugging tool within Adobe Experience Platform (AEP), this Alloy Flattened Payload Analyzer offers unique advantages:</p>
+        <ul class="list-disc pl-5 mb-4">
+          <li><strong>Standalone Accessibility</strong>: No AEP account or setup is required, making it ideal for developers, analysts, or teams without access to Adobe’s infrastructure.</li>
+          <li><strong>Flattened Payload Focus</strong>: Automatically flattens nested XDM and data objects into a single-level structure, simplifying analysis of complex payloads compared to Assurance’s raw event view.</li>
+          <li><strong>Dynamic Table Generation</strong>: Displays all unique fields as columns, adapting to any payload structure, unlike Assurance’s fixed or less flexible event inspector.</li>
+          <li><strong>Offline and Collaborative Use</strong>: Export payloads as JSON for sharing or analyzing outside AEP, enabling collaboration with non-AEP users or offline debugging.</li>
+          <li><strong>Lightweight and Open</strong>: Runs entirely in the browser with no server dependencies, offering a quick, open-source alternative for rapid prototyping or testing.</li>
+        </ul>
+        <p>Use this tool when you need a fast, accessible way to debug Alloy payloads, validate XDM schemas, or share data with stakeholders outside Adobe’s ecosystem.</p>
       </div>
       <!-- Feedback messages -->
       <div id="errorMessage" class="hidden error-message mb-4"></div>
@@ -627,26 +639,61 @@
       }
     }
 
-    // Copy script to clipboard
+    // Copy script to clipboard with fallback
     function copyScript() {
       const scriptText = document.getElementById('alloyScript').textContent;
-      navigator.clipboard.writeText(scriptText).then(() => {
-        const successMessage = document.getElementById('successMessage');
-        successMessage.textContent = 'Script copied to clipboard!';
+      const errorMessage = document.getElementById('errorMessage');
+      const successMessage = document.getElementById('successMessage');
+
+      // Try Clipboard API first
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(scriptText).then(() => {
+          successMessage.textContent = 'Script copied to clipboard!';
+          successMessage.classList.remove('hidden');
+          setTimeout(() => successMessage.classList.add('hidden'), 3000);
+          trackScriptCopied();
+        }).catch(err => {
+          // Fallback to textarea method
+          fallbackCopyScript(scriptText, err);
+        });
+      } else {
+        // Fallback if Clipboard API is unavailable
+        fallbackCopyScript(scriptText, new Error('Clipboard API unavailable'));
+      }
+    }
+
+    // Fallback method for copying script
+    function fallbackCopyScript(scriptText, originalError) {
+      const errorMessage = document.getElementById('errorMessage');
+      const successMessage = document.getElementById('successMessage');
+      
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = scriptText;
+        textarea.style.position = 'fixed'; // Avoid scrolling to bottom
+        textarea.style.opacity = '0'; // Hide element
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        
+        successMessage.textContent = 'Script copied to clipboard using fallback method!';
         successMessage.classList.remove('hidden');
         setTimeout(() => successMessage.classList.add('hidden'), 3000);
         trackScriptCopied();
-      }).catch(err => {
-        const errorMessage = document.getElementById('errorMessage');
-        errorMessage.textContent = 'Failed to copy script. Please select and copy manually.';
+      } catch (err) {
+        const errorMsg = 'Failed to copy script. Please select the script text manually and copy it.';
+        errorMessage.textContent = errorMsg;
         errorMessage.classList.remove('hidden');
-        console.error('Copy failed:', err);
-        trackToolError(err);
-        gtag('event', 'copy_script', { status: 'failure', error: err.message });
+        console.error('Copy failed:', originalError, err);
+        const combinedError = new Error(`${originalError.message || 'Clipboard API error'}; Fallback error: ${err.message || 'Unknown'}`);
+        trackToolError(combinedError);
+        gtag('event', 'copy_script', { status: 'failure', error: combinedError.message });
         window.clarity('event', 'copy_script_failure');
-        window.dataLayer.push({ event: 'ppms.cm:copy_script', status: 'failure', error: err.message });
-        posthog.capture('copy_script_failure', { error: err.message });
-      });
+        window.dataLayer.push({ event: 'ppms.cm:copy_script', status: 'failure', error: combinedError.message });
+        posthog.capture('copy_script_failure', { error: combinedError.message });
+      }
     }
 
     // Initialize
