@@ -134,11 +134,14 @@
       width: 100%;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      position: relative;
     }
     /* Table styling */
     #payloadTable {
       min-width: 100%;
       table-layout: auto;
+      border-collapse: collapse;
     }
     #payloadTable th, #payloadTable td {
       white-space: nowrap;
@@ -147,15 +150,34 @@
       min-width: 100px;
       max-width: 300px;
       padding: 0.75rem;
+      border: 1px solid #d1d5db;
     }
     #payloadTable th:first-child, #payloadTable td:first-child { /* Index column */
       min-width: 60px;
       max-width: 100px;
+      position: sticky;
+      left: 0;
+      background: #f3f4f6; /* Match thead bg for sticky index */
+      z-index: 10;
+    }
+    #payloadTable th {
+      background: #f3f4f6;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 20;
     }
     /* Nested content */
     #payloadTable pre {
       white-space: pre-wrap;
       max-height: 200px;
+    }
+    /* Scroll buttons */
+    .scroll-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      justify-content: flex-end;
     }
     /* Mobile adjustments */
     @media (max-width: 640px) {
@@ -166,6 +188,10 @@
       }
       #payloadTable th:first-child, #payloadTable td:first-child { /* Index column */
         max-width: 80px;
+      }
+      .scroll-buttons button {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
       }
     }
   </style>
@@ -198,7 +224,7 @@
         <ul class="list-disc pl-5">
           <li><strong>Simplifying Debugging</strong>: Quickly identify issues in flattened data layers with a dynamic table view.</li>
           <li><strong>Ensuring Data Accuracy</strong>: Validate flattened XDM fields for compliance with comprehensive column coverage.</li>
-          <li><strong>Facilitating Collaboration</strong>: Export flattened payloads as JSON to share with teams, improving communication.</li>
+          <li><strong>Facilitating Collaboration</strong>: Export flattened payloads as JSON or CSV to share with teams, improving communication.</li>
           <li><strong>Real-Time Analysis</strong>: Automatically capture flattened payloads from sessionStorage for immediate inspection during AEP testing.</li>
         </ul>
       </div>
@@ -299,7 +325,7 @@
           <li>Load captured payloads automatically from <code>sessionStorage</code> by clicking <strong>Refresh Payloads</strong>. Alternatively, paste a JSON array of flattened payloads into the textarea.</li>
           <li>Click <strong>Parse Payloads</strong> to display the data in a dynamic table, with columns generated based on all unique fields in the JSON.</li>
           <li>Use the filter input to search for specific fields (e.g., <code>xdm.eventType</code>) or values (e.g., <code>web.webPageDetails.pageViews</code>).</li>
-          <li>Click <strong>Download as JSON</strong> to save the analyzed payloads for sharing or further analysis.</li>
+          <li>Click <strong>Download as JSON</strong> to save the analyzed payloads or <strong>Copy as CSV</strong> to copy the table for pasting into Excel or Google Sheets.</li>
           <li>Clear <code>sessionStorage</code> in developer tools to reset captured data if needed.</li>
         </ol>
         <h3 class="text-md font-medium mb-2">Why This Tool Differs from Adobe Assurance</h3>
@@ -308,7 +334,7 @@
           <li><strong>Standalone Accessibility</strong>: No AEP account or setup is required, making it ideal for developers, analysts, or teams without access to Adobe’s infrastructure.</li>
           <li><strong>Flattened Payload Focus</strong>: Automatically flattens nested XDM and data objects into a single-level structure, simplifying analysis of complex payloads compared to Assurance’s raw event view.</li>
           <li><strong>Dynamic Table Generation</strong>: Displays all unique fields as columns, adapting to any payload structure, unlike Assurance’s fixed or less flexible event inspector.</li>
-          <li><strong>Offline and Collaborative Use</strong>: Export payloads as JSON for sharing or analyzing outside AEP, enabling collaboration with non-AEP users or offline debugging.</li>
+          <li><strong>Offline and Collaborative Use</strong>: Export payloads as JSON or CSV for sharing or analyzing outside AEP, enabling collaboration with non-AEP users or offline debugging.</li>
           <li><strong>Lightweight and Open</strong>: Runs entirely in the browser with no server dependencies, offering a quick, open-source alternative for rapid prototyping or testing.</li>
         </ul>
         <p>Use this tool when you need a fast, accessible way to debug Alloy payloads, validate XDM schemas, or share data with stakeholders outside Adobe’s ecosystem.</p>
@@ -324,9 +350,15 @@
         <button onclick="parsePayloads()" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto" aria-label="Parse JSON payloads">Parse Payloads</button>
         <button onclick="refreshPayloads()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full sm:w-auto" aria-label="Refresh payloads from sessionStorage">Refresh Payloads</button>
         <button onclick="downloadJSON()" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full sm:w-auto hidden" id="downloadBtn" aria-label="Download JSON file">Download as JSON</button>
+        <button onclick="copyAsCSV()" class="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 w-full sm:w-auto hidden" id="copyCsvBtn" aria-label="Copy table as CSV">Copy as CSV</button>
       </div>
       <!-- Filter input -->
       <input type="text" id="filterInput" class="p-2 w-full sm:max-w-xs border border-gray-300 rounded mb-4" placeholder="Filter by field or value..." aria-label="Filter table data" />
+      <!-- Scroll buttons -->
+      <div class="scroll-buttons">
+        <button onclick="scrollTableLeft()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" aria-label="Scroll table left">Scroll Left</button>
+        <button onclick="scrollTableRight()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" aria-label="Scroll table right">Scroll Right</button>
+      </div>
       <!-- Payload table -->
       <div class="table-wrapper">
         <table id="payloadTable" class="w-full border-collapse">
@@ -448,6 +480,35 @@
       posthog.capture('navigation_click', { section });
     }
 
+    function trackScroll(direction) {
+      gtag('event', 'table_scroll', {
+        direction,
+        tool_name: 'Alloy Flattened Payload Analyzer'
+      });
+      window.clarity('event', `table_scroll_${direction}`);
+      window.dataLayer.push({ event: 'ppms.cm:table_scroll', direction });
+      posthog.capture('table_scroll', { direction });
+    }
+
+    function trackCopyCSV(rowCount, columnCount) {
+      gtag('event', 'copy_csv', {
+        row_count: rowCount,
+        column_count: columnCount,
+        tool_name: 'Alloy Flattened Payload Analyzer'
+      });
+      window.clarity('event', 'copy_csv_success');
+      window.dataLayer.push({
+        event: 'ppms.cm:copy_csv',
+        row_count: rowCount,
+        column_count: columnCount,
+        status: 'success'
+      });
+      posthog.capture('copy_csv', {
+        row_count: rowCount,
+        column_count: columnCount
+      });
+    }
+
     function trackToolError(e) {
       gtag('event', 'tool_error', {
         error_type: e.name || 'Error',
@@ -520,6 +581,7 @@
         // Save to localStorage for persistence
         localStorage.setItem('flattenedAlloyEvents', JSON.stringify(payloads));
         document.getElementById('downloadBtn').classList.remove('hidden');
+        document.getElementById('copyCsvBtn').classList.remove('hidden');
         renderTable(payloads, columns);
         successMessage.textContent = `Successfully parsed ${payloads.length} flattened events with ${columns.length - 1} unique fields.`;
         successMessage.classList.remove('hidden');
@@ -654,46 +716,116 @@
           trackScriptCopied();
         }).catch(err => {
           // Fallback to textarea method
-          fallbackCopyScript(scriptText, err);
+          fallbackCopyText(scriptText, err, 'script');
         });
       } else {
         // Fallback if Clipboard API is unavailable
-        fallbackCopyScript(scriptText, new Error('Clipboard API unavailable'));
+        fallbackCopyText(scriptText, new Error('Clipboard API unavailable'), 'script');
       }
     }
 
-    // Fallback method for copying script
-    function fallbackCopyScript(scriptText, originalError) {
+    // Copy table as CSV
+    function copyAsCSV() {
+      const table = document.getElementById('payloadTable');
+      const headers = Array.from(table.querySelectorAll('thead tr th')).map(th => th.textContent);
+      const rows = Array.from(table.querySelectorAll('tbody tr')).map(row =>
+        Array.from(row.querySelectorAll('td')).map(td => td.textContent)
+      );
+
+      if (rows.length === 0) {
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = 'No table data to copy. Please parse payloads first.';
+        errorMessage.classList.remove('hidden');
+        trackToolError({ name: 'Error', message: 'No table data for CSV copy' });
+        return;
+      }
+
+      // Convert to CSV
+      const escapeCsvValue = (value) => {
+        if (value === null || value === undefined) return '';
+        const str = String(value);
+        if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+          return `"${str.replace(/"/g, '""')}"`;
+        }
+        return str;
+      };
+
+      const csvRows = [
+        headers.map(escapeCsvValue).join(','),
+        ...rows.map(row => row.map(escapeCsvValue).join(','))
+      ];
+      const csvContent = csvRows.join('\n');
+
+      // Copy to clipboard
       const errorMessage = document.getElementById('errorMessage');
       const successMessage = document.getElementById('successMessage');
-      
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(csvContent).then(() => {
+          successMessage.textContent = 'Table copied as CSV to clipboard!';
+          successMessage.classList.remove('hidden');
+          setTimeout(() => successMessage.classList.add('hidden'), 3000);
+          trackCopyCSV(rows.length, headers.length);
+        }).catch(err => {
+          fallbackCopyText(csvContent, err, 'csv');
+        });
+      } else {
+        fallbackCopyText(csvContent, new Error('Clipboard API unavailable'), 'csv');
+      }
+    }
+
+    // Fallback method for copying text (script or CSV)
+    function fallbackCopyText(text, originalError, type) {
+      const errorMessage = document.getElementById('errorMessage');
+      const successMessage = document.getElementById('successMessage');
+
       try {
         const textarea = document.createElement('textarea');
-        textarea.value = scriptText;
-        textarea.style.position = 'fixed'; // Avoid scrolling to bottom
-        textarea.style.opacity = '0'; // Hide element
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
         document.body.appendChild(textarea);
         textarea.focus();
         textarea.select();
         document.execCommand('copy');
         document.body.removeChild(textarea);
-        
-        successMessage.textContent = 'Script copied to clipboard using fallback method!';
+
+        successMessage.textContent = type === 'csv' ? 'Table copied as CSV using fallback method!' : 'Script copied to clipboard using fallback method!';
         successMessage.classList.remove('hidden');
         setTimeout(() => successMessage.classList.add('hidden'), 3000);
-        trackScriptCopied();
+        if (type === 'csv') {
+          const headers = Array.from(document.querySelectorAll('#payloadTable thead tr th')).map(th => th.textContent);
+          const rows = Array.from(document.querySelectorAll('#payloadTable tbody tr'));
+          trackCopyCSV(rows.length, headers.length);
+        } else {
+          trackScriptCopied();
+        }
       } catch (err) {
-        const errorMsg = 'Failed to copy script. Please select the script text manually and copy it.';
+        const errorMsg = type === 'csv' ? 'Failed to copy CSV. Please select the table manually and copy it.' : 'Failed to copy script. Please select the script text manually and copy it.';
         errorMessage.textContent = errorMsg;
         errorMessage.classList.remove('hidden');
         console.error('Copy failed:', originalError, err);
         const combinedError = new Error(`${originalError.message || 'Clipboard API error'}; Fallback error: ${err.message || 'Unknown'}`);
         trackToolError(combinedError);
-        gtag('event', 'copy_script', { status: 'failure', error: combinedError.message });
-        window.clarity('event', 'copy_script_failure');
-        window.dataLayer.push({ event: 'ppms.cm:copy_script', status: 'failure', error: combinedError.message });
-        posthog.capture('copy_script_failure', { error: combinedError.message });
+        gtag('event', `copy_${type}`, { status: 'failure', error: combinedError.message });
+        window.clarity('event', `copy_${type}_failure`);
+        window.dataLayer.push({ event: `ppms.cm:copy_${type}`, status: 'failure', error: combinedError.message });
+        posthog.capture(`copy_${type}_failure`, { error: combinedError.message });
       }
+    }
+
+    // Scroll table left
+    function scrollTableLeft() {
+      const tableWrapper = document.querySelector('.table-wrapper');
+      tableWrapper.scrollBy({ left: -200, behavior: 'smooth' });
+      trackScroll('left');
+    }
+
+    // Scroll table right
+    function scrollTableRight() {
+      const tableWrapper = document.querySelector('.table-wrapper');
+      tableWrapper.scrollBy({ left: 200, behavior: 'smooth' });
+      trackScroll('right');
     }
 
     // Initialize
