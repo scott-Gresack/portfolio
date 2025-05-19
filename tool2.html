@@ -714,6 +714,15 @@
           parsed_keys: parsedKeys,
           item_count: itemCount
         });
+       // PostHog
+      posthog.capture('input_parsed', {
+        tool_name: 'Alloy Flattened Payload Analyzer',
+        input_length: inputLength,
+        input_sample: inputSample,
+        parsed_keys: parsedKeys,
+        item_count: itemCount,
+        key_frequency: keyFrequency
+      });
 
         // Piwik PRO
         window.dataLayer.push({
