@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tealium IQ Log Capture</title>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.24.7/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div id="root"></div>
+    <script type="text/babel">
+        function LogCaptureApp() {
+            const [url, setUrl] = React.useState('');
+            const [logs, setLogs] = React.useState([]);
+            const [loading, setLoading] = React.useState(false);
+            const [error, setError] = React.useState(null);
+
+            const handleCapture = async () => {
+                if (!url) {
+                    setError('Please enter a valid URL');
+                    return;
+                }
+                setLoading(true);
+                setError(null);
+                setLogs([]);
+                try {
+                    const response = await fetch('http://localhost:5000/capture-logs', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ url })
+                    });
+                    const data = await response.json();
+                    if (data.error) {
+                        setError(data.error);
+                    } else {
+                        setLogs(data.logs);
+                    }
+                } catch (err) {
+                    setError('Failed to capture logs: ' + err.message);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const handleDownload = () => {
+                const jsonStr = JSON.stringify(logs, null, 2);
+                const blob = new Blob([jsonStr], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `tealium_iq_logs_${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+            };
+
+            return (
+                <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+                    <h1 className="text-2xl font-bold mb-4 text-gray-800">Tealium IQ Log Capture</h1>
+                    <div className="mb-4">
+                        <input
+                            type="text"
+                            value={url}
+                            onChange={(e) => setUrl(e.target.value)}
+                            placeholder="Enter URL (e.g., https://example.com)"
+                            className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <button
+                            onClick={handleCapture}
+                            disabled={loading}
+                            className={`px-4 py-2 rounded text-white font-semibold ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'}`}
+                        >
+                            {loading ? 'Capturing...' : 'Capture Logs'}
+                        </button>
+                        {logs.length > 0 && (
+                            <button
+                                onClick={handleDownload}
+                                className="ml-4 px-4 py-2 rounded bg-green-500 text-white font-semibold hover:bg-green-600"
+                            >
+                                Download Logs
+                            </button>
+                        )}
+                    </div>
+                    {error && (
+                        <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">
+                            {error}
+                        </div>
+                    )}
+                    {logs.length > 0 && (
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse text-sm">
+                                <thead>
+                                    <tr className="bg-gray-200">
+                                        <th className="p-2 border text-left">Timestamp</th>
+                                        <th className="p-2 border text-left">Type</th>
+                                        <th className="p-2 border text-left">Source</th>
+                                        <th className="p-2 border text-left">TagID</th>
+                                        <th className="p-2 border text-left">Extension</th>
+                                        <th className="p-2 border text-left">LoadRules</th>
+                                        <th className="p-2 border text-left">Message</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {logs.map((log, index) => (
+                                        <tr key={index} className="hover:bg-gray-50">
+                                            <td className="p-2 border">{log.timestamp}</td>
+                                            <td className="p-2 border">{log.type}</td>
+                                            <td className="p-2 border">{log.source}</td>
+                                            <td className="p-2 border">{log.tag_id}</td>
+                                            <td className="p-2 border">{log.extension}</td>
+                                            <td className="p-2 border">{log.load_rules}</td>
+                                            <td className="p-2 border whitespace-pre-wrap">{log.text}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                    {logs.length === 0 && !loading && !error && (
+                        <p className="text-gray-500">No logs captured yet. Enter a URL and click "Capture Logs".</p>
+                    )}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<LogCaptureApp />, document.getElementById('root'));
+    </script>
+</body>
+</html>
