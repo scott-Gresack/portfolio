@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -415,6 +416,11 @@
       <div id="errorMessage" class="hidden error-message mb-4"></div>
       <div id="successMessage" class="hidden success-message mb-4"></div>
       <div id="loadingIndicator" class="hidden text-blue-600 font-semibold mb-4">Processing...</div>
+      <!-- Toggle for showing rows with only null/empty values -->
+      <label class="flex items-center gap-2 mb-4">
+        <input type="checkbox" id="toggleNulls" checked />
+        <span>Show rows with only null/empty values</span>
+      </label>
       <!-- JSON input -->
       <textarea id="payloadInput" class="w-full min-h-[150px] border border-gray-300 rounded p-3 mb-4"
         placeholder="Paste flattened Alloy event payloads JSON array here or auto-load from sessionStorage..."
@@ -458,6 +464,9 @@
 
   <!-- JavaScript logic -->
   <script>
+    // Controls whether rows with only null/empty values are shown
+    let showNullValues = true; // Controls whether rows with only null/empty values are shown
+
     // Initialize Vue.js for navigation
     const { createApp } = Vue;
     createApp({
@@ -793,31 +802,95 @@
       loadingIndicator.classList.add('hidden');
     }
 
-    // Render table with dynamic columns
+    // Always show this column
+    const MASTER_COLUMN = "xdm._analytics.event1to100.event32.value";
+
+    // Helper: Levenshtein Distance for typo detection
+    function levenshtein(a, b) {
+      const m = a.length, n = b.length;
+      const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+      for (let i = 0; i <= m; i++) dp[i][0] = i;
+      for (let j = 0; j <= n; j++) dp[0][j] = j;
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          dp[i][j] = a[i - 1] === b[j - 1]
+            ? dp[i - 1][j - 1]
+            : Math.min(
+                dp[i - 1][j] + 1,
+                dp[i][j - 1] + 1,
+                dp[i - 1][j - 1] + 1
+              );
+        }
+      }
+      return dp[m][n];
+    }
+
+    // --- MODIFIED renderTable ---
     function renderTable(events, columns) {
       const thead = document.querySelector('#payloadTable thead tr');
       const tbody = document.querySelector('#payloadTable tbody');
       thead.innerHTML = '';
       tbody.innerHTML = '';
 
-      // Create table headers
+      // Ensure the master column is included in order
+      const dedupedColumns = ['index'];
+      if (!columns.includes(MASTER_COLUMN)) {
+        dedupedColumns.push(MASTER_COLUMN);
+      }
       columns.forEach(col => {
+        if (!dedupedColumns.includes(col)) dedupedColumns.push(col);
+      });
+
+      // Table headers
+      dedupedColumns.forEach(col => {
         const th = document.createElement('th');
         th.className = 'border border-gray-300 p-3 text-left font-semibold';
         th.textContent = col;
         thead.appendChild(th);
       });
 
-      // Create table rows
+      // Table rows
       events.forEach((event, index) => {
+        // If showNullValues is false, skip rows where all non-index columns are null/empty/undefined
+        if (!showNullValues) {
+          const hasNonNull = dedupedColumns.slice(1).some(col => {
+            const val = event[col];
+            return val !== null && val !== undefined && String(val).trim() !== '';
+          });
+          if (!hasNonNull) return;
+        }
+
+        // --- Typo detection ---
+        let hasTypo = false;
+        const typoThreshold = 4; // allow up to 4 edits for typo detection
+        Object.keys(event).forEach(key => {
+          if (key !== MASTER_COLUMN && levenshtein(key, MASTER_COLUMN) > 0 && levenshtein(key, MASTER_COLUMN) <= typoThreshold) {
+            hasTypo = true;
+          }
+        });
+
         const row = document.createElement('tr');
-        columns.forEach(col => {
+        if (hasTypo) {
+          row.style.backgroundColor = '#fee2e2'; // light red for row typo
+        }
+
+        dedupedColumns.forEach(col => {
           const td = document.createElement('td');
           td.className = 'border border-gray-300 p-3';
+
           if (col === 'index') {
             td.textContent = index + 1;
           } else {
-            td.textContent = event[col] !== undefined ? event[col] : '';
+            // --- Always render master column, highlight if missing/null ---
+            if (col === MASTER_COLUMN) {
+              const value = event[MASTER_COLUMN];
+              td.textContent = value === undefined || value === null || value === '' ? '' : value;
+              if (value === undefined || value === null || value === '') {
+                td.style.backgroundColor = '#fef9c3'; // yellow for missing/null
+              }
+            } else {
+              td.textContent = event[col] !== undefined ? event[col] : '';
+            }
           }
           row.appendChild(td);
         });
@@ -983,6 +1056,10 @@
     document.addEventListener('DOMContentLoaded', () => {
       refreshPayloads();
       document.getElementById('filterInput').addEventListener('input', filterTable);
+      document.getElementById('toggleNulls').addEventListener('change', (e) => {
+        showNullValues = e.target.checked;
+        parsePayloads();
+      });
     });
   </script>
 </body>
