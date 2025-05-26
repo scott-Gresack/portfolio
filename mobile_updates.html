@@ -1,564 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Define character encoding for the document -->
   <meta charset="UTF-8" />
-  <!-- Ensure responsive design for mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Page title displayed in browser tab -->
-  <title>Scott Gresack | Martech Engineer Portfolio</title>
-  <!-- Meta description for SEO and search engine snippets -->
-  <meta name="description" content="Portfolio of Scott Gresack, Martech Engineer. Includes Web Tag Spec Generator, Mobile Tracking Specs, AEP/CDP architecture diagrams, and toolset links." />
-  <!-- Keywords for search engine optimization -->
-  <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Layer, Tag Management, XDM, Analytics, Diagrams, CDP, Identity" />
-  <!-- Author of the page -->
+  <meta name="theme-color" content="#1E40AF" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="https://scott-gresack.github.io/portfolio/icons/icon-192x192.png">
+
+  <title>📱 Mobile Tag Spec Builder | Scott Gresack</title>
+  <meta name="description" content="Build and simulate Adobe Mobile SDK payloads with real-time validation. Supports Swift, Kotlin, Edge.sendEvent, and XDM." />
+  <meta name="keywords" content="Mobile Tag Spec, Adobe Mobile SDK, Edge.sendEvent, trackAction, XDM, Swift, Kotlin, AEP, CDP, Scott Gresack" />
   <meta name="author" content="Scott Gresack" />
-  <!-- Allow search engines to index and follow links -->
   <meta name="robots" content="index, follow" />
-  <!-- Canonical URL to prevent duplicate content issues -->
-  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/" />
-  <!-- Google site verification for Search Console -->
-  <meta name="google-site-verification" content="LTi0sO_AWGNd4v7uJivsQWdkhrGDBDX2uLFTSIFNgbs" />
-  <!-- Open Graph tags for social media sharing (e.g., Facebook, LinkedIn) -->
+  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/mobile_updates" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/" />
-  <meta property="og:title" content="Scott Gresack | Martech Engineer | AEP, Web SDK, CDP Integration Expert" />
-  <meta property="og:description" content="Discover Scott Gresack's advanced implementations of Adobe Web SDK, Tealium iQ, and Customer Data Platforms. Hands-on tools for tag governance, XDM mapping, and identity stitching." />
+  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/mobile_updates" />
+  <meta property="og:title" content="Mobile Tag Spec Builder | Scott Gresack Portfolio" />
+  <meta property="og:description" content="Generate Adobe Mobile SDK payloads. Swift & Kotlin code snippets for Edge events and XDM validation. By Scott Gresack." />
   <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <!-- Twitter Card tags for Twitter sharing -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Scott Gresack | Martech Engineer | CDP + Adobe AEP" />
-  <meta name="twitter:description" content="Explore the portfolio of a Martech engineer specializing in Adobe Experience Platform, Web SDK, and Tealium iQ integrations. Interactive tag specs and scalable identity solutions." />
+  <meta name="twitter:title" content="Mobile Tag Spec Builder | Scott Gresack" />
+  <meta name="twitter:description" content="Interactive tool for creating and simulating mobile analytics events with Adobe AEP SDK." />
   <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <!-- Schema.org structured data for search engine understanding of the person -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Scott Gresack",
-    "url": "https://scott-gresack.github.io/portfolio/",
-    "sameAs": [
-      "https://www.linkedin.com/in/scottgresack/"
-    ],
-    "jobTitle": "Martech Engineer | AEP + CDP Expert",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "CVS Health"
-    },
-    "knowsAbout": [
-      "Adobe Web SDK",
-      "Tealium iQ",
-      "Adobe Experience Platform",
-      "Customer Data Platform",
-      "Martech Architecture",
-      "Tag Management",
-      "Digital Analytics",
-      "Identity Resolution",
-      "Real-Time Personalization",
-      "XDM Schema Design"
-    ]
-  }
-  </script>
-  <!-- Load Poppins font from Google Fonts for consistent typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <!-- Include Tailwind CSS for utility-first styling -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Include React and dependencies -->
-  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.20.15/babel.min.js"></script>
-  <!-- Load Google Analytics script asynchronously -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
-  <!-- Initialize Google Analytics with dataLayer and tracking ID -->
+
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag("js", new Date());
-    gtag("config", "G-Y8617TLMYK");
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GT-MQBSZT8H');
   </script>
-  <!-- Initialize Microsoft Clarity for user behavior analytics -->
-  <script>
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "pmp4efispy");
+
+  <script defer type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Mobile Tag Spec Builder",
+    "applicationCategory": "DeveloperTool",
+    "operatingSystem": "Web",
+    "url": "https://scott-gresack.github.io/portfolio/mobile_updates",
+    "author": {
+      "@type": "Person",
+      "name": "Scott Gresack"
+    }
+  }
   </script>
-  <!-- Initialize Piwik Pro for additional analytics and tag management -->
-  <script type="text/javascript">
-    (function(window, document, dataLayerName, id) {
+
+  <script defer>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"};o="init capture identify alias".split(" ");for(n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', { api_host: 'https://us.i.posthog.com' });
+  </script>
+
+  <script defer>
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pmp4efispy");
+  </script>
+
+  <script defer>
+    (function(window,document,dataLayerName,id){
       window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
       var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
-      var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName);
-      var qPString=qP.length>0?("?"+qP.join("&")):"";
-      tags.async=!0;
-      tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js"+qPString;
+      tags.async=!0;tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js";
       scripts.parentNode.insertBefore(tags,scripts);
-      !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
-    })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
+    })(window,document,'dataLayer','40c8a729-ebc6-4dfe-98be-6617064e43a9');
   </script>
-  <!-- Initialize PostHog for event tracking -->
-  <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init bs ws ge fs capture De calculateEventProperties $s register register_once register_for_session unregister unregister_for_session Is getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty xs Ss createPersonProfile Es gs opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing ys debug ks getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
-        api_host: 'https://us.i.posthog.com',
-        person_profiles: 'always'
-    })
-  </script>
-  <!-- PostHog Bridge Script to intercept gtag, Clarity, and Piwik Pro events -->
-  <script>
-    // Assumes PostHog has already been initialized with posthog-js
 
-    // --- 1. Listen for Google Analytics gtag events (via dataLayer push) ---
-    (function interceptGAEvents() {
-      const originalPush = window.dataLayer && window.dataLayer.push;
-      if (!originalPush) return;
-      window.dataLayer.push = function () {
-        // Call the original push
-        const result = originalPush.apply(this, arguments);
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
-        // Check for gtag events
-        for (const arg of arguments) {
-          if (typeof arg === 'object' && arg.event) {
-            posthog.capture(`gtag:${arg.event}`, { ...arg, source: 'gtag' });
-          }
-        }
-        return result;
-      };
-    })();
-
-    // --- 2. Listen for Piwik Pro events (also via dataLayer) ---
-    (function interceptPiwikEvents() {
-      const originalPush = window.dataLayer && window.dataLayer.push;
-      if (!originalPush) return;
-      window.dataLayer.push = function () {
-        const result = originalPush.apply(this, arguments);
-
-        for (const arg of arguments) {
-          if (typeof arg === 'object' && arg.event && arg.event.startsWith('ppms.')) {
-            posthog.capture(`piwik:${arg.event}`, { ...arg, source: 'piwik' });
-          }
-        }
-        return result;
-      };
-    })();
-
-    // --- 3. Listen for Microsoft Clarity custom events ---
-    (function interceptClarityEvents() {
-      if (typeof window.clarity === 'function') {
-        const origClarity = window.clarity;
-        window.clarity = function (type, ...args) {
-          if (type === 'event' && args[0]) {
-            posthog.capture(`clarity:${args[0]}`, { event: args[0], params: args[1], source: 'clarity' });
-          }
-          return origClarity.apply(this, arguments);
-        };
-      }
-    })();
-
-    // --- 4. Optionally, catch page load as a baseline PostHog event ---
-    posthog.capture('page_loaded', {
-      url: window.location.href,
-      source: 'universal'
-    });
-
-    // --- 5. Debug Logging ---
-    console.log('[PostHog Bridge] Event forwarding active for gtag, Clarity, and Piwik Pro.');
-  </script>
-  <!-- Inline CSS for basic styling, overridden by Tailwind where needed -->
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #1E1E2F;
-      margin: 0;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .nav-link.active {
-      border-bottom: 2px solid #2DD4BF;
-      font-weight: 600;
-    }
-    code {
-      font-family: 'Courier New', Courier, monospace;
-    }
+    .animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
   </style>
 </head>
-<body class="bg-[#1E1E2F] text-gray-300 font-sans min-h-screen flex flex-col">
-  <div id="root" class="flex-grow"></div>
 
-  <script type="text/babel">
-    const { useState, useEffect } = React;
+<body class="bg-white text-gray-900 font-sans antialiased leading-relaxed tracking-wide">
 
-    const CodeBlock = ({ title, code, onCopy }) => (
-      <div className="mt-4">
-        <div className="flex justify-between items-center flex-wrap gap-2">
-          <h3 className="text-lg sm:text-xl font-semibold text-white">{title}</h3>
-          <button
-            onClick={onCopy}
-            className="px-3 py-1 bg-[#2DD4BF] text-gray-900 rounded-md hover:bg-[#059669] transition-colors text-sm sm:text-base"
-          >
-            Copy Code
-          </button>
+  <header class="bg-white shadow sticky top-0 z-50 text-gray-900">
+    <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between text-sm font-medium">
+      <div class="font-semibold">Scott Gresack</div>
+      <div class="space-x-4">
+        <a href="https://scott-gresack.github.io/portfolio/" class="hover:text-blue-600 transition">Home</a>
+        <a href="https://scott-gresack.github.io/portfolio/tool2.html" class="hover:text-blue-600 transition">Alloy Tool</a>
+        <a href="https://scott-gresack.github.io/portfolio/xdm_comparator" class="hover:text-blue-600 transition">XDM Comparator</a>
+        <a href="https://scott-gresack.github.io/portfolio/tag_spec_generator" class="hover:text-blue-600 transition">Tag Spec Tool</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex flex-col items-center justify-center min-h-screen px-4 pb-24 animate-fadeInUp">
+    <div class="w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
+      <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 text-white p-8 rounded-t-3xl">
+        <h1 class="text-4xl font-extrabold tracking-tight">📱 Mobile Tag Spec Builder</h1>
+        <p class="mt-2 text-blue-100">Dynamically build <code>trackAction</code>, <code>trackState</code>, and Edge events with XDM preview.</p>
+      </div>
+      <div class="p-8 space-y-8">
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-900 space-y-2">
+          <h2 class="text-base font-semibold text-blue-800">🧭 How to Use This Tool (End-to-End)</h2>
+          <ul class="list-disc list-inside space-y-1">
+            <li>Select a tracking type: <code class="bg-blue-100 px-1 rounded">trackAction</code>, <code class="bg-blue-100 px-1 rounded">trackState</code>, or <code class="bg-blue-100 px-1 rounded">Edge.sendEvent</code>.</li>
+            <li>Add any key-value pairs relevant to your mobile event context (e.g. screen name, feature flags).</li>
+            <li>Use the XDM tab to add Adobe Experience Platform fields or schema-specific values.</li>
+            <li>Preview the generated payload — it will reflect your session and user context.</li>
+            <li>Copy the payload for use in your native app (Swift or Kotlin) or for QA validation.</li>
+            <li>Session data and PostHog logs help you validate behavior against backend or CJA.</li>
+            <li>Choose your SDK style (e.g., AEPEdgeBridge vs MobileCore) to see native API formats for iOS, Android, and React Native.</li>
+          </ul>
         </div>
-        <pre className="bg-[#1F2937] p-4 rounded-md mt-2 overflow-x-auto text-xs sm:text-sm">
-          <code className="font-mono">{code}</code>
-        </pre>
+        <div id="root"></div>
+        <noscript class="text-center text-red-500 text-sm mt-4">Please enable JavaScript to use this tool.</noscript>
       </div>
-    );
+      <footer class="bg-gray-50 text-gray-600 p-4 text-center rounded-b-3xl border-t text-sm">
+        Built with ❤️ by <a href="https://scott-gresack.github.io/portfolio/" class="text-blue-600 hover:underline">Scott Gresack</a>
+      </footer>
+    </div>
+  </main>
 
-    const SimulationOutput = ({ title, output }) => (
-      <div className="mt-4">
-        <h3 className="text-lg sm:text-xl font-semibold text-white">{title}</h3>
-        <pre className="bg-[#1F2937] p-4 rounded-md mt-2 overflow-x-auto text-xs sm:text-sm">
-          <code className="font-mono">{JSON.stringify(output, null, 2)}</code>
-        </pre>
-      </div>
-    );
+<script>
+  const { createApp, ref, computed, onMounted, watch } = Vue;
 
-    const App = () => {
-      const [currentTab, setCurrentTab] = useState('trackAction');
-      const [mainParam, setMainParam] = useState('');
-      const [keyValuePairs, setKeyValuePairs] = useState([]);
-      const [xdmData, setXdmData] = useState([]);
-      const [includeCallback, setIncludeCallback] = useState('no');
+  createApp({
+    setup() {
+      const eventType = ref('trackAction');
+      const keyValues = ref([{ key: '', value: '' }]);
+      const overrideDatastream = ref(false);
+      const datastreamId = ref('');
+      const sendIdentityMap = ref(false);
+      const identityNamespace = ref('email');
+      const identityId = ref('user@example.com');
+      const apiStyle = ref('bridge'); // 'bridge', 'core', 'legacy'
 
-      // Current date and time (dynamic)
-      const currentDateTime = new Date();
+      const copied = ref('');
 
-      // Track page view on mount
-      useEffect(() => {
-        gtag('event', 'page_view', {
-          page_title: 'Mobile Tag Spec Builder',
-          page_path: '/portfolio/mobile-tag-spec-builder',
-          timestamp: currentDateTime.toISOString()
+      const addKeyValue = () => keyValues.value.push({ key: '', value: '' });
+
+      const jsonPayload = computed(() => {
+        const base = {};
+        keyValues.value.forEach(({ key, value }) => {
+          if (key) base[key] = value;
         });
-        window.clarity('event', 'page_view', { page: 'Mobile Tag Spec Builder', timestamp: currentDateTime.toISOString() });
-        window.ppms.cm.api('trackEvent', 'page_view', { page: 'Mobile Tag Spec Builder', timestamp: currentDateTime.toISOString() });
-        posthog.capture('page_view', {
-          page_title: 'Mobile Tag Spec Builder',
-          page_path: '/portfolio/mobile-tag-spec-builder',
-          timestamp: currentDateTime.toISOString()
-        });
-      }, []);
-
-      const trackInteraction = (eventName, eventDetails) => {
-        const eventData = { ...eventDetails, timestamp: currentDateTime.toISOString() };
-        gtag('event', eventName, eventData);
-        window.clarity('event', eventName, eventData);
-        window.ppms.cm.api('trackEvent', eventName, eventData);
-        posthog.capture(eventName, eventData);
-      };
-
-      const handleTabChange = (tab) => {
-        setCurrentTab(tab);
-        trackInteraction('tab_select', { tab_name: tab });
-      };
-
-      const addKeyValuePair = () => {
-        setKeyValuePairs([...keyValuePairs, { key: '', value: '' }]);
-        trackInteraction('add_key_value_pair', { tab: currentTab });
-      };
-
-      const removeKeyValuePair = (index) => {
-        setKeyValuePairs(keyValuePairs.filter((_, i) => i !== index));
-        trackInteraction('remove_key_value_pair', { tab: currentTab });
-      };
-
-      const updateKeyValuePair = (index, field, value) => {
-        const newPairs = [...keyValuePairs];
-        newPairs[index][field] = value;
-        setKeyValuePairs(newPairs);
-      };
-
-      const addXdmPair = () => {
-        setXdmData([...xdmData, { key: '', value: '' }]);
-        trackInteraction('add_xdm_pair', { tab: currentTab });
-      };
-
-      const removeXdmPair = (index) => {
-        setXdmData(xdmData.filter((_, i) => i !== index));
-        trackInteraction('remove_xdm_pair', { tab: currentTab });
-      };
-
-      const updateXdmPair = (index, field, value) => {
-        const newXdmData = [...xdmData];
-        newXdmData[index][field] = value;
-        setXdmData(newXdmData);
-      };
-
-      const copyToClipboard = async (content) => {
-        try {
-          await navigator.clipboard.writeText(content);
-          alert('Code copied to clipboard!');
-          trackInteraction('copy_code', { tab: currentTab, code_type: content.includes('MobileCore') ? 'swift' : 'java' });
-        } catch (err) {
-          alert('Failed to copy code.');
-        }
-      };
-
-      const generateSwiftCode = () => {
-        if (currentTab === 'trackAction' || currentTab === 'trackState') {
-          if (!mainParam.trim()) return '// Error: Please enter a valid action/state name';
-          const dataObject = keyValuePairs.reduce((acc, pair) => {
-            if (pair.key.trim() && pair.value.trim()) acc[pair.key] = pair.value;
-            return acc;
-          }, {});
-          return `MobileCore.${currentTab}("${mainParam}", ${JSON.stringify(dataObject, null, 2)});`;
-        } else if (currentTab === 'edgeSendEvent') {
-          const xdmObject = xdmData.reduce((acc, pair) => {
-            if (pair.key.trim() && pair.value.trim()) acc[pair.key] = pair.value;
-            return acc;
-          }, {});
-          return `let xdmData: [String: Any] = ${JSON.stringify(xdmObject, null, 2)}\nlet experienceEvent = ExperienceEvent(xdm: xdmData)\n${includeCallback === 'yes' ? 'Edge.sendEvent(experienceEvent: experienceEvent) { handles in\n    // Handle response\n}' : 'Edge.sendEvent(experienceEvent: experienceEvent)'}`;
-        }
-        return '';
-      };
-
-      const generateJavaCode = () => {
-        if (currentTab === 'trackAction' || currentTab === 'trackState') {
-          if (!mainParam.trim()) return '// Error: Please enter a valid action/state name';
-          const dataObject = keyValuePairs.reduce((acc, pair) => {
-            if (pair.key.trim() && pair.value.trim()) acc[pair.key] = pair.value;
-            return acc;
-          }, {});
-          return `MobileCore.${currentTab}("${mainParam}", ${JSON.stringify(dataObject, null, 2)});`;
-        } else if (currentTab === 'edgeSendEvent') {
-          const xdmObject = xdmData.reduce((acc, pair) => {
-            if (pair.key.trim() && pair.value.trim()) acc[pair.key] = pair.value;
-            return acc;
-          }, {});
-          return `Map<String, Object> xdmData = ${JSON.stringify(xdmObject, null, 2)};\nExperienceEvent experienceEvent = new ExperienceEvent.Builder().setXdmSchema(xdmData).build();\n${includeCallback === 'yes' ? 'Edge.sendEvent(experienceEvent, handles -> {\n    // Handle response\n});' : 'Edge.sendEvent(experienceEvent, null);'}`;
-        }
-        return '';
-      };
-
-      // Simulation functions
-      const simulateTrackAction = (actionName, data) => ({
-        eventType: "analytics.track",
-        action: actionName,
-        contextData: data || {}
+        return base;
       });
 
-      const simulateTrackState = (stateName, data) => ({
-        eventType: "analytics.track",
-        state: stateName,
-        contextData: data || {}
+      const swiftCode = computed(() => {
+        const payload = JSON.stringify(jsonPayload.value, null, 2);
+        if (apiStyle.value === 'bridge') {
+          return `AEPEdgeBridge.sendEvent(with: ${payload})`;
+        } else {
+          return `ACPExtension.${eventType.value}(withData: ${payload})`;
+        }
       });
 
-      const simulateEdgeSendEvent = (xdmData, includeCallback) => {
-        const output = {
-          xdm: xdmData || {},
-          timestamp: currentDateTime.toISOString()
-        };
-        if (includeCallback) {
-          return {
-            payload: output,
-            callbackResponse: {
-              status: "success",
-              handles: [
-                { type: "state:store", payload: { key: "eventId", value: "12345" } }
-              ]
-            }
-          };
+      const kotlinCode = computed(() => {
+        if (apiStyle.value === 'bridge') {
+          return `AEPEdgeBridge.sendEvent(mapOf(${Object.entries(jsonPayload.value).map(([k, v]) => `"${k}" to "${v}"`).join(',\n  ')}))`;
+        } else {
+          return `MobileCore.${eventType.value}(mapOf(${Object.entries(jsonPayload.value).map(([k, v]) => `"${k}" to "${v}"`).join(',\n  ')}))`;
         }
-        return { payload: output };
+      });
+
+      const reactNativeCode = computed(() => {
+        const payload = JSON.stringify(jsonPayload.value, null, 2);
+        if (apiStyle.value === 'bridge') {
+          return `AEPEdgeBridge.sendEvent(${payload});`;
+        } else {
+          return `ACPExtension.${eventType.value}(${payload});`;
+        }
+      });
+
+      const overridesCode = computed(() => {
+        const parts = [];
+        if (overrideDatastream.value && datastreamId.value) {
+          parts.push(`datastreamId: "${datastreamId.value}"`);
+        }
+        if (sendIdentityMap.value && identityNamespace.value && identityId.value) {
+          parts.push(`identityMap: { "${identityNamespace.value}": [{ id: "${identityId.value}", authenticatedState: "ambiguous", primary: true }] }`);
+        }
+        return parts.length ? `{ ${parts.join(', ')} }` : 'None';
+      });
+
+      const copyToClipboard = (content, label) => {
+        navigator.clipboard.writeText(content).then(() => {
+          copied.value = `✅ Copied ${label}`;
+          setTimeout(() => copied.value = '', 2000);
+        });
       };
 
-      const generateSimulationOutput = () => {
-        if (currentTab === 'trackAction' && mainParam.trim()) {
-          const dataObject = keyValuePairs.reduce((acc, pair) => {
-            if (pair.key.trim() && pair.value.trim()) acc[pair.key] = pair.value;
-            return acc;
-          }, {});
-          return simulateTrackAction(mainParam, dataObject);
-        } else if (currentTab === 'trackState' && mainParam.trim()) {
-          const dataObject = keyValuePairs.reduce((acc, pair) => {
-            if (pair.key.trim() && pair.value.trim()) acc[pair.key] = pair.value;
-            return acc;
-          }, {});
-          return simulateTrackState(mainParam, dataObject);
-        } else if (currentTab === 'edgeSendEvent') {
-          const xdmObject = xdmData.reduce((acc, pair) => {
-            if (pair.key.trim() && pair.value.trim()) acc[pair.key] = pair.value;
-            return acc;
-          }, {});
-          return simulateEdgeSendEvent(xdmObject, includeCallback === 'yes');
-        }
-        return { error: "No valid input provided for simulation" };
+      onMounted(() => {
+        const saved = localStorage.getItem('mobilePayload');
+        if (saved) keyValues.value = JSON.parse(saved);
+      });
+
+      watch(jsonPayload, (val) => {
+        localStorage.setItem('mobilePayload', JSON.stringify(keyValues.value));
+      });
+
+      return {
+        eventType,
+        keyValues,
+        overrideDatastream,
+        datastreamId,
+        sendIdentityMap,
+        identityNamespace,
+        identityId,
+        apiStyle,
+        jsonPayload,
+        addKeyValue,
+        swiftCode,
+        kotlinCode,
+        reactNativeCode,
+        overridesCode,
+        copyToClipboard,
+        copied
       };
+    },
+    template: `
+      <div class="space-y-6">
+        <!-- Event type dropdown -->
+        <div>
+          <label class="block font-semibold">Event Type</label>
+          <select v-model="eventType" class="w-full border rounded p-2">
+            <option value="trackAction">trackAction</option>
+            <option value="trackState">trackState</option>
+            <option value="sendEvent">Edge.sendEvent</option>
+          </select>
+          <p class="text-xs text-gray-500 mt-1">
+            Choose which method you want to simulate. <code>trackAction</code> and <code>trackState</code> are standard mobile analytics events. Use <code>sendEvent</code> for Adobe Edge Network calls with XDM.
+          </p>
+        </div>
 
-      return (
-        <div className="flex flex-col min-h-screen">
-          <header className="p-4 sm:p-6">
-            <a
-              href="https://scott-gresack.github.io/portfolio/"
-              className="text-[#2DD4BF] hover:text-[#059669] text-sm sm:text-base transition-colors"
-            >
-              ← Back to Portfolio
-            </a>
-          </header>
-          <main className="flex-grow max-w-3xl mx-auto p-4 sm:p-6 w-full">
-            <div className="bg-[#252545] rounded-lg shadow-lg p-4 sm:p-6">
-              <h1 className="text-2xl sm:text-3xl font-semibold text-white mb-4">Mobile Tag Spec Builder</h1>
-              <p className="text-gray-300 mb-6 text-sm sm:text-base">
-                This tool helps create accurate tag specifications for Adobe Mobile SDK functions, supporting <code className="font-mono bg-[#1F2937] px-1 rounded">trackAction</code>, <code className="font-mono bg-[#1F2937] px-1 rounded">trackState</code>, and <code className="font-mono bg-[#1F2937] px-1 rounded">Edge.sendEvent</code>.
-              </p>
+        <div class="space-y-2">
+          <label class="block font-semibold">📚 SDK API Style</label>
+          <select v-model="apiStyle" class="w-full border rounded p-2">
+            <option value="bridge">AEPEdgeBridge (Modern)</option>
+            <option value="core">ACPExtension / MobileCore</option>
+            <option value="legacy">Legacy Objective-C Syntax (soon)</option>
+          </select>
+          <p class="text-xs text-gray-500 mt-1">
+            Select the SDK integration method. <code>AEPEdgeBridge</code> reflects v4+ API for Swift and Kotlin. <code>ACPExtension</code> and <code>MobileCore</code> are legacy wrappers. Use this to match your app's SDK version.
+          </p>
+        </div>
 
-              <div className="flex flex-col sm:flex-row gap-2 mb-6">
-                {['trackAction', 'trackState', 'edgeSendEvent'].map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => handleTabChange(tab)}
-                    className={`flex-1 py-2 px-4 rounded-md font-semibold transition-colors text-sm sm:text-base ${currentTab === tab ? 'bg-[#2DD4BF] text-gray-900' : 'bg-[#374151] text-gray-300 hover:bg-[#4B5563]'}`}
-                  >
-                    {tab}
-                  </button>
-                ))}
-              </div>
+        <!-- Context data -->
+        <div>
+          <label class="block font-semibold mb-2">Context Key-Value Pairs</label>
+          <p class="text-xs text-gray-500 mt-1">
+            These represent your event's context data — anything from screen names to custom flags. They map directly into the payload structure.
+          </p>
+          <div v-for="(pair, index) in keyValues" :key="index" class="flex space-x-2 mb-2">
+            <input v-model="pair.key" class="border p-2 rounded w-1/2" placeholder="key" />
+            <input v-model="pair.value" class="border p-2 rounded w-1/2" placeholder="value" />
+          </div>
+          <button @click="addKeyValue" class="text-sm text-blue-600 hover:underline">+ Add Pair</button>
+        </div>
 
-              {(currentTab === 'trackAction' || currentTab === 'trackState') && (
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">{currentTab} Builder</h2>
-                  <p className="text-gray-300 mb-4 text-sm sm:text-base">
-                    Build <code className="font-mono bg-[#1F2937] px-1 rounded">{currentTab}</code> calls for your app. <code className="font-mono bg-[#1F2937] px-1 rounded">trackAction</code> tracks user interactions, while <code className="font-mono bg-[#1F2937] px-1 rounded">trackState</code> tracks app views/screens.
-                  </p>
-                  <div className="mb-4">
-                    <label className="block text-gray-300 mb-1 text-sm sm:text-base">
-                      {currentTab === 'trackState' ? 'State Name (Screen Name)' : 'Action Name'}:
-                    </label>
-                    <input
-                      type="text"
-                      value={mainParam}
-                      onChange={(e) => setMainParam(e.target.value)}
-                      placeholder={`Enter the ${currentTab === 'trackState' ? 'state' : 'action'} name`}
-                      className="w-full p-2 bg-[#374151] rounded-md text-gray-100 border border-[#4B5563] focus:outline-none focus:border-[#2DD4BF] text-sm sm:text-base placeholder-gray-500"
-                    />
-                  </div>
+        <!-- Optional AEP controls -->
+        <div class="border-t pt-4 space-y-4">
+          <label class="font-semibold block">⚙️ Adobe Edge Overrides</label>
+          <label class="flex items-center space-x-2">
+            <input type="checkbox" v-model="overrideDatastream" />
+            <span>Override Datastream ID</span>
+          </label>
+          <input v-if="overrideDatastream" v-model="datastreamId" class="border p-2 rounded w-full" placeholder="Datastream ID" />
+          <p v-if="overrideDatastream" class="text-xs text-gray-500">
+            Use this if you want to route the event to a different Adobe Datastream (e.g. for QA, staging, or a separate sandbox).
+          </p>
 
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">Additional Data (Key-Value Pairs)</h3>
-                    {keyValuePairs.map((pair, index) => (
-                      <div key={index} className="flex flex-col sm:flex-row gap-2 mb-2">
-                        <input
-                          type="text"
-                          placeholder="Key (e.g., productId)"
-                          value={pair.key}
-                          onChange={(e) => updateKeyValuePair(index, 'key', e.target.value)}
-                          className="flex-1 p-2 bg-[#374151] rounded-md text-gray-100 border border-[#4B5563] focus:outline-none focus:border-[#2DD4BF] text-sm sm:text-base placeholder-gray-500"
-                        />
-                        <input
-                          type="text"
-                          placeholder="Value (e.g., 12345)"
-                          value={pair.value}
-                          onChange={(e) => updateKeyValuePair(index, 'value', e.target.value)}
-                          className="flex-1 p-2 bg-[#374151] rounded-md text-gray-100 border border-[#4B5563] focus:outline-none focus:border-[#2DD4BF] text-sm sm:text-base placeholder-gray-500"
-                        />
-                        <button
-                          onClick={() => removeKeyValuePair(index)}
-                          className="px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition-colors text-sm sm:text-base"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    ))}
-                    <button
-                      onClick={addKeyValuePair}
-                      className="mt-2 px-4 py-2 bg-[#2DD4BF] text-gray-900 rounded-md hover:bg-[#059669] transition-colors text-sm sm:text-base"
-                    >
-                      Add Key-Value Pair
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {currentTab === 'edgeSendEvent' && (
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">Edge.sendEvent Builder</h2>
-                  <p className="text-gray-300 mb-4 text-sm sm:text-base">
-                    Build <code className="font-mono bg-[#1F2937] px-1 rounded">Edge.sendEvent</code> calls with XDM-compliant payloads for Adobe Experience Platform.
-                  </p>
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">XDM Data</h3>
-                    {xdmData.map((pair, index) => (
-                      <div key={index} className="flex flex-col sm:flex-row gap-2 mb-2">
-                        <input
-                          type="text"
-                          placeholder="XDM Key (e.g., eventType)"
-                          value={pair.key}
-                          onChange={(e) => updateXdmPair(index, 'key', e.target.value)}
-                          className="flex-1 p-2 bg-[#374151] rounded-md text-gray-100 border border-[#4B5563] focus:outline-none focus:border-[#2DD4BF] text-sm sm:text-base placeholder-gray-500"
-                        />
-                        <input
-                          type="text"
-                          placeholder="XDM Value (e.g., pageView)"
-                          value={pair.value}
-                          onChange={(e) => updateXdmPair(index, 'value', e.target.value)}
-                          className="flex-1 p-2 bg-[#374151] rounded-md text-gray-100 border border-[#4B5563] focus:outline-none focus:border-[#2DD4BF] text-sm sm:text-base placeholder-gray-500"
-                        />
-                        <button
-                          onClick={() => removeXdmPair(index)}
-                          className="px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition-colors text-sm sm:text-base"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    ))}
-                    <button
-                      onClick={addXdmPair}
-                      className="mt-2 px-4 py-2 bg-[#2DD4BF] text-gray-900 rounded-md hover:bg-[#059669] transition-colors text-sm sm:text-base"
-                    >
-                      Add XDM Pair
-                    </button>
-                  </div>
-                  <div className="mt-4">
-                    <label className="block text-gray-300 mb-1 text-sm sm:text-base">Include Callback:</label>
-                    <select
-                      value={includeCallback}
-                      onChange={(e) => setIncludeCallback(e.target.value)}
-                      className="w-full p-2 bg-[#374151] rounded-md text-gray-100 border border-[#4B5563] focus:outline-none focus:border-[#2DD4BF] text-sm sm:text-base"
-                    >
-                      <option value="yes">Yes</option>
-                      <option value="no">No</option>
-                    </select>
-                  </div>
-                </div>
-              )}
-
-              <div className="mt-6">
-                <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">Generated Code</h2>
-                <CodeBlock
-                  title="iOS Swift"
-                  code={generateSwiftCode()}
-                  onCopy={() => copyToClipboard(generateSwiftCode())}
-                />
-                <CodeBlock
-                  title="Java/Kotlin"
-                  code={generateJavaCode()}
-                  onCopy={() => copyToClipboard(generateJavaCode())}
-                />
-              </div>
-
-              <div className="mt-6">
-                <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">Simulated Output</h2>
-                <p className="text-gray-300 mb-4 text-sm sm:text-base">
-                  This shows how the generated code's data would appear when sent to Adobe Analytics or Experience Platform. 
-                  For reference, see the <a href="https://developer.adobe.com/client-sdks/resources/migration/android/migrate-to-3x/" target="_blank" className="text-[#2DD4BF] hover:text-[#059669] transition-colors">Adobe SDK 3.x Migration Guide</a>.
-                </p>
-                <SimulationOutput
-                  title={`Simulated ${currentTab} Output`}
-                  output={generateSimulationOutput()}
-                />
-              </div>
-            </div>
-          </main>
-          <footer className="p-4 sm:p-6 text-center">
-            <p className="text-gray-300 text-sm sm:text-base">
-              Built by <a href="https://scott-gresack.github.io/portfolio/" className="text-[#2DD4BF] hover:text-[#059669] transition-colors">Scott Gresack</a>
+          <label class="flex items-center space-x-2 mt-2">
+            <input type="checkbox" v-model="sendIdentityMap" />
+            <span>Send identityMap</span>
+          </label>
+          <div v-if="sendIdentityMap" class="space-y-2">
+            <input v-model="identityNamespace" class="border p-2 rounded w-full" placeholder="Namespace (e.g. email, ECID, username)" />
+            <input v-model="identityId" class="border p-2 rounded w-full" placeholder="ID Value (e.g. user@example.com)" />
+            <p class="text-xs text-gray-500">
+              The identityMap sends user identifiers like ECID, email, or custom namespaces to Adobe Edge. This enables identity resolution, personalization, and profile stitching across channels.
             </p>
-          </footer>
+          </div>
         </div>
-      );
-    };
 
-    ReactDOM.render(<App />, document.getElementById('root'));
-  </script>
+        <!-- Live JSON output -->
+        <div class="bg-gray-50 border p-4 rounded">
+          <label class="font-semibold block mb-2">Generated Payload</label>
+          <pre class="text-sm text-gray-800"><code>{{ JSON.stringify(jsonPayload, null, 2) }}</code></pre>
+          <p class="text-xs text-gray-500 mt-1">Overrides: {{ overridesCode }}</p>
+        </div>
+
+        <!-- Platform outputs -->
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white border p-4 rounded">
+            <div class="flex justify-between items-center mb-1">
+              <h3 class="font-semibold">📱 Swift (iOS)</h3>
+              <button @click="copyToClipboard(swiftCode, 'Swift')" class="text-blue-600 text-sm hover:underline">Copy</button>
+            </div>
+            <pre class="text-sm text-gray-800"><code>{{ swiftCode }}</code></pre>
+          </div>
+
+          <div class="bg-white border p-4 rounded">
+            <div class="flex justify-between items-center mb-1">
+              <h3 class="font-semibold">🤖 Kotlin / Java (Android)</h3>
+              <button @click="copyToClipboard(kotlinCode, 'Kotlin')" class="text-blue-600 text-sm hover:underline">Copy</button>
+            </div>
+            <pre class="text-sm text-gray-800"><code>{{ kotlinCode }}</code></pre>
+          </div>
+
+          <div class="bg-white border p-4 rounded md:col-span-2">
+            <div class="flex justify-between items-center mb-1">
+              <h3 class="font-semibold">⚛️ React Native</h3>
+              <button @click="copyToClipboard(reactNativeCode, 'React Native')" class="text-blue-600 text-sm hover:underline">Copy</button>
+            </div>
+            <pre class="text-sm text-gray-800"><code>{{ reactNativeCode }}</code></pre>
+          </div>
+        </div>
+        <p v-if="copied" class="text-green-600 text-sm">{{ copied }}</p>
+      </div>
+    `
+  }).mount('#root');
+</script>
 </body>
+<!-- Syncs GA session ID to PostHog for identity resolution -->
+<script>
+  (function () {
+    function getGASessionId() {
+      const gaCookie = document.cookie.split('; ').find(row => row.startsWith('_ga='));
+      if (!gaCookie) return null;
+      const parts = gaCookie.split('.');
+      if (parts.length < 4) return null;
+      return `${parts[2]}.${parts[3]}`;
+    }
+
+    const sessionId = getGASessionId();
+    if (sessionId && window.posthog) {
+      console.log('[PostHog] Registered GA session ID:', sessionId);
+      posthog.register({ ga_session_id: sessionId });
+      posthog.capture('pageview_with_ga_session', { ga_session_id: sessionId });
+    }
+  })();
+</script>
 </html>
