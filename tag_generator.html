@@ -1,31 +1,118 @@
 <!DOCTYPE html>
+<!--
+  Alloy Flattened Payload Analyzer v1.0.1
+  Author: Scott Gresack
+
+  Description:
+  This tool provides an interactive interface to inspect flattened Adobe Alloy (AEP Web SDK) event payloads.
+  It helps identify data quality issues, debug schema mismatches, and export normalized data for analysis.
+
+  Key Features:
+  - Flattened view of XDM and data objects
+  - Field-level null/undefined analysis
+  - Real-time sessionStorage integration
+  - JSON/CSV export for collaboration
+  - Row filtering and event type summary
+  - Extensible with tracking (GA4, PostHog, Clarity, Piwik PRO)
+
+  Use Case:
+  Ideal for Martech engineers, QA testers, analysts, or developers debugging Adobe Experience Platform integrations.
+
+  Version: 1.0.1
+  Last updated: 2025-05-26
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Martech Engineer portfolio of Scott Gresack featuring Adobe AEP, Tealium iQ, GA4, and scalable data governance strategies." />
-  <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Governance, Tag Management, GA4, Analytics, Attribution" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="ppms.tool_name" content="Alloy Flattened Payload Analyzer" />
+  <meta name="ppms.tool_version" content="1.0.1" />
+  <meta name="ppms.tool_author" content="Scott Gresack" />
+  <title>Alloy Payload Inspector for AEP Debugging & Tag Validation | Scott Gresack</title>
+  <meta name="description" content="Analyze flattened Adobe Alloy event payloads with Scott Gresack's tool. Parse JSON, view dynamic tables, filter data, and download results." />
+  <meta name="keywords" content="Martech, Adobe Alloy, Adobe Experience Platform, AEP, AEPP, Web SDK, XDM, CDP, datasets, AI Copilot, cursor, microservices, data integration, digital analytics, Tag Management, Divrei Torah, Gemara, Yeshiva, Haskafah, AI agent, workforce transition, schema mapping, Scott Gresack, Jewish tech professional" />
   <meta name="author" content="Scott Gresack" />
   <meta name="robots" content="index, follow" />
-  <title>Scott Gresack | Web Tag Spec Generator</title>
-
-  <!-- Open Graph Meta -->
-  <meta property="og:title" content="Scott Gresack | Martech Engineer Portfolio" />
-  <meta property="og:description" content="Explore data collection workflows, AEP XDM schemas, and tag management tools built for scale." />
+  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/tool2.html" />
+  <meta name="google-site-verification" content="LTi0sO_AWGNd4v7uJivsQWdkhrGDBDX2uLFTSIFNgbs" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/" />
+  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tool2.html" />
+  <meta property="og:title" content="Alloy Flattened Payload Analyzer | Scott Gresack Portfolio" />
+  <meta property="og:description" content="Explore Scott Gresack's Alloy Flattened Payload Analyzer for parsing and analyzing flattened Adobe Alloy event payloads with dynamic tables, filtering, and JSON export." />
   <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Scott Gresack | Martech Engineer Portfolio" />
-  <meta name="twitter:description" content="Tealium, Adobe Experience Platform, GTM, and privacy-driven tag governance examples." />
+  <meta name="twitter:title" content="Alloy Flattened Payload Analyzer | Scott Gresack Portfolio" />
+  <meta name="twitter:description" content="Use Scott Gresack's tool to analyze flattened Adobe Alloy payloads, featuring dynamic tables, filtering, and JSON download capabilities." />
   <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-
-  <!-- Tailwind CSS -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'GT-MQBSZT8H');
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Scott Gresack",
+      "url": "https://scott-gresack.github.io/portfolio/",
+      "sameAs": ["https://www.linkedin.com/in/scottgresack/"],
+      "jobTitle": "Martech Engineer | AEP + CDP Expert",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "CVS Health"
+      },
+      "knowsAbout": [
+        "Adobe Web SDK",
+        "Tealium iQ",
+        "Adobe Experience Platform",
+        "Customer Data Platform",
+        "Martech Architecture",
+        "Tag Management",
+        "Digital Analytics",
+        "Identity Resolution",
+        "Real-Time Personalization",
+        "XDM Schema Design"
+      ]
+    }
+  </script>
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}
+    (p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);
+    var u=e;void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"};
+    o="init capture identify alias people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U',{api_host:'https://us.i.posthog.com',person_profiles:'always'});
+  </script>
+  <script>
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pmp4efispy");
+  </script>
+  <script type="text/javascript">
+    (function(window,document,dataLayerName,id){
+      window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
+      var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
+      var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName);
+      var qPString=qP.length>0?("?"+qP.join("&")):"";
+      tags.async=!0;tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js"+qPString;
+      scripts.parentNode.insertBefore(tags,scripts);
+      !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
+    })(window,document,'dataLayer','40c8a729-ebc6-4dfe-98be-6617064e43a9');
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-Y8617TLMYK", { anonymize_ip: true });
+  </script>
 </head>
-<body class="bg-gray-100 text-gray-800 antialiased">
+<body class="bg-white text-gray-900 font-sans antialiased leading-relaxed tracking-wide">
 <!-- Navigation Bar -->
 <div class="w-full max-w-4xl mx-auto px-4">
   <div class="bg-blue-600 text-white rounded-xl mt-6 mb-6 p-4 flex justify-between items-center shadow-md">
@@ -38,9 +125,9 @@
   </div>
 </div>
   <div id="app" class="min-h-screen flex flex-col items-center pt-12 pb-24 px-4">
-    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
-      <div class="bg-blue-600 text-white p-6">
-        <h1 class="text-3xl font-bold">✨ Web Tag Spec Generator ✨</h1>
+    <div class="w-full max-w-3xl bg-white rounded-3xl shadow-xl overflow-hidden animate-fadeIn border border-gray-200">
+      <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 text-white p-8 rounded-t-3xl">
+        <h1 class="text-4xl font-extrabold tracking-tight">✨ Web Tag Spec Generator ✨</h1>
         <p class="mt-2 text-blue-100">
           Dynamically generate <code class="bg-white/20 px-1 rounded">utag.view()</code> and 
           <code class="bg-white/20 px-1 rounded">utag.link()</code> payloads, plus mapped XDM.
@@ -48,7 +135,7 @@
       </div>
 
       <!-- Instructions -->
-      <div class="p-6 border-b">
+      <div class="p-8 border-b">
         <button @click="toggleInstructions"
                 class="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition font-medium">
           <span>{{ showInstructions ? '🔽' : '🔼' }}</span>
@@ -90,7 +177,7 @@
       </div>
 
       <!-- Input Fields -->
-      <div class="p-6 space-y-4 border-b">
+      <div class="p-8 space-y-4 border-b">
         <h3 class="font-semibold text-gray-700">🧩 Key–Value Pairs</h3>
         <div v-for="(pair,i) in keyValuePairs" :key="i" class="flex space-x-2">
           <input v-model="pair.key" placeholder="Key" class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
@@ -104,21 +191,21 @@
       </div>
 
       <!-- Outputs -->
-      <div class="p-6 space-y-8">
-        <div>
+      <div class="p-8 space-y-8">
+        <div class="rounded-xl border border-gray-200 shadow-sm p-4 bg-white">
           <div class="flex justify-between items-center mb-2">
             <h4 class="font-semibold text-gray-800">✨ Tag Spec</h4>
-            <button @click="copyToClipboard(formattedSnippet, 'Tag Spec')" class="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-              📋 Copy
+            <button @click="copyToClipboard(formattedSnippet, 'Tag Spec')" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition">
+              📋 <span>Copy</span>
             </button>
           </div>
           <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">{{ formattedSnippet }}</pre>
         </div>
-        <div>
+        <div class="rounded-xl border border-gray-200 shadow-sm p-4 bg-white">
           <div class="flex justify-between items-center mb-2">
             <h4 class="font-semibold text-gray-800">🌐 XDM Object</h4>
-            <button @click="copyToClipboard(xdmObject, 'XDM Object')" class="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-              📋 Copy
+            <button @click="copyToClipboard(xdmObject, 'XDM Object')" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition">
+              📋 <span>Copy</span>
             </button>
           </div>
           <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">{{ xdmObject }}</pre>
@@ -128,7 +215,7 @@
 
     <!-- Copied Modal -->
     <transition name="fade">
-      <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black/50">
+      <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black/50 transition-all duration-300">
         <div class="bg-white p-6 rounded-2xl shadow-xl max-w-xs text-center animate-pop">
           <h3 class="text-xl font-bold mb-2">🎉 Copied!</h3>
           <p>{{ modalType }} is now on your clipboard.</p>
