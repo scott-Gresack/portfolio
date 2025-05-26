@@ -199,6 +199,43 @@
         localStorage.setItem('mobilePayload', JSON.stringify(keyValues.value));
       });
 
+      // Contextual Help modal logic
+      const showHelpModal = ref(false);
+      const helpSection = ref('');
+      function openHelp(section) {
+        helpSection.value = section;
+        showHelpModal.value = true;
+      }
+      const helpContent = computed(() => {
+        switch (helpSection.value) {
+          case 'eventType': return {
+            title: 'Event Type',
+            guide: `Choose which method to simulate. "trackAction" and "trackState" are standard mobile analytics events. Use "Edge.sendEvent" for XDM calls.`,
+            sample: eventType.value === 'trackAction'
+              ? { code: `AEPEdgeBridge.trackAction("add_to_cart", data: { "productId": "123" })`, payload: `{ "productId": "123" }` }
+              : eventType.value === 'trackState'
+              ? { code: `AEPEdgeBridge.trackState("Product Detail", data: { "screen": "detail" })`, payload: `{ "screen": "detail" }` }
+              : { code: `AEPEdgeBridge.sendEvent(with: { "xdm": { "eventType": "commerce.purchases" } })`, payload: `{ "xdm": { "eventType": "commerce.purchases" } }` }
+          };
+          case 'apiStyle': return {
+            title: 'SDK API Style',
+            guide: `Select which SDK integration method matches your mobile app. AEPEdgeBridge is recommended for modern Swift/Kotlin apps; ACPExtension/MobileCore for legacy apps.`,
+            sample: { code: `AEPEdgeBridge.sendEvent(...)` }
+          };
+          case 'context': return {
+            title: 'Context Key-Value Pairs',
+            guide: `Add any keys and values representing your event context—screen names, feature flags, or any business-relevant data. These are sent to Adobe as the payload.`,
+            sample: { payload: `{ "screen": "Home", "featureFlag": true }` }
+          };
+          case 'overrides': return {
+            title: 'Adobe Edge Overrides',
+            guide: `Optionally override the Datastream ID (to send to a different Adobe config) or send an identityMap (for identity stitching, login flows, etc.). Useful for QA, sandboxes, or testing user journeys.`,
+            sample: { code: `datastreamId: "my-qa-stream", identityMap: { "email": [{ id: "user@example.com" }] }` }
+          };
+          default: return { title: '', guide: '', sample: {} };
+        }
+      });
+
       return {
         eventType,
         keyValues,
@@ -215,15 +252,28 @@
         reactNativeCode,
         overridesCode,
         copyToClipboard,
-        copied
+        copied,
+        showHelpModal,
+        helpSection,
+        openHelp,
+        helpContent
       };
     },
     template: `
       <div class="space-y-6">
+        <!-- Legend for live help -->
+        <div class="mb-4 text-blue-800 text-sm flex items-center">
+          <span class="inline-block bg-blue-100 text-blue-700 rounded-full px-2 py-0.5 mr-2">?</span>
+          <span>Click any <span class="font-bold">question mark</span> icon for live help and code samples for that section.</span>
+        </div>
+
         <!-- Event type dropdown -->
         <div>
-          <label class="block font-semibold">Event Type</label>
-          <select v-model="eventType" class="w-full border rounded p-2">
+          <label class="block font-semibold flex items-center">
+            Event Type
+            <button @click="openHelp('eventType')" title="Help for Event Type" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for Event Type">?</button>
+          </label>
+          <select v-model="eventType" class="w-full border rounded p-2 mt-2">
             <option value="trackAction">trackAction</option>
             <option value="trackState">trackState</option>
             <option value="sendEvent">Edge.sendEvent</option>
@@ -234,7 +284,10 @@
         </div>
 
         <div class="space-y-2">
-          <label class="block font-semibold">📚 SDK API Style</label>
+          <label class="block font-semibold flex items-center">
+            📚 SDK API Style
+            <button @click="openHelp('apiStyle')" title="Help for SDK API Style" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for SDK API Style">?</button>
+          </label>
           <select v-model="apiStyle" class="w-full border rounded p-2">
             <option value="bridge">AEPEdgeBridge (Modern)</option>
             <option value="core">ACPExtension / MobileCore</option>
@@ -247,7 +300,10 @@
 
         <!-- Context data -->
         <div>
-          <label class="block font-semibold mb-2">Context Key-Value Pairs</label>
+          <label class="block font-semibold mb-2 flex items-center">
+            Context Key-Value Pairs
+            <button @click="openHelp('context')" title="Help for Context Key-Value Pairs" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for Context Key-Value Pairs">?</button>
+          </label>
           <p class="text-xs text-gray-500 mt-1">
             These represent your event's context data — anything from screen names to custom flags. They map directly into the payload structure.
           </p>
@@ -260,7 +316,10 @@
 
         <!-- Optional AEP controls -->
         <div class="border-t pt-4 space-y-4">
-          <label class="font-semibold block">⚙️ Adobe Edge Overrides</label>
+          <label class="font-semibold block flex items-center">
+            ⚙️ Adobe Edge Overrides
+            <button @click="openHelp('overrides')" title="Help for Edge Overrides" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for Edge Overrides">?</button>
+          </label>
           <label class="flex items-center space-x-2">
             <input type="checkbox" v-model="overrideDatastream" />
             <span>Override Datastream ID</span>
@@ -317,6 +376,30 @@
           </div>
         </div>
         <p v-if="copied" class="text-green-600 text-sm">{{ copied }}</p>
+
+        <!-- Contextual Help Modal -->
+        <div v-if="showHelpModal" class="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+          <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative animate-fadeInUp">
+            <button @click="showHelpModal = false" class="absolute top-2 right-2 text-gray-400 hover:text-blue-600 text-2xl">&times;</button>
+            <h2 class="text-lg font-bold mb-2">{{ helpContent.title }}</h2>
+            <div class="mb-3">
+              <p class="text-sm mb-2">{{ helpContent.guide }}</p>
+              <div v-if="helpContent.sample && helpContent.sample.code">
+                <div class="text-xs text-gray-500 mb-1">Code Sample</div>
+                <pre class="bg-gray-100 p-3 rounded text-xs">{{ helpContent.sample.code }}</pre>
+              </div>
+              <div v-if="helpContent.sample && helpContent.sample.payload">
+                <div class="text-xs text-gray-500 mb-1">Sample Payload</div>
+                <pre class="bg-gray-100 p-3 rounded text-xs">{{ helpContent.sample.payload }}</pre>
+              </div>
+            </div>
+            <div v-if="helpSection === 'eventType'">
+              <div class="text-xs text-blue-800 mt-2">
+                <a href="https://medium.com/@ctobin_60705/aep-validation-plugins-with-public-api-support-239637d3b63a" target="_blank" class="underline">Read about validation plugins</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     `
   }).mount('#root');
