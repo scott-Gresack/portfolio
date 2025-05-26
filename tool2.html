@@ -1,296 +1,407 @@
+<!--
+  Alloy Flattened Payload Analyzer v1.0.1
+  Author: Scott Gresack
+
+  Description:
+  This tool provides an interactive interface to inspect flattened Adobe Alloy (AEP Web SDK) event payloads.
+  It helps identify data quality issues, debug schema mismatches, and export normalized data for analysis.
+
+  Key Features:
+  - Flattened view of XDM and data objects
+  - Field-level null/undefined analysis
+  - Real-time sessionStorage integration
+  - JSON/CSV export for collaboration
+  - Row filtering and event type summary
+  - Extensible with tracking (GA4, PostHog, Clarity, Piwik PRO)
+
+  Use Case:
+  Ideal for Martech engineers, QA testers, analysts, or developers debugging Adobe Experience Platform integrations.
+
+  Version: 1.0.1
+  Last updated: 2025-05-26
+-->
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Define character encoding -->
-  <meta charset="UTF-8" />
-  <!-- Ensure responsive design -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Tool-specific title -->
-  <!-- Optional Piwik PRO Tool Metadata -->
-  <meta name="ppms.tool_name" content="Alloy Flattened Payload Analyzer" />
-  <meta name="ppms.tool_version" content="1.0.1" />
-  <meta name="ppms.tool_author" content="Scott Gresack" />
-  <title>Alloy Flattened Payload Analyzer | Scott Gresack Portfolio</title>
-  <!-- SEO description for the tool -->
-  <meta name="description"
-    content="Analyze flattened Adobe Alloy event payloads with Scott Gresack's tool. Parse JSON, view dynamic tables, filter data, and download results." />
-  <!-- Relevant keywords -->
-  <meta name="keywords"
-    content="Martech, Adobe Alloy, Adobe Experience Platform, AEP, Web SDK, XDM, Analytics, Tag Management, Data Layer, Scott Gresack" />
-  <!-- Author -->
-  <meta name="author" content="Scott Gresack" />
-  <!-- Allow indexing -->
-  <meta name="robots" content="index, follow" />
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/tool2.html" />
-  <!-- Google site verification -->
-  <meta name="google-site-verification" content="LTi0sO_AWGNd4v7uJivsQWdkhrGDBDX2uLFTSIFNgbs" />
+    <!-- Define character encoding -->
+    <meta charset="UTF-8" />
+    <!-- Ensure responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tool-specific title -->
+    <!-- Optional Piwik PRO Tool Metadata -->
+    <meta name="ppms.tool_name" content="Alloy Flattened Payload Analyzer" />
+    <meta name="ppms.tool_version" content="1.0.1" />
+    <meta name="ppms.tool_author" content="Scott Gresack" />
+    <title>Alloy Flattened Payload Analyzer | Scott Gresack Portfolio</title>
+    <!-- SEO description for the tool -->
+    <meta name="description" content="Analyze flattened Adobe Alloy event payloads with Scott Gresack's tool. Parse JSON, view dynamic tables, filter data, and download results." />
+    <!-- Relevant keywords -->
+    <meta name="keywords" content="Martech, Adobe Alloy, Adobe Experience Platform, AEP, Web SDK, XDM, Analytics, Tag Management, Data Layer, Scott Gresack" />
+    <!-- Author -->
+    <meta name="author" content="Scott Gresack" />
+    <!-- Allow indexing -->
+    <meta name="robots" content="index, follow" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://scott-gresack.github.io/portfolio/tool2.html" />
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content="LTi0sO_AWGNd4v7uJivsQWdkhrGDBDX2uLFTSIFNgbs" />
 
-  <!-- Open Graph tags -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tool2.html" />
-  <meta property="og:title" content="Alloy Flattened Payload Analyzer | Scott Gresack Portfolio" />
-  <meta property="og:description"
-    content="Explore Scott Gresack's Alloy Flattened Payload Analyzer for parsing and analyzing flattened Adobe Alloy event payloads with dynamic tables, filtering, and JSON export." />
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+    <!-- Open Graph tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tool2.html" />
+    <meta property="og:title" content="Alloy Flattened Payload Analyzer | Scott Gresack Portfolio" />
+    <meta property="og:description" content="Explore Scott Gresack's Alloy Flattened Payload Analyzer for parsing and analyzing flattened Adobe Alloy event payloads with dynamic tables, filtering, and JSON export." />
+    <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
 
-  <!-- Twitter Card tags -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Alloy Flattened Payload Analyzer | Scott Gresack Portfolio" />
-  <meta name="twitter:description"
-    content="Use Scott Gresack's tool to analyze flattened Adobe Alloy payloads, featuring dynamic tables, filtering, and JSON download capabilities." />
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Alloy Flattened Payload Analyzer | Scott Gresack Portfolio" />
+    <meta name="twitter:description" content="Use Scott Gresack's tool to analyze flattened Adobe Alloy payloads, featuring dynamic tables, filtering, and JSON download capabilities." />
+    <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'GT-MQBSZT8H');
-  </script>
-  <!-- Schema.org structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Scott Gresack",
-    "url": "https://scott-gresack.github.io/portfolio/",
-    "sameAs": ["https://www.linkedin.com/in/scottgresack/"],
-    "jobTitle": "Martech Engineer | AEP + CDP Expert",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "CVS Health"
-    },
-    "knowsAbout": [
-      "Adobe Web SDK",
-      "Tealium iQ",
-      "Adobe Experience Platform",
-      "Customer Data Platform",
-      "Martech Architecture",
-      "Tag Management",
-      "Digital Analytics",
-      "Identity Resolution",
-      "Real-Time Personalization",
-      "XDM Schema Design"
-    ]
-  }
-  </script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-  <!-- PostHog Analytics -->
-  <script>
-    !function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } } (p = t.createElement("script")).type = "text/javascript", p.crossOrigin = "anonymous", p.async = !0, p.src = s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "init bs ws ge fs capture De calculateEventProperties $s register register_once register_for_session unregister unregister_for_session Is getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty xs Ss createPersonProfile Es gs opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing ys debug ks getPageViewId captureTraceFeedback captureTraceMetric".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
-    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
-      api_host: 'https://us.i.posthog.com',
-      person_profiles: 'always'
-    })
-  </script>
+        gtag('config', 'GT-MQBSZT8H');
+    </script>
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Scott Gresack",
+            "url": "https://scott-gresack.github.io/portfolio/",
+            "sameAs": ["https://www.linkedin.com/in/scottgresack/"],
+            "jobTitle": "Martech Engineer | AEP + CDP Expert",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "CVS Health"
+            },
+            "knowsAbout": [
+                "Adobe Web SDK",
+                "Tealium iQ",
+                "Adobe Experience Platform",
+                "Customer Data Platform",
+                "Martech Architecture",
+                "Tag Management",
+                "Digital Analytics",
+                "Identity Resolution",
+                "Real-Time Personalization",
+                "XDM Schema Design"
+            ]
+        }
+    </script>
 
-  <!-- Poppins font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <!-- Tailwind CSS (CDN for development; see note for production) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Note: For production, install Tailwind via npm and bundle (https://tailwindcss.com/docs/installation) -->
-  <!-- Vue.js for navigation -->
-  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-  <!-- Google Analytics (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag("js", new Date());
-    gtag("config", "G-Y8617TLMYK", { anonymize_ip: true });
-  </script>
-  <!-- Microsoft Clarity -->
-  <script>
-    (function (c, l, a, r, i, t, y) {
-      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "pmp4efispy");
-  </script>
-  <!-- Piwik Pro -->
-  <script type="text/javascript">
-    (function (window, document, dataLayerName, id) {
-      window[dataLayerName] = window[dataLayerName] || [], window[dataLayerName].push({ start: (new Date).getTime(), event: "stg.start" });
-      var scripts = document.getElementsByTagName('script')[0], tags = document.createElement('script');
-      var qP = []; dataLayerName !== "dataLayer" && qP.push("data_layer_name=" + dataLayerName);
-      var qPString = qP.length > 0 ? ("?" + qP.join("&")) : "";
-      tags.async = !0;
-      tags.src = "https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js" + qPString;
-      scripts.parentNode.insertBefore(tags, scripts);
-      !function (a, n, i) { a[n] = a[n] || {}; for (var c = 0; c < i.length; c++)!function (i) { a[n][i] = a[n][i] || {}, a[n][i].api = a[n][i].api || function () { var a = [].slice.call(arguments, 0); "string" == typeof a[0] && window[dataLayerName].push({ event: n + "." + i + ":" + a[0], parameters: [].slice.call(arguments, 1) }) } }(i[c]) }(window, "ppms", ["tm", "cm"]);
-    })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
-  </script>
-  <!-- Inline CSS -->
-  <style>
-    textarea {
-      font-family: 'Courier New', Courier, monospace;
-      resize: vertical;
-    }
+    <!-- PostHog Analytics -->
+    <script>
+        ! function (t, e) {
+            var o, n, p, r;
+            e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) {
+                function g(t, e) {
+                    var o = e.split(".");
+                    2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () {
+                        t.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+                    }
+                }(p = t.createElement("script")).type = "text/javascript", p.crossOrigin = "anonymous", p.async = !0, p.src = s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r);
+                var u = e;
+                for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) {
+                        var e = "posthog";
+                        return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e
+                    }, u.people.toString = function () {
+                        return u.toString(1) + ".people (stub)"
+                    }, o = "init bs ws ge fs capture De calculateEventProperties $s register register_once register_for_session unregister unregister_for_session Is getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty xs Ss createPersonProfile Es gs opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing ys debug ks getPageViewId captureTraceFeedback captureTraceMetric".split(" "), n = 0; n < o.length; n++) g(u, o[n]);
+                e._i.push([i, s, a])
+            }, e.__SV = 1)
+        }(document, window.posthog || []);
+        posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
+            api_host: 'https://us.i.posthog.com',
+            person_profiles: 'always'
+        })
+    </script>
 
-    pre {
-      max-height: 300px;
-      overflow-y: auto;
-    }
+    <!-- Poppins font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <!-- Tailwind CSS (CDN for development; see note for production) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Note: For production, install Tailwind via npm and bundle (https://tailwindcss.com/docs/installation) -->
+    <!-- Vue.js for navigation -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    .nested-indent {
-      margin-left: 1rem;
-    }
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-Y8617TLMYK", {
+            anonymize_ip: true
+        });
+    </script>
+    <!-- Microsoft Clarity -->
+    <script>
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "pmp4efispy");
+    </script>
+    <!-- Piwik Pro -->
+    <script type="text/javascript">
+        (function (window, document, dataLayerName, id) {
+            window[dataLayerName] = window[dataLayerName] || [], window[dataLayerName].push({
+                start: (new Date).getTime(),
+                event: "stg.start"
+            });
+            var scripts = document.getElementsByTagName('script')[0],
+                tags = document.createElement('script');
+            var qP = [];
+            dataLayerName !== "dataLayer" && qP.push("data_layer_name=" + dataLayerName);
+            var qPString = qP.length > 0 ? ("?" + qP.join("&")) : "";
+            tags.async = !0;
+            tags.src = "https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js" + qPString;
+            scripts.parentNode.insertBefore(tags, scripts);
+            ! function (a, n, i) {
+                a[n] = a[n] || {};
+                for (var c = 0; c < i.length; c++) ! function (i) {
+                    a[n][i] = a[n][i] || {}, a[n][i].api = a[n][i].api || function () {
+                        var a = [].slice.call(arguments, 0);
+                        "string" == typeof a[0] && window[dataLayerName].push({
+                            event: n + "." + i + ":" + a[0],
+                            parameters: [].slice.call(arguments, 1)
+                        })
+                    }
+                }(i[c])
+            }(window, "ppms", ["tm", "cm"]);
+        })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
+    </script>
+    <!-- Inline CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
 
-    .error-message {
-      background: #fee2e2;
-      padding: 1rem;
-      border-radius: 0.5rem;
-    }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
 
-    .success-message {
-      background: #d1fae5;
-      padding: 1rem;
-      border-radius: 0.5rem;
-    }
+        section {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
 
-    /* Responsive table wrapper */
-    .table-wrapper {
-      width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
-      position: relative;
-    }
+        textarea {
+            font-family: 'Courier New', Courier, monospace;
+            resize: vertical;
+        }
 
-    /* Table styling */
-    #payloadTable {
-      min-width: 100%;
-      table-layout: auto;
-      border-collapse: collapse;
-    }
+        pre {
+            max-height: 300px;
+            overflow-y: auto;
+        }
 
-    #payloadTable th,
-    #payloadTable td {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      min-width: 100px;
-      max-width: 300px;
-      padding: 0.75rem;
-      border: 1px solid #d1d5db;
-    }
+        .nested-indent {
+            margin-left: 1rem;
+        }
 
-    #payloadTable th:first-child,
-    #payloadTable td:first-child {
-      /* Index column */
-      min-width: 60px;
-      max-width: 100px;
-      position: sticky;
-      left: 0;
-      background: #f3f4f6;
-      /* Match thead bg for sticky index */
-      z-index: 10;
-    }
+        .error-message {
+            background: #fee2e2;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
 
-    #payloadTable th {
-      background: #f3f4f6;
-      font-weight: 600;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
+        .success-message {
+            background: #d1fae5;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
 
-    /* Nested content */
-    #payloadTable pre {
-      white-space: pre-wrap;
-      max-height: 200px;
-    }
+        /* Responsive table wrapper */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            position: relative;
+        }
 
-    /* Scroll buttons */
-    .scroll-buttons {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      justify-content: flex-end;
-    }
+        /* Table styling */
+        #payloadTable {
+            min-width: 100%;
+            table-layout: auto;
+            border-collapse: collapse;
+        }
 
-    /* Mobile adjustments */
-    @media (max-width: 640px) {
+        #payloadTable th,
+        #payloadTable td {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e5e7eb;
+            background-color: #fff;
+        }
 
-      #payloadTable th,
-      #payloadTable td {
-        font-size: 0.75rem;
-        padding: 0.5rem;
-        max-width: 150px;
-      }
+        #payloadTable th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
 
-      #payloadTable th:first-child,
-      #payloadTable td:first-child {
-        /* Index column */
-        max-width: 80px;
-      }
+        #payloadTable tr:nth-child(even) td {
+            background-color: #f9fafb;
+        }
 
-      .scroll-buttons button {
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
-      }
-    }
-  </style>
+        #payloadTable th:first-child,
+        #payloadTable td:first-child {
+            min-width: 60px;
+            max-width: 100px;
+            position: sticky;
+            left: 0;
+            background: #f3f4f6;
+            z-index: 10;
+        }
+
+        #payloadTable th {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        #payloadTable pre {
+            white-space: pre-wrap;
+            max-height: 200px;
+        }
+
+        .scroll-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            justify-content: flex-end;
+        }
+
+        h1,
+        h2 {
+            color: #111827;
+            font-weight: 700;
+        }
+
+        button {
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            filter: brightness(0.95);
+        }
+
+        @media (max-width: 640px) {
+
+            #payloadTable th,
+            #payloadTable td {
+                font-size: 0.75rem;
+                padding: 0.5rem;
+                max-width: 150px;
+            }
+
+            #payloadTable th:first-child,
+            #payloadTable td:first-child {
+                max-width: 80px;
+            }
+
+            .scroll-buttons button {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            section {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 
-<body class="font-sans bg-gray-100 text-gray-800">
-  <!-- Navigation bar -->
-  <div id="nav-app">
-    <header class="bg-white shadow sticky top-0 z-50">
-      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between text-sm font-medium text-gray-800">
-        <div>Scott Gresack</div>
-        <div class="space-x-2 sm:space-x-4">
-          <button @click="navigate('about')" :class="{ 'border-b-2 border-blue-500 font-semibold': view === 'about' }"
-            class="hover:text-blue-500">About</button>
-          <button @click="navigate('contact')"
-            :class="{ 'border-b-2 border-blue-500 font-semibold': view === 'contact' }"
-            class="hover:text-blue-500">Contact</button>
-          <button @click="navigate('tools')" :class="{ 'border-b-2 border-blue-500 font-semibold': view === 'tools' }"
-            class="hover:text-blue-500">Tools</button>
-          <button @click="navigate('diagrams')"
-            :class="{ 'border-b-2 border-blue-500 font-semibold': view === 'diagrams' }"
-            class="hover:text-blue-500">Diagrams</button>
-          <a href="https://scott-gresack.github.io/portfolio/tool2.html" class="hover:text-blue-500">Another Tool</a>
-        </div>
-      </nav>
-    </header>
-  </div>
+<body>
+    <!-- Navigation bar -->
+    <div id="nav-app">
+        <header class="bg-white shadow sticky top-0 z-50">
+            <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between text-sm font-medium text-gray-800">
+                <div>Scott Gresack</div>
+                <div class="space-x-2 sm:space-x-4">
+                    <a href="#about" class="hover:text-blue-500">About</a>
+                    <a href="#contact" class="hover:text-blue-500">Contact</a>
+                    <a href="#tools" class="hover:text-blue-500">Tools</a>
+                    <a href="#diagrams" class="hover:text-blue-500">Diagrams</a>
+                    <a href="https://scott-gresack.github.io/portfolio/tool2.html" class="hover:text-blue-500">Another Tool</a>
+                </div>
+            </nav>
+        </header>
+    </div>
 
-  <!-- Main content -->
-  <main class="mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full max-w-7xl">
-    <section class="bg-white rounded-lg shadow-md p-4 sm:p-6">
-      <h1 class="text-xl sm:text-2xl font-semibold mb-4">Alloy Flattened Payload Analyzer</h1>
-      <!-- Business Value -->
-      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
-        <h2 class="text-lg font-medium mb-3">Business Value</h2>
-        <p class="mb-2">The Alloy Flattened Payload Analyzer enhances Adobe Alloy implementations by providing a
-          user-friendly interface to inspect, filter, and export flattened event payloads. It streamlines Martech
-          workflows by:</p>
-        <ul class="list-disc pl-5">
-          <li><strong>Simplifying Debugging</strong>: Quickly identify issues in flattened data layers with a dynamic
-            table view.</li>
-          <li><strong>Ensuring Data Accuracy</strong>: Validate flattened XDM fields for compliance with comprehensive
-            column coverage.</li>
-          <li><strong>Facilitating Collaboration</strong>: Export flattened payloads as JSON or CSV to share with teams,
-            improving communication.</li>
-          <li><strong>Real-Time Analysis</strong>: Automatically capture flattened payloads from sessionStorage for
-            immediate inspection during AEP testing.</li>
-        </ul>
-      </div>
-      <!-- Instructions -->
-      <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
-        <h2 class="text-lg font-medium mb-3">Instructions</h2>
-        <h3 class="text-md font-medium mb-2">Setup Alloy Flattening Script</h3>
-        <p class="mb-2">This tool analyzes flattened Adobe Alloy event payloads. To capture these payloads, run the
-          provided script on a website using Adobe Alloy (Web SDK).</p>
-        <ol class="pl-5 list-decimal mb-4">
-          <li>Copy the flattening script below:
-            <div class="relative mt-2 mb-2">
-              <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto"><code id="alloyScript">(function () {
+    <!-- Main content -->
+    <main class="mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full max-w-7xl">
+        <section class="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <h1 class="text-xl sm:text-2xl font-semibold mb-4">Alloy Flattened Payload Analyzer</h1>
+            <!-- Business Value -->
+            <div class="bg-blue-100 border-l-4 border-blue-600 p-4 mb-6 rounded shadow-sm">
+                <h2 class="text-lg font-semibold mb-3 text-blue-800">🚀 Business Value</h2>
+                <p class="mb-2">The Alloy Flattened Payload Analyzer enhances Adobe Alloy implementations by providing a
+                    user-friendly interface to inspect, filter, and export flattened event payloads. It streamlines Martech
+                    workflows by:</p>
+                <ul class="list-disc pl-5">
+                    <li><strong>Simplifying Debugging</strong>: Quickly identify issues in flattened data layers with a dynamic
+                        table view.</li>
+                    <li><strong>Ensuring Data Accuracy</strong>: Validate flattened XDM fields for compliance with comprehensive
+                        column coverage.</li>
+                    <li><strong>Facilitating Collaboration</strong>: Export flattened payloads as JSON or CSV to share with teams,
+                        improving communication.</li>
+                    <li><strong>Real-Time Analysis</strong>: Automatically capture flattened payloads from sessionStorage for
+                        immediate inspection during AEP testing.</li>
+                </ul>
+            </div>
+            <!-- Instructions -->
+            <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
+                <h2 class="text-lg font-medium mb-3">Instructions</h2>
+                <h3 class="text-md font-medium mb-2">Setup Alloy Flattening Script</h3>
+                <p class="mb-2">This tool analyzes flattened Adobe Alloy event payloads. To capture these payloads, run the
+                    provided script on a website using Adobe Alloy (Web SDK).</p>
+                <ol class="pl-5 list-decimal mb-4">
+                    <li>Copy the flattening script below:
+                        <div class="relative mt-2 mb-2">
+                            <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto"><code id="alloyScript">(function () {
   const STORAGE_KEY = 'flattenedAlloyEvents';
 
   function flatten(obj, prefix = '', res = {}) {
@@ -365,703 +476,821 @@
   }
 })();
 </code></pre>
-              <button onclick="copyScript()"
-                class="absolute top-2 right-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
-                aria-label="Copy script to clipboard">Copy</button>
+                            <button onclick="copyScript()" class="absolute top-2 right-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600" aria-label="Copy script to clipboard">Copy</button>
+                        </div>
+                    </li>
+                    <li>Open your browser’s developer tools (F12 or right-click > Inspect) and navigate to the Console tab on a
+                        website using Adobe Alloy.</li>
+                    <li>Paste the script into the console and press Enter. You should see a message:
+                        <code>[AlloyMonitor] Payload flattener active</code>.</li>
+                    <li>Interact with the website (e.g., click links or load pages) to generate Alloy events. Check the console
+                        for messages like <code>[AlloyMonitor] Flattened Event Detected</code> and a table of captured events after
+                        5 seconds.</li>
+                    <li>To confirm payloads are stored, go to Application > Session Storage > [website domain] >
+                        <code>flattenedAlloyEvents</code> in developer tools.</li>
+                </ol>
+                <h3 class="text-md font-medium mb-2">Analyze Flattened Payloads</h3>
+                <p class="mb-2">Once the script is running, use this tool to view and analyze the captured payloads.</p>
+                <ol class="pl-5 list-decimal mb-4">
+                    <li>Load captured payloads automatically from <code>sessionStorage</code> by clicking <strong>Refresh
+                            Payloads</strong>. Alternatively, paste a JSON array of flattened payloads into the textarea.</li>
+                    <li>Click <strong>Parse Payloads</strong> to display the data in a dynamic table, with columns generated based
+                        on all unique fields in the JSON.</li>
+                    <li>Use the filter input to search for specific fields (e.g., <code>xdm.eventType</code>) or values (e.g.,
+                        <code>web.webPageDetails.pageViews</code>).</li>
+                    <li>Click <strong>Download as JSON</strong> to save the analyzed payloads or <strong>Copy as CSV</strong> to
+                        copy the table for pasting into Excel or Google Sheets.</li>
+                    <li>Clear <code>sessionStorage</code> in developer tools to reset captured data if needed.</li>
+                </ol>
+                <h3 class="text-md font-medium mb-2">Why This Tool Differs from Adobe Assurance</h3>
+                <p class="mb-2">Unlike Adobe Assurance, which is a proprietary debugging tool within Adobe Experience Platform
+                    (AEP), this Alloy Flattened Payload Analyzer offers unique advantages:</p>
+                <ul class="list-disc pl-5 mb-4">
+                    <li><strong>Standalone Accessibility</strong>: No AEP account or setup is required, making it ideal for
+                        developers, analysts, or teams without access to Adobe’s infrastructure.</li>
+                    <li><strong>Flattened Payload Focus</strong>: Automatically flattens nested XDM and data objects into a
+                        single-level structure, simplifying analysis of complex payloads compared to Assurance’s raw event view.
+                    </li>
+                    <li><strong>Dynamic Table Generation</strong>: Displays all unique fields as columns, adapting to any payload
+                        structure, unlike Assurance’s fixed or less flexible event inspector.</li>
+                    <li><strong>Offline and Collaborative Use</strong>: Export payloads as JSON or CSV for sharing or analyzing
+                        outside AEP, enabling collaboration with non-AEP users or offline debugging.</li>
+                    <li><strong>Lightweight and Open</strong>: Runs entirely in the browser with no server dependencies, offering
+                        a quick, open-source alternative for rapid prototyping or testing.</li>
+                </ul>
+                <p>Use this tool when you need a fast, accessible way to debug Alloy payloads, validate XDM schemas, or share
+                    data with stakeholders outside Adobe’s ecosystem.</p>
             </div>
-          </li>
-          <li>Open your browser’s developer tools (F12 or right-click > Inspect) and navigate to the Console tab on a
-            website using Adobe Alloy.</li>
-          <li>Paste the script into the console and press Enter. You should see a message:
-            <code>[AlloyMonitor] Payload flattener active</code>.</li>
-          <li>Interact with the website (e.g., click links or load pages) to generate Alloy events. Check the console
-            for messages like <code>[AlloyMonitor] Flattened Event Detected</code> and a table of captured events after
-            5 seconds.</li>
-          <li>To confirm payloads are stored, go to Application > Session Storage > [website domain] >
-            <code>flattenedAlloyEvents</code> in developer tools.</li>
-        </ol>
-        <h3 class="text-md font-medium mb-2">Analyze Flattened Payloads</h3>
-        <p class="mb-2">Once the script is running, use this tool to view and analyze the captured payloads.</p>
-        <ol class="pl-5 list-decimal mb-4">
-          <li>Load captured payloads automatically from <code>sessionStorage</code> by clicking <strong>Refresh
-              Payloads</strong>. Alternatively, paste a JSON array of flattened payloads into the textarea.</li>
-          <li>Click <strong>Parse Payloads</strong> to display the data in a dynamic table, with columns generated based
-            on all unique fields in the JSON.</li>
-          <li>Use the filter input to search for specific fields (e.g., <code>xdm.eventType</code>) or values (e.g.,
-            <code>web.webPageDetails.pageViews</code>).</li>
-          <li>Click <strong>Download as JSON</strong> to save the analyzed payloads or <strong>Copy as CSV</strong> to
-            copy the table for pasting into Excel or Google Sheets.</li>
-          <li>Clear <code>sessionStorage</code> in developer tools to reset captured data if needed.</li>
-        </ol>
-        <h3 class="text-md font-medium mb-2">Why This Tool Differs from Adobe Assurance</h3>
-        <p class="mb-2">Unlike Adobe Assurance, which is a proprietary debugging tool within Adobe Experience Platform
-          (AEP), this Alloy Flattened Payload Analyzer offers unique advantages:</p>
-        <ul class="list-disc pl-5 mb-4">
-          <li><strong>Standalone Accessibility</strong>: No AEP account or setup is required, making it ideal for
-            developers, analysts, or teams without access to Adobe’s infrastructure.</li>
-          <li><strong>Flattened Payload Focus</strong>: Automatically flattens nested XDM and data objects into a
-            single-level structure, simplifying analysis of complex payloads compared to Assurance’s raw event view.
-          </li>
-          <li><strong>Dynamic Table Generation</strong>: Displays all unique fields as columns, adapting to any payload
-            structure, unlike Assurance’s fixed or less flexible event inspector.</li>
-          <li><strong>Offline and Collaborative Use</strong>: Export payloads as JSON or CSV for sharing or analyzing
-            outside AEP, enabling collaboration with non-AEP users or offline debugging.</li>
-          <li><strong>Lightweight and Open</strong>: Runs entirely in the browser with no server dependencies, offering
-            a quick, open-source alternative for rapid prototyping or testing.</li>
-        </ul>
-        <p>Use this tool when you need a fast, accessible way to debug Alloy payloads, validate XDM schemas, or share
-          data with stakeholders outside Adobe’s ecosystem.</p>
-      </div>
-      <!-- Feedback messages -->
-      <div id="errorMessage" class="hidden error-message mb-4"></div>
-      <div id="successMessage" class="hidden success-message mb-4"></div>
-      <div id="loadingIndicator" class="hidden text-blue-600 font-semibold mb-4">Processing...</div>
-      <!-- Toggle for showing rows with only null/empty values -->
-      <label class="flex items-center gap-2 mb-4">
-        <input type="checkbox" id="toggleNulls" checked />
-        <span>Show rows with only null/empty values</span>
-      </label>
-      <!-- JSON input -->
-      <textarea id="payloadInput" class="w-full min-h-[150px] border border-gray-300 rounded p-3 mb-4"
-        placeholder="Paste flattened Alloy event payloads JSON array here or auto-load from sessionStorage..."
-        aria-label="JSON payload input"></textarea>
-      <!-- Action buttons -->
-      <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4 space-y-2 sm:space-y-0">
-        <button onclick="parsePayloads()"
-          class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto"
-          aria-label="Parse JSON payloads">Parse Payloads</button>
-        <button onclick="refreshPayloads()"
-          class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full sm:w-auto"
-          aria-label="Refresh payloads from sessionStorage">Refresh Payloads</button>
-        <button onclick="downloadJSON()"
-          class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full sm:w-auto hidden" id="downloadBtn"
-          aria-label="Download JSON file">Download as JSON</button>
-        <button onclick="copyAsCSV()"
-          class="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 w-full sm:w-auto hidden" id="copyCsvBtn"
-          aria-label="Copy table as CSV">Copy as CSV</button>
-      </div>
-      <!-- Filter input -->
-      <input type="text" id="filterInput" class="p-2 w-full sm:max-w-xs border border-gray-300 rounded mb-4"
-        placeholder="Filter by field or value..." aria-label="Filter table data" />
-      <!-- Scroll buttons -->
-      <div class="scroll-buttons">
-        <button onclick="scrollTableLeft()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
-          aria-label="Scroll table left">Scroll Left</button>
-        <button onclick="scrollTableRight()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
-          aria-label="Scroll table right">Scroll Right</button>
-      </div>
-      <!-- Payload table -->
-      <div class="table-wrapper">
-        <table id="payloadTable" class="w-full border-collapse">
-          <thead>
-            <tr class="bg-gray-100"></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
-  </main>
+            <!-- Feedback messages -->
+            <div id="errorMessage" class="hidden error-message mb-4"></div>
+            <div id="successMessage" class="hidden success-message mb-4"></div>
+            <div id="loadingIndicator" class="hidden text-blue-600 font-semibold mb-4">Processing...</div>
+            <!-- Toggle for showing rows with only null/empty values -->
+            <label class="flex items-center gap-2 mb-4">
+                <input type="checkbox" id="toggleNulls" checked />
+                <span>Show rows with only null/empty values</span>
+            </label>
+            <!-- JSON input -->
+            <textarea id="payloadInput" class="w-full min-h-[150px] border border-gray-300 rounded p-3 mb-4" placeholder="Paste flattened Alloy event payloads JSON array here or auto-load from sessionStorage..." aria-label="JSON payload input"></textarea>
+            <!-- Action buttons -->
+            <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4 space-y-2 sm:space-y-0">
+                <button onclick="parsePayloads()" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto" aria-label="Parse JSON payloads">Parse Payloads</button>
+                <button onclick="refreshPayloads()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full sm:w-auto" aria-label="Refresh payloads from sessionStorage">Refresh Payloads</button>
+                <button onclick="analyzeRows()" class="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 w-full sm:w-auto" aria-label="Analyze parsed payload rows">Analyze Rows</button>
+                <button onclick="downloadJSON()" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full sm:w-auto hidden" id="downloadBtn" aria-label="Download JSON file">Download as JSON</button>
+                <button onclick="copyAsCSV()" class="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 w-full sm:w-auto hidden" id="copyCsvBtn" aria-label="Copy table as CSV">Copy as CSV</button>
+            </div>
+            <!-- Filter input -->
+            <input type="text" id="filterInput" class="p-2 w-full sm:max-w-xs border border-gray-300 rounded mb-4" placeholder="Filter by field or value..." aria-label="Filter table data" />
+            <!-- Scroll buttons -->
+            <div class="scroll-buttons">
+                <button onclick="scrollTableLeft()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" aria-label="Scroll table left">Scroll Left</button>
+                <button onclick="scrollTableRight()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" aria-label="Scroll table right">Scroll Right</button>
+            </div>
+            <!-- Payload table -->
+            <div class="table-wrapper">
+                <table id="payloadTable" class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100"></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div id="dataSummary" class="mt-6 p-4 bg-green-50 border-l-4 border-green-400 text-green-800 rounded hidden">
+                    <strong>📊 Summary:</strong> Payload analysis complete. Field counts and type breakdown logged to console.
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <!-- JavaScript logic -->
-  <script>
-    // Controls whether rows with only null/empty values are shown
-    let showNullValues = true; // Controls whether rows with only null/empty values are shown
+    <!-- JavaScript logic -->
+    <script>
+        // Controls whether rows with only null/empty values are shown
+        let showNullValues = true; // Controls whether rows with only null/empty values are shown
 
-    // Initialize Vue.js for navigation
-    const { createApp } = Vue;
-    createApp({
-      data() {
-        return { view: 'tools' };
-      },
-      methods: {
-        navigate(section) {
-          this.view = section;
-          trackNavigation(section);
-          window.clarity('event', `navigation_${section}`);
-          window.dataLayer.push({ event: 'ppms.cm:navigation', section });
-          posthog.capture('navigation_click', { section });
-        }
-      }
-    }).mount('#nav-app');
 
-    // --- Alloy Flattened Payload Analyzer GA4 Enhanced Tracking ---
+        // --- Alloy Flattened Payload Analyzer GA4 Enhanced Tracking ---
 
-    // Tool loaded/session started (fires once at load)
-    gtag('event', 'tool_loaded', {
-      tool_name: 'Alloy Flattened Payload Analyzer',
-      tool_version: '1.0.1',
-      page_location: window.location.href
-    });
-    posthog.capture('tool_loaded', {
-      tool_name: 'Alloy Flattened Payload Analyzer',
-      tool_version: '1.0.1'
-    });
-
-    // Heartbeat for active engagement (fires every 30 seconds)
-    setInterval(() => {
-      gtag('event', 'tool_heartbeat', {
-        tool_name: 'Alloy Flattened Payload Analyzer',
-        timestamp: new Date().toISOString()
-      });
-      posthog.capture('tool_heartbeat', {
-        tool_name: 'Alloy Flattened Payload Analyzer'
-      });
-    }, 30000);
-
-    // Tracking functions
-    function trackFlattenedPayloadsParsed(payloads, columnCount) {
-      gtag('event', 'flattened_payloads_parsed', {
-        payload_count: payloads.length,
-        column_count: columnCount,
-        event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(','),
-        tool_name: 'Alloy Flattened Payload Analyzer'
-      });
-      window.clarity('event', 'flattened_payloads_parsed');
-      window.dataLayer.push({
-        event: 'ppms.cm:flattened_payloads_parsed',
-        payload_count: payloads.length,
-        column_count: columnCount
-      });
-      posthog.capture('flattened_payloads_parsed', {
-        payload_count: payloads.length,
-        column_count: columnCount,
-        event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(',')
-      });
-    }
-
-    function trackJsonDownload(payloads) {
-      gtag('event', 'json_download', {
-        payload_count: payloads.length,
-        event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(','),
-        tool_name: 'Alloy Flattened Payload Analyzer'
-      });
-      window.clarity('event', 'json_download');
-      window.dataLayer.push({
-        event: 'ppms.cm:json_download',
-        payload_count: payloads.length
-      });
-      posthog.capture('json_download', {
-        payload_count: payloads.length
-      });
-    }
-
-    function trackScriptCopied() {
-      gtag('event', 'script_copied', {
-        tool_name: 'Alloy Flattened Payload Analyzer'
-      });
-      window.clarity('event', 'copy_script_success');
-      window.dataLayer.push({ event: 'ppms.cm:copy_script', status: 'success' });
-      posthog.capture('script_copied', {
-        tool_name: 'Alloy Flattened Payload Analyzer'
-      });
-    }
-
-    function trackFilterUsed(filter) {
-      gtag('event', 'filter_used', {
-        filter_value: filter,
-        tool_name: 'Alloy Flattened Payload Analyzer'
-      });
-      window.clarity('event', 'filter_table');
-      window.dataLayer.push({ event: 'ppms.cm:filter_table', filter_value: filter });
-      posthog.capture('filter_used', { filter_value: filter });
-    }
-
-    function trackNavigation(section) {
-      gtag('event', 'navigation_click', {
-        section,
-        tool_name: 'Alloy Flattened Payload Analyzer'
-      });
-      posthog.capture('navigation_click', { section });
-    }
-
-    function trackScroll(direction) {
-      gtag('event', 'table_scroll', {
-        direction,
-        tool_name: 'Alloy Flattened Payload Analyzer'
-      });
-      window.clarity('event', `table_scroll_${direction}`);
-      window.dataLayer.push({ event: 'ppms.cm:table_scroll', direction });
-      posthog.capture('table_scroll', { direction });
-    }
-
-    function trackCopyCSV(rowCount, columnCount) {
-      gtag('event', 'copy_csv', {
-        row_count: rowCount,
-        column_count: columnCount,
-        tool_name: 'Alloy Flattened Payload Analyzer'
-      });
-      window.clarity('event', 'copy_csv_success');
-      window.dataLayer.push({
-        event: 'ppms.cm:copy_csv',
-        row_count: rowCount,
-        column_count: columnCount,
-        status: 'success'
-      });
-      posthog.capture('copy_csv', {
-        row_count: rowCount,
-        column_count: columnCount
-      });
-    }
-
-    function trackToolError(e) {
-      gtag('event', 'tool_error', {
-        error_type: e.name || 'Error',
-        error_message: e.message || 'Unknown',
-        tool_name: 'Alloy Flattened Payload Analyzer'
-      });
-      window.clarity('event', 'tool_error');
-      window.dataLayer.push({
-        event: 'ppms.cm:tool_error',
-        error_type: e.name || 'Error',
-        error_message: e.message || 'Unknown'
-      });
-      posthog.capture('tool_error', {
-        error_type: e.name || 'Error',
-        error_message: e.message || 'Unknown'
-      });
-    }
-
-    // Debounce utility
-    function debounce(fn, wait) {
-      let timeout;
-      return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => fn.apply(this, args), wait);
-      };
-    }
-
-    // Parse and render flattened payloads
-    function parsePayloads() {
-      const errorMessage = document.getElementById('errorMessage');
-      const successMessage = document.getElementById('successMessage');
-      const loadingIndicator = document.getElementById('loadingIndicator');
-      const payloadInput = document.getElementById('payloadInput');
-      errorMessage.classList.add('hidden');
-      successMessage.classList.add('hidden');
-      loadingIndicator.classList.remove('hidden');
-
-      const input = payloadInput.value.trim();
-      if (!input) {
-        errorMessage.textContent = 'Error: Input is empty. Please paste a valid JSON array of flattened events.';
-        errorMessage.classList.remove('hidden');
-        gtag('event', 'parse_flattened_payloads', { status: 'failure', error: 'empty_input' });
-        window.clarity('event', 'parse_flattened_payloads_failure');
-        window.dataLayer.push({ event: 'ppms.cm:parse_flattened_payloads', status: 'failure', error: 'empty_input' });
-        trackToolError({ name: 'Error', message: 'Empty input' });
-        posthog.capture('parse_flattened_payloads_failure', { error: 'empty_input' });
-        loadingIndicator.classList.add('hidden');
-        return null;
-      }
-
-      try {
-        let payloads = JSON.parse(input);
-        // Convert single object to array if valid
-        if (!Array.isArray(payloads) && typeof payloads === 'object' && payloads !== null) {
-          payloads = [payloads];
-        }
-        if (!Array.isArray(payloads)) {
-          throw new Error('Input must be a JSON array or a single object convertible to an array of flattened events');
-        }
-        if (payloads.length === 0) {
-          throw new Error('Input array is empty. Please provide at least one flattened event.');
-        }
-        // Collect unique keys for columns
-        const columns = ['index'];
-        const uniqueKeys = new Set();
-        payloads.forEach(event => {
-          Object.keys(event).forEach(key => uniqueKeys.add(key));
+        // Tool loaded/session started (fires once at load)
+        gtag('event', 'tool_loaded', {
+            tool_name: 'Alloy Flattened Payload Analyzer',
+            tool_version: '1.0.1',
+            page_location: window.location.href
         });
-        columns.push(...Array.from(uniqueKeys).sort()); // Sort for consistent column order
-        // Save to localStorage for persistence
-        localStorage.setItem('flattenedAlloyEvents', JSON.stringify(payloads));
-        document.getElementById('downloadBtn').classList.remove('hidden');
-        document.getElementById('copyCsvBtn').classList.remove('hidden');
-        renderTable(payloads, columns);
-        successMessage.textContent = `Successfully parsed ${payloads.length} flattened events with ${columns.length - 1} unique fields.`;
-        successMessage.classList.remove('hidden');
-        successMessage.textContent = `Successfully parsed ${payloads.length} flattened events with ${columns.length - 1} unique fields.`;
-        successMessage.classList.remove('hidden');
+        posthog.capture('tool_loaded', {
+            tool_name: 'Alloy Flattened Payload Analyzer',
+            tool_version: '1.0.1'
+        });
 
-        // --- Enhanced input_parsed tracking ---
-        const inputSample = input.substring(0, 200);
-        const inputLength = input.length;
-        let parsedKeys = [];
-        let itemCount = 0;
-        let keyFrequency = {};
-
-        try {
-          const inputObj = JSON.parse(input);
-          const inputArray = Array.isArray(inputObj) ? inputObj : [inputObj];
-          itemCount = inputArray.length;
-
-          inputArray.forEach(item => {
-            Object.keys(item || {}).forEach(key => {
-              parsedKeys.push(key);
-              keyFrequency[key] = (keyFrequency[key] || 0) + 1;
+        // Heartbeat for active engagement (fires every 30 seconds)
+        setInterval(() => {
+            gtag('event', 'tool_heartbeat', {
+                tool_name: 'Alloy Flattened Payload Analyzer',
+                timestamp: new Date().toISOString()
             });
-          });
-          parsedKeys = Array.from(new Set(parsedKeys)).sort();
-        } catch (e) {
-          // fail silently for now
+            posthog.capture('tool_heartbeat', {
+                tool_name: 'Alloy Flattened Payload Analyzer'
+            });
+        }, 30000);
+
+        // Tracking functions
+        function trackFlattenedPayloadsParsed(payloads, columnCount) {
+            gtag('event', 'flattened_payloads_parsed', {
+                payload_count: payloads.length,
+                column_count: columnCount,
+                event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(','),
+                tool_name: 'Alloy Flattened Payload Analyzer'
+            });
+            window.clarity('event', 'flattened_payloads_parsed');
+            window.dataLayer.push({
+                event: 'ppms.cm:flattened_payloads_parsed',
+                payload_count: payloads.length,
+                column_count: columnCount
+            });
+            posthog.capture('flattened_payloads_parsed', {
+                payload_count: payloads.length,
+                column_count: columnCount,
+                event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(',')
+            });
         }
 
-        // GA4
-        gtag('event', 'input_parsed', {
-          event_category: 'interaction',
-          event_label: 'Payload Input Parsed',
-          tool_name: 'Alloy Flattened Payload Analyzer',
-          input_length: inputLength,
-          input_sample: inputSample,
-          parsed_keys: parsedKeys.join(','),
-          item_count: itemCount
-        });
-
-        // Microsoft Clarity
-        window.clarity('event', 'input_parsed', {
-          input_length: inputLength,
-          input_sample: inputSample,
-          parsed_keys: parsedKeys,
-          item_count: itemCount
-        });
-       // PostHog
-      posthog.capture('input_parsed', {
-        tool_name: 'Alloy Flattened Payload Analyzer',
-        input_length: inputLength,
-        input_sample: inputSample,
-        parsed_keys: parsedKeys,
-        item_count: itemCount,
-        key_frequency: keyFrequency
-      });
-
-        // Piwik PRO
-        window.dataLayer.push({
-          event: 'ppms.cm:input_parsed',
-          input_length: inputLength,
-          input_sample: inputSample,
-          parsed_keys: parsedKeys,
-          item_count: itemCount,
-          key_frequency: keyFrequency
-        });
-
-        //
-
-        trackFlattenedPayloadsParsed(payloads, columns.length);
-        return payloads;
-      } catch (e) {
-        console.error('Parse error details:', e);
-        errorMessage.textContent = e.name === 'SyntaxError'
-          ? 'Invalid JSON syntax. Check for missing brackets, commas, or invalid characters and try again.'
-          : `Error: ${e.message}. Ensure the input is a valid JSON array or object of flattened events.`;
-        errorMessage.classList.remove('hidden');
-        trackToolError(e);
-        gtag('event', 'parse_flattened_payloads', { status: 'failure', error: e.name === 'SyntaxError' ? 'syntax_error' : e.message });
-        window.clarity('event', 'parse_flattened_payloads_failure');
-        window.dataLayer.push({
-          event: 'ppms.cm:parse_flattened_payloads',
-          status: 'failure',
-          error: e.name === 'SyntaxError' ? 'syntax_error' : e.message
-        });
-        posthog.capture('parse_flattened_payloads_failure', { error: e.name === 'SyntaxError' ? 'syntax_error' : e.message });
-        payloadInput.value = input; // Retain input on error
-        return null;
-      } finally {
-        loadingIndicator.classList.add('hidden');
-      }
-    }
-
-    // Refresh payloads from sessionStorage
-    function refreshPayloads() {
-      const key = 'flattenedAlloyEvents';
-      const stored = sessionStorage.getItem(key);
-      const payloadInput = document.getElementById('payloadInput');
-      const errorMessage = document.getElementById('errorMessage');
-      const successMessage = document.getElementById('successMessage');
-      const loadingIndicator = document.getElementById('loadingIndicator');
-      errorMessage.classList.add('hidden');
-      successMessage.classList.add('hidden');
-      loadingIndicator.classList.remove('hidden');
-
-      if (!stored) {
-        errorMessage.textContent = 'No flattened payloads found in sessionStorage. Ensure the Alloy flattening script is running.';
-        errorMessage.classList.remove('hidden');
-        gtag('event', 'refresh_flattened_payloads', { status: 'failure', error: 'no_payloads' });
-        window.clarity('event', 'refresh_flattened_payloads_failure');
-        window.dataLayer.push({ event: 'ppms.cm:refresh_flattened_payloads', status: 'failure', error: 'no_payloads' });
-        trackToolError({ name: 'Error', message: 'No payloads in sessionStorage' });
-        posthog.capture('refresh_flattened_payloads_failure', { error: 'no_payloads' });
-        loadingIndicator.classList.add('hidden');
-        return;
-      }
-
-      payloadInput.value = stored;
-      parsePayloads();
-      gtag('event', 'refresh_flattened_payloads', { status: 'success' });
-      window.clarity('event', 'refresh_flattened_payloads_success');
-      window.dataLayer.push({ event: 'ppms.cm:refresh_flattened_payloads', status: 'success' });
-      posthog.capture('refresh_flattened_payloads_success');
-      loadingIndicator.classList.add('hidden');
-    }
-
-    // Always show this column
-    const MASTER_COLUMN = "xdm._analytics.event1to100.event32.value";
-
-    // Helper: Levenshtein Distance for typo detection
-    function levenshtein(a, b) {
-      const m = a.length, n = b.length;
-      const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
-      for (let i = 0; i <= m; i++) dp[i][0] = i;
-      for (let j = 0; j <= n; j++) dp[0][j] = j;
-      for (let i = 1; i <= m; i++) {
-        for (let j = 1; j <= n; j++) {
-          dp[i][j] = a[i - 1] === b[j - 1]
-            ? dp[i - 1][j - 1]
-            : Math.min(
-                dp[i - 1][j] + 1,
-                dp[i][j - 1] + 1,
-                dp[i - 1][j - 1] + 1
-              );
-        }
-      }
-      return dp[m][n];
-    }
-
-    // --- MODIFIED renderTable ---
-    function renderTable(events, columns) {
-      const thead = document.querySelector('#payloadTable thead tr');
-      const tbody = document.querySelector('#payloadTable tbody');
-      thead.innerHTML = '';
-      tbody.innerHTML = '';
-
-      // Ensure the master column is included in order
-      const dedupedColumns = ['index'];
-      if (!columns.includes(MASTER_COLUMN)) {
-        dedupedColumns.push(MASTER_COLUMN);
-      }
-      columns.forEach(col => {
-        if (!dedupedColumns.includes(col)) dedupedColumns.push(col);
-      });
-
-      // Table headers
-      dedupedColumns.forEach(col => {
-        const th = document.createElement('th');
-        th.className = 'border border-gray-300 p-3 text-left font-semibold';
-        th.textContent = col;
-        thead.appendChild(th);
-      });
-
-      // Table rows
-      events.forEach((event, index) => {
-        // If showNullValues is false, skip rows where all non-index columns are null/empty/undefined
-        if (!showNullValues) {
-          const hasNonNull = dedupedColumns.slice(1).some(col => {
-            const val = event[col];
-            return val !== null && val !== undefined && String(val).trim() !== '';
-          });
-          if (!hasNonNull) return;
+        function trackJsonDownload(payloads) {
+            gtag('event', 'json_download', {
+                payload_count: payloads.length,
+                event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(','),
+                tool_name: 'Alloy Flattened Payload Analyzer'
+            });
+            window.clarity('event', 'json_download');
+            window.dataLayer.push({
+                event: 'ppms.cm:json_download',
+                payload_count: payloads.length
+            });
+            posthog.capture('json_download', {
+                payload_count: payloads.length
+            });
         }
 
-        // --- Typo detection ---
-        let hasTypo = false;
-        const typoThreshold = 4; // allow up to 4 edits for typo detection
-        Object.keys(event).forEach(key => {
-          if (key !== MASTER_COLUMN && levenshtein(key, MASTER_COLUMN) > 0 && levenshtein(key, MASTER_COLUMN) <= typoThreshold) {
-            hasTypo = true;
-          }
-        });
-
-        const row = document.createElement('tr');
-        if (hasTypo) {
-          row.style.backgroundColor = '#fee2e2'; // light red for row typo
+        function trackScriptCopied() {
+            gtag('event', 'script_copied', {
+                tool_name: 'Alloy Flattened Payload Analyzer'
+            });
+            window.clarity('event', 'copy_script_success');
+            window.dataLayer.push({
+                event: 'ppms.cm:copy_script',
+                status: 'success'
+            });
+            posthog.capture('script_copied', {
+                tool_name: 'Alloy Flattened Payload Analyzer'
+            });
         }
 
-        dedupedColumns.forEach(col => {
-          const td = document.createElement('td');
-          td.className = 'border border-gray-300 p-3';
+        function trackFilterUsed(filter) {
+            gtag('event', 'filter_used', {
+                filter_value: filter,
+                tool_name: 'Alloy Flattened Payload Analyzer'
+            });
+            window.clarity('event', 'filter_table');
+            window.dataLayer.push({
+                event: 'ppms.cm:filter_table',
+                filter_value: filter
+            });
+            posthog.capture('filter_used', {
+                filter_value: filter
+            });
+        }
 
-          if (col === 'index') {
-            td.textContent = index + 1;
-          } else {
-            // --- Always render master column, highlight if missing/null ---
-            if (col === MASTER_COLUMN) {
-              const value = event[MASTER_COLUMN];
-              td.textContent = value === undefined || value === null || value === '' ? '' : value;
-              if (value === undefined || value === null || value === '') {
-                td.style.backgroundColor = '#fef9c3'; // yellow for missing/null
-              }
-            } else {
-              td.textContent = event[col] !== undefined ? event[col] : '';
+        function trackNavigation(section) {
+            gtag('event', 'navigation_click', {
+                section,
+                tool_name: 'Alloy Flattened Payload Analyzer'
+            });
+            posthog.capture('navigation_click', {
+                section
+            });
+        }
+
+        function trackScroll(direction) {
+            gtag('event', 'table_scroll', {
+                direction,
+                tool_name: 'Alloy Flattened Payload Analyzer'
+            });
+            window.clarity('event', `table_scroll_${direction}`);
+            window.dataLayer.push({
+                event: 'ppms.cm:table_scroll',
+                direction
+            });
+            posthog.capture('table_scroll', {
+                direction
+            });
+        }
+
+        function trackCopyCSV(rowCount, columnCount) {
+            gtag('event', 'copy_csv', {
+                row_count: rowCount,
+                column_count: columnCount,
+                tool_name: 'Alloy Flattened Payload Analyzer'
+            });
+            window.clarity('event', 'copy_csv_success');
+            window.dataLayer.push({
+                event: 'ppms.cm:copy_csv',
+                row_count: rowCount,
+                column_count: columnCount,
+                status: 'success'
+            });
+            posthog.capture('copy_csv', {
+                row_count: rowCount,
+                column_count: columnCount
+            });
+        }
+
+        function trackToolError(e) {
+            gtag('event', 'tool_error', {
+                error_type: e.name || 'Error',
+                error_message: e.message || 'Unknown',
+                tool_name: 'Alloy Flattened Payload Analyzer'
+            });
+            window.clarity('event', 'tool_error');
+            window.dataLayer.push({
+                event: 'ppms.cm:tool_error',
+                error_type: e.name || 'Error',
+                error_message: e.message || 'Unknown'
+            });
+            posthog.capture('tool_error', {
+                error_type: e.name || 'Error',
+                error_message: e.message || 'Unknown'
+            });
+        }
+
+        // Debounce utility
+        function debounce(fn, wait) {
+            let timeout;
+            return function (...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => fn.apply(this, args), wait);
+            };
+        }
+
+        // Parses JSON input into an array of flattened event objects, deduplicates columns,
+        // renders a dynamic table, and tracks analytics metadata.
+        function parsePayloads() {
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const payloadInput = document.getElementById('payloadInput');
+            errorMessage.classList.add('hidden');
+            successMessage.classList.add('hidden');
+            loadingIndicator.classList.remove('hidden');
+
+            const input = payloadInput.value.trim();
+            if (!input) {
+                errorMessage.textContent = 'Error: Input is empty. Please paste a valid JSON array of flattened events.';
+                errorMessage.classList.remove('hidden');
+                gtag('event', 'parse_flattened_payloads', {
+                    status: 'failure',
+                    error: 'empty_input'
+                });
+                window.clarity('event', 'parse_flattened_payloads_failure');
+                window.dataLayer.push({
+                    event: 'ppms.cm:parse_flattened_payloads',
+                    status: 'failure',
+                    error: 'empty_input'
+                });
+                trackToolError({
+                    name: 'Error',
+                    message: 'Empty input'
+                });
+                posthog.capture('parse_flattened_payloads_failure', {
+                    error: 'empty_input'
+                });
+                loadingIndicator.classList.add('hidden');
+                return null;
             }
-          }
-          row.appendChild(td);
-        });
-        tbody.appendChild(row);
-      });
-    }
 
-    // Filter table rows
-    const filterTable = debounce(() => {
-      const filter = document.getElementById('filterInput').value.toLowerCase();
-      const rows = document.querySelectorAll('#payloadTable tbody tr');
-      rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(filter) ? '' : 'none';
-      });
-      trackFilterUsed(filter);
-    }, 300);
+            try {
+                let payloads = JSON.parse(input);
+                // Convert single object to array if valid
+                if (!Array.isArray(payloads) && typeof payloads === 'object' && payloads !== null) {
+                    payloads = [payloads];
+                }
+                if (!Array.isArray(payloads)) {
+                    throw new Error('Input must be a JSON array or a single object convertible to an array of flattened events');
+                }
+                if (payloads.length === 0) {
+                    throw new Error('Input array is empty. Please provide at least one flattened event.');
+                }
+                // Collect unique keys for columns
+                const columns = ['index'];
+                const uniqueKeys = new Set();
+                payloads.forEach(event => {
+                    Object.keys(event).forEach(key => uniqueKeys.add(key));
+                });
+                columns.push(...Array.from(uniqueKeys).sort()); // Sort for consistent column order
+                // Save to localStorage for persistence
+                localStorage.setItem('flattenedAlloyEvents', JSON.stringify(payloads));
+                document.getElementById('downloadBtn').classList.remove('hidden');
+                document.getElementById('copyCsvBtn').classList.remove('hidden');
+                renderTable(payloads, columns);
+                successMessage.textContent = `Successfully parsed ${payloads.length} flattened events with ${columns.length - 1} unique fields.`;
+                successMessage.classList.remove('hidden');
+                successMessage.textContent = `Successfully parsed ${payloads.length} flattened events with ${columns.length - 1} unique fields.`;
+                successMessage.classList.remove('hidden');
 
-    // Download payloads as JSON
-    function downloadJSON() {
-      const input = document.getElementById('payloadInput').value;
-      const payloads = parsePayloads();
-      if (payloads) {
-        const blob = new Blob([JSON.stringify(payloads, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'flattened_alloy_payloads.json';
-        a.click();
-        URL.revokeObjectURL(url);
-        trackJsonDownload(payloads);
-      }
-    }
+                // --- Enhanced input_parsed tracking ---
+                const inputSample = input.substring(0, 200);
+                const inputLength = input.length;
+                let parsedKeys = [];
+                let itemCount = 0;
+                let keyFrequency = {};
 
-    // Copy script to clipboard with fallback
-    function copyScript() {
-      const scriptText = document.getElementById('alloyScript').textContent;
-      const errorMessage = document.getElementById('errorMessage');
-      const successMessage = document.getElementById('successMessage');
+                try {
+                    const inputObj = JSON.parse(input);
+                    const inputArray = Array.isArray(inputObj) ? inputObj : [inputObj];
+                    itemCount = inputArray.length;
 
-      // Try Clipboard API first
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(scriptText).then(() => {
-          successMessage.textContent = 'Script copied to clipboard!';
-          successMessage.classList.remove('hidden');
-          setTimeout(() => successMessage.classList.add('hidden'), 3000);
-          trackScriptCopied();
-        }).catch(err => {
-          // Fallback to textarea method
-          fallbackCopyText(scriptText, err, 'script');
-        });
-      } else {
-        // Fallback if Clipboard API is unavailable
-        fallbackCopyText(scriptText, new Error('Clipboard API unavailable'), 'script');
-      }
-    }
+                    inputArray.forEach(item => {
+                        Object.keys(item || {}).forEach(key => {
+                            parsedKeys.push(key);
+                            keyFrequency[key] = (keyFrequency[key] || 0) + 1;
+                        });
+                    });
+                    parsedKeys = Array.from(new Set(parsedKeys)).sort();
+                } catch (e) {
+                    // fail silently for now
+                }
 
-    // Copy table as CSV
-    function copyAsCSV() {
-      const table = document.getElementById('payloadTable');
-      const headers = Array.from(table.querySelectorAll('thead tr th')).map(th => th.textContent);
-      const rows = Array.from(table.querySelectorAll('tbody tr')).map(row =>
-        Array.from(row.querySelectorAll('td')).map(td => td.textContent)
-      );
+                // GA4
+                gtag('event', 'input_parsed', {
+                    event_category: 'interaction',
+                    event_label: 'Payload Input Parsed',
+                    tool_name: 'Alloy Flattened Payload Analyzer',
+                    input_length: inputLength,
+                    input_sample: inputSample,
+                    parsed_keys: parsedKeys.join(','),
+                    item_count: itemCount
+                });
 
-      if (rows.length === 0) {
-        const errorMessage = document.getElementById('errorMessage');
-        errorMessage.textContent = 'No table data to copy. Please parse payloads first.';
-        errorMessage.classList.remove('hidden');
-        trackToolError({ name: 'Error', message: 'No table data for CSV copy' });
-        return;
-      }
+                // Microsoft Clarity
+                window.clarity('event', 'input_parsed', {
+                    input_length: inputLength,
+                    input_sample: inputSample,
+                    parsed_keys: parsedKeys,
+                    item_count: itemCount
+                });
+                // PostHog
+                posthog.capture('input_parsed', {
+                    tool_name: 'Alloy Flattened Payload Analyzer',
+                    input_length: inputLength,
+                    input_sample: inputSample,
+                    parsed_keys: parsedKeys,
+                    item_count: itemCount,
+                    key_frequency: keyFrequency
+                });
 
-      // Convert to CSV
-      const escapeCsvValue = (value) => {
-        if (value === null || value === undefined) return '';
-        const str = String(value);
-        if (str.includes(',') || str.includes('"') || str.includes('\n')) {
-          return `"${str.replace(/"/g, '""')}"`;
+                // Piwik PRO
+                window.dataLayer.push({
+                    event: 'ppms.cm:input_parsed',
+                    input_length: inputLength,
+                    input_sample: inputSample,
+                    parsed_keys: parsedKeys,
+                    item_count: itemCount,
+                    key_frequency: keyFrequency
+                });
+
+                //
+
+                trackFlattenedPayloadsParsed(payloads, columns.length);
+                return payloads;
+            } catch (e) {
+                console.error('Parse error details:', e);
+                errorMessage.textContent = e.name === 'SyntaxError' ?
+                    'Invalid JSON syntax. Check for missing brackets, commas, or invalid characters and try again.' :
+                    `Error: ${e.message}. Ensure the input is a valid JSON array or object of flattened events.`;
+                errorMessage.classList.remove('hidden');
+                trackToolError(e);
+                gtag('event', 'parse_flattened_payloads', {
+                    status: 'failure',
+                    error: e.name === 'SyntaxError' ? 'syntax_error' : e.message
+                });
+                window.clarity('event', 'parse_flattened_payloads_failure');
+                window.dataLayer.push({
+                    event: 'ppms.cm:parse_flattened_payloads',
+                    status: 'failure',
+                    error: e.name === 'SyntaxError' ? 'syntax_error' : e.message
+                });
+                posthog.capture('parse_flattened_payloads_failure', {
+                    error: e.name === 'SyntaxError' ? 'syntax_error' : e.message
+                });
+                payloadInput.value = input; // Retain input on error
+                return null;
+            } finally {
+                loadingIndicator.classList.add('hidden');
+            }
         }
-        return str;
-      };
 
-      const csvRows = [
-        headers.map(escapeCsvValue).join(','),
-        ...rows.map(row => row.map(escapeCsvValue).join(','))
-      ];
-      const csvContent = csvRows.join('\n');
+        // Refresh payloads from sessionStorage
+        function refreshPayloads() {
+            const key = 'flattenedAlloyEvents';
+            const stored = sessionStorage.getItem(key);
+            const payloadInput = document.getElementById('payloadInput');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            errorMessage.classList.add('hidden');
+            successMessage.classList.add('hidden');
+            loadingIndicator.classList.remove('hidden');
 
-      // Copy to clipboard
-      const errorMessage = document.getElementById('errorMessage');
-      const successMessage = document.getElementById('successMessage');
+            if (!stored) {
+                errorMessage.textContent = 'No flattened payloads found in sessionStorage. Ensure the Alloy flattening script is running.';
+                errorMessage.classList.remove('hidden');
+                gtag('event', 'refresh_flattened_payloads', {
+                    status: 'failure',
+                    error: 'no_payloads'
+                });
+                window.clarity('event', 'refresh_flattened_payloads_failure');
+                window.dataLayer.push({
+                    event: 'ppms.cm:refresh_flattened_payloads',
+                    status: 'failure',
+                    error: 'no_payloads'
+                });
+                trackToolError({
+                    name: 'Error',
+                    message: 'No payloads in sessionStorage'
+                });
+                posthog.capture('refresh_flattened_payloads_failure', {
+                    error: 'no_payloads'
+                });
+                loadingIndicator.classList.add('hidden');
+                return;
+            }
 
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(csvContent).then(() => {
-          successMessage.textContent = 'Table copied as CSV to clipboard!';
-          successMessage.classList.remove('hidden');
-          setTimeout(() => successMessage.classList.add('hidden'), 3000);
-          trackCopyCSV(rows.length, headers.length);
-        }).catch(err => {
-          fallbackCopyText(csvContent, err, 'csv');
-        });
-      } else {
-        fallbackCopyText(csvContent, new Error('Clipboard API unavailable'), 'csv');
-      }
-    }
-
-    // Fallback method for copying text (script or CSV)
-    function fallbackCopyText(text, originalError, type) {
-      const errorMessage = document.getElementById('errorMessage');
-      const successMessage = document.getElementById('successMessage');
-
-      try {
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        document.body.appendChild(textarea);
-        textarea.focus();
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-
-        successMessage.textContent = type === 'csv' ? 'Table copied as CSV using fallback method!' : 'Script copied to clipboard using fallback method!';
-        successMessage.classList.remove('hidden');
-        setTimeout(() => successMessage.classList.add('hidden'), 3000);
-        if (type === 'csv') {
-          const headers = Array.from(document.querySelectorAll('#payloadTable thead tr th')).map(th => th.textContent);
-          const rows = Array.from(document.querySelectorAll('#payloadTable tbody tr'));
-          trackCopyCSV(rows.length, headers.length);
-        } else {
-          trackScriptCopied();
+            payloadInput.value = stored;
+            parsePayloads();
+            gtag('event', 'refresh_flattened_payloads', {
+                status: 'success'
+            });
+            window.clarity('event', 'refresh_flattened_payloads_success');
+            window.dataLayer.push({
+                event: 'ppms.cm:refresh_flattened_payloads',
+                status: 'success'
+            });
+            posthog.capture('refresh_flattened_payloads_success');
+            loadingIndicator.classList.add('hidden');
         }
-      } catch (err) {
-        const errorMsg = type === 'csv' ? 'Failed to copy CSV. Please select the table manually and copy it.' : 'Failed to copy script. Please select the script text manually and copy it.';
-        errorMessage.textContent = errorMsg;
-        errorMessage.classList.remove('hidden');
-        console.error('Copy failed:', originalError, err);
-        const combinedError = new Error(`${originalError.message || 'Clipboard API error'}; Fallback error: ${err.message || 'Unknown'}`);
-        trackToolError(combinedError);
-        gtag('event', `copy_${type}`, { status: 'failure', error: combinedError.message });
-        window.clarity('event', `copy_${type}_failure`);
-        window.dataLayer.push({ event: `ppms.cm:copy_${type}`, status: 'failure', error: combinedError.message });
-        posthog.capture(`copy_${type}_failure`, { error: combinedError.message });
-      }
-    }
 
-    // Scroll table left
-    function scrollTableLeft() {
-      const tableWrapper = document.querySelector('.table-wrapper');
-      tableWrapper.scrollBy({ left: -200, behavior: 'smooth' });
-      trackScroll('left');
-    }
+        // Always show this column
+        const MASTER_COLUMN = "xdm._analytics.event1to100.event32.value";
 
-    // Scroll table right
-    function scrollTableRight() {
-      const tableWrapper = document.querySelector('.table-wrapper');
-      tableWrapper.scrollBy({ left: 200, behavior: 'smooth' });
-      trackScroll('right');
-    }
+        // Helper: Levenshtein Distance for typo detection
+        function levenshtein(a, b) {
+            const m = a.length,
+                n = b.length;
+            const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+            for (let i = 0; i <= m; i++) dp[i][0] = i;
+            for (let j = 0; j <= n; j++) dp[0][j] = j;
+            for (let i = 1; i <= m; i++) {
+                for (let j = 1; j <= n; j++) {
+                    dp[i][j] = a[i - 1] === b[j - 1] ?
+                        dp[i - 1][j - 1] :
+                        Math.min(
+                            dp[i - 1][j] + 1,
+                            dp[i][j - 1] + 1,
+                            dp[i - 1][j - 1] + 1
+                        );
+                }
+            }
+            return dp[m][n];
+        }
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      refreshPayloads();
-      document.getElementById('filterInput').addEventListener('input', filterTable);
-      document.getElementById('toggleNulls').addEventListener('change', (e) => {
-        showNullValues = e.target.checked;
-        parsePayloads();
-      });
-    });
-  </script>
+        // Dynamically builds a table from parsed Alloy payloads.
+        // Each row corresponds to an event; columns reflect flattened keys.
+        function renderTable(events, columns) {
+            const thead = document.querySelector('#payloadTable thead tr');
+            const tbody = document.querySelector('#payloadTable tbody');
+            thead.innerHTML = '';
+            tbody.innerHTML = '';
+
+            // Ensure the master column is included in order
+            const dedupedColumns = ['index'];
+            if (!columns.includes(MASTER_COLUMN)) {
+                dedupedColumns.push(MASTER_COLUMN);
+            }
+            columns.forEach(col => {
+                if (!dedupedColumns.includes(col)) dedupedColumns.push(col);
+            });
+
+            // Table headers
+            dedupedColumns.forEach(col => {
+                const th = document.createElement('th');
+                th.className = 'border border-gray-300 p-3 text-left font-semibold';
+                th.textContent = col;
+                thead.appendChild(th);
+            });
+
+            // Table rows
+            events.forEach((event, index) => {
+                // If showNullValues is false, skip rows where all non-index columns are null/empty/undefined
+                if (!showNullValues) {
+                    const hasNonNull = dedupedColumns.slice(1).some(col => {
+                        const val = event[col];
+                        return val !== null && val !== undefined && String(val).trim() !== '';
+                    });
+                    if (!hasNonNull) return;
+                }
+
+                // --- Typo detection ---
+                let hasTypo = false;
+                const typoThreshold = 4; // allow up to 4 edits for typo detection
+                Object.keys(event).forEach(key => {
+                    if (key !== MASTER_COLUMN && levenshtein(key, MASTER_COLUMN) > 0 && levenshtein(key, MASTER_COLUMN) <= typoThreshold) {
+                        hasTypo = true;
+                    }
+                });
+
+                const row = document.createElement('tr');
+                if (hasTypo) {
+                    row.style.backgroundColor = '#fee2e2'; // light red for row typo
+                }
+
+                dedupedColumns.forEach(col => {
+                    const td = document.createElement('td');
+                    td.className = 'border border-gray-300 p-3';
+
+                    if (col === 'index') {
+                        td.textContent = index + 1;
+                    } else {
+                        // --- Always render master column, highlight if missing/null ---
+                        if (col === MASTER_COLUMN) {
+                            const value = event[MASTER_COLUMN];
+                            td.textContent = value === undefined || value === null || value === '' ? '' : value;
+                            if (value === undefined || value === null || value === '') {
+                                td.style.backgroundColor = '#fef9c3'; // yellow for missing/null
+                            }
+                        } else {
+                            // Render all values including null, undefined, strings, numbers
+                            td.textContent = event[col] === undefined ? 'undefined' : event[col] === null ? 'null' : event[col];
+                        }
+                    }
+                    row.appendChild(td);
+                });
+                tbody.appendChild(row);
+            });
+        }
+
+        // Analyzes field presence and type frequency across all parsed events.
+        // Logs the results to the console for inspection and debugging.
+        function analyzeRows() {
+            const payloads = parsePayloads();
+            if (!payloads) return;
+
+            const summary = {
+                total: payloads.length,
+                fieldPresence: {},
+                types: {}
+            };
+
+            payloads.forEach(row => {
+                for (const key in row) {
+                    summary.fieldPresence[key] = (summary.fieldPresence[key] || 0) + 1;
+                    const type = typeof row[key];
+                    if (!summary.types[key]) summary.types[key] = new Set();
+                    summary.types[key].add(type);
+                }
+            });
+
+            // Convert sets to arrays for logging
+            const summaryToLog = {
+                ...summary,
+                types: Object.fromEntries(
+                    Object.entries(summary.types).map(([k, v]) => [k, Array.from(v)])
+                )
+            };
+
+            console.log('[Analysis] Summary of Parsed Rows:', summaryToLog);
+            document.getElementById('dataSummary').classList.remove('hidden');
+            alert(`Analyzed ${summary.total} rows.\n\nField counts and types logged to console.`);
+
+            // ---- ENHANCED TRACKING: analyze_rows ----
+            try {
+                gtag('event', 'analyze_rows', {
+                    event_category: 'interaction',
+                    event_label: 'Analyze Rows',
+                    tool_name: 'Alloy Flattened Payload Analyzer',
+                    total_rows: summary.total
+                });
+                window.clarity('event', 'analyze_rows');
+                posthog.capture('analyze_rows', {
+                    total_rows: summary.total,
+                    field_presence: summary.fieldPresence,
+                    types: summaryToLog.types
+                });
+                window.dataLayer.push({
+                    event: 'ppms.cm:analyze_rows',
+                    total_rows: summary.total,
+                    field_keys: Object.keys(summary.fieldPresence),
+                    type_summary: summaryToLog.types
+                });
+            } catch (err) {
+                // fail silently for analytics
+            }
+        }
+
+        // Filter table rows
+        const filterTable = debounce(() => {
+            const filter = document.getElementById('filterInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#payloadTable tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            });
+            trackFilterUsed(filter);
+        }, 300);
+
+        // Download payloads as JSON
+        function downloadJSON() {
+            const input = document.getElementById('payloadInput').value;
+            const payloads = parsePayloads();
+            if (payloads) {
+                const blob = new Blob([JSON.stringify(payloads, null, 2)], {
+                    type: 'application/json'
+                });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'flattened_alloy_payloads.json';
+                a.click();
+                URL.revokeObjectURL(url);
+                trackJsonDownload(payloads);
+            }
+        }
+
+        // Copy script to clipboard with fallback
+        function copyScript() {
+            const scriptText = document.getElementById('alloyScript').textContent;
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            // Try Clipboard API first
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(scriptText).then(() => {
+                    successMessage.textContent = 'Script copied to clipboard!';
+                    successMessage.classList.remove('hidden');
+                    setTimeout(() => successMessage.classList.add('hidden'), 3000);
+                    trackScriptCopied();
+                    // --- ENHANCED ANALYTICS: script copy context ---
+                    try {
+                        window.dataLayer.push({
+                            event: 'ppms.cm:copy_script_success',
+                            copy_context: 'flattening_snippet'
+                        });
+                    } catch (err) {}
+                }).catch(err => {
+                    // Fallback to textarea method
+                    fallbackCopyText(scriptText, err, 'script');
+                });
+            } else {
+                // Fallback if Clipboard API is unavailable
+                fallbackCopyText(scriptText, new Error('Clipboard API unavailable'), 'script');
+            }
+        }
+
+        // Copy table as CSV
+        function copyAsCSV() {
+            const table = document.getElementById('payloadTable');
+            const headers = Array.from(table.querySelectorAll('thead tr th')).map(th => th.textContent);
+            const rows = Array.from(table.querySelectorAll('tbody tr')).map(row =>
+                Array.from(row.querySelectorAll('td')).map(td => td.textContent)
+            );
+
+            if (rows.length === 0) {
+                const errorMessage = document.getElementById('errorMessage');
+                errorMessage.textContent = 'No table data to copy. Please parse payloads first.';
+                errorMessage.classList.remove('hidden');
+                trackToolError({
+                    name: 'Error',
+                    message: 'No table data for CSV copy'
+                });
+                return;
+            }
+
+            // Convert to CSV
+            const escapeCsvValue = (value) => {
+                if (value === null || value === undefined) return '';
+                const str = String(value);
+                if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+                    return `"${str.replace(/"/g, '""')}"`;
+                }
+                return str;
+            };
+
+            const csvRows = [
+                headers.map(escapeCsvValue).join(','),
+                ...rows.map(row => row.map(escapeCsvValue).join(','))
+            ];
+            const csvContent = csvRows.join('\n');
+
+            // Copy to clipboard
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(csvContent).then(() => {
+                    successMessage.textContent = 'Table copied as CSV to clipboard!';
+                    successMessage.classList.remove('hidden');
+                    setTimeout(() => successMessage.classList.add('hidden'), 3000);
+                    trackCopyCSV(rows.length, headers.length);
+                }).catch(err => {
+                    fallbackCopyText(csvContent, err, 'csv');
+                });
+            } else {
+                fallbackCopyText(csvContent, new Error('Clipboard API unavailable'), 'csv');
+            }
+        }
+
+        // Fallback method for copying text (script or CSV)
+        function fallbackCopyText(text, originalError, type) {
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            try {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+
+                successMessage.textContent = type === 'csv' ? 'Table copied as CSV using fallback method!' : 'Script copied to clipboard using fallback method!';
+                successMessage.classList.remove('hidden');
+                setTimeout(() => successMessage.classList.add('hidden'), 3000);
+                if (type === 'csv') {
+                    const headers = Array.from(document.querySelectorAll('#payloadTable thead tr th')).map(th => th.textContent);
+                    const rows = Array.from(document.querySelectorAll('#payloadTable tbody tr'));
+                    trackCopyCSV(rows.length, headers.length);
+                } else {
+                    trackScriptCopied();
+                    // --- ENHANCED ANALYTICS: script copy context for fallback ---
+                    try {
+                        window.dataLayer.push({
+                            event: 'ppms.cm:copy_script_success',
+                            copy_context: 'flattening_snippet'
+                        });
+                    } catch (err) {}
+                }
+            } catch (err) {
+                const errorMsg = type === 'csv' ? 'Failed to copy CSV. Please select the table manually and copy it.' : 'Failed to copy script. Please select the script text manually and copy it.';
+                errorMessage.textContent = errorMsg;
+                errorMessage.classList.remove('hidden');
+                console.error('Copy failed:', originalError, err);
+                const combinedError = new Error(`${originalError.message || 'Clipboard API error'}; Fallback error: ${err.message || 'Unknown'}`);
+                trackToolError(combinedError);
+                gtag('event', `copy_${type}`, {
+                    status: 'failure',
+                    error: combinedError.message
+                });
+                window.clarity('event', `copy_${type}_failure`);
+                window.dataLayer.push({
+                    event: `ppms.cm:copy_${type}`,
+                    status: 'failure',
+                    error: combinedError.message
+                });
+                posthog.capture(`copy_${type}_failure`, {
+                    error: combinedError.message
+                });
+            }
+        }
+
+        // Scroll table left
+        function scrollTableLeft() {
+            const tableWrapper = document.querySelector('.table-wrapper');
+            tableWrapper.scrollBy({
+                left: -200,
+                behavior: 'smooth'
+            });
+            trackScroll('left');
+        }
+
+        // Scroll table right
+        function scrollTableRight() {
+            const tableWrapper = document.querySelector('.table-wrapper');
+            tableWrapper.scrollBy({
+                left: 200,
+                behavior: 'smooth'
+            });
+            trackScroll('right');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            refreshPayloads();
+            document.getElementById('filterInput').addEventListener('input', filterTable);
+            document.getElementById('toggleNulls').addEventListener('change', (e) => {
+                showNullValues = e.target.checked;
+                parsePayloads();
+            });
+        });
+    </script>
 </body>
 
 </html>
