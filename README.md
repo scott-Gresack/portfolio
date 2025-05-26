@@ -1,3 +1,6 @@
+<!--
+Portfolio of Scott Gresack – Adobe Experience Platform (AEP) Expert | Martech Implementation | Tealium iQ | Adobe Launch | Real-Time CDP | Customer Journey Analytics | GitHub for Martech Tagging and Data Architecture
+-->
 # 👋 Scott Gresack
 
 **Martech Implementation Leader | Adobe Experience Platform Expert | Data Governance Strategist**
@@ -64,8 +67,47 @@ I thrive at the intersection of engineering, analytics, and architecture — tur
 
 ## 📂 Featured Projects
 
-- 🔧 [Adobe Web SDK Debug Monitor (CodePen)](https://codepen.io/)  
-- 💼 [Live Portfolio](https://scott-gresack.github.io/portfolio)
+- 🧰 [Mobile Tag Spec Builder](https://scott-gresack.github.io/portfolio/)  
+  Vue-based tool to generate `trackAction`, `trackState`, and `Edge.sendEvent` payloads for Swift/Kotlin apps using XDM schemas.
+
+- 🔍 [Adobe Web SDK Debug Monitor (CodePen)](https://codepen.io/)  
+  Parses Adobe Alloy calls, extracts ECIDs, events, XDM, and displays validation outputs with a developer-friendly UI.
+
+- 🧾 [Network Request Logger & Modal Debugger](https://scott-gresack.github.io/portfolio/)  
+  Built-in modal overlays that capture native and WebView fetch/XHR calls for AEP Edge, allowing interactive inspection of headers, payloads, and Assurance status.
+
+- 🧬 [XDM Schema Comparator Tool](https://scott-gresack.github.io/portfolio/xdm_comparator)  
+  Automatically detects schema diffs across versions or projects with eVar/prop/event mapping insights.
+
+- 🧠 HIPAA-Compliant Schema Strategy – Risk Analysis Framework  
+  Swimlane-style diagram exploring schema reuse strategies between mobile and web, highlighting potential gaps in field coverage, identity stitching implications, and trade-offs between speed and completeness. Designed to aid decision-making when evaluating schema reuse vs. rebuilding in any HIPAA-compliant system.
+
+- 🧠 Identity Stitching for Healthcare: App Arrival via Branch + Email  
+  Tracks the lifecycle of a user arriving from an email or Branch deep link, detailing identity capture across ECID, email hash, and proxyID in Adobe Experience Platform. Highlights mobile-first resolution strategy, campaign attribution, and activation use cases for medical insurance apps.
+
+- 📈 [AEP Validation Plugin Explorer](https://scott-gresack.github.io/portfolio/)  
+  Implementation based on public plugin APIs for Assurance validation with support for modal tooltips, debugging hints, and test data generation.
+
+- ⚙️ Hybrid Personalization: Server-first (Edge API) + Client-side Web SDK  
+  Swimlane diagram showcasing a hybrid personalization model. The server-side sends ECID and region-based content from Adobe Target via Edge API, while the client-side refines experiences with alloy.js `sendEvent()` and decision scopes. Highlights include benefits like faster page load, progressive rendering, and unified identity stitching between backend and browser flows.
+
+- 🧩 AEP Identity Decision Flow – Primary vs Non-Primary vs identityMap  
+  Swimlane diagram outlining how to decide when to use primary vs non-primary identities in Adobe Experience Platform’s identityMap. Provides a logical flow for determining stability, uniqueness, and stitching value of an ID. Clarifies best practices for ECID, CRM ID, hashed email, and loyalty identifiers.
+
+- 🛡️ Adobe Web SDK Initialization with OneTrust CMP via Tealium iQ  
+  Technical swimlane diagram showing a compliant initialization sequence for Adobe Web SDK with OneTrust consent enforcement via Tealium iQ. Highlights early `alloy.js` injection, defaultConsent handling, and conditional triggering of `setConsent()` + `sendEvent()` based on user opt-in group `C0001`. Ensures compliant personalization and instant rendering for Adobe Target and RTCDP.
+
+- 🗃️ Patient Data ERD for Cross-Channel Integration  
+  Entity Relationship Diagram modeling the integration of healthcare demographics, clickstream activity, and experience event bridging. Uses pseudonymized identifiers to demonstrate joins across datasets for use cases like senior targeting, session history, and identity stitching. Emphasizes AEP-based data model design and analytical query structuring.
+
+- 🧵 Recommended Identity Stitching Pipeline  
+  Diagram detailing a best-practice flow for identity stitching across Kafka, Adobe Experience Platform (AEP), and Customer Journey Analytics (CJA). Demonstrates how raw events with ECID and profile data are ingested via Edge and Batch into AEP, which maintains the real-time identity graph. Profiles are then published to CJA with person ID configuration for native joins—eliminating legacy Snowflake dependency and nested identityMap workarounds.
+
+- 🔁 Journey Orchestration: Frustration Recovery Flow  
+  Swimlane diagram modeling a real-time recovery journey using Adobe Experience Platform (AEP), Journey Optimizer (AJO), and integrated behavioral signals. Captures user frustration across channels (login, search, chatbot, Medallia), segments users in AEP, and triggers AJO-based nudges (site banners, emails, support alerts). Includes logic for escalation, fallback paths, and journey exit conditions. Built as a pseudonymous healthcare experience—no proprietary data included.
+
+- 📊 AEP SQL Query Decision Tree  
+  A structured library of SQL queries designed for Adobe Experience Platform (AEP) datasets. Includes categorized sections for table metadata, ingestion monitoring, identity resolution, session analysis, funnel performance, data quality, campaign tracking, and web analytics. Ideal for analysts and architects looking to validate data, monitor trends, and optimize customer journeys in a compliant, pseudonymized environment.
 
 ---
 
@@ -75,4 +117,18 @@ I'm open to consulting opportunities, speaking engagements, and collaborations a
 
 ---
 
-© 2025 Scott Gresack
+---
+
+## 📌 Strategic Outlook: GenAI’s Role in Martech’s Next Wave
+
+We’re in the midst of a modern industrial shift—one where *data and AI are not just tools*, but foundational infrastructure for how digital experiences are designed, delivered, and optimized. As this wave accelerates, two core practices are becoming indispensable for Martech professionals: **supervised fine-tuning** and **retrieval-augmented generation (RAG)**.
+
+These aren't just buzzwords—they represent a tangible path toward contextual, reliable, and organization-specific intelligence:
+
+- **Supervised Fine-Tuning** empowers teams to align large language models with their own tone, structure, or compliance needs. You’re not feeding it *more* knowledge, you’re refining how it interprets and responds within your operational reality. It’s a light lift for technical teams, requiring configuration logic and structured examples—not deep ML expertise.
+
+- **Retrieval-Augmented Generation (RAG)** takes it a step further by letting models *reference* internal knowledge rather than hallucinate. With RAG, the model retrieves relevant content from your proprietary datasets at query time. It’s one of the most strategic ways to operationalize trusted data, and it rewards teams who already know how to manage metadata, tagging, and identity graphs.
+
+Together, these patterns are redefining what it means to "own" your data—and you can explore a hands-on example of this using my [Alloy Payload Inspector](https://scott-gresack.github.io/portfolio/tool2.html), a tool that visualizes and interprets Adobe Web SDK network calls and identity stitching behavior. And for Martech leaders, the opportunity isn’t just about automation—it’s about establishing *intelligent pipelines* that connect customer behavior, internal knowledge, and decision-making in real time.
+
+Those who understand these methods early will help shape the standards for personalization, governance, and value delivery in the GenAI-powered enterprise.
