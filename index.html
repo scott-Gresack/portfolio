@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -257,7 +258,7 @@ console.log('[PostHog Bridge] Event forwarding active for gtag, Clarity, and Piw
           <button @click="navigate('about')" :class="{ 'nav-link active': view === 'about' }">About</button>
           <button @click="navigate('contact')" :class="{ 'nav-link active': view === 'contact' }">Contact</button>
           <button @click="navigate('tools')" :class="{ 'nav-link active': view === 'tools' }">Tools</button>
-          <button @click="navigate('diagrams')" :class="{ 'nav-link active': view === 'diagrams' }">Diagrams</button>
+          <a href="https://scott-gresack.github.io/portfolio/xdm_comparator" class="nav-link" target="_blank">XDM Comparator</a>
           <!-- External link to Another Tool page -->
           <a href="https://scott-gresack.github.io/portfolio/tool2.html" class="nav-link">Another Tool</a>
         </div>
@@ -308,20 +309,15 @@ console.log('[PostHog Bridge] Event forwarding active for gtag, Clarity, and Piw
               XDM Schema Comparator (CodePen)
             </a>
           </div>
-        </div>
-      </section>
-
-      <!-- Diagrams section, shown when view is 'diagrams' -->
-      <section v-show="view === 'diagrams'" class="space-y-4">
-        <h1 class="text-2xl font-bold">🧠 Technical Diagrams</h1>
-        <!-- Responsive grid for diagram images -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <!-- Loop through diagram URLs to display images -->
-          <div v-for="url in diagramUrls" :key="url">
-            <img :src="url" alt="diagram" class="rounded shadow hover:scale-105 transition-transform duration-200" />
+          <!-- Tool card for Alloy Payload Inspector -->
+          <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+            <a href="https://scott-gresack.github.io/portfolio/tool2.html" target="_blank" class="block text-lg font-semibold text-blue-600 hover:underline">
+              Alloy Payload Inspector (AEP Debugging Tool)
+            </a>
           </div>
         </div>
       </section>
+
     </main>
   </div>
 
@@ -335,23 +331,7 @@ console.log('[PostHog Bridge] Event forwarding active for gtag, Clarity, and Piw
       data() {
         return {
           // Current view (about, contact, tools, diagrams)
-          view: 'about',
-          // Array of diagram image URLs from swimlanes.io
-          diagramUrls: [
-            "https://static.swimlanes.io/u/fpieL8s-QX.png?rev=2",
-            "https://static.swimlanes.io/u/axhHFyXhTP.png?rev=2",
-            "https://static.swimlanes.io/u/7FM-mlXr3h.png?rev=4",
-            "https://static.swimlanes.io/u/-CdjvHduZK.png?rev=2",
-            "https://static.swimlanes.io/u/ETB9f7TFu1.png?rev=3",
-            "https://static.swimlanes.io/u/EIT0nw6cfO.png?rev=3",
-            "https://static.swimlanes.io/u/5L0Ddwt4tS.png?rev=2",
-            "https://static.swimlanes.io/u/PhOJdOXl6t.png?rev=2",
-            "https://static.swimlanes.io/u/6N5xqemN06.png?rev=2",
-            "https://static.swimlanes.io/u/HE5L-gO7HH.png?rev=2",
-            "https://static.swimlanes.io/u/6IoFeUsUyo.png?rev=2",
-            "https://static.swimlanes.io/u/GIVyVnUr7B.png?rev=2",
-            "https://static.swimlanes.io/u/XkZ9ADuj1j.png?rev=2"
-          ]
+          view: 'about'
         };
       },
       // Define methods for the Vue app
