@@ -67,47 +67,82 @@ I thrive at the intersection of engineering, analytics, and architecture — tur
 
 ## 📂 Featured Projects
 
-- 🧰 [Mobile Tag Spec Builder](https://scott-gresack.github.io/portfolio/)  
-  Vue-based tool to generate `trackAction`, `trackState`, and `Edge.sendEvent` payloads for Swift/Kotlin apps using XDM schemas.
+### 🔧 Developer Tools & SDK Utilities
+- 🧰 **Mobile Tag Spec Builder**  
+  Generating consistent and accurate event payloads for mobile applications using XDM schemas can be complex and error-prone.  
+  This project is a Vue-based tool that simplifies the creation of trackAction, trackState, and Edge.sendEvent payloads for Swift and Kotlin apps.  
+  The tool uses interactive UI components to guide users through schema-based event construction, ensuring compliance with XDM standards and enabling quick generation of payloads ready for implementation in mobile SDKs.
 
-- 🔍 [Adobe Web SDK Debug Monitor (CodePen)](https://codepen.io/)  
-  Parses Adobe Alloy calls, extracts ECIDs, events, XDM, and displays validation outputs with a developer-friendly UI.
+- 🔍 **Adobe Web SDK Debug Monitor (CodePen)**  
+  Debugging Adobe Alloy calls and understanding event data structures can be difficult without an intuitive interface.  
+  I built a web-based monitor that parses Adobe Alloy network calls, extracting key identifiers and event details for easier inspection.  
+  The tool captures ECIDs, events, and XDM payloads from network requests, displaying validation results and providing a developer-friendly UI to quickly identify issues and verify data integrity.
 
-- 🧾 [Network Request Logger & Modal Debugger](https://scott-gresack.github.io/portfolio/)  
-  Built-in modal overlays that capture native and WebView fetch/XHR calls for AEP Edge, allowing interactive inspection of headers, payloads, and Assurance status.
+- 🧾 **Network Request Logger & Modal Debugger**  
+  Inspecting native and WebView network requests for AEP Edge events is challenging without integrated debugging tools.  
+  To address this, I developed a built-in modal overlay system that logs fetch and XHR calls, allowing interactive inspection of headers, payloads, and Assurance status.  
+  This solution implements event listeners to capture network activity, populates modal interfaces with detailed request/response data, and supports real-time debugging for both native and WebView environments.
 
-- 🧬 [XDM Schema Comparator Tool](https://scott-gresack.github.io/portfolio/xdm_comparator)  
-  Automatically detects schema diffs across versions or projects with eVar/prop/event mapping insights.
+- 📈 **AEP Validation Plugin Explorer**  
+  Validating Assurance implementations in Adobe Experience Platform requires detailed, interactive tools to verify data quality.  
+  I developed a plugin-based explorer that supports modal tooltips, debugging hints, and test data generation for Assurance validation.  
+  The explorer utilizes public plugin APIs to create interactive validation overlays, provides context-sensitive help, and enables generation of synthetic test events to verify data pipelines.
 
-- 🧠 HIPAA-Compliant Schema Strategy – Risk Analysis Framework  
-  Swimlane-style diagram exploring schema reuse strategies between mobile and web, highlighting potential gaps in field coverage, identity stitching implications, and trade-offs between speed and completeness. Designed to aid decision-making when evaluating schema reuse vs. rebuilding in any HIPAA-compliant system.
+- 🧬 **XDM Schema Comparator Tool**  
+  Comparing different versions or projects’ XDM schemas to identify differences is tedious and error-prone.  
+  I created an automated tool that detects schema diffs and provides insights on eVar, prop, and event mappings.  
+  The comparator parses JSON schema files, highlights additions, deletions, and modifications, and visualizes mapping differences to support schema evolution and alignment efforts.
 
-- 🧠 Identity Stitching for Healthcare: App Arrival via Branch + Email  
-  Tracks the lifecycle of a user arriving from an email or Branch deep link, detailing identity capture across ECID, email hash, and proxyID in Adobe Experience Platform. Highlights mobile-first resolution strategy, campaign attribution, and activation use cases for medical insurance apps.
+### 🧠 Identity, Consent, and Data Modeling
 
-- 📈 [AEP Validation Plugin Explorer](https://scott-gresack.github.io/portfolio/)  
-  Implementation based on public plugin APIs for Assurance validation with support for modal tooltips, debugging hints, and test data generation.
+- 🧩 **AEP Identity Decision Flow – Primary vs Non-Primary vs identityMap**  
+  Determining when to use primary versus non-primary identities in Adobe Experience Platform’s identityMap can be confusing.  
+  I designed a swimlane diagram providing a logical flow for assessing stability, uniqueness, and stitching value of identities.  
+  The diagram clarifies best practices for ECID, CRM ID, hashed email, and loyalty identifiers by mapping decision criteria and illustrating identity usage scenarios in the identityMap structure.
 
-- ⚙️ Hybrid Personalization: Server-first (Edge API) + Client-side Web SDK  
-  Swimlane diagram showcasing a hybrid personalization model. The server-side sends ECID and region-based content from Adobe Target via Edge API, while the client-side refines experiences with alloy.js `sendEvent()` and decision scopes. Highlights include benefits like faster page load, progressive rendering, and unified identity stitching between backend and browser flows.
+- 🧵 **Recommended Identity Stitching Pipeline**  
+  Legacy identity stitching methods using Snowflake and nested identityMaps are inefficient and complex.  
+  I designed a best-practice flow diagram for identity stitching across Kafka, Adobe Experience Platform, and Customer Journey Analytics.  
+  This diagram illustrates ingestion of raw events with ECID and profile data via Edge and Batch pipelines into AEP, maintenance of a real-time identity graph, and publication of profiles to CJA with person ID configuration for native joins, eliminating legacy dependencies.
 
-- 🧩 AEP Identity Decision Flow – Primary vs Non-Primary vs identityMap  
-  Swimlane diagram outlining how to decide when to use primary vs non-primary identities in Adobe Experience Platform’s identityMap. Provides a logical flow for determining stability, uniqueness, and stitching value of an ID. Clarifies best practices for ECID, CRM ID, hashed email, and loyalty identifiers.
+- 🧠 **Identity Stitching for Healthcare: App Arrival via Branch + Email**  
+  Capturing and resolving user identities arriving from multiple channels like email and deep links is complex in healthcare applications.  
+  I mapped a detailed lifecycle tracking of user identity capture across ECID, email hash, and proxyID within Adobe Experience Platform.  
+  This work demonstrates mobile-first resolution strategies, campaign attribution mechanisms, and activation use cases by mapping identity stitching workflows and illustrating how profiles are unified across channels.
 
-- 🛡️ Adobe Web SDK Initialization with OneTrust CMP via Tealium iQ  
-  Technical swimlane diagram showing a compliant initialization sequence for Adobe Web SDK with OneTrust consent enforcement via Tealium iQ. Highlights early `alloy.js` injection, defaultConsent handling, and conditional triggering of `setConsent()` + `sendEvent()` based on user opt-in group `C0001`. Ensures compliant personalization and instant rendering for Adobe Target and RTCDP.
+- 🛡️ **Adobe Web SDK Initialization with OneTrust CMP via Tealium iQ**  
+  Ensuring compliant Adobe Web SDK initialization with OneTrust consent enforcement is complex, especially when using tag management systems.  
+  I created a technical swimlane diagram showing a compliant initialization sequence integrating OneTrust CMP with Tealium iQ.  
+  The solution highlights early injection of alloy.js, handling of defaultConsent, and conditional triggering of setConsent() and sendEvent() based on user opt-in groups, ensuring compliant personalization and instant rendering for Adobe Target and RTCDP.
 
-- 🗃️ Patient Data ERD for Cross-Channel Integration  
-  Entity Relationship Diagram modeling the integration of healthcare demographics, clickstream activity, and experience event bridging. Uses pseudonymized identifiers to demonstrate joins across datasets for use cases like senior targeting, session history, and identity stitching. Emphasizes AEP-based data model design and analytical query structuring.
+- 🧠 **HIPAA-Compliant Schema Strategy – Risk Analysis Framework**  
+  Reusing schemas across mobile and web platforms in HIPAA environments risks gaps in coverage and compliance issues.  
+  This project features a swimlane-style diagram that explores schema reuse strategies, identity stitching implications, and trade-offs between speed and completeness.  
+  The framework visually maps schema components, identifies potential gaps in field coverage, and aids decision-making by clarifying risks and benefits of reuse versus rebuilding in HIPAA-compliant systems.
 
-- 🧵 Recommended Identity Stitching Pipeline  
-  Diagram detailing a best-practice flow for identity stitching across Kafka, Adobe Experience Platform (AEP), and Customer Journey Analytics (CJA). Demonstrates how raw events with ECID and profile data are ingested via Edge and Batch into AEP, which maintains the real-time identity graph. Profiles are then published to CJA with person ID configuration for native joins—eliminating legacy Snowflake dependency and nested identityMap workarounds.
+- 🗃️ **Patient Data ERD for Cross-Channel Integration**  
+  Modeling integration of healthcare demographics, clickstream, and experience events with pseudonymized identifiers is complex for cross-channel analytics.  
+  I developed an Entity Relationship Diagram that demonstrates joins across datasets for use cases like senior targeting and identity stitching.  
+  The ERD uses pseudonymized keys to link data sources, emphasizes AEP-based data model design, and structures analytical queries to support compliant, multi-channel insights.
 
-- 🔁 Journey Orchestration: Frustration Recovery Flow  
-  Swimlane diagram modeling a real-time recovery journey using Adobe Experience Platform (AEP), Journey Optimizer (AJO), and integrated behavioral signals. Captures user frustration across channels (login, search, chatbot, Medallia), segments users in AEP, and triggers AJO-based nudges (site banners, emails, support alerts). Includes logic for escalation, fallback paths, and journey exit conditions. Built as a pseudonymous healthcare experience—no proprietary data included.
+### 🚀 Activation & Journey Orchestration
 
-- 📊 AEP SQL Query Decision Tree  
-  A structured library of SQL queries designed for Adobe Experience Platform (AEP) datasets. Includes categorized sections for table metadata, ingestion monitoring, identity resolution, session analysis, funnel performance, data quality, campaign tracking, and web analytics. Ideal for analysts and architects looking to validate data, monitor trends, and optimize customer journeys in a compliant, pseudonymized environment.
+- 🔁 **Frustrated Member Journey Recovery – Real-Time Orchestration Strategy**  
+  Many healthcare members abandon digital journeys due to friction or lack of support (e.g., trouble finding providers, unanswered questions, poor site UX), and these signals are rarely stitched together in time to trigger effective outreach or support. This leads to dissatisfaction, lost conversions, and escalated call center costs.  
+  To address this, I built a real-time journey orchestration framework that proactively recognizes behavior signals—such as failed provider searches, chatbot engagement, or negative survey responses—and initiates contextual interventions using Adobe Experience Platform (AEP), Adobe Journey Optimizer (AJO), and Web SDK.  
+  The solution correlates behavioral signals across platforms using ECID and identity stitching, segments users into an AEP audience (e.g., “Frustrated Member”) based on event thresholds, and uses AJO to orchestrate escalation paths like in-site banners, follow-up emails, or manual callbacks. Behavioral triggers are logged in real time, AEP segments users dynamically and forwards qualified profiles to AJO, which then waits for a resolution window before rendering help banners or dispatching recovery emails. If unresponsive, the user is escalated to support teams via integrations like ServiceNow or Slack, and their profile is marked accordingly in AEP. Users exit the journey after engagement or a 3-day window, with suppression logic for future outreach. The result is a scalable playbook for mapping friction signals to recovery paths, reducing support burden and improving user satisfaction.
+
+- ⚙️ **Hybrid Personalization: Server-first (Edge API) + Client-side Web SDK**  
+  Balancing fast server-side personalization with client-side refinements while maintaining identity consistency is difficult.  
+  This project visualizes a hybrid model combining Edge API-driven server content with client-side Alloy.js event refinement using a swimlane diagram.  
+  The diagram shows the flow of ECID and region-based content from Adobe Target via Edge API, followed by client-side sendEvent() calls to refine experiences and decision scopes, highlighting benefits like faster page loads and unified identity stitching.
+
+### 📊 Querying & DataOps
+
+- 📊 **AEP SQL Query Decision Tree**  
+  Analysts and architects need structured SQL queries to validate and optimize Adobe Experience Platform datasets efficiently.  
+  I assembled a categorized library of SQL queries designed to cover metadata, ingestion monitoring, identity resolution, session analysis, funnel performance, data quality, campaign tracking, and web analytics.  
+  Queries are organized by function and include examples for table metadata extraction, data quality checks, session stitching, campaign attribution, and funnel performance metrics, facilitating rapid validation and optimization in a compliant, pseudonymized environment.
 
 ---
 
