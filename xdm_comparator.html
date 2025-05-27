@@ -8,6 +8,15 @@
   <meta name="author" content="Scott Gresack" />
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Adobe Web SDK u.map Comparator | Scott Gresack" />
+  <meta property="og:description" content="Compare u.map objects from Adobe Web SDK implementations across environments. Built for Tealium and AEP validation workflows." />
+  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/xdm_comparator" />
+  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Adobe Web SDK u.map Comparator | Scott Gresack" />
+  <meta name="twitter:description" content="Compare Adobe Web SDK objects and debug XDM mappings with this interactive tool." />
+  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
   <title>Adobe Web SDK Object Comparator</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
@@ -26,18 +35,33 @@
     }
   </style>
 </head>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Adobe Web SDK u.map Comparator",
+    "url": "https://scott-gresack.github.io/portfolio/xdm_comparator",
+    "description": "Compare and debug Adobe Web SDK u.map object mappings with a visual comparator tool.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "creator": {
+      "@type": "Person",
+      "name": "Scott Gresack",
+      "url": "https://scott-gresack.github.io/portfolio/"
+    }
+  }
+  </script>
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 font-sans antialiased leading-relaxed tracking-wide">
   <header class="bg-white shadow border-b sticky top-0 z-50">
     <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-sm font-medium text-gray-800">
-      <div class="font-semibold tracking-wide text-lg">🔍 u.map Comparator</div>
+      <a href="https://scott-gresack.github.io/portfolio/?utm_medium=internal&utm_source=xdm_comparator&cid=home&utm_term=portfolio" class="font-semibold tracking-wide text-lg hover:text-blue-600 transition">🔍 u.map Comparator</a>
       <div x-data="{ open: false }" class="relative">
-        <button @click="open = !open" @blur="open = false" class="hover:text-blue-600 transition font-medium focus:outline-none">
-          Tools ▾
-        </button>
-        <div x-show="open" x-transition class="absolute bg-white shadow-lg rounded-md mt-2 z-10 min-w-[200px] border border-gray-200" @mousedown.away="open = false">
-          <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_medium=internal&utm_source=xdm_comparator&amp;cid=tool2&amp;utm_term=alloy_inspector" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Alloy Inspector</a>
-          <a href="https://scott-gresack.github.io/portfolio/tag_generator?utm_medium=internal&utm_source=xdm_comparator&amp;cid=tag_generator&amp;utm_term=tag_spec" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Tag Generator</a>
-          <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_medium=internal&utm_source=xdm_comparator&amp;cid=mobile_updates&amp;utm_term=mobile_sdk" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Mobile Updates</a>
+        <button @click="open = !open" class="hover:text-blue-600 transition font-medium focus:outline-none">Tools ▾</button>
+        <div x-show="open" x-transition @click.away="open = false" class="absolute bg-white shadow-lg rounded-md mt-2 z-50 min-w-[220px] border border-gray-200">
+          <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_medium=internal&utm_source=xdm_comparator&cid=tool2&utm_term=alloy_inspector" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Alloy Inspector</a>
+          <a href="https://scott-gresack.github.io/portfolio/tag_generator?utm_medium=internal&utm_source=xdm_comparator&cid=tag_generator&utm_term=tag_spec" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Tag Generator</a>
+          <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_medium=internal&utm_source=xdm_comparator&cid=mobile_updates&utm_term=mobile_sdk" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Mobile Updates</a>
+          <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_medium=internal&utm_source=xdm_comparator&cid=xdm_comparator&utm_term=xdm" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">XDM Comparator</a>
         </div>
       </div>
     </nav>
