@@ -81,13 +81,18 @@
 <body class="bg-white text-gray-900 font-sans antialiased leading-relaxed tracking-wide">
 
   <header class="bg-white shadow sticky top-0 z-50 text-gray-900">
-    <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between text-sm font-medium">
+    <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center text-sm font-medium">
       <div class="font-semibold">Scott Gresack</div>
-      <div class="space-x-4">
-        <a href="https://scott-gresack.github.io/portfolio/" class="hover:text-blue-600 transition">Home</a>
-        <a href="https://scott-gresack.github.io/portfolio/tool2.html" class="hover:text-blue-600 transition">Alloy Tool</a>
-        <a href="https://scott-gresack.github.io/portfolio/xdm_comparator" class="hover:text-blue-600 transition">XDM Comparator</a>
-        <a href="https://scott-gresack.github.io/portfolio/tag_spec_generator" class="hover:text-blue-600 transition">Tag Spec Tool</a>
+      <div class="relative group">
+        <button class="hover:text-blue-600 transition flex items-center gap-1">
+          Tools ▼
+        </button>
+        <div class="absolute hidden group-hover:block bg-white border border-gray-200 mt-2 rounded-md shadow-lg text-sm z-50 min-w-[200px]">
+          <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=alloy" class="block px-4 py-2 hover:bg-blue-50">Alloy Tool</a>
+          <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=xdm" class="block px-4 py-2 hover:bg-blue-50">XDM Comparator</a>
+          <a href="https://scott-gresack.github.io/portfolio/tag_generator?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=tag" class="block px-4 py-2 hover:bg-blue-50">Tag Spec Tool</a>
+          <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=mobile" class="block px-4 py-2 hover:bg-blue-50">Mobile Tag Builder</a>
+        </div>
       </div>
     </nav>
   </header>
