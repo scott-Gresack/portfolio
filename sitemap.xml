@@ -36,4 +36,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://scott-gresack.github.io/portfolio/umap-comparator.html</loc>
+    <lastmod>2025-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scott-gresack.github.io/portfolio/xdm_comparator.html</loc>
+    <lastmod>2025-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scott-gresack.github.io/portfolio/tool2.html</loc>
+    <lastmod>2025-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://scott-gresack.github.io/portfolio/mobile_updates</loc>
+    <lastmod>2025-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://scott-gresack.github.io/portfolio/tag_generator.html</loc>
+    <lastmod>2025-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>
