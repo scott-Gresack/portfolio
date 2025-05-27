@@ -107,7 +107,7 @@ I thrive at the intersection of engineering, analytics, and architecture — tur
 
 - 🧠 **Identity Stitching for Healthcare: App Arrival via Branch + Email**  
   Capturing and resolving user identities arriving from multiple channels like email and deep links is complex in healthcare applications.  
-  I mapped a detailed lifecycle tracking of user identity capture across ECID, email hash, and proxyID within Adobe Experience Platform.  
+  I mapped a detailed lifecycle tracking of user identity capture across ECID, email hash, and first-party identifiers, merging offstream and clickstream data into unified profiles within Adobe Experience Platform.  
   This work demonstrates mobile-first resolution strategies, campaign attribution mechanisms, and activation use cases by mapping identity stitching workflows and illustrating how profiles are unified across channels.
 
 - 🛡️ **Adobe Web SDK Initialization with OneTrust CMP via Tealium iQ**  
