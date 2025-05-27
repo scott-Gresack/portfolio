@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<!--
+  📱 Mobile Tag Spec Builder
+  Author: Scott Gresack
+  URL: https://scott-gresack.github.io/portfolio/mobile_updates
+
+  This interactive tool is designed for generating Adobe Mobile SDK payloads.
+  Features:
+  - Supports trackAction, trackState, and Edge.sendEvent calls.
+  - Dynamically builds payloads with key-value context and XDM identityMap.
+  - Generates native code snippets for Swift, Kotlin, and React Native.
+  - Supports Adobe Edge datastream override and identity stitching via identityMap.
+  - Live payload preview and session-local storage of input.
+
+  Best used for QA, testing journeys, and validating analytics setup across environments.
+
+  Adobe Recommendation:
+  When using identityMap, mark person-based identifiers (e.g., CRMID, email) as "primary".
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -148,6 +166,20 @@
         keyValues.value.forEach(({ key, value }) => {
           if (key) base[key] = value;
         });
+
+        if (sendIdentityMap.value && identityNamespace.value && identityId.value) {
+          base["xdm"] = base["xdm"] || {};
+          base["xdm"]["identityMap"] = {
+            [identityNamespace.value]: [
+              {
+                id: identityId.value,
+                authenticatedState: "authenticated",
+                primary: true
+              }
+            ]
+          };
+        }
+
         return base;
       });
 
@@ -316,7 +348,7 @@
             <input v-model="pair.key" class="border p-2 rounded w-1/2" placeholder="key" />
             <input v-model="pair.value" class="border p-2 rounded w-1/2" placeholder="value" />
           </div>
-          <button @click="addKeyValue" class="text-sm text-blue-600 hover:underline">+ Add Pair</button>
+          <button @click="addKeyValue" class="text-sm text-blue-600 hover:underline" title="Add a new key-value pair to the context payload">+ Add Pair</button>
         </div>
 
         <!-- Optional AEP controls -->
@@ -329,18 +361,18 @@
             <input type="checkbox" v-model="overrideDatastream" />
             <span>Override Datastream ID</span>
           </label>
-          <input v-if="overrideDatastream" v-model="datastreamId" class="border p-2 rounded w-full" placeholder="Datastream ID" />
+          <input v-if="overrideDatastream" v-model="datastreamId" class="border p-2 rounded w-full" placeholder="Datastream ID" title="Optional: Adobe Datastream ID to override default configuration" />
           <p v-if="overrideDatastream" class="text-xs text-gray-500">
             Use this if you want to route the event to a different Adobe Datastream (e.g. for QA, staging, or a separate sandbox).
           </p>
 
-          <label class="flex items-center space-x-2 mt-2">
+          <label class="flex items-center space-x-2 mt-2" title="Send XDM identityMap to enable user-level stitching and personalization.">
             <input type="checkbox" v-model="sendIdentityMap" />
             <span>Send identityMap</span>
           </label>
           <div v-if="sendIdentityMap" class="space-y-2">
-            <input v-model="identityNamespace" class="border p-2 rounded w-full" placeholder="Namespace (e.g. email, ECID, username)" />
-            <input v-model="identityId" class="border p-2 rounded w-full" placeholder="ID Value (e.g. user@example.com)" />
+            <input v-model="identityNamespace" class="border p-2 rounded w-full" placeholder="Namespace (e.g. email, ECID, username)" title="Adobe Identity namespace (e.g., email, ECID, username)" />
+            <input v-model="identityId" class="border p-2 rounded w-full" placeholder="ID Value (e.g. user@example.com)" title="Actual ID value to map in identityMap (e.g. user@example.com)" />
             <p class="text-xs text-gray-500">
               The identityMap sends user identifiers like ECID, email, or custom namespaces to Adobe Edge. This enables identity resolution, personalization, and profile stitching across channels.
             </p>
