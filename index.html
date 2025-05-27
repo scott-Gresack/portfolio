@@ -246,6 +246,71 @@ console.log('[PostHog Bridge] Event forwarding active for gtag, Clarity, and Piw
       font-weight: 600;
     }
   </style>
+
+  <!-- UTM and click ID forwarding script for analytics -->
+  <script>
+  (function () {
+    function getUrlParams() {
+      const params = {};
+      const queryString = window.location.search.slice(1);
+      const pairs = queryString.split("&");
+      for (const pair of pairs) {
+        if (!pair) continue;
+        const [key, value] = pair.split("=");
+        params[decodeURIComponent(key)] = decodeURIComponent(value || "");
+      }
+      return params;
+    }
+
+    const utmParams = getUrlParams();
+    const trackedParams = [
+      "cid",
+      "ref",
+      "utm_medium",
+      "utm_source",
+      "utm_campaign",
+      "utm_term",
+      "utm_content",
+      "gclid",
+      "fbclid",
+      "ga_session_id"
+    ];
+    const payload = {};
+
+    trackedParams.forEach(key => {
+      if (utmParams[key]) {
+        payload[key] = utmParams[key];
+      }
+    });
+
+    if (Object.keys(payload).length > 0) {
+      // GA4 (gtag) — attach user_properties to page view events
+      if (typeof gtag === "function") {
+        gtag('set', 'user_properties', { ...payload });
+      }
+
+      // Microsoft Clarity (unchanged)
+      if (window.clarity) {
+        clarity('set', payload);
+      }
+
+      // Piwik PRO (unchanged)
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'ppms.cm:utm_parameters',
+          ...payload
+        });
+      }
+
+      // PostHog — set user properties via identify only (no event)
+      if (window.posthog) {
+        posthog.identify(undefined, {
+          ...payload
+        });
+      }
+    }
+  })();
+  </script>
 </head>
 <body>
   <!-- Root element for Vue.js app, using flexbox for full-height layout -->
