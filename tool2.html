@@ -353,6 +353,57 @@
             }
         }
     </style>
+    <!-- UTM Parameter Capture and Multi-Platform Analytics -->
+    <script>
+      (function () {
+        function getUrlParams() {
+          const params = {};
+          const queryString = window.location.search.slice(1);
+          const pairs = queryString.split("&");
+          for (const pair of pairs) {
+            if (!pair) continue;
+            const [key, value] = pair.split("=");
+            params[decodeURIComponent(key)] = decodeURIComponent(value || "");
+          }
+          return params;
+        }
+
+        const utmParams = getUrlParams();
+        const trackedParams = ["cid", "utm_medium", "utm_source", "utm_campaign", "utm_term", "utm_content"];
+        const payload = {};
+
+        trackedParams.forEach(key => {
+          if (utmParams[key]) {
+            payload[key] = utmParams[key];
+          }
+        });
+
+        if (Object.keys(payload).length > 0) {
+          // GA4
+          if (typeof gtag === "function") {
+            gtag('event', 'utm_parameters_detected', payload);
+          }
+
+          // Microsoft Clarity
+          if (window.clarity) {
+            clarity('set', payload);
+          }
+
+          // Piwik PRO
+          if (window.dataLayer) {
+            window.dataLayer.push({
+              event: 'ppms.cm:utm_parameters',
+              ...payload
+            });
+          }
+
+          // PostHog
+          if (window.posthog) {
+            posthog.capture('utm_parameters_detected', payload);
+          }
+        }
+      })();
+    </script>
 </head>
 
 <body>
@@ -399,9 +450,9 @@
                   >XDM Comparator</a>
               </div>
             </div>
-            <a href="#about" class="hover:text-blue-500">About</a>
-            <a href="#contact" class="hover:text-blue-500">Contact</a>
-            <a href="#diagrams" class="hover:text-blue-500">Diagrams</a>
+            <a href="https://scott-gresack.github.io/portfolio/#about" class="hover:text-blue-500">About</a>
+            <a href="https://scott-gresack.github.io/portfolio/#contact" class="hover:text-blue-500">Contact</a>
+            <a href="https://scott-gresack.github.io/portfolio/#diagrams" class="hover:text-blue-500">Diagrams</a>
           </div>
         </nav>
       </header>
