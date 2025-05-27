@@ -1,5 +1,9 @@
 
+
 <!DOCTYPE html>
+<!--
+Portfolio of Scott Gresack – Adobe Experience Platform (AEP) Expert | Martech Implementation | Tealium iQ | Adobe Launch | Real-Time CDP | Customer Journey Analytics | GitHub for Martech Tagging and Data Architecture
+-->
 <html lang="en">
 <head>
   <!-- Define character encoding for the document -->
@@ -253,11 +257,11 @@ console.log('[PostHog Bridge] Event forwarding active for gtag, Clarity, and Piw
       <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between text-sm font-medium text-gray-800">
         <!-- Branding or name display -->
         <div>Scott Gresack</div>
-        <!-- Navigation links with Vue.js event handling and external link -->
+        <!-- Navigation links as anchors -->
         <div class="space-x-4">
-          <button @click="navigate('about')" :class="{ 'nav-link active': view === 'about' }">About</button>
-          <button @click="navigate('contact')" :class="{ 'nav-link active': view === 'contact' }">Contact</button>
-          <button @click="navigate('tools')" :class="{ 'nav-link active': view === 'tools' }">Tools</button>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
+          <a href="#tools" class="nav-link">Tools</a>
           <a href="https://scott-gresack.github.io/portfolio/xdm_comparator" class="nav-link" target="_blank">XDM Comparator</a>
           <!-- External link to Another Tool page -->
           <a href="https://scott-gresack.github.io/portfolio/tool2.html" class="nav-link">Another Tool</a>
@@ -265,84 +269,76 @@ console.log('[PostHog Bridge] Event forwarding active for gtag, Clarity, and Piw
       </nav>
     </header>
 
-    <!-- Main content area with centered layout -->
     <main class="flex-grow max-w-7xl mx-auto p-6">
-      <!-- About section, shown when view is 'about' -->
-      <section v-show="view === 'about'" class="space-y-4">
-        <h1 class="text-2xl font-bold">Hi, I'm Scott Gresack</h1>
-        <p>A Martech Engineer specializing in Adobe Experience Platform, Tealium iQ, CDP architecture, and analytics instrumentation. I build scalable solutions for enterprise data collection and customer journey activation across web and mobile ecosystems.</p>
-        <a href="https://www.linkedin.com/in/scottgresack/" class="text-blue-600 underline" target="_blank">Connect with me on LinkedIn</a>
-      </section>
+      <section id="about" class="space-y-6">
+        <h1 class="text-4xl font-bold">👋 Scott Gresack</h1>
+        <p class="text-lg font-semibold">Martech Implementation Leader | Adobe Experience Platform Expert | Data Governance Strategist</p>
+        <p>
+          📧 <strong>Email:</strong> <a href="mailto:gresack.scott@gmail.com" class="text-blue-600 underline">gresack.scott@gmail.com</a><br>
+          🔗 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/scottgresack" class="text-blue-600 underline" target="_blank">linkedin.com/in/scottgresack</a><br>
+          🌐 <strong>Live Portfolio:</strong> <a href="https://scott-gresack.github.io/portfolio" class="text-blue-600 underline" target="_blank">scott-gresack.github.io/portfolio</a><br>
+          📞 <strong>Phone:</strong> ‪(440) 390-3237‬
+        </p>
 
-      <!-- Contact section, shown when view is 'contact' -->
-      <section v-show="view === 'contact'" class="space-y-4">
-        <h1 class="text-2xl font-bold">Contact</h1>
-        <p>For speaking, collaboration, or technical consulting inquiries, please reach out via <a href="https://www.linkedin.com/in/scottgresack/" class="text-blue-600 underline" target="_blank">LinkedIn</a>.</p>
-      </section>
+        <hr class="my-4 border-t">
 
-      <!-- Tools section, shown when view is 'tools' -->
-      <section v-show="view === 'tools'" class="space-y-4">
-        <h1 class="text-2xl font-bold">🧰 Tools</h1>
-        <!-- Grid layout for tool cards -->
-        <div class="grid sm:grid-cols-2 gap-6">
-          <!-- Tool card for Web Tag Spec Generator -->
-          <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-            <a href="/portfolio/tag_spec_generator" class="block text-lg font-semibold text-blue-600 hover:underline">
-              Web Tag Spec Generator
-            </a>
-          </div>
-          <!-- Tool card for Adobe Web SDK Object Comparator -->
-          <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-            <a href="/portfolio/xdm_comparator" class="block text-lg font-semibold text-blue-600 hover:underline">
-              Adobe Web SDK Object Comparator
-            </a>
-          </div>
-          <!-- Tool card for Mobile Tracker Config -->
-          <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-            <a href="https://codepen.io/scott-gresack/full/ogvYawV" target="_blank" class="block text-lg font-semibold text-blue-600 hover:underline">
-              Mobile Tracker Config (CodePen)
-            </a>
-          </div>
-          <!-- Tool card for XDM Schema Comparator -->
-          <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-            <a href="https://codepen.io/scott-gresack/full/NPPKJpb" target="_blank" class="block text-lg font-semibold text-blue-600 hover:underline">
-              XDM Schema Comparator (CodePen)
-            </a>
-          </div>
-          <!-- Tool card for Alloy Payload Inspector -->
-          <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-            <a href="https://scott-gresack.github.io/portfolio/tool2.html" target="_blank" class="block text-lg font-semibold text-blue-600 hover:underline">
-              Alloy Payload Inspector (AEP Debugging Tool)
-            </a>
-          </div>
-        </div>
-      </section>
+        <h2 class="text-2xl font-bold">🚀 About Me</h2>
+        <p>
+          I'm a results-driven Martech and Data Governance Specialist with deep experience designing and implementing enterprise-scale data collection strategies across web and mobile ecosystems.
+        </p>
+        <p>
+          I specialize in Adobe Experience Platform (AEP), Tealium iQ, Google Tag Manager (GTM), and Customer Journey Analytics (CJA), with expertise in scalable tagging frameworks, identity resolution, and real-time personalization.
+        </p>
+        <p>
+          I thrive at the intersection of engineering, analytics, and architecture — turning complex customer data flows into actionable, compliant, and revenue-driving outcomes.
+        </p>
 
+        <hr class="my-4 border-t">
+
+        <h2 class="text-2xl font-bold">📂 Featured Projects</h2>
+        <p>
+          This section highlights hands-on tools, identity governance flows, and real-time orchestration strategies I’ve delivered across Martech ecosystems. Full portfolio navigation is available at the top of the page, or you can <a href="#tools" class="text-blue-600 underline">jump to tools</a>.
+        </p>
+
+        <ul class="list-disc list-inside mt-4 space-y-2 text-sm text-gray-700">
+          <li><strong>🧰 Mobile Tag Spec Builder:</strong> Generate trackAction/trackState specs for Swift/Kotlin using XDM.</li>
+          <li><strong>🧾 Network Logger & Modal Debugger:</strong> Capture native and WebView events across Edge/XHR layers.</li>
+          <li><strong>🧬 XDM Comparator:</strong> Schema diff engine for props, eVars, events.</li>
+          <li><strong>🧠 Identity Stitching Pipelines:</strong> ECID ↔ proxyID logic for mobile-first journeys and HIPAA strategies.</li>
+          <li><strong>🔁 Frustrated Member Recovery:</strong> Adobe Journey Orchestration for support escalation and behavior resolution.</li>
+          <li><strong>📊 AEP SQL Query Library:</strong> Curated queries for session stitching, identity QA, and campaign attribution.</li>
+          <li><strong>📈 Assurance Validator:</strong> Explorer plugin for Adobe Assurance events with synthetic event generation.</li>
+        </ul>
+
+        <hr class="my-4 border-t">
+
+        <h2 class="text-2xl font-bold">📌 GenAI Outlook for Martech</h2>
+        <p>
+          We’re in the midst of a modern industrial shift—one where <strong>data and AI are not just tools</strong>, but foundational infrastructure for how digital experiences are designed, delivered, and optimized. As this wave accelerates, two core practices are becoming indispensable for Martech professionals:
+        </p>
+        <ul class="list-disc list-inside mt-2 text-sm text-gray-700">
+          <li><strong>Supervised Fine-Tuning</strong> aligns models with enterprise tone and compliance logic via structured examples.</li>
+          <li><strong>Retrieval-Augmented Generation (RAG)</strong> lets models retrieve insights from private, trusted datasets at runtime.</li>
+        </ul>
+        <p class="mt-2">
+          Explore the foundations of this approach in my <a href="https://scott-gresack.github.io/portfolio/tool2.html" class="text-blue-600 underline">Alloy Payload Inspector</a>—a hands-on visualization tool for identity stitching and real-time Adobe dataflows.
+        </p>
+      </section>
+      <section id="contact"></section>
+      <section id="tools" class="mt-16">
+        <h2 class="text-2xl font-bold mb-4">🛠 Tools</h2>
+        <p class="text-sm text-gray-700">
+          Below are hands-on utilities and tools for Adobe Experience Platform, Web SDK validation, XDM mapping, and QA workflows:
+        </p>
+        <ul class="list-disc list-inside mt-4 text-sm text-gray-700">
+          <li><a href="https://scott-gresack.github.io/portfolio/tool2.html" target="_blank" class="text-blue-600 underline">Alloy Payload Inspector</a></li>
+          <li><a href="https://scott-gresack.github.io/portfolio/tag_generator.html" target="_blank" class="text-blue-600 underline">Web Tag Spec Generator</a></li>
+          <li><a href="https://scott-gresack.github.io/portfolio/xdm_comparator" target="_blank" class="text-blue-600 underline">XDM Comparator</a></li>
+        </ul> 
+      </section>
     </main>
   </div>
 
-  <!-- Vue.js application script -->
-  <script>
-    // Import createApp from Vue.js to initialize the app
-    const { createApp } = Vue;
-    // Create and mount the Vue app to #app element
-    createApp({
-      // Define reactive data properties
-      data() {
-        return {
-          // Current view (about, contact, tools, diagrams)
-          view: 'about'
-        };
-      },
-      // Define methods for the Vue app
-      methods: {
-        // Navigate to a section and scroll to top
-        navigate(section) {
-          this.view = section;
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }
-    }).mount("#app");
-  </script>
+  <!-- Vue.js application script (removed navigation logic as anchors are used) -->
 </body>
 </html>
