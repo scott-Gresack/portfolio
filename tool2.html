@@ -353,9 +353,18 @@
             }
         }
     </style>
-    <!-- UTM Parameter Capture and Multi-Platform Analytics -->
+    <!--
+      UTM Parameter Capture and Analytics Integration
+      This script extracts common marketing attribution parameters (e.g., utm_source, utm_campaign, cid, ref) from the URL query string.
+      These values are passed as user-scoped dimensions to GA4 (via gtag), PostHog, Microsoft Clarity, and Piwik PRO.
+      Benefits:
+        - Enables session-level and user-level attribution
+        - Supports multi-platform analytics alignment
+        - No additional event is fired; properties are merged into existing page view contexts
+    -->
     <script>
       (function () {
+        // Parse URL query parameters
         function getUrlParams() {
           const params = {};
           const queryString = window.location.search.slice(1);
@@ -368,28 +377,43 @@
           return params;
         }
 
+        // Define the list of relevant UTM and ID parameters to track
+        const trackedParams = [
+          "cid",             // custom campaign/user ID
+          "ref",             // referrer
+          "utm_medium",      // e.g., email, cpc
+          "utm_source",      // e.g., google, newsletter
+          "utm_campaign",    // e.g., spring_sale
+          "utm_term",        // paid search keyword
+          "utm_content",     // specific content variation
+          "gclid",           // Google Ads click ID
+          "fbclid",          // Facebook click ID
+          "ga_session_id"    // GA4 session ID
+        ];
+
         const utmParams = getUrlParams();
-        const trackedParams = ["cid", "utm_medium", "utm_source", "utm_campaign", "utm_term", "utm_content"];
         const payload = {};
 
+        // Filter out and collect only tracked parameters
         trackedParams.forEach(key => {
           if (utmParams[key]) {
             payload[key] = utmParams[key];
           }
         });
 
+        // Push user properties to various analytics tools if values exist
         if (Object.keys(payload).length > 0) {
-          // GA4
+          // GA4: Attach user_properties to current session
           if (typeof gtag === "function") {
-            gtag('event', 'utm_parameters_detected', payload);
+            gtag('set', 'user_properties', { ...payload });
           }
 
-          // Microsoft Clarity
+          // Microsoft Clarity: Attach as custom properties
           if (window.clarity) {
             clarity('set', payload);
           }
 
-          // Piwik PRO
+          // Piwik PRO: Push to dataLayer for custom dimension mapping
           if (window.dataLayer) {
             window.dataLayer.push({
               event: 'ppms.cm:utm_parameters',
@@ -397,9 +421,9 @@
             });
           }
 
-          // PostHog
+          // PostHog: Identify and enrich user profile with UTM data
           if (window.posthog) {
-            posthog.capture('utm_parameters_detected', payload);
+            posthog.identify(undefined, { ...payload });
           }
         }
       })();
@@ -720,7 +744,7 @@
             <div id="successMessage" class="hidden success-message mb-4"></div>
             <div id="loadingIndicator" class="hidden text-blue-600 font-semibold mb-4">Processing...</div>
             <!-- Toggle for showing rows with only null/empty values -->
-            <label class="flex items-center gap-2 mb-4">
+            <label class="flex items-center gap-2 mb-4" title="Toggle to include or exclude rows that contain only null, undefined, or empty values.">
                 <input type="checkbox" id="toggleNulls" checked />
                 <span>Show rows with only null/empty values</span>
             </label>
@@ -728,18 +752,18 @@
             <textarea id="payloadInput" class="w-full min-h-[150px] border border-gray-300 rounded p-3 mb-4" placeholder="Paste flattened Alloy event payloads JSON array here or auto-load from sessionStorage..." aria-label="JSON payload input"></textarea>
             <!-- Action buttons -->
             <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4 space-y-2 sm:space-y-0">
-                <button onclick="parsePayloads()" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto" aria-label="Parse JSON payloads">Parse Payloads</button>
-                <button onclick="refreshPayloads()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full sm:w-auto" aria-label="Refresh payloads from sessionStorage">Refresh Payloads</button>
-                <button onclick="analyzeRows()" class="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 w-full sm:w-auto" aria-label="Analyze parsed payload rows">Analyze Rows</button>
-                <button onclick="downloadJSON()" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full sm:w-auto hidden" id="downloadBtn" aria-label="Download JSON file">Download as JSON</button>
-                <button onclick="copyAsCSV()" class="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 w-full sm:w-auto hidden" id="copyCsvBtn" aria-label="Copy table as CSV">Copy as CSV</button>
+                <button onclick="parsePayloads()" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto" aria-label="Parse JSON payloads" title="Parse the JSON payloads and render them in a dynamic table.">Parse Payloads</button>
+                <button onclick="refreshPayloads()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full sm:w-auto" aria-label="Refresh payloads from sessionStorage" title="Load flattened payloads from sessionStorage.">Refresh Payloads</button>
+                <button onclick="analyzeRows()" class="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 w-full sm:w-auto" aria-label="Analyze parsed payload rows" title="Inspect frequency and types of each field in the loaded payloads.">Analyze Rows</button>
+                <button onclick="downloadJSON()" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full sm:w-auto hidden" id="downloadBtn" aria-label="Download JSON file" title="Download the current payloads as a formatted JSON file.">Download as JSON</button>
+                <button onclick="copyAsCSV()" class="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 w-full sm:w-auto hidden" id="copyCsvBtn" aria-label="Copy table as CSV" title="Copy the payload table contents as CSV to your clipboard.">Copy as CSV</button>
             </div>
             <!-- Filter input -->
             <input type="text" id="filterInput" class="p-2 w-full sm:max-w-xs border border-gray-300 rounded mb-4" placeholder="Filter by field or value..." aria-label="Filter table data" />
             <!-- Scroll buttons -->
             <div class="scroll-buttons">
-                <button onclick="scrollTableLeft()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" aria-label="Scroll table left">Scroll Left</button>
-                <button onclick="scrollTableRight()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" aria-label="Scroll table right">Scroll Right</button>
+                <button onclick="scrollTableLeft()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" aria-label="Scroll table left" title="Scroll the payload table left">Scroll Left</button>
+                <button onclick="scrollTableRight()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" aria-label="Scroll table right" title="Scroll the payload table right">Scroll Right</button>
             </div>
             <!-- Payload table -->
             <div class="table-wrapper">
