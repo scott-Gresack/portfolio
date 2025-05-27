@@ -1,3 +1,4 @@
+
 <!--
   Alloy Flattened Payload Analyzer v1.0.1
   Author: Scott Gresack
@@ -357,19 +358,161 @@
 <body>
     <!-- Navigation bar -->
     <div id="nav-app">
-        <header class="bg-white shadow sticky top-0 z-50">
-            <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between text-sm font-medium text-gray-800">
-                <div>Scott Gresack</div>
-                <div class="space-x-2 sm:space-x-4">
-                    <a href="#about" class="hover:text-blue-500">About</a>
-                    <a href="#contact" class="hover:text-blue-500">Contact</a>
-                    <a href="#tools" class="hover:text-blue-500">Tools</a>
-                    <a href="#diagrams" class="hover:text-blue-500">Diagrams</a>
-                    <a href="https://scott-gresack.github.io/portfolio/tool2.html" class="hover:text-blue-500">Another Tool</a>
-                </div>
-            </nav>
-        </header>
+      <header class="bg-white shadow sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between text-sm font-medium text-gray-800 items-center">
+          <div>Scott Gresack</div>
+          <div class="flex items-center gap-4">
+            <!-- Dropdown: Tools -->
+            <div class="nav-dropdown relative nav-tools-dropdown">
+              <button
+                class="nav-dropdown-btn hover:text-blue-500 focus:outline-none flex items-center"
+                aria-haspopup="true"
+                aria-expanded="false"
+                id="nav-tools-dropdown-btn"
+                tabindex="0"
+                type="button"
+              >
+                Tools
+                <svg class="ml-1 w-4 h-4 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-width="2" d="M6 8l4 4 4-4"/></svg>
+              </button>
+              <div
+                class="nav-dropdown-menu absolute hidden bg-white border rounded shadow-md z-50 mt-2 min-w-[200px]"
+                role="menu"
+                aria-labelledby="nav-tools-dropdown-btn"
+                tabindex="-1"
+              >
+                <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=nav&amp;utm_medium=dropdown&amp;utm_term=flattened-analyzer&amp;cid=nav-tools"
+                  class="block px-4 py-2 hover:bg-blue-50 text-sm text-gray-800"
+                  role="menuitem"
+                  >Alloy Payload Analyzer</a>
+                <a href="https://scott-gresack.github.io/portfolio/tag_generator?utm_source=nav&amp;utm_medium=dropdown&amp;utm_term=tag-generator&amp;cid=nav-tools"
+                  class="block px-4 py-2 hover:bg-blue-50 text-sm text-gray-800"
+                  role="menuitem"
+                  >Tag Generator</a>
+                <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=nav&amp;utm_medium=dropdown&amp;utm_term=mobile-updates&amp;cid=nav-tools"
+                  class="block px-4 py-2 hover:bg-blue-50 text-sm text-gray-800"
+                  role="menuitem"
+                  >Mobile Updates</a>
+                <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=nav&amp;utm_medium=dropdown&amp;utm_term=xdm-comparator&amp;cid=nav-tools"
+                  class="block px-4 py-2 hover:bg-blue-50 text-sm text-gray-800"
+                  role="menuitem"
+                  >XDM Comparator</a>
+              </div>
+            </div>
+            <a href="#about" class="hover:text-blue-500">About</a>
+            <a href="#contact" class="hover:text-blue-500">Contact</a>
+            <a href="#diagrams" class="hover:text-blue-500">Diagrams</a>
+          </div>
+        </nav>
+      </header>
     </div>
+    <!-- Dropdown CSS for nav-tools-dropdown (reusable) -->
+    <style>
+      .nav-tools-dropdown {
+        /* position: relative; already set by class */
+      }
+      .nav-tools-dropdown .nav-dropdown-menu {
+        display: none;
+        left: 0;
+        top: 100%;
+      }
+      .nav-tools-dropdown:focus-within .nav-dropdown-menu,
+      .nav-tools-dropdown:hover .nav-dropdown-menu,
+      .nav-tools-dropdown.active .nav-dropdown-menu {
+        display: block;
+      }
+      .nav-tools-dropdown .nav-dropdown-btn[aria-expanded="true"] + .nav-dropdown-menu {
+        display: block;
+      }
+      /* Optional: Animate dropdown */
+      .nav-tools-dropdown .nav-dropdown-menu {
+        transition: opacity 0.15s;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .nav-tools-dropdown:focus-within .nav-dropdown-menu,
+      .nav-tools-dropdown:hover .nav-dropdown-menu,
+      .nav-tools-dropdown.active .nav-dropdown-menu,
+      .nav-tools-dropdown .nav-dropdown-btn[aria-expanded="true"] + .nav-dropdown-menu {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      @media (max-width: 640px) {
+        .nav-tools-dropdown .nav-dropdown-menu {
+          min-width: 160px;
+          right: 0;
+          left: auto;
+        }
+      }
+    </style>
+
+    <!-- Dropdown JS for nav-tools-dropdown (reusable, mobile-friendly) -->
+    <script>
+      // Dropdown: support click, focus, hover for nav-tools-dropdown
+      (function() {
+        const dropdown = document.querySelector('.nav-tools-dropdown');
+        if (!dropdown) return;
+        const btn = dropdown.querySelector('.nav-dropdown-btn');
+        const menu = dropdown.querySelector('.nav-dropdown-menu');
+
+        // Toggle dropdown on click (mobile)
+        btn.addEventListener('click', function(e) {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          dropdown.classList.toggle('active', !expanded);
+          if (!expanded) {
+            menu.focus();
+          }
+        });
+
+        // Close dropdown on click outside
+        document.addEventListener('click', function(e) {
+          if (!dropdown.contains(e.target)) {
+            btn.setAttribute('aria-expanded', 'false');
+            dropdown.classList.remove('active');
+          }
+        });
+
+        // Open dropdown on focus within (keyboard nav)
+        dropdown.addEventListener('focusin', function() {
+          btn.setAttribute('aria-expanded', 'true');
+          dropdown.classList.add('active');
+        });
+        // Close on focus out (unless mouse is over)
+        dropdown.addEventListener('focusout', function(e) {
+          setTimeout(function() {
+            if (!dropdown.contains(document.activeElement)) {
+              btn.setAttribute('aria-expanded', 'false');
+              dropdown.classList.remove('active');
+            }
+          }, 10);
+        });
+        // Open on mouseenter, close on mouseleave (desktop hover)
+        dropdown.addEventListener('mouseenter', function() {
+          btn.setAttribute('aria-expanded', 'true');
+          dropdown.classList.add('active');
+        });
+        dropdown.addEventListener('mouseleave', function() {
+          btn.setAttribute('aria-expanded', 'false');
+          dropdown.classList.remove('active');
+        });
+        // Keyboard: close on Escape
+        btn.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            btn.setAttribute('aria-expanded', 'false');
+            dropdown.classList.remove('active');
+            btn.blur();
+          }
+        });
+        menu.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            btn.setAttribute('aria-expanded', 'false');
+            dropdown.classList.remove('active');
+            btn.blur();
+          }
+        });
+      })();
+    </script>
 
     <!-- Main content -->
     <main class="mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full max-w-7xl">
