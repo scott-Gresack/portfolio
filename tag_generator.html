@@ -1,62 +1,77 @@
 <!DOCTYPE html>
 <!--
-  Alloy Flattened Payload Analyzer v1.0.1
+  Web Tag Spec Generator v1.0.1
   Author: Scott Gresack
-
-  Description:
-  This tool provides an interactive interface to inspect flattened Adobe Alloy (AEP Web SDK) event payloads.
-  It helps identify data quality issues, debug schema mismatches, and export normalized data for analysis.
-
-  Key Features:
-  - Flattened view of XDM and data objects
-  - Field-level null/undefined analysis
-  - Real-time sessionStorage integration
-  - JSON/CSV export for collaboration
-  - Row filtering and event type summary
-  - Extensible with tracking (GA4, PostHog, Clarity, Piwik PRO)
-
-  Use Case:
-  Ideal for Martech engineers, QA testers, analysts, or developers debugging Adobe Experience Platform integrations.
-
-  Version: 1.0.1
+  Description: Interactive tool to generate and preview utag.view() and utag.link() payloads for Adobe Analytics, with XDM and data.__adobe.analytics mapping.
   Last updated: 2025-05-26
 -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="ppms.tool_name" content="Alloy Flattened Payload Analyzer" />
-  <meta name="ppms.tool_version" content="1.0.1" />
-  <meta name="ppms.tool_author" content="Scott Gresack" />
-  <title>Alloy Payload Inspector for AEP Debugging & Tag Validation | Scott Gresack</title>
-  <meta name="description" content="Analyze flattened Adobe Alloy event payloads with Scott Gresack's tool. Parse JSON, view dynamic tables, filter data, and download results." />
-  <meta name="keywords" content="Martech, Adobe Alloy, Adobe Experience Platform, AEP, AEPP, Web SDK, XDM, CDP, datasets, AI Copilot, cursor, microservices, data integration, digital analytics, Tag Management, Divrei Torah, Gemara, Yeshiva, Haskafah, AI agent, workforce transition, schema mapping, Scott Gresack, Jewish tech professional" />
-  <meta name="author" content="Scott Gresack" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/tool2.html" />
-  <meta name="google-site-verification" content="LTi0sO_AWGNd4v7uJivsQWdkhrGDBDX2uLFTSIFNgbs" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tool2.html" />
-  <meta property="og:title" content="Alloy Flattened Payload Analyzer | Scott Gresack Portfolio" />
-  <meta property="og:description" content="Explore Scott Gresack's Alloy Flattened Payload Analyzer for parsing and analyzing flattened Adobe Alloy event payloads with dynamic tables, filtering, and JSON export." />
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Alloy Flattened Payload Analyzer | Scott Gresack Portfolio" />
-  <meta name="twitter:description" content="Use Scott Gresack's tool to analyze flattened Adobe Alloy payloads, featuring dynamic tables, filtering, and JSON download capabilities." />
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tool metadata -->
+  <meta name="ppms.tool_name" content="Web Tag Spec Generator">
+  <meta name="ppms.tool_version" content="1.0.1">
+  <meta name="ppms.tool_author" content="Scott Gresack">
+  <meta name="author" content="Scott Gresack">
+  <meta name="robots" content="index, follow">
+  <!-- SEO meta tags -->
+  <title>Web Tag Spec Generator for Adobe Analytics | Scott Gresack</title>
+  <meta name="description" content="Generate and preview utag.view() and utag.link() payloads for Adobe Analytics. Map to XDM and export results.">
+  <meta name="keywords" content="Adobe Analytics, Web SDK, XDM, Tealium, utag.view, utag.link, Martech, data integration, digital analytics, tag management, Scott Gresack">
+  <link rel="canonical" href="/portfolio/tag-spec-generator.html">
+  <!-- Open Graph & Twitter meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/portfolio/tag-spec-generator.html">
+  <meta property="og:title" content="Web Tag Spec Generator | Scott Gresack Portfolio">
+  <meta property="og:description" content="Generate Adobe Analytics utag.view() and utag.link() payloads with dynamic XDM mapping.">
+  <meta property="og:image" content="/portfolio/assets/preview-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Web Tag Spec Generator | Scott Gresack Portfolio">
+  <meta name="twitter:description" content="Create and map Adobe Analytics payloads with XDM support using Scott Gresack's tool.">
+  <meta name="twitter:image" content="/portfolio/assets/preview-image.png">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'GT-MQBSZT8H');
+    gtag('config', 'G-Y8617TLMYK', { anonymize_ip: true });
   </script>
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}
+    (p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);
+    var u=e;void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"};
+    o="init capture identify alias people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1}(document,window.posthog||[]);
+    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U',{api_host:'https://us.i.posthog.com',person_profiles:'always'});
+  </script>
+  <!-- Microsoft Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pmp4efispy");
+  </script>
+  <!-- Piwik PRO Tag Manager -->
+  <script>
+    (function(window,document,dataLayerName,id){
+      window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
+      var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
+      var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName);
+      var qPString=qP.length>0?("?"+qP.join("&")):"";
+      tags.async=!0;tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js"+qPString;
+      scripts.parentNode.insertBefore(tags,scripts);
+      !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
+    })(window,document,'dataLayer','40c8a729-ebc6-4dfe-98be-6617064e43a9');
+  </script>
+  <!-- Structured Data -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Scott Gresack",
-      "url": "https://scott-gresack.github.io/portfolio/",
+      "url": "/portfolio/",
       "sameAs": ["https://www.linkedin.com/in/scottgresack/"],
       "jobTitle": "Martech Engineer | AEP + CDP Expert",
       "worksFor": {
@@ -77,156 +92,216 @@
       ]
     }
   </script>
-  <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}
-    (p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);
-    var u=e;void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"};
-    o="init capture identify alias people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-    for(n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U',{api_host:'https://us.i.posthog.com',person_profiles:'always'});
-  </script>
-  <script>
-    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pmp4efispy");
-  </script>
-  <script type="text/javascript">
-    (function(window,document,dataLayerName,id){
-      window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
-      var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
-      var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName);
-      var qPString=qP.length>0?("?"+qP.join("&")):"";
-      tags.async=!0;tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js"+qPString;
-      scripts.parentNode.insertBefore(tags,scripts);
-      !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
-    })(window,document,'dataLayer','40c8a729-ebc6-4dfe-98be-6617064e43a9');
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- UI Fonts and Frameworks -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag("js", new Date());
-    gtag("config", "G-Y8617TLMYK", { anonymize_ip: true });
-  </script>
 </head>
-<body class="bg-white text-gray-900 font-sans antialiased leading-relaxed tracking-wide">
-<!-- Navigation Bar -->
-<div class="w-full max-w-4xl mx-auto px-4">
-  <div class="bg-blue-600 text-white rounded-xl mt-6 mb-6 p-4 flex justify-between items-center shadow-md">
-    <a href="https://scott-gresack.github.io/portfolio/" class="font-semibold hover:underline">
-      ← Back to Portfolio
-    </a>
-    <a href="https://scott-gresack.github.io/portfolio/xdm_comparator" class="font-semibold hover:underline">
-      Compare XDM
-    </a>
-  </div>
-</div>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 font-sans antialiased leading-relaxed tracking-wide">
+  <header class="bg-white shadow border-b sticky top-0 z-50">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-sm font-medium text-gray-800">
+      <div class="font-semibold tracking-wide text-lg">🧪 Web Tag Spec Generator</div>
+      <div class="space-x-6">
+        <a href="/portfolio/" class="hover:text-blue-600 transition">Home</a>
+        <a href="/portfolio/tag-spec-generator.html" class="hover:text-blue-600 transition">Tag Spec Generator</a>
+        <a href="/portfolio/xdm-comparator.html" class="hover:text-blue-600 transition">XDM Comparator</a>
+      </div>
+    </nav>
+  </header>
+  <article class="max-w-4xl mx-auto mt-8 mb-4 px-6 py-6 bg-white/90 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg text-sm text-gray-700">
+    <h2 class="text-xl font-semibold mb-2">🎯 What This Tool Does</h2>
+    <p>
+      Create and visualize Adobe Web SDK events from Tealium tagging specs. Useful for <strong>QA validation, schema testing, front-end handoffs, and documentation</strong>.
+    </p>
+    <p class="mt-2">
+      Outputs include <code>utag.view()</code>/<code>utag.link()</code>, XDM payload, and <code>data.__adobe.analytics</code> model.
+    </p>
+    <p class="mt-2 text-blue-700">
+      🆘 Hover any <strong>❓</strong> icon for tooltips.
+    </p>
+  </article>
   <div id="app" class="min-h-screen flex flex-col items-center pt-12 pb-24 px-4">
-    <div class="w-full max-w-3xl bg-white rounded-3xl shadow-xl overflow-hidden animate-fadeIn border border-gray-200">
+    <div class="text-center text-xs text-gray-400 mb-4">
+      v1.0.1 · Updated May 26, 2025 · Scott Gresack<br>
+      For front-end engineers generating <code>utag.link()</code> or <code>utag.view()</code> events for Tealium → Adobe Web SDK.
+    </div>
+    <div class="w-full max-w-4xl bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-gray-200 ring-1 ring-slate-100">
       <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 text-white p-8 rounded-t-3xl">
-        <h1 class="text-4xl font-extrabold tracking-tight">✨ Web Tag Spec Generator ✨</h1>
+        <h1 class="text-4xl font-extrabold tracking-tight drop-shadow-lg">✨ Web Tag Spec Generator ✨</h1>
         <p class="mt-2 text-blue-100">
-          Dynamically generate <code class="bg-white/20 px-1 rounded">utag.view()</code> and 
-          <code class="bg-white/20 px-1 rounded">utag.link()</code> payloads, plus mapped XDM.
+          Generate <code class="bg-white/20 px-1 rounded">utag.view()</code> and 
+          <code class="bg-white/20 px-1 rounded">utag.link()</code> payloads with XDM mapping.
         </p>
       </div>
-
       <!-- Instructions -->
       <div class="p-8 border-b">
-        <button @click="toggleInstructions"
-                class="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition font-medium">
+        <button @click="toggleInstructions" class="flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border hover:bg-gray-50 transition rounded-lg font-medium shadow-sm" aria-label="Toggle instructions">
           <span>{{ showInstructions ? '🔽' : '🔼' }}</span>
           <span>Instructions</span>
         </button>
         <transition name="fade">
-          <div v-if="showInstructions" class="mt-4 bg-gray-50 p-4 rounded-lg space-y-4 text-sm">
+          <div v-if="showInstructions" class="mt-4 bg-white/70 backdrop-blur-md p-4 rounded-lg space-y-4 text-sm border border-gray-100 shadow">
             <div>
               <h2 class="font-semibold text-gray-700">🚀 Purpose</h2>
               <p>
-                Build valid <code class="bg-gray-200 px-1 rounded">utag.view()</code> or 
-                <code class="bg-gray-200 px-1 rounded">utag.link()</code> events, with mapped Adobe Web SDK eVars, props, and events.
+                Build <code class="bg-gray-200 px-1 rounded">utag.view()</code> or 
+                <code class="bg-gray-200 px-1 rounded">utag.link()</code> events with Adobe Web SDK mappings.
               </p>
             </div>
             <div>
               <h2 class="font-semibold text-gray-700">🛠 Instructions</h2>
               <ol class="list-decimal list-inside space-y-1">
-                <li>Select the type of event.</li>
-                <li>Add key/value pairs and analytics mapping.</li>
-                <li>Copy the formatted Tag Spec or XDM object.</li>
+                <li>Select event: <code>utag.view()</code> or <code>utag.link()</code>.</li>
+                <li>Add key/value pairs (no quotes around values).</li>
+                <li>Map to Adobe Analytics variables (eVar, prop, event).</li>
+                <li>Use <code>|</code> for nested keys (e.g., <code>listVars|list1</code>).</li>
+                <li>Copy Tag Spec, XDM, or <code>data.__adobe.analytics</code> output.</li>
               </ol>
+            </div>
+            <div>
+              <h2 class="font-semibold text-gray-700">📚 References</h2>
+              <ul class="list-disc list-inside text-blue-800 space-y-1 text-sm mt-2">
+                <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/data-var-mapping" target="_blank" class="hover:underline">Map Data Variables to Adobe Analytics</a></li>
+                <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/xdm-var-mapping" target="_blank" class="hover:underline">Map XDM Schema to Adobe Analytics</a></li>
+              </ul>
             </div>
           </div>
         </transition>
       </div>
-
       <!-- Event Selection -->
       <div class="flex space-x-4 p-6 border-b">
-        <button @click="setEventType('utag.view()')" 
-                :class="eventType==='utag.view()' ? 'bg-blue-600 text-white' : 'bg-gray-100'"
-                class="flex-1 py-2 rounded-lg font-medium hover:opacity-90 transition">
-          📊 utag.view()
-        </button>
-        <button @click="setEventType('utag.link()')" 
-                :class="eventType==='utag.link()' ? 'bg-blue-600 text-white' : 'bg-gray-100'"
-                class="flex-1 py-2 rounded-lg font-medium hover:opacity-90 transition">
-          🔗 utag.link()
-        </button>
+        <div class="flex-1 relative group">
+          <button @click="setEventType('utag.view()')" :class="eventType==='utag.view()' ? 'bg-blue-600 text-white ring-2 ring-blue-500' : 'bg-white hover:bg-blue-50 text-gray-700'" class="w-full h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium" aria-label="Select utag.view() for page load events">
+            📊 utag.view()
+          </button>
+          <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-48 mt-2 text-center left-1/2 transform -translate-x-1/2">
+            For page load events.
+          </div>
+        </div>
+        <div class="flex-1 relative group">
+          <button @click="setEventType('utag.link()')" :class="eventType==='utag.link()' ? 'bg-blue-600 text-white ring-2 ring-blue-500' : 'bg-white hover:bg-blue-50 text-gray-700'" class="w-full h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium" aria-label="Select utag.link() for user interactions">
+            🔗 utag.link()
+          </button>
+          <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-48 mt-2 text-center left-1/2 transform -translate-x-1/2">
+            For user interactions (clicks, etc.).
+          </div>
+        </div>
       </div>
-
       <!-- Input Fields -->
       <div class="p-8 space-y-4 border-b">
-        <h3 class="font-semibold text-gray-700">🧩 Key–Value Pairs</h3>
+        <h3 class="font-semibold text-gray-700 flex items-center gap-2">
+          🧩 Key–Value Pairs
+          <span class="relative group">
+            <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for key-value pairs">❓</span>
+            <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2">
+              Define key/value pairs for Tealium.<br>
+              <strong>Tips:</strong>
+              <ul class="list-disc list-inside mt-1">
+                <li><code>key</code>: Custom tag spec name.</li>
+                <li><code>value</code>: Value (no quotes).</li>
+                <li><code>eVar#/prop#/event#</code>: Adobe Analytics mapping.</li>
+                <li>Use <code>|</code> for nested keys (e.g., <code>section|subsection</code>).</li>
+              </ul>
+            </div>
+          </span>
+        </h3>
         <div v-for="(pair,i) in keyValuePairs" :key="i" class="flex space-x-2">
-          <input v-model="pair.key" placeholder="Key" class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
-          <input v-model="pair.value" placeholder="Value" class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
-          <input v-model="pair.analyticsKey" placeholder="eVar#/prop#/event#" class="flex-1 px-3 py-2 border rounded-lg focus:ring" />
-          <button @click="removeKeyValuePair(i)" class="px-3 bg-red-400 hover:bg-red-500 text-white rounded-lg transition">✕</button>
+          <input v-model="pair.key" placeholder="Key" class="flex-1 px-3 py-2 border rounded-lg focus:ring focus:outline-none focus:ring-2 focus:ring-blue-500 transition" aria-label="Key input">
+          <input v-model="pair.value" placeholder="Value" class="flex-1 px-3 py-2 border rounded-lg focus:ring focus:outline-none focus:ring-2 focus:ring-blue-500 transition" aria-label="Value input">
+          <input v-model="pair.analyticsKey" placeholder="eVar#/prop#/event#" class="flex-1 px-3 py-2 border rounded-lg focus:ring focus:outline-none focus:ring-2 focus:ring-blue-500 transition" aria-label="Analytics variable mapping">
+          <button @click="removeKeyValuePair(i)" class="h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-red-400 hover:bg-red-500 text-white" aria-label="Remove key-value pair">✕</button>
+          <button @click="duplicateKeyValuePair(i)" class="h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-yellow-400 hover:bg-yellow-500 text-white" aria-label="Duplicate key-value pair">⧉</button>
         </div>
-        <button @click="addKeyValuePair" class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition">
+        <button @click="addKeyValuePair" class="h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-green-500 hover:bg-green-600 text-white relative group" aria-label="Add new key-value pair">
           ➕ Add Pair
+          <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-60 mt-2 left-1/2 transform -translate-x-1/2">
+            Add a new key, value, and Analytics variable.
+          </div>
         </button>
       </div>
-
       <!-- Outputs -->
       <div class="p-8 space-y-8">
         <div class="rounded-xl border border-gray-200 shadow-sm p-4 bg-white">
           <div class="flex justify-between items-center mb-2">
-            <h4 class="font-semibold text-gray-800">✨ Tag Spec</h4>
-            <button @click="copyToClipboard(formattedSnippet, 'Tag Spec')" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition">
+            <h4 class="font-semibold text-gray-800 flex items-center gap-2">
+              ✨ Tag Spec
+              <span class="relative group">
+                <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for Tag Spec">❓</span>
+                <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2">
+                  Formatted <code>utag.view()</code> or <code>utag.link()</code> payload.
+                </div>
+              </span>
+            </h4>
+            <button @click="copyToClipboard(formattedSnippet, 'Tag Spec')" class="inline-flex items-center gap-2 h-10 px-4 py-2 rounded-md transition shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-600 hover:bg-blue-700 text-white font-medium" aria-label="Copy Tag Spec to clipboard">
               📋 <span>Copy</span>
             </button>
           </div>
-          <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">{{ formattedSnippet }}</pre>
+          <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto text-sm ring-1 ring-slate-700">{{ formattedSnippet }}</pre>
         </div>
         <div class="rounded-xl border border-gray-200 shadow-sm p-4 bg-white">
           <div class="flex justify-between items-center mb-2">
-            <h4 class="font-semibold text-gray-800">🌐 XDM Object</h4>
-            <button @click="copyToClipboard(xdmObject, 'XDM Object')" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition">
+            <h4 class="font-semibold text-gray-800 flex items-center gap-2">
+              🌐 XDM Object
+              <span class="relative group">
+                <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for XDM Object">❓</span>
+                <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2">
+                  Key/value pairs mapped to AEP XDM schema for Web SDK.
+                </div>
+              </span>
+            </h4>
+            <button @click="copyToClipboard(xdmObject, 'XDM Object')" class="inline-flex items-center gap-2 h-10 px-4 py-2 rounded-md transition shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-600 hover:bg-blue-700 text-white font-medium" aria-label="Copy XDM Object to clipboard">
               📋 <span>Copy</span>
             </button>
           </div>
-          <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">{{ xdmObject }}</pre>
+          <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto text-sm ring-1 ring-slate-700">{{ xdmObject }}</pre>
+        </div>
+        <div class="rounded-xl border border-gray-200 shadow-sm p-4 bg-white">
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-semibold text-gray-800 flex items-center gap-2">
+              🧾 data.__adobe.analytics Object
+              <span class="relative group">
+                <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for Adobe Analytics Object">❓</span>
+                <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2">
+                  Mirrors Adobe's <code>data.__adobe.analytics</code> structure. See:
+                  <ul class="list-disc list-inside mt-1 space-y-1 text-blue-800">
+                    <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/data-var-mapping" target="_blank" class="hover:underline">Data Variable Mapping</a></li>
+                    <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/xdm-var-mapping" target="_blank" class="hover:underline">XDM Schema Mapping</a></li>
+                  </ul>
+                </div>
+              </span>
+            </h4>
+            <button @click="copyToClipboard(analyticsObject, 'Adobe Analytics Object')" class="inline-flex items-center gap-2 h-10 px-4 py-2 rounded-md transition shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-600 hover:bg-blue-700 text-white font-medium" aria-label="Copy Adobe Analytics Object to clipboard">
+              📋 <span>Copy</span>
+            </button>
+          </div>
+          <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto text-sm ring-1 ring-slate-700">{{ analyticsObject }}</pre>
         </div>
       </div>
+      <!-- Copied Modal -->
+      <transition name="fade">
+        <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black/50 transition-all duration-300">
+          <div class="bg-white p-6 rounded-2xl shadow-xl max-w-xs text-center animate-pop">
+            <h3 class="text-xl font-bold mb-2">🎉 Copied!</h3>
+            <p>{{ modalType }} is now on your clipboard.</p>
+            <button @click="closeModal" class="mt-4 h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-600 text-white hover:bg-blue-700" aria-label="Close copied modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </transition>
+      <!-- Help Modal -->
+      <transition name="fade">
+        <div v-if="showHelpModal" class="fixed inset-0 flex items-center justify-center bg-black/50 transition-all duration-300 z-50">
+          <div class="bg-white p-6 rounded-2xl shadow-xl max-w-lg w-full text-left animate-pop">
+            <h3 class="text-2xl font-bold mb-3 text-blue-700">🧠 Section Help</h3>
+            <p class="mb-4 text-sm text-gray-700">{{ helpContent }}</p>
+            <button @click="closeHelpModal" class="mt-2 h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-600 text-white hover:bg-blue-700" aria-label="Close help modal">
+              Got it
+            </button>
+          </div>
+        </div>
+      </transition>
     </div>
-
-    <!-- Copied Modal -->
-    <transition name="fade">
-      <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black/50 transition-all duration-300">
-        <div class="bg-white p-6 rounded-2xl shadow-xl max-w-xs text-center animate-pop">
-          <h3 class="text-xl font-bold mb-2">🎉 Copied!</h3>
-          <p>{{ modalType }} is now on your clipboard.</p>
-          <button @click="closeModal" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-            Close
-          </button>
-        </div>
-      </div>
-    </transition>
   </div>
-
   <!-- Vue 2 -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script>
@@ -238,15 +313,17 @@
         keyValuePairs: [],
         showModal: false,
         modalType: '',
+        showHelpModal: false,
+        helpContent: ''
       },
       computed: {
         formattedSnippet() {
-          if (!this.keyValuePairs.length) return this.eventType + '({});';
+          if (!this.keyValuePairs.length) return this.eventType.replace('()', '') + '({});';
           const p = {};
           this.keyValuePairs.forEach(o => {
             if (o.key && o.value) p[o.key] = o.value;
           });
-          return this.eventType + '(' + JSON.stringify(p, null, 2) + ');';
+          return this.eventType.replace('()', '') + '(' + JSON.stringify(p, null, 2) + ');';
         },
         xdmObject() {
           const xdm = {
@@ -257,18 +334,38 @@
                     eVars: {},
                     props: {}
                   },
-                  events: {}
+                  events: {
+                    event1to100: {},
+                    event101to200: {}
+                  }
                 }
               }
             }
           };
           this.keyValuePairs.forEach(o => {
             const k = o.analyticsKey?.toLowerCase() || '', v = o.value;
-            if (k.startsWith('evar')) xdm.xdm._experience.analytics.customDimensions.eVars[o.analyticsKey] = v;
-            else if (k.startsWith('prop')) xdm.xdm._experience.analytics.customDimensions.props[o.analyticsKey] = v;
-            else if (k.startsWith('event')) xdm.xdm._experience.analytics.events[o.analyticsKey] = v;
+            if (k.startsWith('evar')) {
+              xdm.xdm._experience.analytics.customDimensions.eVars[o.analyticsKey] = v;
+            } else if (k.startsWith('prop')) {
+              xdm.xdm._experience.analytics.customDimensions.props[o.analyticsKey] = v;
+            } else if (k.startsWith('event')) {
+              const eventNum = parseInt(k.replace('event', ''));
+              if (!isNaN(eventNum)) {
+                const parent = eventNum <= 100 ? 'event1to100' : 'event101to200';
+                xdm.xdm._experience.analytics.events[parent][o.analyticsKey] = {
+                  value: parseInt(v) || 0
+                };
+              }
+            }
           });
           return JSON.stringify(xdm, null, 2);
+        },
+        analyticsObject() {
+          const analytics = {};
+          this.keyValuePairs.forEach(o => {
+            if (o.analyticsKey && o.value) analytics[o.analyticsKey] = o.value;
+          });
+          return JSON.stringify({ data: { __adobe: { analytics } } }, null, 2);
         }
       },
       methods: {
@@ -284,6 +381,10 @@
         removeKeyValuePair(i) {
           this.keyValuePairs.splice(i, 1);
         },
+        duplicateKeyValuePair(i) {
+          const original = this.keyValuePairs[i];
+          this.keyValuePairs.splice(i + 1, 0, { ...original });
+        },
         copyToClipboard(txt, type) {
           navigator.clipboard.writeText(txt).then(() => {
             this.modalType = type;
@@ -293,9 +394,19 @@
         },
         closeModal() {
           this.showModal = false;
+        },
+        openHelpModal(content) {
+          this.helpContent = content;
+          this.showHelpModal = true;
+        },
+        closeHelpModal() {
+          this.showHelpModal = false;
         }
       }
     });
   </script>
+  <footer class="text-center text-xs text-gray-400 mt-16 mb-8">
+    Built with ❤️ by Scott Gresack · v1.0.1 · Updated May 26, 2025 · <a href="/portfolio/" class="text-blue-600 hover:underline">View Portfolio</a>
+  </footer>
 </body>
 </html>
