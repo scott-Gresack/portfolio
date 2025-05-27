@@ -1,15 +1,21 @@
 # Allow all crawlers full access except to /private
+# robots.txt for Scott Gresack's Portfolio
+# Gives search engines full access to public content and enables IndexNow
+
+# Allow all bots full access, except for /private
 User-agent: *
 Disallow: /private/
-# Allow indexing of all public content
 Allow: /
 
-# Explicitly allow Googlebot and Bingbot
+# Explicit rules for major search engines
 User-agent: Googlebot
-Disallow:
+Allow: /
 
 User-agent: Bingbot
-Disallow:
+Allow: /
 
 # Sitemap location
 Sitemap: https://scott-gresack.github.io/portfolio/sitemap.xml
+
+# IndexNow verification
+IndexNow: https://scott-gresack.github.io/portfolio/67743f77e33b42e593870b6418f3432a.txt
