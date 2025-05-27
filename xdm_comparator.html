@@ -6,6 +6,7 @@
   <meta name="description" content="Compare Adobe Web SDK u.map objects across environments to align XDM mappings." />
   <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Governance, Tag Management, GA4, Analytics, Attribution" />
   <meta name="author" content="Scott Gresack" />
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <meta name="robots" content="index, follow" />
   <title>Adobe Web SDK Object Comparator</title>
 <!-- Google tag (gtag.js) -->
@@ -29,10 +30,15 @@
   <header class="bg-white shadow border-b sticky top-0 z-50">
     <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-sm font-medium text-gray-800">
       <div class="font-semibold tracking-wide text-lg">🔍 u.map Comparator</div>
-      <div class="space-x-6">
-        <a href="https://scott-gresack.github.io/portfolio/" class="hover:text-blue-600 transition">Home</a>
-        <a href="https://scott-gresack.github.io/portfolio/tool2.html" class="hover:text-blue-600 transition">Alloy Inspector</a>
-        <a href="https://scott-gresack.github.io/portfolio/tag_generator.html" class="hover:text-blue-600 transition">Tag Generator</a>
+      <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" @blur="open = false" class="hover:text-blue-600 transition font-medium focus:outline-none">
+          Tools ▾
+        </button>
+        <div x-show="open" x-transition class="absolute bg-white shadow-lg rounded-md mt-2 z-10 min-w-[200px] border border-gray-200" @mousedown.away="open = false">
+          <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_medium=internal&utm_source=xdm_comparator&amp;cid=tool2&amp;utm_term=alloy_inspector" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Alloy Inspector</a>
+          <a href="https://scott-gresack.github.io/portfolio/tag_generator?utm_medium=internal&utm_source=xdm_comparator&amp;cid=tag_generator&amp;utm_term=tag_spec" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Tag Generator</a>
+          <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_medium=internal&utm_source=xdm_comparator&amp;cid=mobile_updates&amp;utm_term=mobile_sdk" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Mobile Updates</a>
+        </div>
       </div>
     </nav>
   </header>
