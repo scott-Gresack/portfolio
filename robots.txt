@@ -1,11 +1,15 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
+# Allow all crawlers full access except to /private
 User-agent: *
 Disallow: /private/
+# Allow indexing of all public content
 Allow: /
 
+# Explicitly allow Googlebot and Bingbot
+User-agent: Googlebot
+Disallow:
+
+User-agent: Bingbot
+Disallow:
+
+# Sitemap location
 Sitemap: https://scott-gresack.github.io/portfolio/sitemap.xml
