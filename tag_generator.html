@@ -2,8 +2,15 @@
 <!--
   Web Tag Spec Generator v1.0.1
   Author: Scott Gresack
-  Description: Interactive tool to generate and preview utag.view() and utag.link() payloads for Adobe Analytics, with XDM and data.__adobe.analytics mapping.
-  Last updated: 2025-05-26
+  Description: Interactive tool to generate and preview utag.view() and utag.link() payloads for Adobe Analytics, including XDM and data.__adobe.analytics mappings. Integrated tracking includes GA4, PostHog, Microsoft Clarity, and Piwik PRO for comprehensive analytics.
+  Last updated: 2025-05-27
+
+  Enhanced Features:
+  - Generates detailed utag.view() / utag.link() payloads
+  - Maps payloads to XDM schemas and Adobe Analytics structures
+  - Supports identityMap and datastream overrides
+  - Comprehensive integration with GA4, PostHog, Microsoft Clarity, and Piwik PRO
+  - Ideal for front-end analytics QA, validation, and technical documentation
 -->
 <html lang="en">
 <head>
@@ -19,17 +26,17 @@
   <title>Web Tag Spec Generator for Adobe Analytics | Scott Gresack</title>
   <meta name="description" content="Generate and preview utag.view() and utag.link() payloads for Adobe Analytics. Map to XDM and export results.">
   <meta name="keywords" content="Adobe Analytics, Web SDK, XDM, Tealium, utag.view, utag.link, Martech, data integration, digital analytics, tag management, Scott Gresack">
-  <link rel="canonical" href="/portfolio/tag-spec-generator.html">
+  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/tag-spec-generator.html">
   <!-- Open Graph & Twitter meta -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="/portfolio/tag-spec-generator.html">
+  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tag-spec-generator.html">
   <meta property="og:title" content="Web Tag Spec Generator | Scott Gresack Portfolio">
   <meta property="og:description" content="Generate Adobe Analytics utag.view() and utag.link() payloads with dynamic XDM mapping.">
-  <meta property="og:image" content="/portfolio/assets/preview-image.png">
+  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Web Tag Spec Generator | Scott Gresack Portfolio">
   <meta name="twitter:description" content="Create and map Adobe Analytics payloads with XDM support using Scott Gresack's tool.">
-  <meta name="twitter:image" content="/portfolio/assets/preview-image.png">
+  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
   <script>
@@ -37,6 +44,13 @@
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-Y8617TLMYK', { anonymize_ip: true });
+    // GA4 Custom Event - Page Load
+    gtag('event', 'page_view_custom', {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+      referrer: document.referrer
+    });
   </script>
   <!-- PostHog Analytics -->
   <script>
@@ -46,12 +60,19 @@
     o="init capture identify alias people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
     for(n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1}(document,window.posthog||[]);
     posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U',{api_host:'https://us.i.posthog.com',person_profiles:'always'});
+    // PostHog Event - Page Loaded
+    posthog.capture('page_loaded', {
+      title: document.title,
+      url: window.location.href,
+      referrer: document.referrer
+    });
   </script>
   <!-- Microsoft Clarity -->
   <script>
     (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pmp4efispy");
+    // Microsoft Clarity session recording and heatmaps initialized.
   </script>
   <!-- Piwik PRO Tag Manager -->
   <script>
@@ -63,6 +84,13 @@
       tags.async=!0;tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js"+qPString;
       scripts.parentNode.insertBefore(tags,scripts);
       !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
+      // Piwik PRO Custom Event - Page View
+      window[dataLayerName].push({
+        event: "custom_page_view",
+        page_title: document.title,
+        page_url: window.location.href,
+        referrer: document.referrer
+      });
     })(window,document,'dataLayer','40c8a729-ebc6-4dfe-98be-6617064e43a9');
   </script>
   <!-- Structured Data -->
@@ -92,13 +120,28 @@
       ]
     }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Web Tag Spec Generator",
+    "author": {
+      "@type": "Person",
+      "name": "Scott Gresack"
+    },
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "url": "https://scott-gresack.github.io/portfolio/tag-spec-generator.html",
+    "description": "Generate Adobe Analytics utag.view() and utag.link() payloads with XDM mapping."
+  }
+  </script>
   <!-- UI Fonts and Frameworks -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 font-sans antialiased leading-relaxed tracking-wide">
   <header class="bg-white shadow border-b sticky top-0 z-50">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-sm font-medium text-gray-800">
+    <nav role="navigation" aria-label="Main navigation" class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-sm font-medium text-gray-800">
       <div class="font-semibold tracking-wide text-lg">🧪 Web Tag Spec Generator</div>
       <div class="space-x-6">
         <a href="/portfolio/" class="hover:text-blue-600 transition">Home</a>
@@ -144,24 +187,35 @@
               <h2 class="font-semibold text-gray-700">🚀 Purpose</h2>
               <p>
                 Build <code class="bg-gray-200 px-1 rounded">utag.view()</code> or 
-                <code class="bg-gray-200 px-1 rounded">utag.link()</code> events with Adobe Web SDK mappings.
+                <code class="bg-gray-200 px-1 rounded">utag.link()</code> events with Adobe Web SDK mappings, XDM, and advanced override support.
               </p>
             </div>
             <div>
               <h2 class="font-semibold text-gray-700">🛠 Instructions</h2>
               <ol class="list-decimal list-inside space-y-1">
-                <li>Select event: <code>utag.view()</code> or <code>utag.link()</code>.</li>
-                <li>Add key/value pairs (no quotes around values).</li>
-                <li>Map to Adobe Analytics variables (eVar, prop, event).</li>
-                <li>Use <code>|</code> for nested keys (e.g., <code>listVars|list1</code>).</li>
-                <li>Copy Tag Spec, XDM, or <code>data.__adobe.analytics</code> output.</li>
+                <li>Select event type: <code>utag.view()</code> or <code>utag.link()</code>.</li>
+                <li>Use <strong>Output Controls</strong> to toggle which variables/overrides are included: <code>eVars</code>, <code>props</code>, <code>events</code>, <code>identityMap</code>, and <code>datastreamId/edgeConfigOverrides</code>.</li>
+                <li>Add key/value pairs for your tag spec (no quotes around values).</li>
+                <li>Map to Adobe Analytics variables (eVar, prop, event) if desired.</li>
+                <li>Use <code>|</code> for nested keys (e.g., <code>listVars|list1</code> or <code>identityMap|email</code>).</li>
+                <li>
+                  To include <strong>identityMap</strong>, use the controls or add a key like <code>identityMap|email</code> with its value.
+                </li>
+                <li>
+                  To override <strong>datastreamId</strong> or supply advanced edge settings, enable the datastream controls.<br>
+                  For <b>advanced edgeConfigOverrides</b>, enable Advanced and provide full JSON (see Adobe docs for full schema).
+                </li>
+                <li>
+                  Copy the Tag Spec, XDM, or <code>data.__adobe.analytics</code> output as needed for documentation, QA, or engineering handoff.
+                </li>
               </ol>
             </div>
             <div>
               <h2 class="font-semibold text-gray-700">📚 References</h2>
               <ul class="list-disc list-inside text-blue-800 space-y-1 text-sm mt-2">
-                <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/data-var-mapping" target="_blank" class="hover:underline">Map Data Variables to Adobe Analytics</a></li>
-                <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/xdm-var-mapping" target="_blank" class="hover:underline">Map XDM Schema to Adobe Analytics</a></li>
+                <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/data-var-mapping" target="_blank" rel="noopener noreferrer" class="hover:underline">Map Data Variables to Adobe Analytics</a></li>
+                <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/xdm-var-mapping" target="_blank" rel="noopener noreferrer" class="hover:underline">Map XDM Schema to Adobe Analytics</a></li>
+                <li><a href="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/datastream-overrides" target="_blank" rel="noopener noreferrer" class="hover:underline">Datastream Overrides &amp; edgeConfigOverrides (Adobe Web SDK)</a></li>
               </ul>
             </div>
           </div>
@@ -186,20 +240,209 @@
           </div>
         </div>
       </div>
+      <!-- Output Controls (moved above Key-Value Inputs) -->
+      <div class="p-6 border-b">
+        <h3 class="font-semibold text-gray-700 mb-2">⚙️ Output Controls</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-sm mb-4">
+          <label for="toggle-evars" class="flex items-center gap-2">
+            <input id="toggle-evars" type="checkbox" v-model="showExtras.eVars" aria-label="Toggle eVars" autocomplete="off">
+            <span>Include eVars
+              <span class="ml-1 relative group">
+                <span class="text-blue-600 cursor-help" aria-label="Help for eVars">❓</span>
+                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-56 mt-2 left-1/2 transform -translate-x-1/2">
+                  Toggle inclusion of eVars in output.
+                </div>
+              </span>
+            </span>
+          </label>
+          <label for="toggle-props" class="flex items-center gap-2">
+            <input id="toggle-props" type="checkbox" v-model="showExtras.props" aria-label="Toggle props" autocomplete="off">
+            <span>Include props
+              <span class="ml-1 relative group">
+                <span class="text-blue-600 cursor-help" aria-label="Help for props">❓</span>
+                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-56 mt-2 left-1/2 transform -translate-x-1/2">
+                  Toggle inclusion of props in output.
+                </div>
+              </span>
+            </span>
+          </label>
+          <label for="toggle-events" class="flex items-center gap-2">
+            <input id="toggle-events" type="checkbox" v-model="showExtras.events" aria-label="Toggle events" autocomplete="off">
+            <span>Include events
+              <span class="ml-1 relative group">
+                <span class="text-blue-600 cursor-help" aria-label="Help for events">❓</span>
+                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-56 mt-2 left-1/2 transform -translate-x-1/2">
+                  Toggle inclusion of Analytics events in output.
+                </div>
+              </span>
+            </span>
+          </label>
+          <label for="toggle-identitymap" class="flex items-center gap-2">
+            <input id="toggle-identitymap" type="checkbox" v-model="showExtras.identityMap" aria-label="Toggle identityMap" autocomplete="off">
+            <span>Include identityMap
+              <span class="ml-1 relative group">
+                <span class="text-blue-600 cursor-help" aria-label="Help for identityMap">❓</span>
+                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-56 mt-2 left-1/2 transform -translate-x-1/2">
+                  Include identifiers for Adobe Experience Platform's identity stitching.
+                </div>
+              </span>
+            </span>
+          </label>
+          <label for="toggle-datastream" class="flex items-center gap-2">
+            <input id="toggle-datastream" type="checkbox" v-model="showExtras.datastream" aria-label="Toggle datastreamId" autocomplete="off">
+            <span>Include datastreamId
+              <span class="ml-1 relative group">
+                <span class="text-blue-600 cursor-help" aria-label="Help for datastreamId">❓</span>
+                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-56 mt-2 left-1/2 transform -translate-x-1/2">
+                  Toggle inclusion of datastreamId or edgeConfigOverrides in output.
+                </div>
+              </span>
+            </span>
+          </label>
+        </div>
+        <div v-if="showExtras.identityMap" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex flex-col space-y-2">
+            <label for="identity-namespace" class="font-medium text-sm text-gray-700" :aria-label="'identityMap namespace input'">
+              identityMap Namespace
+              <span class="ml-1 relative group">
+                <span class="text-blue-600 cursor-help" aria-label="Help for identityMap namespace">❓</span>
+                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-64 mt-2 left-1/2 transform -translate-x-1/2">
+                  Enter the Adobe identity namespace, e.g. <code>email</code>, <code>ECID</code>, etc.
+                </div>
+              </span>
+            </label>
+            <input
+              id="identity-namespace"
+              v-model="identityNamespace"
+              placeholder="Namespace (e.g. email)"
+              class="border p-2 rounded text-sm"
+              autocomplete="off"
+              aria-label="identityMap namespace"
+              aria-describedby="identity-namespace-desc"
+              :aria-required="showExtras.identityMap ? 'true' : 'false'"
+              spellcheck="false"
+            >
+          </div>
+          <div class="flex flex-col space-y-2">
+            <label for="identity-id" class="font-medium text-sm text-gray-700" :aria-label="'identityMap ID input'">
+              identityMap ID
+              <span class="ml-1 relative group">
+                <span class="text-blue-600 cursor-help" aria-label="Help for identityMap ID">❓</span>
+                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-64 mt-2 left-1/2 transform -translate-x-1/2">
+                  Enter the identifier value, e.g. user email or ECID.<br>
+                  <strong>Note:</strong> This will be sent as <code>id</code> in <code>identityMap</code>.
+                </div>
+              </span>
+            </label>
+            <input
+              id="identity-id"
+              v-model="identityId"
+              placeholder="ID (e.g. user@example.com)"
+              class="border p-2 rounded text-sm"
+              autocomplete="off"
+              aria-label="identityMap ID"
+              aria-describedby="identity-id-desc"
+              :aria-required="showExtras.identityMap ? 'true' : 'false'"
+              spellcheck="false"
+            >
+          </div>
+        </div>
+        <div v-if="showExtras.datastream" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex flex-col space-y-2">
+            <label for="datastream-override" class="font-medium text-sm text-gray-700" aria-label="Datastream ID input">
+              Datastream ID
+              <span class="ml-1 relative group">
+                <span class="text-blue-600 cursor-help" aria-label="Help for datastreamId">❓</span>
+                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2 left-1/2 transform -translate-x-1/2">
+                  Optionally override the datastreamId for Adobe Web SDK.<br>
+                  <strong>Tip:</strong> Use advanced mode for full <code>edgeConfigOverrides</code>.
+                </div>
+              </span>
+            </label>
+            <input
+              id="datastream-override"
+              v-model="datastreamOverride"
+              placeholder="Datastream ID (optional)"
+              class="border p-2 rounded text-sm"
+              autocomplete="off"
+              aria-label="Datastream ID"
+              :disabled="advancedEdgeOverride"
+              spellcheck="false"
+            >
+          </div>
+        </div>
+        <div v-if="showExtras.datastream" class="mt-4 grid grid-cols-1 gap-4">
+          <div class="flex items-center space-x-2">
+            <input id="advanced-edge-override" type="checkbox" v-model="advancedEdgeOverride" aria-label="Enable advanced edgeConfigOverrides" autocomplete="off">
+            <label for="advanced-edge-override" class="font-medium text-sm text-gray-700 flex items-center">
+              Advanced edgeConfigOverrides
+              <span class="ml-1 relative group">
+                <span class="text-blue-600 cursor-help" aria-label="Advanced edgeConfigOverrides help">❓</span>
+                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-96 mt-2 left-1/2 transform -translate-x-1/2">
+                  Enable to specify full <code>edgeConfigOverrides</code> JSON (e.g. <code>datastreamId</code>, <code>propertyToken</code>, <code>reportSuites</code>, etc).<br>
+                  <a href="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/datastream-overrides" target="_blank" class="text-blue-700 underline">Adobe docs</a> for structure and options.
+                </div>
+              </span>
+              <a href="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/datastream-overrides" target="_blank" class="ml-2 text-blue-600 hover:underline text-xs">Adobe docs</a>
+            </label>
+          </div>
+          <div v-if="advancedEdgeOverride" class="flex flex-col space-y-2 mt-2">
+            <label for="edge-override-json" class="font-medium text-sm text-gray-700 flex items-center" aria-label="Advanced edgeConfigOverrides JSON input">
+              edgeConfigOverrides JSON
+              <span class="ml-1 relative group">
+                <span class="text-blue-600 cursor-help" aria-label="edgeConfigOverrides JSON help">❓</span>
+                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-96 mt-2 left-1/2 transform -translate-x-1/2">
+                  Paste or edit JSON for edgeConfigOverrides.<br>
+                  <a href="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/datastream-overrides" target="_blank" class="text-blue-700 underline">Adobe docs</a> for structure.<br>
+                  Including <code>datastreamId</code> here will override the basic field.
+                </div>
+              </span>
+            </label>
+            <textarea
+              id="edge-override-json"
+              v-model="edgeOverrideJson"
+              class="border p-2 rounded text-sm font-mono bg-gray-50"
+              rows="6"
+              spellcheck="false"
+              aria-label="edgeConfigOverrides JSON"
+              aria-describedby="edge-override-json-desc"
+              autocomplete="off"
+              placeholder='{
+  "datastreamId": "12345:prod",
+  "propertyToken": "PT-XXXXX",
+  "reportSuites": ["mySuite1", "mySuite2"],
+  "someOtherOverride": "value"
+}'
+              :aria-invalid="edgeOverrideError ? 'true' : 'false'"
+            ></textarea>
+            <div v-if="edgeOverrideError" class="text-red-600 text-xs mt-1" id="edge-override-json-desc">{{ edgeOverrideError }}</div>
+            <div v-else class="text-gray-500 text-xs mt-1" id="edge-override-json-desc">Sample: {"datastreamId":"12345:prod","propertyToken":"PT-XXXXX","reportSuites":["mySuite1"]}</div>
+          </div>
+        </div>
+      </div>
       <!-- Input Fields -->
-      <div class="p-8 space-y-4 border-b">
+      <div class="p-8 space-y-4 border-b mt-4">
         <h3 class="font-semibold text-gray-700 flex items-center gap-2">
           🧩 Key–Value Pairs
           <span class="relative group">
             <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for key-value pairs">❓</span>
-            <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2">
+            <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-80 mt-2">
               Define key/value pairs for Tealium.<br>
               <strong>Tips:</strong>
               <ul class="list-disc list-inside mt-1">
                 <li><code>key</code>: Custom tag spec name.</li>
                 <li><code>value</code>: Value (no quotes).</li>
                 <li><code>eVar#/prop#/event#</code>: Adobe Analytics mapping.</li>
-                <li>Use <code>|</code> for nested keys (e.g., <code>section|subsection</code>).</li>
+                <li>
+                  Use <code>|</code> for nested keys (e.g., <code>section|subsection</code>).
+                  <span class="ml-1 relative group">
+                    <span class="text-blue-600 cursor-help" aria-label="Nested key help">❓</span>
+                    <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2 left-1/2 transform -translate-x-1/2">
+                      For nested objects, use <code>|</code> to separate levels.<br>
+                      Example: <code>identityMap|email</code> creates <code>identityMap: { email: ... }</code>.
+                    </div>
+                  </span>
+                </li>
               </ul>
             </div>
           </span>
@@ -213,6 +456,14 @@
         </div>
         <button @click="addKeyValuePair" class="h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-green-500 hover:bg-green-600 text-white relative group" aria-label="Add new key-value pair">
           ➕ Add Pair
+          <span class="ml-1 relative group">
+            <span class="text-blue-600 cursor-help" aria-label="Mapping strategy help">❓</span>
+            <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-80 mt-2 left-1/2 transform -translate-x-1/2">
+              <strong>Mapping strategy:</strong><br>
+              Keys are mapped as flat or nested (using <code>|</code>), and analytics variables (eVar/prop/event) are mapped into XDM and <code>data.__adobe.analytics</code>.<br>
+              To create an <code>identityMap</code> entry, use a key like <code>identityMap|email</code> with the identifier value.
+            </div>
+          </span>
           <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-60 mt-2 left-1/2 transform -translate-x-1/2">
             Add a new key, value, and Analytics variable.
           </div>
@@ -245,6 +496,14 @@
                 <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for XDM Object">❓</span>
                 <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2">
                   Key/value pairs mapped to AEP XDM schema for Web SDK.
+                </div>
+              </span>
+              <span class="relative group">
+                <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for identityMap">❓</span>
+                <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-80 mt-2 left-1/2 transform -translate-x-1/2">
+                  <strong>identityMap support:</strong><br>
+                  To populate <code>xdm.identityMap</code>, add a key like <code>identityMap|email</code> and a value (e.g., <code>scott@example.com</code>).<br>
+                  This will create the correct <code>identityMap</code> structure for Adobe Experience Platform, with <code>primary: true</code> and <code>authenticatedState: "authenticated"</code>.
                 </div>
               </span>
             </h4>
@@ -314,7 +573,24 @@
         showModal: false,
         modalType: '',
         showHelpModal: false,
-        helpContent: ''
+        helpContent: '',
+        showExtras: {
+          eVars: true,
+          props: true,
+          events: true,
+          identityMap: false,
+          datastream: false
+        },
+        identityNamespace: '',
+        identityId: '',
+        datastreamOverride: '',
+        advancedEdgeOverride: false,
+        edgeOverrideJson: `{
+  "datastreamId": "12345:prod",
+  "propertyToken": "PT-XXXXX",
+  "reportSuites": ["mySuite1", "mySuite2"]
+}`,
+        edgeOverrideError: ''
       },
       computed: {
         formattedSnippet() {
@@ -323,41 +599,75 @@
           this.keyValuePairs.forEach(o => {
             if (o.key && o.value) p[o.key] = o.value;
           });
+          // If advancedEdgeOverride, include edgeConfigOverrides in root
+          if (this.showExtras.datastream && this.advancedEdgeOverride && this.validEdgeOverridesObj) {
+            p.edgeConfigOverrides = this.validEdgeOverridesObj;
+          } else if (this.showExtras.datastream && !this.advancedEdgeOverride && this.datastreamOverride) {
+            p.datastreamId = this.datastreamOverride;
+          }
           return this.eventType.replace('()', '') + '(' + JSON.stringify(p, null, 2) + ');';
         },
+        validEdgeOverridesObj() {
+          // Returns parsed edgeConfigOverrides object, or null if error
+          if (!this.advancedEdgeOverride) return null;
+          try {
+            if (!this.edgeOverrideJson.trim()) return null;
+            const obj = JSON.parse(this.edgeOverrideJson);
+            this.edgeOverrideError = '';
+            return obj;
+          } catch (e) {
+            this.edgeOverrideError = 'Invalid JSON: ' + (e.message || 'Malformed JSON');
+            return null;
+          }
+        },
         xdmObject() {
-          const xdm = {
-            xdm: {
-              _experience: {
-                analytics: {
-                  customDimensions: {
-                    eVars: {},
-                    props: {}
-                  },
-                  events: {
-                    event1to100: {},
-                    event101to200: {}
-                  }
-                }
-              }
-            }
-          };
+          const xdm = { xdm: { _experience: { analytics: {} } } };
+
+          if (this.showExtras.eVars || this.showExtras.props) {
+            xdm.xdm._experience.analytics.customDimensions = {};
+            if (this.showExtras.eVars) xdm.xdm._experience.analytics.customDimensions.eVars = {};
+            if (this.showExtras.props) xdm.xdm._experience.analytics.customDimensions.props = {};
+          }
+
+          if (this.showExtras.events) {
+            xdm.xdm._experience.analytics.events = {
+              event1to100: {},
+              event101to200: {}
+            };
+          }
+
           this.keyValuePairs.forEach(o => {
             const k = o.analyticsKey?.toLowerCase() || '', v = o.value;
-            if (k.startsWith('evar')) {
+            if (this.showExtras.eVars && k.startsWith('evar')) {
               xdm.xdm._experience.analytics.customDimensions.eVars[o.analyticsKey] = v;
-            } else if (k.startsWith('prop')) {
+            } else if (this.showExtras.props && k.startsWith('prop')) {
               xdm.xdm._experience.analytics.customDimensions.props[o.analyticsKey] = v;
-            } else if (k.startsWith('event')) {
+            } else if (this.showExtras.events && k.startsWith('event')) {
               const eventNum = parseInt(k.replace('event', ''));
               if (!isNaN(eventNum)) {
                 const parent = eventNum <= 100 ? 'event1to100' : 'event101to200';
-                xdm.xdm._experience.analytics.events[parent][o.analyticsKey] = {
-                  value: parseInt(v) || 0
-                };
+                xdm.xdm._experience.analytics.events[parent][o.analyticsKey] = { value: parseInt(v) || 0 };
               }
             }
           });
+
+          if (this.showExtras.identityMap && this.identityNamespace && this.identityId) {
+            xdm.xdm.identityMap = {
+              [this.identityNamespace]: [{
+                id: this.identityId,
+                authenticatedState: "authenticated",
+                primary: true
+              }]
+            };
+          }
+
+          // Advanced edgeConfigOverrides takes priority
+          if (this.showExtras.datastream && this.advancedEdgeOverride && this.validEdgeOverridesObj) {
+            xdm.edgeConfigOverrides = this.validEdgeOverridesObj;
+          } else if (this.showExtras.datastream && !this.advancedEdgeOverride && this.datastreamOverride) {
+            xdm.datastreamId = this.datastreamOverride;
+          }
+
           return JSON.stringify(xdm, null, 2);
         },
         analyticsObject() {
@@ -365,7 +675,35 @@
           this.keyValuePairs.forEach(o => {
             if (o.analyticsKey && o.value) analytics[o.analyticsKey] = o.value;
           });
-          return JSON.stringify({ data: { __adobe: { analytics } } }, null, 2);
+          // Optionally, for completeness, could include edgeConfigOverrides in output if desired
+          let dataObj = { data: { __adobe: { analytics } } };
+          if (this.showExtras.datastream && this.advancedEdgeOverride && this.validEdgeOverridesObj) {
+            dataObj.edgeConfigOverrides = this.validEdgeOverridesObj;
+          } else if (this.showExtras.datastream && !this.advancedEdgeOverride && this.datastreamOverride) {
+            dataObj.datastreamId = this.datastreamOverride;
+          }
+          return JSON.stringify(dataObj, null, 2);
+        }
+      },
+      watch: {
+        advancedEdgeOverride(newVal) {
+          // Clear error when toggling
+          this.edgeOverrideError = '';
+        },
+        edgeOverrideJson() {
+          // Validate on change
+          if (this.advancedEdgeOverride) {
+            try {
+              if (!this.edgeOverrideJson.trim()) {
+                this.edgeOverrideError = '';
+                return;
+              }
+              JSON.parse(this.edgeOverrideJson);
+              this.edgeOverrideError = '';
+            } catch (e) {
+              this.edgeOverrideError = "Invalid JSON: Ensure structure matches Adobe's required schema.";
+            }
+          }
         }
       },
       methods: {
