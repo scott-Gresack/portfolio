@@ -1,56 +1,34 @@
 <!DOCTYPE html>
-<!--
-  📱 Mobile Tag Spec Builder
-  Author: Scott Gresack
-  URL: https://scott-gresack.github.io/portfolio/mobile_updates
-
-  This interactive tool is designed for generating Adobe Mobile SDK payloads.
-  Features:
-  - Supports trackAction, trackState, and Edge.sendEvent calls.
-  - Dynamically builds payloads with key-value context and XDM identityMap.
-  - Generates native code snippets for Swift, Kotlin, and React Native.
-  - Supports Adobe Edge datastream override and identity stitching via identityMap.
-  - Live payload preview and session-local storage of input.
-
-  Best used for QA, testing journeys, and validating analytics setup across environments.
-
-  Adobe Recommendation:
-  When using identityMap, mark person-based identifiers (e.g., CRMID, email) as "primary".
--->
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#1E40AF" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="apple-touch-icon" href="https://scott-gresack.github.io/portfolio/icons/icon-192x192.png">
 
-  <title>📱 Mobile Tag Spec Builder | Scott Gresack</title>
-  <meta name="description" content="Build and simulate Adobe Mobile SDK payloads with real-time validation. Supports Swift, Kotlin, Edge.sendEvent, and XDM." />
-  <meta name="keywords" content="Mobile Tag Spec, Adobe Mobile SDK, Edge.sendEvent, trackAction, XDM, Swift, Kotlin, AEP, CDP, Scott Gresack" />
-  <meta name="author" content="Scott Gresack" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/mobile_updates" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/mobile_updates" />
-  <meta property="og:title" content="Mobile Tag Spec Builder | Scott Gresack Portfolio" />
-  <meta property="og:description" content="Generate Adobe Mobile SDK payloads. Swift & Kotlin code snippets for Edge events and XDM validation. By Scott Gresack." />
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mobile Tag Spec Builder | Scott Gresack" />
-  <meta name="twitter:description" content="Interactive tool for creating and simulating mobile analytics events with Adobe AEP SDK." />
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+  <meta name="description" content="Interactive tool to build and simulate Adobe Mobile SDK payloads with real-time validation. Supports Swift, Kotlin, Edge.sendEvent, and XDM identity mapping.">
+  <meta name="keywords" content="Mobile Tag Spec, Adobe Mobile SDK, Edge.sendEvent, trackAction, trackState, XDM, Swift, Kotlin, AEP, CDP, Identity Resolution, Scott Gresack">
+  <meta name="author" content="Scott Gresack">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/mobile_updates">
 
-  <script defer src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'GT-MQBSZT8H');
-  </script>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/mobile_updates">
+  <meta property="og:title" content="Mobile Tag Spec Builder | Scott Gresack">
+  <meta property="og:description" content="Generate Adobe Mobile SDK payloads with Swift, Kotlin, and React Native code snippets for Edge events and XDM validation.">
+  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
 
-  <script defer type="application/ld+json">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mobile Tag Spec Builder | Scott Gresack">
+  <meta name="twitter:description" content="Interactive tool for creating and validating mobile analytics events with Adobe AEP SDK.">
+  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -60,405 +38,421 @@
     "url": "https://scott-gresack.github.io/portfolio/mobile_updates",
     "author": {
       "@type": "Person",
-      "name": "Scott Gresack"
+      "name": "Scott Gresack",
+      "url": "https://scott-gresack.github.io/portfolio/",
+      "sameAs": ["https://www.linkedin.com/in/scottgresack/"]
     }
   }
   </script>
 
-  <script defer>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"};o="init capture identify alias".split(" ");for(n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', { api_host: 'https://us.i.posthog.com' });
-  </script>
-
-  <script defer>
-    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pmp4efispy");
-  </script>
-
-  <script defer>
-    (function(window,document,dataLayerName,id){
-      window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
-      var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
-      tags.async=!0;tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js";
-      scripts.parentNode.insertBefore(tags,scripts);
-    })(window,document,'dataLayer','40c8a729-ebc6-4dfe-98be-6617064e43a9');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Fonts and Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      color: #1f2937;
+    }
+    .container {
+      @apply max-w-7xl mx-auto px-4;
+    }
+    .section-title {
+      @apply text-3xl font-semibold text-gray-900 mb-6;
+    }
+    .text-body {
+      @apply text-base text-gray-600 leading-7;
+    }
+    .nav-link {
+      @apply px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:border-b-2 hover:border-blue-600 transition;
+    }
+    .nav-link.active {
+      @apply text-blue-600 border-b-2 border-blue-600;
+    }
+    .dropdown:hover .dropdown-menu {
+      @apply block;
+    }
+    .cta-button {
+      @apply inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition text-sm font-medium;
+    }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
   </style>
+
+  <!-- Analytics -->
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y8617TLMYK', { anonymize_ip: true });
+  </script>
+  <script defer>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register identify".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1}(document,window.posthog||[]);
+    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
+      api_host: 'https://us.i.posthog.com',
+      capture_pageview: false
+    });
+    posthog.capture('pageview', { url: window.location.href });
+  </script>
+  <script defer>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "pmp4efispy");
+  </script>
+
+  <title>Mobile Tag Spec Builder | Scott Gresack</title>
 </head>
-
-<body class="bg-white text-gray-900 font-sans antialiased leading-relaxed tracking-wide">
-
-  <header class="bg-white shadow sticky top-0 z-50 text-gray-900">
-    <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center text-sm font-medium">
-      <div class="font-semibold">Scott Gresack</div>
-      <div class="relative group">
-        <button class="hover:text-blue-600 transition flex items-center gap-1">
-          Tools ▼
+<body>
+  <div id="app" class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow sticky top-0 z-50">
+      <nav class="container flex justify-between items-center py-4">
+        <div class="text-xl font-semibold text-gray-900">Scott Gresack</div>
+        <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+          <a href="https://scott-gresack.github.io/portfolio/#about" class="nav-link">About</a>
+          <a href="https://scott-gresack.github.io/portfolio/#tools" class="nav-link">Tools</a>
+          <a href="https://scott-gresack.github.io/portfolio/#contact" class="nav-link text-blue-600">Contact</a>
+          <div class="relative dropdown">
+            <button class="nav-link flex items-center">Tools ▼</button>
+            <div class="dropdown-menu hidden absolute mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+              <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-gray-100 text-sm">Alloy Inspector</a>
+              <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-gray-100 text-sm">Tag Spec Generator</a>
+              <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-gray-100 text-sm">XDM Comparator</a>
+              <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-gray-100 text-sm">Mobile Tag Builder</a>
+            </div>
+          </div>
+        </div>
+        <button class="md:hidden text-blue-600 focus:outline-none" aria-label="Toggle navigation" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
-        <div class="absolute hidden group-hover:block bg-white border border-gray-200 mt-2 rounded-md shadow-lg text-sm z-50 min-w-[200px]">
-          <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=alloy" class="block px-4 py-2 hover:bg-blue-50">Alloy Tool</a>
-          <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=xdm" class="block px-4 py-2 hover:bg-blue-50">XDM Comparator</a>
-          <a href="https://scott-gresack.github.io/portfolio/tag_generator?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=tag" class="block px-4 py-2 hover:bg-blue-50">Tag Spec Tool</a>
-          <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=mobile" class="block px-4 py-2 hover:bg-blue-50">Mobile Tag Builder</a>
+      </nav>
+      <div id="mobile-nav" class="hidden md:hidden bg-white border-t shadow-md">
+        <a href="https://scott-gresack.github.io/portfolio/#about" class="block px-4 py-2 text-sm">About</a>
+        <a href="https://scott-gresack.github.io/portfolio/#tools" class="block px-4 py-2 text-sm">Tools</a>
+        <a href="https://scott-gresack.github.io/portfolio/#contact" class="block px-4 py-2 text-sm text-blue-600">Contact</a>
+        <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">Alloy Inspector</a>
+        <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">Tag Spec Generator</a>
+        <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">XDM Comparator</a>
+        <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">Mobile Tag Builder</a>
+      </div>
+    </header>
+
+    <main class="flex-grow container py-12">
+      <section class="bg-white rounded-lg shadow-sm border border-gray-200 animate-fadeInUp">
+        <div class="p-8">
+          <h1 class="section-title flex items-center gap-2">📱 Mobile Tag Spec Builder</h1>
+          <p class="text-body mb-6">Build and validate Adobe Mobile SDK payloads in real-time. Supports <code class="bg-gray-100 px-1 rounded">trackAction</code>, <code class="bg-gray-100 px-1 rounded">trackState</code>, and <code class="bg-gray-100 px-1 rounded">Edge.sendEvent</code> with XDM identity mapping for Swift, Kotlin, and React Native.</p>
+          <div class="bg-blue-50 border border-blue-100 rounded-lg p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use</h2>
+            <ul class="text-body list-disc pl-6 space-y-2">
+              <li>Select tracking type: <code class="bg-blue-100 px-1 rounded">trackAction</code>, <code class="bg-blue-100 px-1 rounded">trackState</code>, or <code class="bg-blue-100 px-1 rounded">Edge.sendEvent</code>.</li>
+              <li>Add key-value pairs for event context (e.g., screen name, feature flags).</li>
+              <li>Configure XDM identityMap for user stitching (e.g., email, ECID).</li>
+              <li>Preview payloads and copy code snippets for Swift, Kotlin, or React Native.</li>
+              <li>Use session storage and PostHog logs for QA and validation.</li>
+            </ul>
+          </div>
+          <div id="root"></div>
+          <noscript class="text-center text-red-600 text-sm mt-4">JavaScript is required to use this tool.</noscript>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+      <div class="container text-center text-sm">
+        <p>© 2025 Scott Gresack. All rights reserved.</p>
+        <p class="mt-2">Built with privacy, performance, and open-source principles.</p>
+        <div class="mt-4 flex justify-center space-x-4">
+          <a href="mailto:gresack.scott@gmail.com" class="text-blue-200 hover:underline">Email</a>
+          <a href="https://www.linkedin.com/in/scottgresack/" class="text-blue-200 hover:underline" target="_blank">LinkedIn</a>
+          <a href="https://github.com/scott-gresack" class="text-blue-200 hover:underline" target="_blank">GitHub</a>
         </div>
       </div>
-    </nav>
-  </header>
+    </footer>
+  </div>
 
-  <main class="flex flex-col items-center justify-center min-h-screen px-4 pb-24 animate-fadeInUp">
-    <div class="w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
-      <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 text-white p-8 rounded-t-3xl">
-        <h1 class="text-4xl font-extrabold tracking-tight">📱 Mobile Tag Spec Builder</h1>
-        <p class="mt-2 text-blue-100">Dynamically build <code>trackAction</code>, <code>trackState</code>, and Edge events with XDM preview.</p>
-      </div>
-      <div class="p-8 space-y-8">
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-900 space-y-2">
-          <h2 class="text-base font-semibold text-blue-800">🧭 How to Use This Tool (End-to-End)</h2>
-          <ul class="list-disc list-inside space-y-1">
-            <li>Select a tracking type: <code class="bg-blue-100 px-1 rounded">trackAction</code>, <code class="bg-blue-100 px-1 rounded">trackState</code>, or <code class="bg-blue-100 px-1 rounded">Edge.sendEvent</code>.</li>
-            <li>Add any key-value pairs relevant to your mobile event context (e.g. screen name, feature flags).</li>
-            <li>Use the XDM tab to add Adobe Experience Platform fields or schema-specific values.</li>
-            <li>Preview the generated payload — it will reflect your session and user context.</li>
-            <li>Copy the payload for use in your native app (Swift or Kotlin) or for QA validation.</li>
-            <li>Session data and PostHog logs help you validate behavior against backend or CJA.</li>
-            <li>Choose your SDK style (e.g., AEPEdgeBridge vs MobileCore) to see native API formats for iOS, Android, and React Native.</li>
-          </ul>
-        </div>
-        <div id="root"></div>
-        <noscript class="text-center text-red-500 text-sm mt-4">Please enable JavaScript to use this tool.</noscript>
-      </div>
-      <footer class="bg-gray-50 text-gray-600 p-4 text-center rounded-b-3xl border-t text-sm">
-        Built with ❤️ by <a href="https://scott-gresack.github.io/portfolio/" class="text-blue-600 hover:underline">Scott Gresack</a>
-      </footer>
-    </div>
-  </main>
+  <script>
+    const { createApp, ref, computed, onMounted, watch } = Vue;
 
-<script>
-  const { createApp, ref, computed, onMounted, watch } = Vue;
+    createApp({
+      setup() {
+        const eventType = ref('trackAction');
+        const keyValues = ref([{ key: '', value: '' }]);
+        const overrideDatastream = ref(false);
+        const datastreamId = ref('');
+        const sendIdentityMap = ref(false);
+        const identityNamespace = ref('email');
+        const identityId = ref('user@example.com');
+        const apiStyle = ref('bridge');
+        const copied = ref('');
 
-  createApp({
-    setup() {
-      const eventType = ref('trackAction');
-      const keyValues = ref([{ key: '', value: '' }]);
-      const overrideDatastream = ref(false);
-      const datastreamId = ref('');
-      const sendIdentityMap = ref(false);
-      const identityNamespace = ref('email');
-      const identityId = ref('user@example.com');
-      const apiStyle = ref('bridge'); // 'bridge', 'core', 'legacy'
+        const addKeyValue = () => keyValues.value.push({ key: '', value: '' });
 
-      const copied = ref('');
-
-      const addKeyValue = () => keyValues.value.push({ key: '', value: '' });
-
-      const jsonPayload = computed(() => {
-        const base = {};
-        keyValues.value.forEach(({ key, value }) => {
-          if (key) base[key] = value;
+        const jsonPayload = computed(() => {
+          const base = {};
+          keyValues.value.forEach(({ key, value }) => {
+            if (key) base[key] = value;
+          });
+          if (sendIdentityMap.value && identityNamespace.value && identityId.value) {
+            base["xdm"] = base["xdm"] || {};
+            base["xdm"]["identityMap"] = {
+              [identityNamespace.value]: [{ id: identityId.value, authenticatedState: "authenticated", primary: true }]
+            };
+          }
+          return base;
         });
 
-        if (sendIdentityMap.value && identityNamespace.value && identityId.value) {
-          base["xdm"] = base["xdm"] || {};
-          base["xdm"]["identityMap"] = {
-            [identityNamespace.value]: [
-              {
-                id: identityId.value,
-                authenticatedState: "authenticated",
-                primary: true
-              }
-            ]
-          };
-        }
-
-        return base;
-      });
-
-      const swiftCode = computed(() => {
-        const payload = JSON.stringify(jsonPayload.value, null, 2);
-        if (apiStyle.value === 'bridge') {
-          return `AEPEdgeBridge.sendEvent(with: ${payload})`;
-        } else {
-          return `ACPExtension.${eventType.value}(withData: ${payload})`;
-        }
-      });
-
-      const kotlinCode = computed(() => {
-        if (apiStyle.value === 'bridge') {
-          return `AEPEdgeBridge.sendEvent(mapOf(${Object.entries(jsonPayload.value).map(([k, v]) => `"${k}" to "${v}"`).join(',\n  ')}))`;
-        } else {
-          return `MobileCore.${eventType.value}(mapOf(${Object.entries(jsonPayload.value).map(([k, v]) => `"${k}" to "${v}"`).join(',\n  ')}))`;
-        }
-      });
-
-      const reactNativeCode = computed(() => {
-        const payload = JSON.stringify(jsonPayload.value, null, 2);
-        if (apiStyle.value === 'bridge') {
-          return `AEPEdgeBridge.sendEvent(${payload});`;
-        } else {
-          return `ACPExtension.${eventType.value}(${payload});`;
-        }
-      });
-
-      const overridesCode = computed(() => {
-        const parts = [];
-        if (overrideDatastream.value && datastreamId.value) {
-          parts.push(`datastreamId: "${datastreamId.value}"`);
-        }
-        if (sendIdentityMap.value && identityNamespace.value && identityId.value) {
-          parts.push(`identityMap: { "${identityNamespace.value}": [{ id: "${identityId.value}", authenticatedState: "ambiguous", primary: true }] }`);
-        }
-        return parts.length ? `{ ${parts.join(', ')} }` : 'None';
-      });
-
-      const copyToClipboard = (content, label) => {
-        navigator.clipboard.writeText(content).then(() => {
-          copied.value = `✅ Copied ${label}`;
-          setTimeout(() => copied.value = '', 2000);
+        const swiftCode = computed(() => {
+          const payload = JSON.stringify(jsonPayload.value, null, 2);
+          return apiStyle.value === 'bridge'
+            ? `AEPEdgeBridge.sendEvent(with: ${payload})`
+            : `ACPExtension.${eventType.value}(withData: ${payload})`;
         });
-      };
 
-      onMounted(() => {
-        const saved = localStorage.getItem('mobilePayload');
-        if (saved) keyValues.value = JSON.parse(saved);
-      });
+        const kotlinCode = computed(() => {
+          return apiStyle.value === 'bridge'
+            ? `AEPEdgeBridge.sendEvent(mapOf(${Object.entries(jsonPayload.value).map(([k, v]) => `"${k}" to "${v}"`).join(',\n  ')}))`
+            : `MobileCore.${eventType.value}(mapOf(${Object.entries(jsonPayload.value).map(([k, v]) => `"${k}" to "${v}"`).join(',\n  ')}))`;
+        });
 
-      watch(jsonPayload, (val) => {
-        localStorage.setItem('mobilePayload', JSON.stringify(keyValues.value));
-      });
+        const reactNativeCode = computed(() => {
+          const payload = JSON.stringify(jsonPayload.value, null, 2);
+          return apiStyle.value === 'bridge'
+            ? `AEPEdgeBridge.sendEvent(${payload});`
+            : `ACPExtension.${eventType.value}(${payload});`;
+        });
 
-      // Contextual Help modal logic
-      const showHelpModal = ref(false);
-      const helpSection = ref('');
-      function openHelp(section) {
-        helpSection.value = section;
-        showHelpModal.value = true;
-      }
-      const helpContent = computed(() => {
-        switch (helpSection.value) {
-          case 'eventType': return {
-            title: 'Event Type',
-            guide: `Choose which method to simulate. "trackAction" and "trackState" are standard mobile analytics events. Use "Edge.sendEvent" for XDM calls.`,
-            sample: eventType.value === 'trackAction'
-              ? { code: `AEPEdgeBridge.trackAction("add_to_cart", data: { "productId": "123" })`, payload: `{ "productId": "123" }` }
-              : eventType.value === 'trackState'
-              ? { code: `AEPEdgeBridge.trackState("Product Detail", data: { "screen": "detail" })`, payload: `{ "screen": "detail" }` }
-              : { code: `AEPEdgeBridge.sendEvent(with: { "xdm": { "eventType": "commerce.purchases" } })`, payload: `{ "xdm": { "eventType": "commerce.purchases" } }` }
-          };
-          case 'apiStyle': return {
-            title: 'SDK API Style',
-            guide: `Select which SDK integration method matches your mobile app. AEPEdgeBridge is recommended for modern Swift/Kotlin apps; ACPExtension/MobileCore for legacy apps.`,
-            sample: { code: `AEPEdgeBridge.sendEvent(...)` }
-          };
-          case 'context': return {
-            title: 'Context Key-Value Pairs',
-            guide: `Add any keys and values representing your event context—screen names, feature flags, or any business-relevant data. These are sent to Adobe as the payload.`,
-            sample: { payload: `{ "screen": "Home", "featureFlag": true }` }
-          };
-          case 'overrides': return {
-            title: 'Adobe Edge Overrides',
-            guide: `Optionally override the Datastream ID (to send to a different Adobe config) or send an identityMap (for identity stitching, login flows, etc.). Useful for QA, sandboxes, or testing user journeys.`,
-            sample: { code: `datastreamId: "my-qa-stream", identityMap: { "email": [{ id: "user@example.com" }] }` }
-          };
-          default: return { title: '', guide: '', sample: {} };
-        }
-      });
+        const overridesCode = computed(() => {
+          const parts = [];
+          if (overrideDatastream.value && datastreamId.value) {
+            parts.push(`datastreamId: "${datastreamId.value}"`);
+          }
+          if (sendIdentityMap.value && identityNamespace.value && identityId.value) {
+            parts.push(`identityMap: { "${identityNamespace.value}": [{ id: "${identityId.value}", authenticatedState: "ambiguous", primary: true }] }`);
+          }
+          return parts.length ? `{ ${parts.join(', ')} }` : 'None';
+        });
 
-      return {
-        eventType,
-        keyValues,
-        overrideDatastream,
-        datastreamId,
-        sendIdentityMap,
-        identityNamespace,
-        identityId,
-        apiStyle,
-        jsonPayload,
-        addKeyValue,
-        swiftCode,
-        kotlinCode,
-        reactNativeCode,
-        overridesCode,
-        copyToClipboard,
-        copied,
-        showHelpModal,
-        helpSection,
-        openHelp,
-        helpContent
-      };
-    },
-    template: `
-      <div class="space-y-6">
-        <!-- Legend for live help -->
-        <div class="mb-4 text-blue-800 text-sm flex items-center">
-          <span class="inline-block bg-blue-100 text-blue-700 rounded-full px-2 py-0.5 mr-2">?</span>
-          <span>Click any <span class="font-bold">question mark</span> icon for live help and code samples for that section.</span>
-        </div>
+        const copyToClipboard = (content, label) => {
+          navigator.clipboard.writeText(content).then(() => {
+            copied.value = `✅ Copied ${label}`;
+            setTimeout(() => copied.value = '', 2000);
+          });
+        };
 
-        <!-- Event type dropdown -->
-        <div>
-          <label class="block font-semibold flex items-center">
-            Event Type
-            <button @click="openHelp('eventType')" title="Help for Event Type" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for Event Type">?</button>
-          </label>
-          <select v-model="eventType" class="w-full border rounded p-2 mt-2">
-            <option value="trackAction">trackAction</option>
-            <option value="trackState">trackState</option>
-            <option value="sendEvent">Edge.sendEvent</option>
-          </select>
-          <p class="text-xs text-gray-500 mt-1">
-            Choose which method you want to simulate. <code>trackAction</code> and <code>trackState</code> are standard mobile analytics events. Use <code>sendEvent</code> for Adobe Edge Network calls with XDM.
-          </p>
-        </div>
+        onMounted(() => {
+          const saved = localStorage.getItem('mobilePayload');
+          if (saved) keyValues.value = JSON.parse(saved);
+          posthog.capture('tool_opened', { tool: 'mobile_tag_builder' });
+        });
 
-        <div class="space-y-2">
-          <label class="block font-semibold flex items-center">
-            📚 SDK API Style
-            <button @click="openHelp('apiStyle')" title="Help for SDK API Style" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for SDK API Style">?</button>
-          </label>
-          <select v-model="apiStyle" class="w-full border rounded p-2">
-            <option value="bridge">AEPEdgeBridge (Modern)</option>
-            <option value="core">ACPExtension / MobileCore</option>
-            <option value="legacy">Legacy Objective-C Syntax (soon)</option>
-          </select>
-          <p class="text-xs text-gray-500 mt-1">
-            Select the SDK integration method. <code>AEPEdgeBridge</code> reflects v4+ API for Swift and Kotlin. <code>ACPExtension</code> and <code>MobileCore</code> are legacy wrappers. Use this to match your app's SDK version.
-          </p>
-        </div>
+        watch(jsonPayload, () => {
+          localStorage.setItem('mobilePayload', JSON.stringify(keyValues.value));
+        });
 
-        <!-- Context data -->
-        <div>
-          <label class="block font-semibold mb-2 flex items-center">
-            Context Key-Value Pairs
-            <button @click="openHelp('context')" title="Help for Context Key-Value Pairs" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for Context Key-Value Pairs">?</button>
-          </label>
-          <p class="text-xs text-gray-500 mt-1">
-            These represent your event's context data — anything from screen names to custom flags. They map directly into the payload structure.
-          </p>
-          <div v-for="(pair, index) in keyValues" :key="index" class="flex space-x-2 mb-2">
-            <input v-model="pair.key" class="border p-2 rounded w-1/2" placeholder="key" />
-            <input v-model="pair.value" class="border p-2 rounded w-1/2" placeholder="value" />
+        const showHelpModal = ref(false);
+        const helpSection = ref('');
+        const openHelp = (section) => {
+          helpSection.value = section;
+          showHelpModal.value = true;
+        };
+        const helpContent = computed(() => {
+          switch (helpSection.value) {
+            case 'eventType': return {
+              title: 'Event Type',
+              guide: `Choose the tracking method. "trackAction" and "trackState" are standard mobile analytics events. Use "Edge.sendEvent" for XDM-based calls to Adobe Edge Network.`,
+              sample: eventType.value === 'trackAction'
+                ? { code: `AEPEdgeBridge.trackAction("add_to_cart", data: { "productId": "123" })`, payload: `{ "productId": "123" }` }
+                : eventType.value === 'trackState'
+                ? { code: `AEPEdgeBridge.trackState("Product Detail", data: { "screen": "detail" })`, payload: `{ "screen": "detail" }` }
+                : { code: `AEPEdgeBridge.sendEvent(with: { "xdm": { "eventType": "commerce.purchases" } })`, payload: `{ "xdm": { "eventType": "commerce.purchases" } }` }
+            };
+            case 'apiStyle': return {
+              title: 'SDK API Style',
+              guide: `Select the SDK integration method matching your app. AEPEdgeBridge is recommended for modern Swift/Kotlin apps; ACPExtension/MobileCore for legacy apps.`,
+              sample: { code: `AEPEdgeBridge.sendEvent(...)` }
+            };
+            case 'context': return {
+              title: 'Context Key-Value Pairs',
+              guide: `Add keys and values for event context (e.g., screen names, feature flags). These map directly to the payload sent to Adobe.`,
+              sample: { payload: `{ "screen": "Home", "featureFlag": true }` }
+            };
+            case 'overrides': return {
+              title: 'Adobe Edge Overrides',
+              guide: `Override the Datastream ID for QA/staging or include identityMap for user stitching and personalization across channels.`,
+              sample: { code: `datastreamId: "my-qa-stream", identityMap: { "email": [{ id: "user@example.com" }] }` }
+            };
+            default: return { title: '', guide: '', sample: {} };
+          }
+        });
+
+        return {
+          eventType,
+          keyValues,
+          overrideDatastream,
+          datastreamId,
+          sendIdentityMap,
+          identityNamespace,
+          identityId,
+          apiStyle,
+          jsonPayload,
+          addKeyValue,
+          swiftCode,
+          kotlinCode,
+          reactNativeCode,
+          overridesCode,
+          copyToClipboard,
+          copied,
+          showHelpModal,
+          helpSection,
+          openHelp,
+          helpContent
+        };
+      },
+      template: `
+        <div class="space-y-8">
+          <div class="text-body flex items-center gap-2">
+            <span class="inline-block bg-blue-100 text-blue-700 rounded-full px-2 py-0.5">?</span>
+            Click a <span class="font-medium">question mark</span> for help and code samples.
           </div>
-          <button @click="addKeyValue" class="text-sm text-blue-600 hover:underline" title="Add a new key-value pair to the context payload">+ Add Pair</button>
-        </div>
-
-        <!-- Optional AEP controls -->
-        <div class="border-t pt-4 space-y-4">
-          <label class="font-semibold block flex items-center">
-            ⚙️ Adobe Edge Overrides
-            <button @click="openHelp('overrides')" title="Help for Edge Overrides" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for Edge Overrides">?</button>
-          </label>
-          <label class="flex items-center space-x-2">
-            <input type="checkbox" v-model="overrideDatastream" />
-            <span>Override Datastream ID</span>
-          </label>
-          <input v-if="overrideDatastream" v-model="datastreamId" class="border p-2 rounded w-full" placeholder="Datastream ID" title="Optional: Adobe Datastream ID to override default configuration" />
-          <p v-if="overrideDatastream" class="text-xs text-gray-500">
-            Use this if you want to route the event to a different Adobe Datastream (e.g. for QA, staging, or a separate sandbox).
-          </p>
-
-          <label class="flex items-center space-x-2 mt-2" title="Send XDM identityMap to enable user-level stitching and personalization.">
-            <input type="checkbox" v-model="sendIdentityMap" />
-            <span>Send identityMap</span>
-          </label>
-          <div v-if="sendIdentityMap" class="space-y-2">
-            <input v-model="identityNamespace" class="border p-2 rounded w-full" placeholder="Namespace (e.g. email, ECID, username)" title="Adobe Identity namespace (e.g., email, ECID, username)" />
-            <input v-model="identityId" class="border p-2 rounded w-full" placeholder="ID Value (e.g. user@example.com)" title="Actual ID value to map in identityMap (e.g. user@example.com)" />
-            <p class="text-xs text-gray-500">
-              The identityMap sends user identifiers like ECID, email, or custom namespaces to Adobe Edge. This enables identity resolution, personalization, and profile stitching across channels.
-            </p>
+          <div>
+            <label class="block font-medium text-gray-900 flex items-center gap-2">
+              Event Type
+              <button @click="openHelp('eventType')" title="Help for Event Type" class="rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" aria-label="Help for Event Type">?</button>
+            </label>
+            <select v-model="eventType" class="mt-2 w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500 transition">
+              <option value="trackAction">trackAction</option>
+              <option value="trackState">trackState</option>
+              <option value="sendEvent">Edge.sendEvent</option>
+            </select>
+            <p class="text-body text-sm mt-1">Choose the tracking method. Use <code class="bg-gray-100 px-1 rounded">Edge.sendEvent</code> for XDM-based calls.</p>
           </div>
-        </div>
-
-        <!-- Live JSON output -->
-        <div class="bg-gray-50 border p-4 rounded">
-          <label class="font-semibold block mb-2">Generated Payload</label>
-          <pre class="text-sm text-gray-800"><code>{{ JSON.stringify(jsonPayload, null, 2) }}</code></pre>
-          <p class="text-xs text-gray-500 mt-1">Overrides: {{ overridesCode }}</p>
-        </div>
-
-        <!-- Platform outputs -->
-        <div class="grid md:grid-cols-2 gap-4">
-          <div class="bg-white border p-4 rounded">
-            <div class="flex justify-between items-center mb-1">
-              <h3 class="font-semibold">📱 Swift (iOS)</h3>
-              <button @click="copyToClipboard(swiftCode, 'Swift')" class="text-blue-600 text-sm hover:underline">Copy</button>
+          <div>
+            <label class="block font-medium text-gray-900 flex items-center gap-2">
+              SDK API Style
+              <button @click="openHelp('apiStyle')" title="Help for SDK API Style" class="rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" aria-label="Help for SDK API Style">?</button>
+            </label>
+            <select v-model="apiStyle" class="mt-2 w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500 transition">
+              <option value="bridge">AEPEdgeBridge (Modern)</option>
+              <option value="core">ACPExtension / MobileCore</option>
+              <option value="legacy" disabled>Legacy Objective-C (Coming Soon)</option>
+            </select>
+            <p class="text-body text-sm mt-1">Select the SDK method matching your app's integration.</p>
+          </div>
+          <div>
+            <label class="block font-medium text-gray-900 flex items-center gap-2">
+              Context Key-Value Pairs
+              <button @click="openHelp('context')" title="Help for Context Key-Value Pairs" class="rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" aria-label="Help for Context Key-Value Pairs">?</button>
+            </label>
+            <p class="text-body text-sm mt-1">Add event context data (e.g., screen names, flags) for the payload.</p>
+            <div v-for="(pair, index) in keyValues" :key="index" class="flex space-x-2 mt-2">
+              <input v-model="pair.key" class="border border-gray-300 rounded-md p-2 w-1/2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Key" />
+              <input v-model="pair.value" class="border border-gray-300 rounded-md p-2 w-1/2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Value" />
             </div>
-            <pre class="text-sm text-gray-800"><code>{{ swiftCode }}</code></pre>
+            <button @click="addKeyValue" class="mt-2 text-blue-600 hover:underline text-sm focus:outline-none focus:ring-2 focus:ring-blue-300">+ Add Pair</button>
           </div>
-
-          <div class="bg-white border p-4 rounded">
-            <div class="flex justify-between items-center mb-1">
-              <h3 class="font-semibold">🤖 Kotlin / Java (Android)</h3>
-              <button @click="copyToClipboard(kotlinCode, 'Kotlin')" class="text-blue-600 text-sm hover:underline">Copy</button>
+          <div class="border-t pt-6 space-y-4">
+            <label class="block font-medium text-gray-900 flex items-center gap-2">
+              Adobe Edge Overrides
+              <button @click="openHelp('overrides')" title="Help for Edge Overrides" class="rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" aria-label="Help for Edge Overrides">?</button>
+            </label>
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" v-model="overrideDatastream" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+              <span class="text-body">Override Datastream ID</span>
+            </label>
+            <input v-if="overrideDatastream" v-model="datastreamId" class="border border-gray-300 rounded-md p-2 w-full focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Datastream ID" />
+            <p v-if="overrideDatastream" class="text-body text-sm">Route events to a specific Adobe Datastream for QA or staging.</p>
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" v-model="sendIdentityMap" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+              <span class="text-body">Send identityMap</span>
+            </label>
+            <div v-if="sendIdentityMap" class="space-y-2">
+              <input v-model="identityNamespace" class="border border-gray-300 rounded-md p-2 w-full focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Namespace (e.g., email, ECID)" />
+              <input v-model="identityId" class="border border-gray-300 rounded-md p-2 w-full focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ID (e.g., user@example.com)" />
+              <p class="text-body text-sm">Enable identity stitching for personalization across channels.</p>
             </div>
-            <pre class="text-sm text-gray-800"><code>{{ kotlinCode }}</code></pre>
           </div>
-
-          <div class="bg-white border p-4 rounded md:col-span-2">
-            <div class="flex justify-between items-center mb-1">
-              <h3 class="font-semibold">⚛️ React Native</h3>
-              <button @click="copyToClipboard(reactNativeCode, 'React Native')" class="text-blue-600 text-sm hover:underline">Copy</button>
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+            <label class="block font-medium text-gray-900 mb-2">Generated Payload</label>
+            <pre class="text-sm text-gray-800 bg-white p-4 rounded-md border"><code>{{ JSON.stringify(jsonPayload, null, 2) }}</code></pre>
+            <p class="text-body text-sm mt-2">Overrides: {{ overridesCode }}</p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-medium text-gray-900">Swift (iOS)</h3>
+                <button @click="copyToClipboard(swiftCode, 'Swift')" class="text-blue-600 text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-300">Copy</button>
+              </div>
+              <pre class="text-sm text-gray-800 bg-gray-50 p-4 rounded-md border"><code>{{ swiftCode }}</code></pre>
             </div>
-            <pre class="text-sm text-gray-800"><code>{{ reactNativeCode }}</code></pre>
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-medium text-gray-900">Kotlin / Java (Android)</h3>
+                <button @click="copyToClipboard(kotlinCode, 'Kotlin')" class="text-blue-600 text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-300">Copy</button>
+              </div>
+              <pre class="text-sm text-gray-800 bg-gray-50 p-4 rounded-md border"><code>{{ kotlinCode }}</code></pre>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-lg p-6 md:col-span-2">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-medium text-gray-900">React Native</h3>
+                <button @click="copyToClipboard(reactNativeCode, 'React Native')" class="text-blue-600 text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-300">Copy</button>
+              </div>
+              <pre class="text-sm text-gray-800 bg-gray-50 p-4 rounded-md border"><code>{{ reactNativeCode }}</code></pre>
+            </div>
           </div>
-        </div>
-        <p v-if="copied" class="text-green-600 text-sm">{{ copied }}</p>
-
-        <!-- Contextual Help Modal -->
-        <div v-if="showHelpModal" class="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-          <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative animate-fadeInUp">
-            <button @click="showHelpModal = false" class="absolute top-2 right-2 text-gray-400 hover:text-blue-600 text-2xl">&times;</button>
-            <h2 class="text-lg font-bold mb-2">{{ helpContent.title }}</h2>
-            <div class="mb-3">
-              <p class="text-sm mb-2">{{ helpContent.guide }}</p>
-              <div v-if="helpContent.sample && helpContent.sample.code">
-                <div class="text-xs text-gray-500 mb-1">Code Sample</div>
-                <pre class="bg-gray-100 p-3 rounded text-xs">{{ helpContent.sample.code }}</pre>
+          <p v-if="copied" class="text-green-600 text-sm">{{ copied }}</p>
+          <div v-if="showHelpModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg p-6 max-w-md w-full border border-gray-200">
+              <button @click="showHelpModal = false" class="absolute top-4 right-4 text-gray-500 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300" aria-label="Close modal">×</button>
+              <h2 class="text-xl font-medium text-gray-900 mb-4">{{ helpContent.title }}</h2>
+              <p class="text-body mb-4">{{ helpContent.guide }}</p>
+              <div v-if="helpContent.sample && helpContent.sample.code" class="mb-4">
+                <p class="text-sm text-gray-600 mb-2">Code Sample</p>
+                <pre class="bg-gray-50 p-4 rounded-md text-sm border"><code>{{ helpContent.sample.code }}</code></pre>
               </div>
               <div v-if="helpContent.sample && helpContent.sample.payload">
-                <div class="text-xs text-gray-500 mb-1">Sample Payload</div>
-                <pre class="bg-gray-100 p-3 rounded text-xs">{{ helpContent.sample.payload }}</pre>
+                <p class="text-sm text-gray-600 mb-2">Sample Payload</p>
+                <pre class="bg-gray-50 p-4 rounded-md text-sm border"><code>{{ helpContent.sample.payload }}</code></pre>
               </div>
-            </div>
-            <div v-if="helpSection === 'eventType'">
-              <div class="text-xs text-blue-800 mt-2">
-                <a href="https://medium.com/@ctobin_60705/aep-validation-plugins-with-public-api-support-239637d3b63a" target="_blank" class="underline">Read about validation plugins</a>
+              <div v-if="helpSection === 'eventType'" class="text-sm text-blue-600">
+                <a href="https://medium.com/@ctobin_60705/aep-validation-plugins-with-public-api-support-239637d3b63a" target="_blank" class="underline hover:text-blue-700">Read about validation plugins</a>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    `
-  }).mount('#root');
-</script>
-</body>
-<!-- Syncs GA session ID to PostHog for identity resolution -->
-<script>
-  (function () {
-    function getGASessionId() {
-      const gaCookie = document.cookie.split('; ').find(row => row.startsWith('_ga='));
-      if (!gaCookie) return null;
-      const parts = gaCookie.split('.');
-      if (parts.length < 4) return null;
-      return `${parts[2]}.${parts[3]}`;
-    }
+      `
+    }).mount('#root');
+  </script>
 
-    const sessionId = getGASessionId();
-    if (sessionId && window.posthog) {
-      console.log('[PostHog] Registered GA session ID:', sessionId);
-      posthog.register({ ga_session_id: sessionId });
-      posthog.capture('pageview_with_ga_session', { ga_session_id: sessionId });
-    }
-  })();
-</script>
+  <script>
+    (function () {
+      function getGASessionId() {
+        const gaCookie = document.cookie.split('; ').find(row => row.startsWith('_ga='));
+        if (!gaCookie) return null;
+        const parts = gaCookie.split('.');
+        if (parts.length < 4) return null;
+        return `${parts[2]}.${parts[3]}`;
+      }
+
+      const sessionId = getGASessionId();
+      if (sessionId && window.posthog) {
+        posthog.register({ ga_session_id: sessionId });
+        posthog.capture('pageview_with_ga_session', { ga_session_id: sessionId, tool: 'mobile_tag_builder' });
+      }
+    })();
+  </script>
+</body>
 </html>
