@@ -32,18 +32,17 @@
     <meta charset="UTF-8" />
     <!-- Ensure responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Tool-specific title -->
-    <!-- Optional Piwik PRO Tool Metadata -->
-    <meta name="ppms.tool_name" content="Event Payload Inspector" />
+    <!-- Tool-specific title and metadata -->
+    <meta name="ppms.tool_name" content="Dynamic Flattening Script Builder" />
     <meta name="ppms.tool_version" content="1.0.1" />
     <meta name="ppms.tool_author" content="Scott Gresack" />
-    <title>Event Payload Inspector | Scott Gresack Portfolio</title>
+    <title>Dynamic Flattening Script Builder | Alloy, Tealium, digitalData</title>
     <!-- SEO description for the tool -->
     <meta name="description"
-        content="Analyze event payloads from AEP Web SDK, Tealium, and digitalData with Scott Gresack's Event Payload Inspector. Parse JSON, view dynamic tables, filter data, and download results." />
+        content="Build dynamic flattening scripts for Alloy, Tealium, and digitalData. Instantly generate, customize, and copy scripts for event payload debugging and sessionStorage capture. By Scott Gresack." />
     <!-- Relevant keywords -->
     <meta name="keywords"
-        content="Martech, Event Payload Inspector, Adobe Alloy, Adobe Experience Platform, AEP, AEPP, Web SDK, XDM, CDP, datasets, AI Copilot, cursor, microservices, data integration, digital analytics, Tag Management, Divrei Torah, Gemara, Yeshiva, Haskafah, AI agent, workforce transition, schema mapping, Scott Gresack, Jewish tech professional" />
+        content="flattening script builder, Alloy, Tealium, digitalData, AEP Web SDK, sessionStorage, console logging, dynamic script, event debugging, payload analyzer, Martech, Scott Gresack, Adobe, Tag Management, analytics, CDP, JavaScript snippet, open source, script generator, payload flattener, digital analytics, debugging, XDM, JSON, data layer, script copy, accessibility, SEO" />
     <!-- Author -->
     <meta name="author" content="Scott Gresack" />
     <!-- Allow indexing -->
@@ -56,16 +55,16 @@
     <!-- Open Graph tags -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tool2.html" />
-    <meta property="og:title" content="Event Payload Inspector | Scott Gresack Portfolio" />
+    <meta property="og:title" content="Dynamic Flattening Script Builder | Alloy, Tealium, digitalData" />
     <meta property="og:description"
-        content="Explore Scott Gresack's Event Payload Inspector for parsing and analyzing flattened AEP, Tealium, and digitalData payloads with dynamic tables, filtering, and JSON export." />
+        content="Generate flattening scripts for Alloy, Tealium, and digitalData with console and sessionStorage options. Instantly copy and use for payload debugging. By Scott Gresack." />
     <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
 
     <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Event Payload Inspector | Scott Gresack Portfolio" />
+    <meta name="twitter:title" content="Dynamic Flattening Script Builder | Alloy, Tealium, digitalData" />
     <meta name="twitter:description"
-        content="Use Scott Gresack's tool to analyze event payloads from various sources like Adobe Alloy and Tealium, featuring dynamic tables, filtering, and JSON download capabilities." />
+        content="Build flattening scripts for Alloy, Tealium, and digitalData. Copy, customize, and debug event payloads with ease. By Scott Gresack." />
     <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
@@ -636,103 +635,76 @@
                         immediate inspection during AEP testing.</li>
                 </ul>
             </div>
-            <!-- Instructions -->
-            <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
+            <!-- Instructions & Dynamic Snippet Builder -->
+            <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6 rounded" id="snippet-instructions">
                 <h2 class="text-lg font-medium mb-3">
-                    Instructions
-                    <span class="ml-2 text-gray-400" tabindex="0" aria-label="Step-by-step usage help" title="This section provides usage help and accessibility instructions.">🛈</span>
+                    Dynamic Flattening Script Builder
+                    <span class="ml-2 text-gray-400" tabindex="0" aria-label="Help for snippet builder" title="This section helps you generate customized flattening scripts for Alloy, Tealium, or digitalData.">🛈</span>
                 </h2>
-
-                <h3 class="text-md font-medium mb-2">Setup Payload Flattening Script</h3>
-                <p class="mb-2">This tool analyzes flattened event payloads. To capture these payloads, follow these steps:</p>
-                <ol class="pl-5 list-decimal mb-4">
-                    <li>
-                        <strong>Copy the flattening script below:</strong>
-                        <!-- Dynamic snippet builder UI inserted here -->
-                        <div id="snippet-config" class="mb-4 p-3 bg-gray-100 border border-gray-300 rounded">
-                          <label class="block mb-2 font-medium">Script Type:</label>
-                          <select id="snippetType" class="mb-3 p-2 border rounded w-full max-w-xs">
-                            <option value="alloy">Adobe Alloy (AEP Web SDK)</option>
-                            <option value="digitalData">digitalData (W3C/DTM/Adobe Launch)</option>
-                            <option value="tealium">Tealium utag.view/link</option>
-                            <option value="all">All (Alloy, digitalData, Tealium)</option>
-                          </select>
-                          <div class="mb-2">
-                            <label class="inline-flex items-center mr-4">
-                              <input type="checkbox" id="snippetIncludeConsole" checked class="mr-1" />
-                              Log to console
-                            </label>
-                            <label class="inline-flex items-center">
-                              <input type="checkbox" id="snippetIncludeSessionStorage" checked class="mr-1" />
-                              Store in sessionStorage
-                            </label>
-                          </div>
-                          <button type="button" id="generateSnippetBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
-                            Generate Script
-                          </button>
-                        </div>
-                        <div class="relative mt-2 mb-2">
-                            <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto"><code id="alloyScript"></code></pre>
-                            <button onclick="copyScript()"
-                                class="absolute top-2 right-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
-                                aria-label="Copy Script"
-                                title="Copy the flattening script to your clipboard for use in developer tools.">Copy Script</button>
-                        </div>
-                    </li>
-                    <li>
-                        <strong>Open your browser’s developer tools</strong> (press <kbd>F12</kbd> or right-click &gt; Inspect), and go to the <strong>Console</strong> tab on a website using Adobe Alloy.
-                    </li>
-                    <li>
-                        <strong>Paste the script</strong> into the console and press <kbd>Enter</kbd>.
-                        <br />
-                        You should see a message: <code>[AlloyMonitor] Payload flattener active</code>.
-                    </li>
-                    <li>
-                        <strong>Interact with the website</strong> (e.g., click links or load new pages) to generate Alloy events.
-                        <br />
-                        Check the console for messages like <code>[AlloyMonitor] Flattened Event Detected</code> and a table of captured events every 15 seconds.
-                    </li>
-                    <li>
-                        <strong>To confirm payloads are stored:</strong> In developer tools, go to <strong>Application &gt; Session Storage &gt; [website domain] &gt; <code>flattenedAlloyEvents</code></strong>.
-                    </li>
-                </ol>
-
-                <h3 class="text-md font-medium mb-2">Analyze Flattened Payloads</h3>
-                <p class="mb-2">Once the script is running, use this tool to view and analyze your captured payloads:</p>
-                <ol class="pl-5 list-decimal mb-4">
-                    <li>
-                        <strong>Load captured payloads</strong> from <code>sessionStorage</code> by clicking <strong>Refresh Payloads</strong>.
-                        <br />
-                        <span class="text-gray-500">Alternatively, paste a JSON array of flattened payloads into the input box below.</span>
-                    </li>
-                    <li>
-                        <strong>Click Parse Payloads</strong> to display the data in a dynamic table.
-                        <br />
-                        Columns are generated from all unique fields in the JSON.
-                    </li>
-                    <li>
-                        <strong>Filter the table</strong> by entering a field name (e.g., <code>xdm.eventType</code>) or value in the filter box.
-                    </li>
-                    <li>
-                        <strong>Download as JSON</strong> to save the analyzed payloads, or <strong>Copy as CSV</strong> for pasting into Excel/Google Sheets.
-                    </li>
-                    <li>
-                        <strong>To reset captured data</strong>, clear <code>sessionStorage</code> in developer tools.
-                    </li>
-                </ol>
-
-                <h3 class="text-md font-medium mb-2">Why This Tool Differs from Adobe Assurance</h3>
-                <p class="mb-2">This Event Payload Inspector offers unique benefits compared to Adobe Assurance:</p>
-                <ul class="list-disc pl-5 mb-4">
-                    <li><strong>Accessible:</strong> No AEP account or setup required. Use it anywhere, anytime.</li>
-                    <li><strong>Flattened Payload Focus:</strong> Automatically flattens nested XDM/data objects for easy analysis.</li>
-                    <li><strong>Dynamic Table Generation:</strong> All unique fields become columns; adapts to any structure.</li>
-                    <li><strong>Offline &amp; Collaborative:</strong> Export as JSON/CSV for sharing or offline analysis.</li>
-                    <li><strong>Lightweight &amp; Open:</strong> 100% browser-based—no server, no dependencies.</li>
-                </ul>
-                <p>
-                    <strong>Tip:</strong> Use this tool for fast debugging, XDM validation, or sharing data with stakeholders outside Adobe’s ecosystem.
+                <p class="mb-2">
+                    Instantly generate a payload-flattening script for <b>Adobe Alloy (AEP Web SDK)</b>, <b>Tealium utag.view/link</b>, or <b>digitalData</b> data layers.
+                    <br>
+                    <span class="text-gray-600">Choose your integration, toggle output options, and copy the ready-to-use script. Paste it in your browser’s console to capture and debug flattened event payloads.</span>
                 </p>
+                <ul class="list-disc pl-5 mb-3 text-sm text-gray-700">
+                    <li>Works for <b>Alloy</b>, <b>Tealium</b>, <b>digitalData</b>, or <b>all at once</b>.</li>
+                    <li>Options:
+                        <ul class="list-disc pl-5">
+                            <li><b>Log to console</b>: See each flattened payload in real time.</li>
+                            <li><b>Store in sessionStorage</b>: Persist all payloads for later download/analysis.</li>
+                        </ul>
+                    </li>
+                    <li>Script permutations: <span class="text-gray-600">Try combinations (e.g., Alloy+console, Tealium+storage, All+both) for your use-case.</span></li>
+                </ul>
+                <div class="mb-4 p-3 bg-gray-100 border border-gray-300 rounded" id="snippet-config" aria-label="Snippet builder controls">
+                  <label for="snippetType" class="block mb-2 font-medium" id="label-snippetType">
+                    Script Type:
+                    <span class="sr-only" id="desc-snippetType">Choose which integration(s) to generate a script for: Alloy, digitalData, Tealium, or all.</span>
+                  </label>
+                  <select id="snippetType" aria-labelledby="label-snippetType desc-snippetType"
+                          class="mb-3 p-2 border rounded w-full max-w-xs"
+                          title="Select which integration to generate a flattening script for.">
+                    <option value="alloy">Adobe Alloy (AEP Web SDK)</option>
+                    <option value="digitalData">digitalData (W3C/DTM/Adobe Launch)</option>
+                    <option value="tealium">Tealium utag.view/link</option>
+                    <option value="all">All (Alloy, digitalData, Tealium)</option>
+                  </select>
+                  <div class="mb-2 flex flex-row gap-4">
+                    <label class="inline-flex items-center" for="snippetIncludeConsole" title="Toggle to log flattened payloads to the browser console.">
+                      <input type="checkbox" id="snippetIncludeConsole" checked class="mr-1" aria-checked="true" aria-label="Log to console" />
+                      Log to console
+                      <span class="ml-1 text-gray-400" aria-label="Logs each flattened event to the browser console.">🛈</span>
+                    </label>
+                    <label class="inline-flex items-center" for="snippetIncludeSessionStorage" title="Toggle to store flattened payloads in sessionStorage for download.">
+                      <input type="checkbox" id="snippetIncludeSessionStorage" checked class="mr-1" aria-checked="true" aria-label="Store in sessionStorage" />
+                      Store in sessionStorage
+                      <span class="ml-1 text-gray-400" aria-label="Stores all flattened events in sessionStorage for later download.">🛈</span>
+                    </label>
+                  </div>
+                  <button type="button" id="generateSnippetBtn"
+                          class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+                          aria-label="Generate Script"
+                          title="Generate the flattening script based on your selections."
+                          tabindex="0">
+                    Generate Script
+                  </button>
+                </div>
+                <div class="relative mt-2 mb-2" aria-label="Script output area">
+                    <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto" aria-live="polite"><code id="alloyScript"></code></pre>
+                    <button onclick="copyScript()"
+                        class="absolute top-2 right-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+                        aria-label="Copy Script"
+                        title="Copy the flattening script to your clipboard for use in developer tools.">Copy Script</button>
+                </div>
+                <div class="text-sm text-gray-600 mt-2" aria-label="Example Use Cases">
+                  <b>Examples:</b>
+                  <ul class="list-disc pl-5">
+                    <li>Debug Alloy XDM events with console logging only.</li>
+                    <li>Capture Tealium utag.view/link data and store for offline analysis.</li>
+                    <li>Monitor all integrations at once (Alloy, digitalData, Tealium) and log to both console and sessionStorage.</li>
+                  </ul>
+                  <span class="block mt-2">Paste the generated script into your browser’s devtools console (<kbd>F12</kbd> &gt; <b>Console</b>), interact with the site, and inspect the output.</span>
+                </div>
             </div>
             <!-- Feedback messages -->
             <div id="errorMessage" class="hidden error-message mb-4" aria-live="assertive" role="alert"></div>
@@ -1553,7 +1525,7 @@
             });
         });
 </script>
-<!-- Dynamic Script Generator Logic for Snippet Builder -->
+<!-- Dynamic Script Generator Logic for Snippet Builder (Refactored & Analytics-integrated) -->
 <script>
 // Snippet blocks for dynamic builder
 const SNIPPET_BLOCKS = {
@@ -1687,31 +1659,113 @@ const SNIPPET_BLOCKS = {
   ].join('\n\n')
 };
 
+// --- Analytics Event Helper ---
+function trackSnippetGenerated(type, includeConsole, includeSessionStorage) {
+  const label = `type:${type}|console:${includeConsole}|sessionStorage:${includeSessionStorage}`;
+  try {
+    if (typeof gtag === 'function') {
+      gtag('event', 'snippet_generated', {
+        tool_name: 'Dynamic Flattening Script Builder',
+        script_type: type,
+        include_console: includeConsole,
+        include_sessionStorage: includeSessionStorage,
+        event_label: label
+      });
+    }
+    if (window.clarity) {
+      clarity('event', 'snippet_generated', { script_type: type, include_console: includeConsole, include_sessionStorage: includeSessionStorage });
+    }
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'ppms.cm:snippet_generated',
+        script_type: type,
+        include_console: includeConsole,
+        include_sessionStorage: includeSessionStorage
+      });
+    }
+    if (window.posthog) {
+      posthog.capture('snippet_generated', {
+        tool_name: 'Dynamic Flattening Script Builder',
+        script_type: type,
+        include_console: includeConsole,
+        include_sessionStorage: includeSessionStorage
+      });
+    }
+  } catch (e) {}
+}
+
+function trackSnippetCopied(type, includeConsole, includeSessionStorage) {
+  const label = `type:${type}|console:${includeConsole}|sessionStorage:${includeSessionStorage}`;
+  try {
+    if (typeof gtag === 'function') {
+      gtag('event', 'snippet_copied', {
+        tool_name: 'Dynamic Flattening Script Builder',
+        script_type: type,
+        include_console: includeConsole,
+        include_sessionStorage: includeSessionStorage,
+        event_label: label
+      });
+    }
+    if (window.clarity) {
+      clarity('event', 'snippet_copied', { script_type: type, include_console: includeConsole, include_sessionStorage: includeSessionStorage });
+    }
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'ppms.cm:snippet_copied',
+        script_type: type,
+        include_console: includeConsole,
+        include_sessionStorage: includeSessionStorage
+      });
+    }
+    if (window.posthog) {
+      posthog.capture('snippet_copied', {
+        tool_name: 'Dynamic Flattening Script Builder',
+        script_type: type,
+        include_console: includeConsole,
+        include_sessionStorage: includeSessionStorage
+      });
+    }
+  } catch (e) {}
+}
+
+function getSnippetOptions() {
+  return {
+    type: document.getElementById('snippetType').value,
+    includeConsole: document.getElementById('snippetIncludeConsole').checked,
+    includeSessionStorage: document.getElementById('snippetIncludeSessionStorage').checked
+  };
+}
+
 function generateSnippet() {
-  const type = document.getElementById('snippetType').value;
-  const includeConsole = document.getElementById('snippetIncludeConsole').checked;
-  const includeSessionStorage = document.getElementById('snippetIncludeSessionStorage').checked;
+  const { type, includeConsole, includeSessionStorage } = getSnippetOptions();
   const opts = { includeConsole, includeSessionStorage };
   let code = '';
   if (SNIPPET_BLOCKS[type]) {
-    code = SNIPPET_BLOCKS[type](opts).replace(/^[ \t]+$/gm, ''); // Remove empty lines
+    code = SNIPPET_BLOCKS[type](opts).replace(/^[ \t]+$/gm, '');
   }
   document.getElementById('alloyScript').textContent = code;
+  trackSnippetGenerated(type, includeConsole, includeSessionStorage);
 }
 
-// Initialize snippet builder UI
+// Accessibility: Tooltips for all controls
+function setupSnippetTooltips() {
+  // Use title and aria-labels already set in HTML above.
+}
+
+// Initialize snippet builder UI and accessibility
 document.addEventListener('DOMContentLoaded', function () {
-  // Set default script
   generateSnippet();
   document.getElementById('snippetType').addEventListener('change', generateSnippet);
   document.getElementById('snippetIncludeConsole').addEventListener('change', generateSnippet);
   document.getElementById('snippetIncludeSessionStorage').addEventListener('change', generateSnippet);
   document.getElementById('generateSnippetBtn').addEventListener('click', generateSnippet);
+  setupSnippetTooltips();
 });
 
-// Copy Script button logic (overrides any existing copyScript if needed)
+// Copy Script button logic with analytics
 function copyScript() {
   const scriptText = document.getElementById('alloyScript').textContent;
+  const { type, includeConsole, includeSessionStorage } = getSnippetOptions();
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(scriptText).then(() => {
       const successMsg = document.getElementById('successMessage');
@@ -1720,6 +1774,7 @@ function copyScript() {
         successMsg.classList.remove('hidden');
         setTimeout(() => successMsg.classList.add('hidden'), 3000);
       }
+      trackSnippetCopied(type, includeConsole, includeSessionStorage);
     });
   } else {
     // fallback
@@ -1738,6 +1793,7 @@ function copyScript() {
       successMsg.classList.remove('hidden');
       setTimeout(() => successMsg.classList.add('hidden'), 3000);
     }
+    trackSnippetCopied(type, includeConsole, includeSessionStorage);
   }
 }
 </script>
