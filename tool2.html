@@ -1,3 +1,4 @@
+
 <!--
   Alloy Flattened Payload Analyzer v1.0.1
   Author: Scott Gresack
@@ -33,16 +34,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Tool-specific title -->
     <!-- Optional Piwik PRO Tool Metadata -->
-    <meta name="ppms.tool_name" content="Alloy Flattened Payload Analyzer" />
+    <meta name="ppms.tool_name" content="Event Payload Inspector" />
     <meta name="ppms.tool_version" content="1.0.1" />
     <meta name="ppms.tool_author" content="Scott Gresack" />
-    <title>Alloy Flattened Payload Analyzer | Scott Gresack Portfolio</title>
+    <title>Event Payload Inspector | Scott Gresack Portfolio</title>
     <!-- SEO description for the tool -->
     <meta name="description"
-        content="Analyze flattened Adobe Alloy event payloads with Scott Gresack's tool. Parse JSON, view dynamic tables, filter data, and download results." />
+        content="Analyze event payloads from AEP Web SDK, Tealium, and digitalData with Scott Gresack's Event Payload Inspector. Parse JSON, view dynamic tables, filter data, and download results." />
     <!-- Relevant keywords -->
     <meta name="keywords"
-        content="Martech, Adobe Alloy, Adobe Experience Platform, AEP, AEPP, Web SDK, XDM, CDP, datasets, AI Copilot, cursor, microservices, data integration, digital analytics, Tag Management, Divrei Torah, Gemara, Yeshiva, Haskafah, AI agent, workforce transition, schema mapping, Scott Gresack, Jewish tech professional" />
+        content="Martech, Event Payload Inspector, Adobe Alloy, Adobe Experience Platform, AEP, AEPP, Web SDK, XDM, CDP, datasets, AI Copilot, cursor, microservices, data integration, digital analytics, Tag Management, Divrei Torah, Gemara, Yeshiva, Haskafah, AI agent, workforce transition, schema mapping, Scott Gresack, Jewish tech professional" />
     <!-- Author -->
     <meta name="author" content="Scott Gresack" />
     <!-- Allow indexing -->
@@ -55,16 +56,16 @@
     <!-- Open Graph tags -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tool2.html" />
-    <meta property="og:title" content="Alloy Flattened Payload Analyzer | Scott Gresack Portfolio" />
+    <meta property="og:title" content="Event Payload Inspector | Scott Gresack Portfolio" />
     <meta property="og:description"
-        content="Explore Scott Gresack's Alloy Flattened Payload Analyzer for parsing and analyzing flattened Adobe Alloy event payloads with dynamic tables, filtering, and JSON export." />
+        content="Explore Scott Gresack's Event Payload Inspector for parsing and analyzing flattened AEP, Tealium, and digitalData payloads with dynamic tables, filtering, and JSON export." />
     <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
 
     <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Alloy Flattened Payload Analyzer | Scott Gresack Portfolio" />
+    <meta name="twitter:title" content="Event Payload Inspector | Scott Gresack Portfolio" />
     <meta name="twitter:description"
-        content="Use Scott Gresack's tool to analyze flattened Adobe Alloy payloads, featuring dynamic tables, filtering, and JSON download capabilities." />
+        content="Use Scott Gresack's tool to analyze event payloads from various sources like Adobe Alloy and Tealium, featuring dynamic tables, filtering, and JSON download capabilities." />
     <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
@@ -474,8 +475,8 @@
                         <div class="nav-dropdown-menu absolute hidden bg-white border rounded shadow-md z-50 mt-2 min-w-[200px]"
                             role="menu" aria-labelledby="nav-tools-dropdown-btn" tabindex="-1">
                             <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=nav&amp;utm_medium=dropdown&amp;utm_term=flattened-analyzer&amp;cid=nav-tools"
-                                class="block px-4 py-2 hover:bg-blue-50 text-sm text-gray-800" role="menuitem">Alloy
-                                Payload Analyzer</a>
+                                class="block px-4 py-2 hover:bg-blue-50 text-sm text-gray-800" role="menuitem">Event
+                                Payload Inspector</a>
                             <a href="https://scott-gresack.github.io/portfolio/tag_generator?utm_source=nav&amp;utm_medium=dropdown&amp;utm_term=tag-generator&amp;cid=nav-tools"
                                 class="block px-4 py-2 hover:bg-blue-50 text-sm text-gray-800" role="menuitem">Tag
                                 Generator</a>
@@ -612,11 +613,11 @@
     <!-- Main content -->
     <main class="mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full max-w-7xl">
         <section class="bg-white rounded-lg shadow-md p-4 sm:p-6">
-            <h1 class="text-xl sm:text-2xl font-semibold mb-4">Alloy Flattened Payload Analyzer</h1>
+            <h1 class="text-xl sm:text-2xl font-semibold mb-4">Event Payload Inspector</h1>
             <!-- Business Value -->
             <div class="bg-blue-100 border-l-4 border-blue-600 p-4 mb-6 rounded shadow-sm">
                 <h2 class="text-lg font-semibold mb-3 text-blue-800">🚀 Business Value</h2>
-                <p class="mb-2">The Alloy Flattened Payload Analyzer enhances Adobe Alloy implementations by providing a
+                <p class="mb-2">The Event Payload Inspector enhances event-level data validation and debugging by providing a
                     user-friendly interface to inspect, filter, and export flattened event payloads. It streamlines
                     Martech
                     workflows by:</p>
@@ -642,145 +643,36 @@
                     <span class="ml-2 text-gray-400" tabindex="0" aria-label="Step-by-step usage help" title="This section provides usage help and accessibility instructions.">🛈</span>
                 </h2>
 
-                <h3 class="text-md font-medium mb-2">Setup Alloy Flattening Script</h3>
-                <p class="mb-2">This tool analyzes flattened Adobe Alloy event payloads. To capture these payloads, follow these steps:</p>
+                <h3 class="text-md font-medium mb-2">Setup Payload Flattening Script</h3>
+                <p class="mb-2">This tool analyzes flattened event payloads. To capture these payloads, follow these steps:</p>
                 <ol class="pl-5 list-decimal mb-4">
                     <li>
                         <strong>Copy the flattening script below:</strong>
+                        <!-- Dynamic snippet builder UI inserted here -->
+                        <div id="snippet-config" class="mb-4 p-3 bg-gray-100 border border-gray-300 rounded">
+                          <label class="block mb-2 font-medium">Script Type:</label>
+                          <select id="snippetType" class="mb-3 p-2 border rounded w-full max-w-xs">
+                            <option value="alloy">Adobe Alloy (AEP Web SDK)</option>
+                            <option value="digitalData">digitalData (W3C/DTM/Adobe Launch)</option>
+                            <option value="tealium">Tealium utag.view/link</option>
+                            <option value="all">All (Alloy, digitalData, Tealium)</option>
+                          </select>
+                          <div class="mb-2">
+                            <label class="inline-flex items-center mr-4">
+                              <input type="checkbox" id="snippetIncludeConsole" checked class="mr-1" />
+                              Log to console
+                            </label>
+                            <label class="inline-flex items-center">
+                              <input type="checkbox" id="snippetIncludeSessionStorage" checked class="mr-1" />
+                              Store in sessionStorage
+                            </label>
+                          </div>
+                          <button type="button" id="generateSnippetBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+                            Generate Script
+                          </button>
+                        </div>
                         <div class="relative mt-2 mb-2">
-                            <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto"><code id="alloyScript">(function () {
-  // Separate storage keys for digitalData and Alloy events
-  const DIGITAL_DATA_KEY = 'flattenedDigitalDataEvents';
-  const ALLOY_STORAGE_KEY = 'flattenedAlloyEvents';
-
-  function flatten(obj, prefix = '', res = {}) {
-    if (Array.isArray(obj)) {
-      obj.forEach((item, i) => {
-        flatten(item, `${prefix}${prefix ? '.' : ''}${i}`, res);
-      });
-    } else if (typeof obj === 'object' && obj !== null) {
-      for (const key in obj) {
-        if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
-        flatten(obj[key], `${prefix}${prefix ? '.' : ''}${key}`, res);
-      }
-    } else {
-      res[prefix] = obj;
-    }
-    return res;
-  }
-
-  // Monitor Alloy events (Web SDK)
-  window.__alloyMonitors = window.__alloyMonitors || [];
-  if (!window.__alloyMonitors.some(m => m.__isFlattenMonitor)) {
-    window.__alloyMonitors.push({
-      __isFlattenMonitor: true,
-      onBeforeNetworkRequest(data) {
-        try {
-          const events = data?.payload?.events;
-          if (!Array.isArray(events) || !events.length) return;
-
-          events.forEach(event => {
-            const flatXDM = event.xdm ? flatten(event.xdm, 'xdm') : {};
-            const flatData = event.data ? flatten(event.data, 'data') : {};
-            const combined = { ...flatXDM, ...flatData };
-
-            const stored = sessionStorage.getItem(ALLOY_STORAGE_KEY);
-            const prev = stored ? JSON.parse(stored) : [];
-            prev.push(combined);
-            sessionStorage.setItem(ALLOY_STORAGE_KEY, JSON.stringify(prev));
-
-            console.log('%c[AlloyMonitor] Captured Flattened Alloy Payload:', 'color:#f97316;font-weight:bold;', combined);
-          });
-        } catch (err) {
-          console.warn('[AlloyMonitor] Error flattening event payload:', err);
-        }
-      },
-      onCommandResolved() {},
-      onNetworkResponse() {},
-      onNetworkError() {}
-    });
-
-    console.info('%c[AlloyMonitor] Active. Monitoring Alloy and digitalData changes.', 'color:#4ade80;font-weight:bold;');
-  }
-
-  // --- Monitor changes to digitalData using MutationObserver ---
-  function flatten(obj, prefix = '', res = {}) {
-    if (Array.isArray(obj)) {
-      obj.forEach((item, i) => {
-        flatten(item, `${prefix}${prefix ? '.' : ''}${i}`, res);
-      });
-    } else if (typeof obj === 'object' && obj !== null) {
-      for (const key in obj) {
-        if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
-        flatten(obj[key], `${prefix}${prefix ? '.' : ''}${key}`, res);
-      }
-    } else {
-      res[prefix] = obj;
-    }
-    return res;
-  }
-  function observeDigitalData() {
-    // If digitalData is not an object, do nothing
-    if (!window.digitalData || typeof window.digitalData !== 'object') return;
-    let lastDigitalDataJSON = JSON.stringify(window.digitalData || {});
-    // Try to use MutationObserver if possible
-    if (typeof window.MutationObserver === 'function') {
-      try {
-        // Create a proxy to observe changes (for property-level, not deep)
-        // But to catch deep changes, use polling as fallback
-        // So, combine both: try polling for deep change detection
-        setInterval(() => {
-          const currentDigitalDataJSON = JSON.stringify(window.digitalData || {});
-          if (currentDigitalDataJSON !== lastDigitalDataJSON) {
-            lastDigitalDataJSON = currentDigitalDataJSON;
-            const flattened = flatten(window.digitalData || {}, 'digitalData');
-            const stored = sessionStorage.getItem(DIGITAL_DATA_KEY);
-            const prev = stored ? JSON.parse(stored) : [];
-            prev.push(flattened);
-            sessionStorage.setItem(DIGITAL_DATA_KEY, JSON.stringify(prev));
-            console.log('%c[digitalDataMonitor] Captured Flattened digitalData Update:', 'color:#10b981;font-weight:bold;', flattened);
-          }
-        }, 500);
-      } catch (e) {
-        // fallback: do nothing
-      }
-    } else {
-      // fallback: polling only
-      setInterval(() => {
-        const currentDigitalDataJSON = JSON.stringify(window.digitalData || {});
-        if (currentDigitalDataJSON !== lastDigitalDataJSON) {
-          lastDigitalDataJSON = currentDigitalDataJSON;
-          const flattened = flatten(window.digitalData || {}, 'digitalData');
-          const stored = sessionStorage.getItem(DIGITAL_DATA_KEY);
-          const prev = stored ? JSON.parse(stored) : [];
-          prev.push(flattened);
-          sessionStorage.setItem(DIGITAL_DATA_KEY, JSON.stringify(prev));
-          console.log('%c[digitalDataMonitor] Captured Flattened digitalData Update:', 'color:#10b981;font-weight:bold;', flattened);
-        }
-      }, 500);
-    }
-  }
-  observeDigitalData();
-
-  // Print both tables every 15 seconds
-  setInterval(() => {
-    // digitalData events
-    const digitalDataStored = sessionStorage.getItem(DIGITAL_DATA_KEY);
-    const digitalDataEvents = digitalDataStored ? JSON.parse(digitalDataStored) : [];
-    if (digitalDataEvents.length > 0) {
-      console.log('%c[digitalDataMonitor] Flattened digitalData Events:', 'background:#14b8a6;color:#fff;font-weight:bold;padding:2px 6px;border-radius:4px;');
-      console.table(digitalDataEvents);
-    }
-    // Alloy events
-    const alloyStored = sessionStorage.getItem(ALLOY_STORAGE_KEY);
-    const alloyEvents = alloyStored ? JSON.parse(alloyStored) : [];
-    if (alloyEvents.length > 0) {
-      console.log('%c[AlloyMonitor] Flattened Alloy Events:', 'background:#7c3aed;color:#fff;font-weight:bold;padding:2px 6px;border-radius:4px;');
-      console.table(alloyEvents);
-    }
-  }, 15000);
-})();
-</code></pre>
+                            <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto"><code id="alloyScript"></code></pre>
                             <button onclick="copyScript()"
                                 class="absolute top-2 right-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
                                 aria-label="Copy Script"
@@ -830,7 +722,7 @@
                 </ol>
 
                 <h3 class="text-md font-medium mb-2">Why This Tool Differs from Adobe Assurance</h3>
-                <p class="mb-2">This Alloy Flattened Payload Analyzer offers unique benefits compared to Adobe Assurance:</p>
+                <p class="mb-2">This Event Payload Inspector offers unique benefits compared to Adobe Assurance:</p>
                 <ul class="list-disc pl-5 mb-4">
                     <li><strong>Accessible:</strong> No AEP account or setup required. Use it anywhere, anytime.</li>
                     <li><strong>Flattened Payload Focus:</strong> Automatically flattens nested XDM/data objects for easy analysis.</li>
@@ -916,27 +808,27 @@
         let showNullValues = true; // Controls whether rows with only null/empty values are shown
 
 
-        // --- Alloy Flattened Payload Analyzer GA4 Enhanced Tracking ---
+        // --- Event Payload Inspector GA4 Enhanced Tracking ---
 
         // Tool loaded/session started (fires once at load)
         gtag('event', 'tool_loaded', {
-            tool_name: 'Alloy Flattened Payload Analyzer',
+            tool_name: 'Event Payload Inspector',
             tool_version: '1.0.1',
             page_location: window.location.href
         });
         posthog.capture('tool_loaded', {
-            tool_name: 'Alloy Flattened Payload Analyzer',
+            tool_name: 'Event Payload Inspector',
             tool_version: '1.0.1'
         });
 
         // Heartbeat for active engagement (fires every 30 seconds)
         setInterval(() => {
             gtag('event', 'tool_heartbeat', {
-                tool_name: 'Alloy Flattened Payload Analyzer',
+                tool_name: 'Event Payload Inspector',
                 timestamp: new Date().toISOString()
             });
             posthog.capture('tool_heartbeat', {
-                tool_name: 'Alloy Flattened Payload Analyzer'
+                tool_name: 'Event Payload Inspector'
             });
         }, 30000);
 
@@ -946,18 +838,20 @@
                 payload_count: payloads.length,
                 column_count: columnCount,
                 event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(','),
-                tool_name: 'Alloy Flattened Payload Analyzer'
+                tool_name: 'Event Payload Inspector'
             });
             window.clarity('event', 'flattened_payloads_parsed');
             window.dataLayer.push({
                 event: 'ppms.cm:flattened_payloads_parsed',
                 payload_count: payloads.length,
-                column_count: columnCount
+                column_count: columnCount,
+                tool_name: 'Event Payload Inspector'
             });
             posthog.capture('flattened_payloads_parsed', {
                 payload_count: payloads.length,
                 column_count: columnCount,
-                event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(',')
+                event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(','),
+                tool_name: 'Event Payload Inspector'
             });
         }
 
@@ -965,69 +859,77 @@
             gtag('event', 'json_download', {
                 payload_count: payloads.length,
                 event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(','),
-                tool_name: 'Alloy Flattened Payload Analyzer'
+                tool_name: 'Event Payload Inspector'
             });
             window.clarity('event', 'json_download');
             window.dataLayer.push({
                 event: 'ppms.cm:json_download',
-                payload_count: payloads.length
+                payload_count: payloads.length,
+                tool_name: 'Event Payload Inspector'
             });
             posthog.capture('json_download', {
-                payload_count: payloads.length
+                payload_count: payloads.length,
+                tool_name: 'Event Payload Inspector'
             });
         }
 
         function trackScriptCopied() {
             gtag('event', 'script_copied', {
-                tool_name: 'Alloy Flattened Payload Analyzer'
+                tool_name: 'Event Payload Inspector'
             });
             window.clarity('event', 'copy_script_success');
             window.dataLayer.push({
                 event: 'ppms.cm:copy_script',
-                status: 'success'
+                status: 'success',
+                tool_name: 'Event Payload Inspector'
             });
             posthog.capture('script_copied', {
-                tool_name: 'Alloy Flattened Payload Analyzer'
+                tool_name: 'Event Payload Inspector'
             });
         }
 
         function trackFilterUsed(filter) {
             gtag('event', 'filter_used', {
                 filter_value: filter,
-                tool_name: 'Alloy Flattened Payload Analyzer'
+                tool_name: 'Event Payload Inspector'
             });
             window.clarity('event', 'filter_table');
             window.dataLayer.push({
                 event: 'ppms.cm:filter_table',
-                filter_value: filter
+                filter_value: filter,
+                tool_name: 'Event Payload Inspector'
             });
             posthog.capture('filter_used', {
-                filter_value: filter
+                filter_value: filter,
+                tool_name: 'Event Payload Inspector'
             });
         }
 
         function trackNavigation(section) {
             gtag('event', 'navigation_click', {
                 section,
-                tool_name: 'Alloy Flattened Payload Analyzer'
+                tool_name: 'Event Payload Inspector'
             });
             posthog.capture('navigation_click', {
-                section
+                section,
+                tool_name: 'Event Payload Inspector'
             });
         }
 
         function trackScroll(direction) {
             gtag('event', 'table_scroll', {
                 direction,
-                tool_name: 'Alloy Flattened Payload Analyzer'
+                tool_name: 'Event Payload Inspector'
             });
             window.clarity('event', `table_scroll_${direction}`);
             window.dataLayer.push({
                 event: 'ppms.cm:table_scroll',
-                direction
+                direction,
+                tool_name: 'Event Payload Inspector'
             });
             posthog.capture('table_scroll', {
-                direction
+                direction,
+                tool_name: 'Event Payload Inspector'
             });
         }
 
@@ -1035,18 +937,20 @@
             gtag('event', 'copy_csv', {
                 row_count: rowCount,
                 column_count: columnCount,
-                tool_name: 'Alloy Flattened Payload Analyzer'
+                tool_name: 'Event Payload Inspector'
             });
             window.clarity('event', 'copy_csv_success');
             window.dataLayer.push({
                 event: 'ppms.cm:copy_csv',
                 row_count: rowCount,
                 column_count: columnCount,
-                status: 'success'
+                status: 'success',
+                tool_name: 'Event Payload Inspector'
             });
             posthog.capture('copy_csv', {
                 row_count: rowCount,
-                column_count: columnCount
+                column_count: columnCount,
+                tool_name: 'Event Payload Inspector'
             });
         }
 
@@ -1054,17 +958,19 @@
             gtag('event', 'tool_error', {
                 error_type: e.name || 'Error',
                 error_message: e.message || 'Unknown',
-                tool_name: 'Alloy Flattened Payload Analyzer'
+                tool_name: 'Event Payload Inspector'
             });
             window.clarity('event', 'tool_error');
             window.dataLayer.push({
                 event: 'ppms.cm:tool_error',
                 error_type: e.name || 'Error',
-                error_message: e.message || 'Unknown'
+                error_message: e.message || 'Unknown',
+                tool_name: 'Event Payload Inspector'
             });
             posthog.capture('tool_error', {
                 error_type: e.name || 'Error',
-                error_message: e.message || 'Unknown'
+                error_message: e.message || 'Unknown',
+                tool_name: 'Event Payload Inspector'
             });
         }
 
@@ -1169,7 +1075,7 @@
                 gtag('event', 'input_parsed', {
                     event_category: 'interaction',
                     event_label: 'Payload Input Parsed',
-                    tool_name: 'Alloy Flattened Payload Analyzer',
+                    tool_name: 'Event Payload Inspector',
                     input_length: inputLength,
                     input_sample: inputSample,
                     parsed_keys: parsedKeys.join(','),
@@ -1181,11 +1087,12 @@
                     input_length: inputLength,
                     input_sample: inputSample,
                     parsed_keys: parsedKeys,
-                    item_count: itemCount
+                    item_count: itemCount,
+                    tool_name: 'Event Payload Inspector'
                 });
                 // PostHog
                 posthog.capture('input_parsed', {
-                    tool_name: 'Alloy Flattened Payload Analyzer',
+                    tool_name: 'Event Payload Inspector',
                     input_length: inputLength,
                     input_sample: inputSample,
                     parsed_keys: parsedKeys,
@@ -1200,7 +1107,8 @@
                     input_sample: inputSample,
                     parsed_keys: parsedKeys,
                     item_count: itemCount,
-                    key_frequency: keyFrequency
+                    key_frequency: keyFrequency,
+                    tool_name: 'Event Payload Inspector'
                 });
 
                 //
@@ -1273,14 +1181,18 @@
             payloadInput.value = stored;
             parsePayloads();
             gtag('event', 'refresh_flattened_payloads', {
-                status: 'success'
+                status: 'success',
+                tool_name: 'Event Payload Inspector'
             });
             window.clarity('event', 'refresh_flattened_payloads_success');
             window.dataLayer.push({
                 event: 'ppms.cm:refresh_flattened_payloads',
-                status: 'success'
+                status: 'success',
+                tool_name: 'Event Payload Inspector'
             });
-            posthog.capture('refresh_flattened_payloads_success');
+            posthog.capture('refresh_flattened_payloads_success', {
+                tool_name: 'Event Payload Inspector'
+            });
             loadingIndicator.classList.add('hidden');
         }
 
@@ -1421,20 +1333,22 @@
                 gtag('event', 'analyze_rows', {
                     event_category: 'interaction',
                     event_label: 'Analyze Rows',
-                    tool_name: 'Alloy Flattened Payload Analyzer',
+                    tool_name: 'Event Payload Inspector',
                     total_rows: summary.total
                 });
                 window.clarity('event', 'analyze_rows');
                 posthog.capture('analyze_rows', {
                     total_rows: summary.total,
                     field_presence: summary.fieldPresence,
-                    types: summaryToLog.types
+                    types: summaryToLog.types,
+                    tool_name: 'Event Payload Inspector'
                 });
                 window.dataLayer.push({
                     event: 'ppms.cm:analyze_rows',
                     total_rows: summary.total,
                     field_keys: Object.keys(summary.fieldPresence),
-                    type_summary: summaryToLog.types
+                    type_summary: summaryToLog.types,
+                    tool_name: 'Event Payload Inspector'
                 });
             } catch (err) {
                 // fail silently for analytics
@@ -1638,7 +1552,195 @@
                 parsePayloads();
             });
         });
-    </script>
+</script>
+<!-- Dynamic Script Generator Logic for Snippet Builder -->
+<script>
+// Snippet blocks for dynamic builder
+const SNIPPET_BLOCKS = {
+  alloy: (opts) => `(function () {
+  const STORAGE_KEY = 'flattenedAlloyEvents';
+  function flatten(obj, prefix = '', res = {}) {
+    if (Array.isArray(obj)) {
+      obj.forEach((item, i) => flatten(item, \`\${prefix}\${prefix ? '.' : ''}\${i}\`, res));
+    } else if (typeof obj === 'object' && obj !== null) {
+      for (const key in obj) {
+        if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+        flatten(obj[key], \`\${prefix}\${prefix ? '.' : ''}\${key}\`, res);
+      }
+    } else {
+      res[prefix] = obj;
+    }
+    return res;
+  }
+  window.__alloyMonitors = window.__alloyMonitors || [];
+  if (!window.__alloyMonitors.some(m => m.__isFlattenMonitor)) {
+    window.__alloyMonitors.push({
+      __isFlattenMonitor: true,
+      onBeforeNetworkRequest(data) {
+        try {
+          const events = data?.payload?.events;
+          if (!Array.isArray(events) || !events.length) return;
+          events.forEach(event => {
+            const flatXDM = event.xdm ? flatten(event.xdm, 'xdm') : {};
+            const flatData = event.data ? flatten(event.data, 'data') : {};
+            const combined = { ...flatXDM, ...flatData };
+            ${opts.includeSessionStorage ? `
+            const stored = sessionStorage.getItem(STORAGE_KEY);
+            const prev = stored ? JSON.parse(stored) : [];
+            prev.push(combined);
+            sessionStorage.setItem(STORAGE_KEY, JSON.stringify(prev));
+            ` : ''}
+            ${opts.includeConsole ? `console.log('%c[AlloyMonitor] Captured Flattened Alloy Payload:', 'color:#f97316;font-weight:bold;', combined);` : ''}
+          });
+        } catch (err) {
+          ${opts.includeConsole ? `console.warn('[AlloyMonitor] Error flattening event payload:', err);` : ''}
+        }
+      },
+      onCommandResolved() {},
+      onNetworkResponse() {},
+      onNetworkError() {}
+    });
+    ${opts.includeConsole ? `console.info('%c[AlloyMonitor] Active. Monitoring Alloy events.', 'color:#4ade80;font-weight:bold;');` : ''}
+  }
+})();`,
+  digitalData: (opts) => `(function () {
+  const STORAGE_KEY = 'flattenedDigitalDataEvents';
+  function flatten(obj, prefix = '', res = {}) {
+    if (Array.isArray(obj)) {
+      obj.forEach((item, i) => flatten(item, \`\${prefix}\${prefix ? '.' : ''}\${i}\`, res));
+    } else if (typeof obj === 'object' && obj !== null) {
+      for (const key in obj) {
+        if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+        flatten(obj[key], \`\${prefix}\${prefix ? '.' : ''}\${key}\`, res);
+      }
+    } else {
+      res[prefix] = obj;
+    }
+    return res;
+  }
+  function observeDigitalData() {
+    if (!window.digitalData || typeof window.digitalData !== 'object') return;
+    let lastDigitalDataJSON = JSON.stringify(window.digitalData || {});
+    setInterval(() => {
+      const currentDigitalDataJSON = JSON.stringify(window.digitalData || {});
+      if (currentDigitalDataJSON !== lastDigitalDataJSON) {
+        lastDigitalDataJSON = currentDigitalDataJSON;
+        const flattened = flatten(window.digitalData || {}, 'digitalData');
+        ${opts.includeSessionStorage ? `
+        const stored = sessionStorage.getItem(STORAGE_KEY);
+        const prev = stored ? JSON.parse(stored) : [];
+        prev.push(flattened);
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(prev));
+        ` : ''}
+        ${opts.includeConsole ? `console.log('%c[digitalDataMonitor] Captured Flattened digitalData Update:', 'color:#10b981;font-weight:bold;', flattened);` : ''}
+      }
+    }, 500);
+  }
+  observeDigitalData();
+})();`,
+  tealium: (opts) => `(function () {
+  if (!window.utag) return;
+  const STORAGE_KEY = 'flattenedTealiumEvents';
+  function flatten(obj, prefix = '', res = {}) {
+    if (Array.isArray(obj)) {
+      obj.forEach((item, i) => flatten(item, \`\${prefix}\${prefix ? '.' : ''}\${i}\`, res));
+    } else if (typeof obj === 'object' && obj !== null) {
+      for (const key in obj) {
+        if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+        flatten(obj[key], \`\${prefix}\${prefix ? '.' : ''}\${key}\`, res);
+      }
+    } else {
+      res[prefix] = obj;
+    }
+    return res;
+  }
+  const originalView = window.utag.view;
+  const originalLink = window.utag.link;
+  function storeTealiumPayload(data, callType) {
+    try {
+      const flat = flatten(data || {}, \`utag.\${callType}\`);
+      ${opts.includeSessionStorage ? `
+      const stored = sessionStorage.getItem(STORAGE_KEY);
+      const prev = stored ? JSON.parse(stored) : [];
+      prev.push(flat);
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(prev));
+      ` : ''}
+      ${opts.includeConsole ? `console.log(\`%c[TealiumMonitor] Captured \${callType} payload:\`, 'color:#facc15;font-weight:bold;', flat);` : ''}
+    } catch (err) {
+      ${opts.includeConsole ? `console.warn('[TealiumMonitor] Error flattening payload:', err);` : ''}
+    }
+  }
+  window.utag.view = function (data, ...args) {
+    storeTealiumPayload(data, 'view');
+    return originalView.apply(this, [data, ...args]);
+  };
+  window.utag.link = function (data, ...args) {
+    storeTealiumPayload(data, 'link');
+    return originalLink.apply(this, [data, ...args]);
+  };
+  ${opts.includeConsole ? `console.info('%c[TealiumMonitor] Active. Monitoring utag.view and utag.link calls.', 'color:#f59e0b;font-weight:bold;');` : ''}
+})();`,
+  all: (opts) => [
+    SNIPPET_BLOCKS.alloy(opts),
+    SNIPPET_BLOCKS.digitalData(opts),
+    SNIPPET_BLOCKS.tealium(opts)
+  ].join('\n\n')
+};
+
+function generateSnippet() {
+  const type = document.getElementById('snippetType').value;
+  const includeConsole = document.getElementById('snippetIncludeConsole').checked;
+  const includeSessionStorage = document.getElementById('snippetIncludeSessionStorage').checked;
+  const opts = { includeConsole, includeSessionStorage };
+  let code = '';
+  if (SNIPPET_BLOCKS[type]) {
+    code = SNIPPET_BLOCKS[type](opts).replace(/^[ \t]+$/gm, ''); // Remove empty lines
+  }
+  document.getElementById('alloyScript').textContent = code;
+}
+
+// Initialize snippet builder UI
+document.addEventListener('DOMContentLoaded', function () {
+  // Set default script
+  generateSnippet();
+  document.getElementById('snippetType').addEventListener('change', generateSnippet);
+  document.getElementById('snippetIncludeConsole').addEventListener('change', generateSnippet);
+  document.getElementById('snippetIncludeSessionStorage').addEventListener('change', generateSnippet);
+  document.getElementById('generateSnippetBtn').addEventListener('click', generateSnippet);
+});
+
+// Copy Script button logic (overrides any existing copyScript if needed)
+function copyScript() {
+  const scriptText = document.getElementById('alloyScript').textContent;
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(scriptText).then(() => {
+      const successMsg = document.getElementById('successMessage');
+      if (successMsg) {
+        successMsg.textContent = 'Script copied to clipboard!';
+        successMsg.classList.remove('hidden');
+        setTimeout(() => successMsg.classList.add('hidden'), 3000);
+      }
+    });
+  } else {
+    // fallback
+    const textarea = document.createElement('textarea');
+    textarea.value = scriptText;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    const successMsg = document.getElementById('successMessage');
+    if (successMsg) {
+      successMsg.textContent = 'Script copied to clipboard!';
+      successMsg.classList.remove('hidden');
+      setTimeout(() => successMsg.classList.add('hidden'), 3000);
+    }
+  }
+}
+</script>
 </body>
 
 </html> 
