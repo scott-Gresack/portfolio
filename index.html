@@ -1,424 +1,212 @@
-
-
-
 <!DOCTYPE html>
-<!--
-Portfolio of Scott Gresack – Adobe Experience Platform (AEP) Expert | Martech Implementation | Tealium iQ | Adobe Launch | Real-Time CDP | Customer Journey Analytics | GitHub for Martech Tagging and Data Architecture
--->
 <html lang="en">
 <head>
-  <!-- Define character encoding for the document -->
-  <meta charset="UTF-8" />
-  <!-- Ensure responsive design for mobile devices -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Page title displayed in browser tab -->
   <meta charset="UTF-8">
-<!-- Optional Piwik PRO Tool Metadata -->
-  <meta name="ppms.tool_name" content="Alloy Flattened Payload Analyzer" />
-  <meta name="ppms.tool_version" content="1.0.1" />
-  <meta name="ppms.tool_author" content="Scott Gresack" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta name="description" content="Portfolio of Scott Gresack, Martech Engineer specializing in Adobe Experience Platform, Web SDK, and identity-driven Customer Data Platforms. Explore tools for tag management, XDM schema design, and real-time personalization.">
+  <meta name="keywords" content="Martech, Adobe Experience Platform, Web SDK, Tealium iQ, Customer Data Platform, Tag Management, Identity Resolution, Real-Time Personalization, XDM Schema">
+  <meta name="author" content="Scott Gresack">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/">
 
-  gtag('config', 'GT-MQBSZT8H');
-</script>
-  <!-- Removed duplicate <title> and meta tags -->
-  <meta name="google-site-verification" content="LTi0sO_AWGNd4v7uJivsQWdkhrGDBDX2uLFTSIFNgbs" />
   <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-<script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init bs ws ge fs capture De calculateEventProperties $s register register_once register_for_session unregister unregister_for_session Is getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty xs Ss createPersonProfile Es gs opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing ys debug ks getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
-        api_host: 'https://us.i.posthog.com',
-        person_profiles: 'always', // or 'always' to create profiles for anonymous users as well
-    })
-</script>
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/" />
-  <meta property="og:title" content="Scott Gresack | Martech Engineer | AEP, Web SDK, CDP Integration Expert" />
-  <meta property="og:description" content="Discover Scott Gresack's advanced implementations of Adobe Web SDK, Tealium iQ, and Customer Data Platforms. Hands-on tools for tag governance, XDM mapping, and identity stitching." />
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/">
+  <meta property="og:title" content="Scott Gresack | Martech Engineer | AEP & CDP Expert">
+  <meta property="og:description" content="Explore Scott Gresack's expertise in Adobe Web SDK, Tealium iQ, and Customer Data Platforms, with tools for tag governance, XDM mapping, and identity resolution.">
+  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
+
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Scott Gresack | Martech Engineer | CDP + Adobe AEP" />
-  <meta name="twitter:description" content="Explore the portfolio of a Martech engineer specializing in Adobe Experience Platform, Web SDK, and Tealium iQ integrations. Interactive tag specs and scalable identity solutions." />
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <!-- Schema.org Structured Data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scott Gresack | Martech & CDP Specialist">
+  <meta name="twitter:description" content="Portfolio showcasing Adobe Experience Platform, Web SDK, and Tealium iQ integrations for scalable, privacy-aware data architectures.">
+  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
+
+  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Scott Gresack",
     "url": "https://scott-gresack.github.io/portfolio/",
-    "sameAs": [
-      "https://www.linkedin.com/in/scottgresack/"
-    ],
-    "jobTitle": "Martech Engineer | AEP + CDP Expert",
+    "sameAs": ["https://www.linkedin.com/in/scottgresack/"],
+    "jobTitle": "Martech Engineer | AEP & CDP Specialist",
     "worksFor": {
       "@type": "Organization",
       "name": "CVS Health"
     },
     "knowsAbout": [
-      "Adobe Web SDK",
-      "Tealium iQ",
       "Adobe Experience Platform",
-      "Customer Data Platform",
-      "Martech Architecture",
-      "Tag Management",
-      "Digital Analytics",
-      "Identity Resolution",
-      "Real-Time Personalization",
-      "XDM Schema Design"
-    ]
-  }
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-
-  <script>
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "pmp4efispy");
-  </script>
-
-<script type="text/javascript">
-// Assumes PostHog has already been initialized with posthog-js
-// --- 1. Listen for Google Analytics gtag events (via dataLayer push) ---
-(function interceptGAEvents() {
-  const originalPush = window.dataLayer && window.dataLayer.push;
-  if (!originalPush) return;
-  window.dataLayer.push = function () {
-    const result = originalPush.apply(this, arguments);
-    for (const arg of arguments) {
-      if (typeof arg === 'object' && arg.event) {
-        posthog.capture(`gtag:${arg.event}`, { ...arg, source: 'gtag' });
-      }
-    }
-    return result;
-  };
-})();
-// --- 2. Listen for Piwik Pro events (also via dataLayer) ---
-(function interceptPiwikEvents() {
-  const originalPush = window.dataLayer && window.dataLayer.push;
-  if (!originalPush) return;
-  window.dataLayer.push = function () {
-    const result = originalPush.apply(this, arguments);
-    for (const arg of arguments) {
-      if (typeof arg === 'object' && arg.event && arg.event.startsWith('ppms.')) {
-        posthog.capture(`piwik:${arg.event}`, { ...arg, source: 'piwik' });
-      }
-    }
-    return result;
-  };
-})();
-// --- 3. Listen for Microsoft Clarity custom events ---
-(function interceptClarityEvents() {
-  if (typeof window.clarity === 'function') {
-    const origClarity = window.clarity;
-    window.clarity = function (type, ...args) {
-      if (type === 'event' && args[0]) {
-        posthog.capture(`clarity:${args[0]}`, { event: args[0], params: args[1], source: 'clarity' });
-      }
-      return origClarity.apply(this, arguments);
-    };
-  }
-})();
-// --- 4. Optionally, catch page load as a baseline PostHog event ---
-posthog.capture('page_loaded', {
-  url: window.location.href,
-  source: 'universal'
-});
-// --- 5. Debug Logging ---
-console.log('[PostHog Bridge] Event forwarding active for gtag, Clarity, and Piwik Pro.');
-</script>
-  <title>Scott Gresack | Martech Engineer Portfolio</title>
-  <!-- Meta description for SEO and search engine snippets -->
-  <meta name="description" content="Portfolio of Scott Gresack, Martech Engineer. Explore tools for Web Tag Spec Generation, Mobile Tracking Specs, AEP/CDP architecture diagrams, and advanced Martech solutions." />
-  <!-- Keywords for search engine optimization -->
-  <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Layer, Tag Management, XDM, Analytics, Diagrams, CDP, Identity, Web SDK, Customer Journey Analytics" />
-  <!-- Author of the page -->
-  <meta name="author" content="Scott Gresack" />
-  <!-- Allow search engines to index and follow links -->
-  <meta name="robots" content="index, follow" />
-  <!-- Canonical URL to prevent duplicate content issues -->
-  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/" />
-  <!-- Google site verification for Search Console -->
-  <meta name="google-site-verification" content="LTi0sO_AWGNd4v7uJivsQWdkhrGDBDX2uLFTSIFNgbs" />
-
-  <!-- Open Graph tags for social media sharing (e.g., Facebook, LinkedIn) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/" />
-  <meta property="og:title" content="Scott Gresack | Martech Engineer | AEP, Web SDK, CDP Integration Expert" />
-  <meta property="og:description" content="Discover Scott Gresack's advanced implementations of Adobe Web SDK, Tealium iQ, and Customer Data Platforms. Hands-on tools for tag governance, XDM mapping, and identity stitching." />
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-
-  <!-- Twitter Card tags for Twitter sharing -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Scott Gresack | Martech Engineer | CDP + Adobe AEP" />
-  <meta name="twitter:description" content="Explore the portfolio of a Martech engineer specializing in Adobe Experience Platform, Web SDK, and Tealium iQ integrations. Interactive tag specs and scalable identity solutions." />
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-
-  <!-- Schema.org structured data for search engine understanding of the person -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Scott Gresack",
-    "url": "https://scott-gresack.github.io/portfolio/",
-    "sameAs": [
-      "https://www.linkedin.com/in/scottgresack/"
-    ],
-    "jobTitle": "Martech Engineer | AEP + CDP Expert",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "CVS Health"
-    },
-    "knowsAbout": [
-      "Adobe Web SDK",
+      "Web SDK",
       "Tealium iQ",
-      "Adobe Experience Platform",
       "Customer Data Platform",
-      "Martech Architecture",
-      "Tag Management",
-      "Digital Analytics",
       "Identity Resolution",
+      "Tag Management",
+      "Privacy Compliance",
       "Real-Time Personalization",
-      "XDM Schema Design"
+      "XDM Schema Design",
+      "Edge Computing"
     ]
   }
   </script>
 
-  <!-- Load Poppins font from Google Fonts for consistent typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <!-- Include Tailwind CSS for utility-first styling -->
+  <!-- Fonts and Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Include Vue.js for reactive front-end functionality -->
-  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-  <!-- Load Google Analytics script asynchronously -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
-  <!-- Initialize Google Analytics with dataLayer and tracking ID -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag("js", new Date());
-    gtag("config", "G-Y8617TLMYK");
-  </script>
-  <!-- Initialize Microsoft Clarity for user behavior analytics -->
-  <script>
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "pmp4efispy");
-  </script>
-  <!-- Initialize Piwik Pro for additional analytics and tag management -->
-  <script type="text/javascript">
-    (function(window, document, dataLayerName, id) {
-      window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
-      var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
-      var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName);
-      var qPString=qP.length>0?("?"+qP.join("&")):"";
-      tags.async=!0;
-      tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js"+qPString;
-      scripts.parentNode.insertBefore(tags,scripts);
-      !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
-    })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
-  </script>
-  <!-- Inline CSS for basic styling and active navigation link -->
   <style>
     html {
       scroll-behavior: smooth;
     }
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #f4f4f4;
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
       margin: 0;
+      color: #1e293b;
     }
-    .nav-link.active {
-      border-bottom: 2px solid #3b82f6;
-      font-weight: 600;
+    .nav-link:hover, .nav-link.active {
+      color: #2563eb;
+      border-bottom: 2px solid #2563eb;
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
     }
   </style>
 
-  <!-- UTM and click ID forwarding script for analytics -->
+  <!-- Analytics (Consolidated) -->
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
   <script>
-  (function () {
-    function getUrlParams() {
-      const params = {};
-      const queryString = window.location.search.slice(1);
-      const pairs = queryString.split("&");
-      for (const pair of pairs) {
-        if (!pair) continue;
-        const [key, value] = pair.split("=");
-        params[decodeURIComponent(key)] = decodeURIComponent(value || "");
-      }
-      return params;
-    }
-
-    const utmParams = getUrlParams();
-    const trackedParams = [
-      "cid",
-      "ref",
-      "utm_medium",
-      "utm_source",
-      "utm_campaign",
-      "utm_term",
-      "utm_content",
-      "gclid",
-      "fbclid",
-      "ga_session_id"
-    ];
-    const payload = {};
-
-    trackedParams.forEach(key => {
-      if (utmParams[key]) {
-        payload[key] = utmParams[key];
-      }
-    });
-
-    if (Object.keys(payload).length > 0) {
-      // GA4 (gtag) — attach user_properties to page view events
-      if (typeof gtag === "function") {
-        gtag('set', 'user_properties', { ...payload });
-      }
-
-      // Microsoft Clarity (unchanged)
-      if (window.clarity) {
-        clarity('set', payload);
-      }
-
-      // Piwik PRO (unchanged)
-      if (window.dataLayer) {
-        window.dataLayer.push({
-          event: 'ppms.cm:utm_parameters',
-          ...payload
-        });
-      }
-
-      // PostHog — set user properties via identify only (no event)
-      if (window.posthog) {
-        posthog.identify(undefined, {
-          ...payload
-        });
-      }
-    }
-  })();
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y8617TLMYK', { anonymize_ip: true });
   </script>
+  <script defer>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register identify".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1}(document,window.posthog||[]);
+    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
+      api_host: 'https://us.i.posthog.com',
+      person_profiles: 'always',
+      capture_pageview: false
+    });
+    posthog.capture('pageview', { url: window.location.href });
+  </script>
+  <script defer>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "pmp4efispy");
+  </script>
+
+  <title>Scott Gresack | Martech & Identity Specialist</title>
 </head>
 <body>
-  <!-- Root element for Vue.js app, using flexbox for full-height layout -->
   <div id="app" class="min-h-screen flex flex-col">
-    <!-- Header with sticky navigation bar -->
+    <!-- Header -->
     <header class="bg-white shadow sticky top-0 z-50">
-      <!-- Alpine.js for dropdown navigation -->
-      <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-      <nav x-data="{ open: false }" class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center text-sm font-medium text-gray-800 relative">
-        <div class="font-semibold tracking-wide text-lg">Scott Gresack</div>
-        <div class="hidden md:flex space-x-4">
-          <a href="#about" class="nav-link">About</a>
-          <a href="#contact" class="nav-link">Contact</a>
-          <div x-data="{ toolsOpen: false }" class="relative group">
-            <button @click="toolsOpen = !toolsOpen" @blur="toolsOpen = false" class="nav-link focus:outline-none">Tools ▼</button>
-            <div x-show="toolsOpen" x-transition class="absolute z-50 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg">
-              <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown_nav" class="block px-4 py-2 hover:bg-gray-100">Alloy Inspector</a>
-              <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown_nav" class="block px-4 py-2 hover:bg-gray-100">Tag Spec Generator</a>
-              <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown_nav" class="block px-4 py-2 hover:bg-gray-100">XDM Comparator</a>
-              <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown_nav" class="block px-4 py-2 hover:bg-gray-100">Mobile Updates</a>
+      <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="text-xl font-semibold text-gray-900">Scott Gresack</div>
+        <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+          <a href="#about" class="nav-link px-2 py-1">About</a>
+          <a href="#tools" class="nav-link px-2 py-1">Tools</a>
+          <a href="#contact" class="nav-link px-2 py-1 text-blue-600">Contact</a>
+          <div class="relative dropdown">
+            <button class="nav-link px-2 py-1 flex items-center">Tools ▼</button>
+            <div class="dropdown-menu hidden absolute mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+              <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-gray-100">Alloy Inspector</a>
+              <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-gray-100">Tag Spec Generator</a>
+              <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-gray-100">XDM Comparator</a>
+              <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-gray-100">Mobile Updates</a>
             </div>
           </div>
         </div>
-        <div class="md:hidden">
-          <button @click="open = !open" class="focus:outline-none text-blue-600">☰</button>
-        </div>
-        <div x-show="open" x-transition class="absolute top-full left-0 w-full bg-white border-t border-gray-200 shadow-md md:hidden">
-          <a href="#about" class="block px-4 py-2">About</a>
-          <a href="#contact" class="block px-4 py-2">Contact</a>
-          <div class="border-t border-gray-100"></div>
-          <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown_nav" class="block px-4 py-2">Alloy Inspector</a>
-          <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown_nav" class="block px-4 py-2">Tag Spec Generator</a>
-          <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown_nav" class="block px-4 py-2">XDM Comparator</a>
-          <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown_nav" class="block px-4 py-2">Mobile Updates</a>
-        </div>
+        <button class="md:hidden text-blue-600 focus:outline-none" aria-label="Toggle navigation" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
       </nav>
+      <div id="mobile-nav" class="hidden md:hidden bg-white border-t shadow-md">
+        <a href="#about" class="block px-4 py-2 text-sm">About</a>
+        <a href="#tools" class="block px-4 py-2 text-sm">Tools</a>
+        <a href="#contact" class="block px-4 py-2 text-sm text-blue-600">Contact</a>
+        <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">Alloy Inspector</a>
+        <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">Tag Spec Generator</a>
+        <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">XDM Comparator</a>
+        <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">Mobile Updates</a>
+      </div>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto p-6">
-      <section id="about" class="space-y-6">
-        <h1 class="text-4xl font-bold">👋 Scott Gresack</h1>
-        <p class="text-lg font-semibold">Martech Implementation Leader | Adobe Experience Platform Expert | Data Governance Strategist</p>
-        <p>
-          📧 <strong>Email:</strong> <a href="mailto:gresack.scott@gmail.com" class="text-blue-600 underline">gresack.scott@gmail.com</a><br>
-          🔗 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/scottgresack" class="text-blue-600 underline" target="_blank">linkedin.com/in/scottgresack</a><br>
-          🌐 <strong>Live Portfolio:</strong> <a href="https://scott-gresack.github.io/portfolio" class="text-blue-600 underline" target="_blank">scott-gresack.github.io/portfolio</a><br>
-          📞 <strong>Phone:</strong> ‪(440) 390-3237‬
-        </p>
-
-        <hr class="my-4 border-t">
-
-        <h2 class="text-2xl font-bold">🚀 About Me</h2>
-        <p>
-          I'm a results-driven Martech and Data Governance Specialist with deep experience designing and implementing enterprise-scale data collection strategies across web and mobile ecosystems.
-        </p>
-        <p>
-          I specialize in Adobe Experience Platform (AEP), Tealium iQ, Google Tag Manager (GTM), and Customer Journey Analytics (CJA), with expertise in scalable tagging frameworks, identity resolution, and real-time personalization.
-        </p>
-        <p>
-          I thrive at the intersection of engineering, analytics, and architecture — turning complex customer data flows into actionable, compliant, and revenue-driving outcomes.
-        </p>
-
-        <hr class="my-4 border-t">
-
-        <h2 class="text-2xl font-bold">📂 Featured Projects</h2>
-        <p>
-          This section highlights hands-on tools, identity governance flows, and real-time orchestration strategies I’ve delivered across Martech ecosystems. Full portfolio navigation is available at the top of the page, or you can <a href="#tools" class="text-blue-600 underline">jump to tools</a>.
-        </p>
-
-        <ul class="list-disc list-inside mt-4 space-y-2 text-sm text-gray-700">
-          <li><strong>🧰 Mobile Tag Spec Builder:</strong> Generate trackAction/trackState specs for Swift/Kotlin using XDM.</li>
-          <li><strong>🧾 Network Logger & Modal Debugger:</strong> Capture native and WebView events across Edge/XHR layers.</li>
-          <li><strong>🧬 XDM Comparator:</strong> Schema diff engine for props, eVars, events.</li>
-          <li><strong>🧠 Identity Stitching Pipelines:</strong> ECID ↔ first-party identifiers resolved across mobile-first journeys, merging offstream and clickstream data into unified profiles for HIPAA-compliant analysis in CJA. Enabled enterprise audience activation across web and mobile experiences.</li>
-          <li><strong>🔁 Frustrated Member Recovery:</strong> Adobe Journey Orchestration for support escalation and behavior resolution.</li>
-          <li><strong>📊 AEP SQL Query Library:</strong> Curated queries for session stitching, identity QA, and campaign attribution.</li>
-          <li><strong>📈 Assurance Validator:</strong> Explorer plugin for Adobe Assurance events with synthetic event generation.</li>
-        </ul>
-
-        <hr class="my-4 border-t">
-
-        <h2 class="text-2xl font-bold">📌 GenAI Outlook for Martech</h2>
-        <p>
-          We’re in the midst of a modern industrial shift—one where <strong>data and AI are not just tools</strong>, but foundational infrastructure for how digital experiences are designed, delivered, and optimized. As this wave accelerates, two core practices are becoming indispensable for Martech professionals:
-        </p>
-        <ul class="list-disc list-inside mt-2 text-sm text-gray-700">
-          <li><strong>Supervised Fine-Tuning</strong> aligns models with enterprise tone and compliance logic via structured examples.</li>
-          <li><strong>Retrieval-Augmented Generation (RAG)</strong> lets models retrieve insights from private, trusted datasets at runtime.</li>
-        </ul>
-        <p class="mt-2">
-          Explore the foundations of this approach in my <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=internal&utm_campaign=project_links&cid=scottg-tools&utm_term=adobe-sdk" class="text-blue-600 underline">Alloy Payload Inspector</a>—a hands-on visualization tool for identity stitching and real-time Adobe dataflows.
-        </p>
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8">
+      <!-- Hero Section -->
+      <section class="py-12 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+          <h1 class="text-4xl font-bold text-gray-900 mb-4">Martech & Identity Solutions</h1>
+          <p class="text-lg text-gray-600 mb-6">Building scalable, privacy-first data architectures with Adobe Experience Platform, Web SDK, and Tealium iQ for real-time personalization and identity resolution.</p>
+          <a href="#contact" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Get in Touch</a>
+        </div>
       </section>
-      <section id="contact"></section>
-      <section id="tools" class="mt-16">
-        <h2 class="text-2xl font-bold mb-4">🛠 Tools</h2>
-        <p class="text-sm text-gray-700">
-          Below are hands-on utilities and tools for Adobe Experience Platform, Web SDK validation, XDM mapping, and QA workflows:
-        </p>
-        <ul class="list-disc list-inside mt-4 text-sm text-gray-700">
-          <li><a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=internal&utm_campaign=project_links&cid=scottg-tools&utm_term=adobe-sdk" target="_blank" class="text-blue-600 underline">Alloy Payload Inspector</a></li>
-          <li><a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=internal&utm_campaign=project_links&cid=scottg-tools&utm_term=adobe-sdk" target="_blank" class="text-blue-600 underline">Web Tag Spec Generator</a></li>
-          <li><a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=internal&utm_campaign=project_links&cid=scottg-tools&utm_term=adobe-sdk" target="_blank" class="text-blue-600 underline">XDM Comparator</a></li>
-        </ul>
+
+      <!-- About Section -->
+      <section id="about" class="py-12">
+        <div class="max-w-4xl mx-auto px-4">
+          <h2 class="text-3xl font-semibold text-gray-900 mb-6">About Me</h2>
+          <p class="text-gray-600 mb-4">I'm a Martech Engineer with expertise in crafting data-driven, privacy-compliant solutions for enterprise-scale personalization and analytics. At CVS Health, I lead initiatives in Adobe Experience Platform (AEP), Web SDK, and Customer Data Platforms (CDP), focusing on:</p>
+          <ul class="list-disc pl-6 space-y-2 text-gray-600">
+            <li><strong>Identity Resolution:</strong> Unifying ECID and first-party IDs for seamless customer journeys.</li>
+            <li><strong>Edge Computing:</strong> Leveraging server-side tagging for performance and privacy.</li>
+            <li><strong>Tag Management:</strong> Building scalable solutions with Tealium iQ and Adobe Launch.</li>
+            <li><strong>Privacy & Compliance:</strong> Ensuring GDPR/HIPAA-compliant data pipelines.</li>
+            <li><strong>Experimentation:</strong> Powering A/B testing and analytics with real-time data.</li>
+          </ul>
+          <p class="mt-4 text-gray-600">My work bridges engineering and analytics, delivering measurable outcomes through robust, open-source-friendly architectures.</p>
+        </div>
+      </section>
+
+      <!-- Tools Section -->
+      <section id="tools" class="py-12">
+        <div class="max-w-4xl mx-auto px-4">
+          <h2 class="text-3xl font-semibold text-gray-900 mb-6">Tools & Solutions</h2>
+          <p class="text-gray-600 mb-6">Explore my suite of open-source tools designed to streamline Martech workflows, enhance governance, and empower data-driven decisions.</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white border rounded-lg p-6 shadow-sm hover:shadow-md transition">
+              <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-blue-600 font-semibold hover:underline">Alloy Payload Inspector</a>
+              <p class="mt-2 text-gray-600 text-sm">Real-time debugging for Adobe Web SDK payloads, capturing ECID, XDM, and datastreams for efficient QA.</p>
+            </div>
+            <div class="bg-white border rounded-lg p-6 shadow-sm hover:shadow-md transition">
+              <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-blue-600 font-semibold hover:underline">Tag Spec Generator</a>
+              <p class="mt-2 text-gray-600 text-sm">Automates <code>utag.view()</code>/<code>utag.link()</code> specs with XDM mapping for Adobe Analytics.</p>
+            </div>
+            <div class="bg-white border rounded-lg p-6 shadow-sm hover:shadow-md transition">
+              <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-blue-600 font-semibold hover:underline">Mobile Tracking Validator</a>
+              <p class="mt-2 text-gray-600 text-sm">Validates iOS/Android lifecycle events with AEP Mobile SDK for accurate tracking.</p>
+            </div>
+            <div class="bg-white border rounded-lg p-6 shadow-sm hover:shadow-md transition">
+              <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-blue-600 font-semibold hover:underline">XDM Schema Comparator</a>
+              <p class="mt-2 text-gray-600 text-sm">Visual diff tool for Adobe XDM schemas, ideal for migrations and governance.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-12 bg-blue-50 rounded-lg">
+        <div class="max-w-4xl mx-auto px-4">
+          <h2 class="text-3xl font-semibold text-gray-900 mb-6">Contact</h2>
+          <p class="text-gray-600 mb-6">Interested in collaborating on Martech, identity, or privacy-focused projects? Let's connect.</p>
+          <ul class="space-y-3 text-gray-600">
+            <li><strong>Email:</strong> <a href="mailto:gresack.scott@gmail.com" class="underline hover:text-blue-600">gresack.scott@gmail.com</a></li>
+            <li><strong>Phone:</strong> <a href="tel:+14403903237" class="underline hover:text-blue-600">(440) 390-3237</a></li>
+            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/scottgresack/" class="underline hover:text-blue-600" target="_blank">linkedin.com/in/scottgresack</a></li>
+            <li><strong>GitHub:</strong> <a href="https://github.com/scott-gresack" class="underline hover:text-blue-600" target="_blank">github.com/scott-gresack</a></li>
+          </ul>
+        </div>
       </section>
     </main>
-  </div>
 
-  <!-- Vue.js application script (removed navigation logic as anchors are used) -->
+    <footer class="bg-gray-800 text-white py-6">
+      <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+        <p>&copy; 2025 Scott Gresack. All rights reserved.</p>
+        <p class="mt-2">Built with privacy, performance, and open-source principles.</p>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
