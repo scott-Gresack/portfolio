@@ -197,6 +197,25 @@
     </script>
     <!-- Inline CSS -->
     <style>
+        /* Visually hidden (screen reader only) */
+        .sr-only {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+
+        /* Focus styles for accessibility */
+        button:focus, input:focus, textarea:focus {
+            outline: 2px solid #2563eb;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 2px #bfdbfe;
+        }
         body {
             font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
@@ -618,13 +637,16 @@
             </div>
             <!-- Instructions -->
             <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
-                <h2 class="text-lg font-medium mb-3">Instructions</h2>
+                <h2 class="text-lg font-medium mb-3">
+                    Instructions
+                    <span class="ml-2 text-gray-400" tabindex="0" aria-label="Step-by-step usage help" title="This section provides usage help and accessibility instructions.">🛈</span>
+                </h2>
+
                 <h3 class="text-md font-medium mb-2">Setup Alloy Flattening Script</h3>
-                <p class="mb-2">This tool analyzes flattened Adobe Alloy event payloads. To capture these payloads, run
-                    the
-                    provided script on a website using Adobe Alloy (Web SDK).</p>
+                <p class="mb-2">This tool analyzes flattened Adobe Alloy event payloads. To capture these payloads, follow these steps:</p>
                 <ol class="pl-5 list-decimal mb-4">
-                    <li>Copy the flattening script below:
+                    <li>
+                        <strong>Copy the flattening script below:</strong>
                         <div class="relative mt-2 mb-2">
                             <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto"><code id="alloyScript">(function () {
   // Separate storage keys for digitalData and Alloy events
@@ -632,15 +654,17 @@
   const ALLOY_STORAGE_KEY = 'flattenedAlloyEvents';
 
   function flatten(obj, prefix = '', res = {}) {
-    for (let key in obj) {
-      if (!obj.hasOwnProperty(key)) continue;
-      const value = obj[key];
-      const path = prefix ? `${prefix}.${key}` : key;
-      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-        flatten(value, path, res);
-      } else {
-        res[path] = value;
+    if (Array.isArray(obj)) {
+      obj.forEach((item, i) => {
+        flatten(item, `${prefix}${prefix ? '.' : ''}${i}`, res);
+      });
+    } else if (typeof obj === 'object' && obj !== null) {
+      for (const key in obj) {
+        if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+        flatten(obj[key], `${prefix}${prefix ? '.' : ''}${key}`, res);
       }
+    } else {
+      res[prefix] = obj;
     }
     return res;
   }
@@ -680,6 +704,21 @@
   }
 
   // --- Monitor changes to digitalData using MutationObserver ---
+  function flatten(obj, prefix = '', res = {}) {
+    if (Array.isArray(obj)) {
+      obj.forEach((item, i) => {
+        flatten(item, `${prefix}${prefix ? '.' : ''}${i}`, res);
+      });
+    } else if (typeof obj === 'object' && obj !== null) {
+      for (const key in obj) {
+        if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+        flatten(obj[key], `${prefix}${prefix ? '.' : ''}${key}`, res);
+      }
+    } else {
+      res[prefix] = obj;
+    }
+    return res;
+  }
   function observeDigitalData() {
     // If digitalData is not an object, do nothing
     if (!window.digitalData || typeof window.digitalData !== 'object') return;
@@ -744,73 +783,68 @@
 </code></pre>
                             <button onclick="copyScript()"
                                 class="absolute top-2 right-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
-                                aria-label="Copy script to clipboard">Copy</button>
+                                aria-label="Copy Script"
+                                title="Copy the flattening script to your clipboard for use in developer tools.">Copy Script</button>
                         </div>
                     </li>
-                    <li>Open your browser’s developer tools (F12 or right-click > Inspect) and navigate to the Console
-                        tab on a
-                        website using Adobe Alloy.</li>
-                    <li>Paste the script into the console and press Enter. You should see a message:
-                        <code>[AlloyMonitor] Payload flattener active</code>.
+                    <li>
+                        <strong>Open your browser’s developer tools</strong> (press <kbd>F12</kbd> or right-click &gt; Inspect), and go to the <strong>Console</strong> tab on a website using Adobe Alloy.
                     </li>
-                    <li>Interact with the website (e.g., click links or load pages) to generate Alloy events. Check the
-                        console
-                        for messages like <code>[AlloyMonitor] Flattened Event Detected</code> and a table of captured
-                        events after
-                        5 seconds.</li>
-                    <li>To confirm payloads are stored, go to Application > Session Storage > [website domain] >
-                        <code>flattenedAlloyEvents</code> in developer tools.
+                    <li>
+                        <strong>Paste the script</strong> into the console and press <kbd>Enter</kbd>.
+                        <br />
+                        You should see a message: <code>[AlloyMonitor] Payload flattener active</code>.
+                    </li>
+                    <li>
+                        <strong>Interact with the website</strong> (e.g., click links or load new pages) to generate Alloy events.
+                        <br />
+                        Check the console for messages like <code>[AlloyMonitor] Flattened Event Detected</code> and a table of captured events every 15 seconds.
+                    </li>
+                    <li>
+                        <strong>To confirm payloads are stored:</strong> In developer tools, go to <strong>Application &gt; Session Storage &gt; [website domain] &gt; <code>flattenedAlloyEvents</code></strong>.
                     </li>
                 </ol>
+
                 <h3 class="text-md font-medium mb-2">Analyze Flattened Payloads</h3>
-                <p class="mb-2">Once the script is running, use this tool to view and analyze the captured payloads.</p>
+                <p class="mb-2">Once the script is running, use this tool to view and analyze your captured payloads:</p>
                 <ol class="pl-5 list-decimal mb-4">
-                    <li>Load captured payloads automatically from <code>sessionStorage</code> by clicking
-                        <strong>Refresh
-                            Payloads</strong>. Alternatively, paste a JSON array of flattened payloads into the
-                        textarea.</li>
-                    <li>Click <strong>Parse Payloads</strong> to display the data in a dynamic table, with columns
-                        generated based
-                        on all unique fields in the JSON.</li>
-                    <li>Use the filter input to search for specific fields (e.g., <code>xdm.eventType</code>) or values
-                        (e.g.,
-                        <code>web.webPageDetails.pageViews</code>).
+                    <li>
+                        <strong>Load captured payloads</strong> from <code>sessionStorage</code> by clicking <strong>Refresh Payloads</strong>.
+                        <br />
+                        <span class="text-gray-500">Alternatively, paste a JSON array of flattened payloads into the input box below.</span>
                     </li>
-                    <li>Click <strong>Download as JSON</strong> to save the analyzed payloads or <strong>Copy as
-                            CSV</strong> to
-                        copy the table for pasting into Excel or Google Sheets.</li>
-                    <li>Clear <code>sessionStorage</code> in developer tools to reset captured data if needed.</li>
+                    <li>
+                        <strong>Click Parse Payloads</strong> to display the data in a dynamic table.
+                        <br />
+                        Columns are generated from all unique fields in the JSON.
+                    </li>
+                    <li>
+                        <strong>Filter the table</strong> by entering a field name (e.g., <code>xdm.eventType</code>) or value in the filter box.
+                    </li>
+                    <li>
+                        <strong>Download as JSON</strong> to save the analyzed payloads, or <strong>Copy as CSV</strong> for pasting into Excel/Google Sheets.
+                    </li>
+                    <li>
+                        <strong>To reset captured data</strong>, clear <code>sessionStorage</code> in developer tools.
+                    </li>
                 </ol>
+
                 <h3 class="text-md font-medium mb-2">Why This Tool Differs from Adobe Assurance</h3>
-                <p class="mb-2">Unlike Adobe Assurance, which is a proprietary debugging tool within Adobe Experience
-                    Platform
-                    (AEP), this Alloy Flattened Payload Analyzer offers unique advantages:</p>
+                <p class="mb-2">This Alloy Flattened Payload Analyzer offers unique benefits compared to Adobe Assurance:</p>
                 <ul class="list-disc pl-5 mb-4">
-                    <li><strong>Standalone Accessibility</strong>: No AEP account or setup is required, making it ideal
-                        for
-                        developers, analysts, or teams without access to Adobe’s infrastructure.</li>
-                    <li><strong>Flattened Payload Focus</strong>: Automatically flattens nested XDM and data objects
-                        into a
-                        single-level structure, simplifying analysis of complex payloads compared to Assurance’s raw
-                        event view.
-                    </li>
-                    <li><strong>Dynamic Table Generation</strong>: Displays all unique fields as columns, adapting to
-                        any payload
-                        structure, unlike Assurance’s fixed or less flexible event inspector.</li>
-                    <li><strong>Offline and Collaborative Use</strong>: Export payloads as JSON or CSV for sharing or
-                        analyzing
-                        outside AEP, enabling collaboration with non-AEP users or offline debugging.</li>
-                    <li><strong>Lightweight and Open</strong>: Runs entirely in the browser with no server dependencies,
-                        offering
-                        a quick, open-source alternative for rapid prototyping or testing.</li>
+                    <li><strong>Accessible:</strong> No AEP account or setup required. Use it anywhere, anytime.</li>
+                    <li><strong>Flattened Payload Focus:</strong> Automatically flattens nested XDM/data objects for easy analysis.</li>
+                    <li><strong>Dynamic Table Generation:</strong> All unique fields become columns; adapts to any structure.</li>
+                    <li><strong>Offline &amp; Collaborative:</strong> Export as JSON/CSV for sharing or offline analysis.</li>
+                    <li><strong>Lightweight &amp; Open:</strong> 100% browser-based—no server, no dependencies.</li>
                 </ul>
-                <p>Use this tool when you need a fast, accessible way to debug Alloy payloads, validate XDM schemas, or
-                    share
-                    data with stakeholders outside Adobe’s ecosystem.</p>
+                <p>
+                    <strong>Tip:</strong> Use this tool for fast debugging, XDM validation, or sharing data with stakeholders outside Adobe’s ecosystem.
+                </p>
             </div>
             <!-- Feedback messages -->
-            <div id="errorMessage" class="hidden error-message mb-4"></div>
-            <div id="successMessage" class="hidden success-message mb-4"></div>
+            <div id="errorMessage" class="hidden error-message mb-4" aria-live="assertive" role="alert"></div>
+            <div id="successMessage" class="hidden success-message mb-4" aria-live="assertive" role="alert"></div>
             <div id="loadingIndicator" class="hidden text-blue-600 font-semibold mb-4">Processing...</div>
             <!-- Toggle for showing rows with only null/empty values -->
             <label class="flex items-center gap-2 mb-4"
@@ -818,6 +852,8 @@
                 <input type="checkbox" id="toggleNulls" checked />
                 <span>Show rows with only null/empty values</span>
             </label>
+            <!-- Visually hidden label for textarea -->
+            <label for="payloadInput" class="sr-only">JSON payload input area</label>
             <!-- JSON input -->
             <textarea id="payloadInput" class="w-full min-h-[150px] border border-gray-300 rounded p-3 mb-4"
                 placeholder="Paste flattened Alloy event payloads JSON array here or auto-load from sessionStorage..."
@@ -826,34 +862,36 @@
             <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4 space-y-2 sm:space-y-0">
                 <button onclick="parsePayloads()"
                     class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto"
-                    aria-label="Parse JSON payloads"
+                    aria-label="Parse Payloads"
                     title="Parse the JSON payloads and render them in a dynamic table.">Parse Payloads</button>
                 <button onclick="refreshPayloads()"
                     class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full sm:w-auto"
-                    aria-label="Refresh payloads from sessionStorage"
+                    aria-label="Refresh Payloads"
                     title="Load flattened payloads from sessionStorage.">Refresh Payloads</button>
                 <button onclick="analyzeRows()"
                     class="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 w-full sm:w-auto"
-                    aria-label="Analyze parsed payload rows"
+                    aria-label="Analyze Rows"
                     title="Inspect frequency and types of each field in the loaded payloads.">Analyze Rows</button>
                 <button onclick="downloadJSON()"
                     class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full sm:w-auto hidden"
-                    id="downloadBtn" aria-label="Download JSON file"
+                    id="downloadBtn" aria-label="Download as JSON"
                     title="Download the current payloads as a formatted JSON file.">Download as JSON</button>
                 <button onclick="copyAsCSV()"
                     class="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 w-full sm:w-auto hidden"
-                    id="copyCsvBtn" aria-label="Copy table as CSV"
+                    id="copyCsvBtn" aria-label="Copy as CSV"
                     title="Copy the payload table contents as CSV to your clipboard.">Copy as CSV</button>
             </div>
+            <!-- Visually hidden label for filter input -->
+            <label for="filterInput" class="sr-only">Filter table data</label>
             <!-- Filter input -->
             <input type="text" id="filterInput" class="p-2 w-full sm:max-w-xs border border-gray-300 rounded mb-4"
                 placeholder="Filter by field or value..." aria-label="Filter table data" />
             <!-- Scroll buttons -->
             <div class="scroll-buttons">
                 <button onclick="scrollTableLeft()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
-                    aria-label="Scroll table left" title="Scroll the payload table left">Scroll Left</button>
+                    aria-label="Scroll Left" title="Scroll the payload table left">Scroll Left</button>
                 <button onclick="scrollTableRight()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
-                    aria-label="Scroll table right" title="Scroll the payload table right">Scroll Right</button>
+                    aria-label="Scroll Right" title="Scroll the payload table right">Scroll Right</button>
             </div>
             <!-- Payload table -->
             <div class="table-wrapper">
@@ -1603,4 +1641,4 @@
     </script>
 </body>
 
-</html>
+</html> 
