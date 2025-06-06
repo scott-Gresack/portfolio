@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio of Scott Gresack, Martech Engineer specializing in Adobe Experience Platform, Web SDK, and identity-driven Customer Data Platforms. Explore tools for tag management, XDM schema design, and real-time personalization.">
-  <meta name="keywords" content="Martech, Adobe Experience Platform, Web SDK, Tealium iQ, Customer Data Platform, Tag Management, Identity Resolution, Real-Time Personalization, XDM Schema">
+  <meta name="description" content="Scott Gresack is a Martech Engineer and AEP Specialist with expertise in Adobe Experience Platform, Tealium iQ, and Customer Data Platforms. Explore a portfolio of real-world solutions for identity resolution, tag management, XDM schemas, and real-time personalization.">
+  <meta name="keywords" content="Martech Engineer, Adobe Experience Platform, AEP, Web SDK, Tealium iQ, CDP, Customer Data Platform, Identity Resolution, Tag Management, XDM Schema, Adobe Analytics, Journey Orchestration, Adobe Target, Real-Time Personalization, Data Governance, Digital Analytics Jobs, Martech Hiring, Adobe Specialist Resume">
   <meta name="author" content="Scott Gresack">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://scott-gresack.github.io/portfolio/">
@@ -12,14 +12,14 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://scott-gresack.github.io/portfolio/">
-  <meta property="og:title" content="Scott Gresack | Martech Engineer | AEP & CDP Expert">
-  <meta property="og:description" content="Explore Scott Gresack's expertise in Adobe Web SDK, Tealium iQ, and Customer Data Platforms, with tools for tag governance, XDM mapping, and identity resolution.">
+  <meta property="og:title" content="Scott Gresack | Martech Engineer for Adobe AEP & CDP Platforms">
+  <meta property="og:description" content="Hands-on Martech Engineer building scalable Adobe AEP and CDP solutions. Real-world experience in tag architecture, identity stitching, and privacy-first data collection.">
   <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Scott Gresack | Martech & CDP Specialist">
-  <meta name="twitter:description" content="Portfolio showcasing Adobe Experience Platform, Web SDK, and Tealium iQ integrations for scalable, privacy-aware data architectures.">
+  <meta name="twitter:title" content="Scott Gresack | Adobe AEP & Martech Specialist for Hire">
+  <meta name="twitter:description" content="Discover how Scott Gresack drives Martech transformation using Adobe AEP, Web SDK, and tag governance strategies to power personalized digital experiences.">
   <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
 
   <!-- Schema.org -->
@@ -73,21 +73,54 @@
   </style>
 
   <!-- Analytics (Consolidated) -->
-  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-Y8617TLMYK', { anonymize_ip: true });
+    gtag('config', 'G-Y8617TLMYK', {
+      anonymize_ip: true,
+      page_path: window.location.pathname
+    });
   </script>
-  <script defer>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register identify".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1}(document,window.posthog||[]);
+  <script>
+    !function(t,e){
+      var o,n,p,r;
+      if (!e.__SV) {
+        window.posthog = e;
+        e._i = [];
+        e.init = function(i,s,a){
+          function g(t,e){
+            var o=e.split(".");
+            2==o.length && (t=t[o[0]], e=o[1]);
+            t[e] = function(){ t.push([e].concat(Array.prototype.slice.call(arguments,0))) };
+          }
+          p = t.createElement("script");
+          p.type = "text/javascript";
+          p.async = !0;
+          p.src = s.api_host + "/static/array.js";
+          r = t.getElementsByTagName("script")[0];
+          r.parentNode.insertBefore(p,r);
+          var u = e;
+          void 0 !== a ? u = e[a] = [] : a = "posthog";
+          u.people = u.people || [];
+          u.toString = function(t){
+            var e = "posthog";
+            return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e;
+          };
+          u.people.toString = function(){ return u.toString(1) + ".people (stub)" };
+          o = "init capture identify".split(" ");
+          for (n = 0; n < o.length; n++) g(u, o[n]);
+          e._i.push([i, s, a]);
+        };
+        e.__SV = 1;
+      }
+    }(document, window.posthog || []);
     posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
       api_host: 'https://us.i.posthog.com',
-      person_profiles: 'always',
-      capture_pageview: false
+      autocapture: true,
+      capture_pageview: true
     });
-    posthog.capture('pageview', { url: window.location.href });
   </script>
   <script defer>
     (function(c,l,a,r,i,t,y){
