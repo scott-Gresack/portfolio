@@ -197,6 +197,15 @@
 
       const addKeyValue = () => keyValues.value.push({ category: 'contextData', key: '', value: '' });
 
+      // Remove key-value pair safely
+      const removeKeyValue = (index) => {
+        if (Array.isArray(keyValues.value)) {
+          keyValues.value.splice(index, 1);
+        } else {
+          console.warn('Attempted to remove keyValue from a non-array:', keyValues.value);
+        }
+      };
+
       const jsonPayload = computed(() => {
         // Build up payload based on categories
         const contextData = {};
@@ -415,6 +424,7 @@ Edge.sendEvent(event);
         apiStyle,
         jsonPayload,
         addKeyValue,
+        removeKeyValue,
         swiftCode,
         kotlinCode,
         reactNativeCode,
@@ -501,7 +511,7 @@ Edge.sendEvent(event);
                 <input v-model="pair.value" :placeholder="pair.category === 'products' ? 'Products string' : pair.category === 'actionName' ? 'Action name' : pair.category === 'stateName' ? 'State name' : pair.category"
                        class="border border-gray-300 rounded-md p-2 flex-1 focus:ring-blue-500 focus:border-blue-500 transition" />
               </template>
-              <button @click="keyValues.value.splice(index,1)" class="text-red-500 hover:underline">Remove</button>
+              <button @click="removeKeyValue(index)" class="text-red-500 hover:underline">Remove</button>
             </div>
           </div>
           <button @click="addKeyValue" class="text-sm text-blue-600 hover:underline" title="Add a new key-value pair to the context payload">+ Add Pair</button>
