@@ -27,20 +27,20 @@
   <link rel="apple-touch-icon" href="https://scott-gresack.github.io/portfolio/icons/icon-192x192.png">
 
   <title>📱 Mobile Tag Spec Builder | Scott Gresack</title>
-  <meta name="description" content="Build and simulate Adobe Mobile SDK payloads with real-time validation. Supports Swift, Kotlin, Edge.sendEvent, and XDM." />
-  <meta name="keywords" content="Mobile Tag Spec, Adobe Mobile SDK, Edge.sendEvent, trackAction, XDM, Swift, Kotlin, AEP, CDP, Scott Gresack" />
+  <meta name="description" content="Scott Gresack is a Martech Engineer and AEP Specialist with expertise in Adobe Experience Platform, Tealium iQ, and Customer Data Platforms. Explore real-world implementations for identity stitching, tag architecture, and XDM governance.">
+  <meta name="keywords" content="Martech Engineer, Adobe Experience Platform, AEP, CDP, Tealium iQ, Customer Data Platform, Tag Management, Identity Resolution, XDM Schema, Adobe Analytics, Adobe Web SDK, Adobe Target, Journey Orchestration, Real-Time Personalization, Martech Portfolio, Martech Jobs, Adobe Developer">
   <meta name="author" content="Scott Gresack" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://scott-gresack.github.io/portfolio/mobile_updates" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/mobile_updates" />
-  <meta property="og:title" content="Mobile Tag Spec Builder | Scott Gresack Portfolio" />
-  <meta property="og:description" content="Generate Adobe Mobile SDK payloads. Swift & Kotlin code snippets for Edge events and XDM validation. By Scott Gresack." />
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mobile Tag Spec Builder | Scott Gresack" />
-  <meta name="twitter:description" content="Interactive tool for creating and simulating mobile analytics events with Adobe AEP SDK." />
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+  <meta property="og:title" content="Scott Gresack | Martech Engineer | Adobe AEP & CDP Specialist">
+  <meta property="og:description" content="Explore Scott Gresack’s Martech portfolio — featuring advanced implementations in Adobe Experience Platform, tag governance, real-time identity stitching, and customer data strategy.">
+  <meta property="og:image" content="https://yourdomain.com/path/to/social-preview-image.png">
+  <meta property="og:url" content="https://yourdomain.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:title" content="Scott Gresack | Martech Engineer | AEP & CDP Expert">
+  <meta name="twitter:description" content="Portfolio featuring Adobe Experience Platform, real-time data collection, Tealium iQ, identity resolution, and scalable tracking architecture.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://yourdomain.com/path/to/social-preview-image.png">
 
   <script defer src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
   <script>
@@ -65,10 +65,46 @@
   }
   </script>
 
-  <script defer>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"};o="init capture identify alias".split(" ");for(n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', { api_host: 'https://us.i.posthog.com' });
+  <script>
+    !function(t,e){
+      var o,n,p,r;
+      if (!e.__SV) {
+        window.posthog = e;
+        e._i = [];
+        e.init = function(i,s,a){
+          function g(t,e){
+            var o=e.split(".");
+            2==o.length && (t=t[o[0]], e=o[1]);
+            t[e] = function(){ t.push([e].concat(Array.prototype.slice.call(arguments,0))) };
+          }
+          p = t.createElement("script");
+          p.type = "text/javascript";
+          p.async = !0;
+          p.src = s.api_host + "/static/array.js";
+          r = t.getElementsByTagName("script")[0];
+          r.parentNode.insertBefore(p,r);
+          var u = e;
+          void 0 !== a ? u = e[a] = [] : a = "posthog";
+          u.people = u.people || [];
+          u.toString = function(t){
+            var e = "posthog";
+            return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e;
+          };
+          u.people.toString = function(){ return u.toString(1) + ".people (stub)" };
+          o = "init capture identify".split(" ");
+          for (n = 0; n < o.length; n++) g(u, o[n]);
+          e._i.push([i, s, a]);
+        };
+        e.__SV = 1;
+      }
+    }(document, window.posthog || []);
+    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
+      api_host: 'https://us.i.posthog.com',
+      autocapture: true,
+      capture_pageview: true
+    });
   </script>
+
 
   <script defer>
     (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pmp4efispy");
@@ -565,20 +601,22 @@ Edge.sendEvent(event);
 </body>
 <!-- Syncs GA session ID to PostHog for identity resolution -->
 <script>
-  (function () {
-    function getGASessionId() {
+  (function checkPostHogAndSyncGA(attempts = 0) {
+    if (window.posthog && typeof posthog.register === 'function') {
       const gaCookie = document.cookie.split('; ').find(row => row.startsWith('_ga='));
-      if (!gaCookie) return null;
-      const parts = gaCookie.split('.');
-      if (parts.length < 4) return null;
-      return `${parts[2]}.${parts[3]}`;
-    }
-
-    const sessionId = getGASessionId();
-    if (sessionId && window.posthog) {
-      console.log('[PostHog] Registered GA session ID:', sessionId);
-      posthog.register({ ga_session_id: sessionId });
-      posthog.capture('pageview_with_ga_session', { ga_session_id: sessionId });
+      if (gaCookie) {
+        const parts = gaCookie.split('.');
+        if (parts.length >= 4) {
+          const sessionId = `${parts[2]}.${parts[3]}`;
+          console.log('[PostHog] Registered GA session ID:', sessionId);
+          posthog.register({ ga_session_id: sessionId });
+          posthog.capture('pageview_with_ga_session', { ga_session_id: sessionId });
+        }
+      }
+    } else if (attempts < 10) {
+      setTimeout(() => checkPostHogAndSyncGA(attempts + 1), 300);
+    } else {
+      console.warn('[PostHog] register function not available after retrying.');
     }
   })();
 </script>
