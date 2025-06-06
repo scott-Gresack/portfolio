@@ -23,58 +23,145 @@
   <meta name="author" content="Scott Gresack">
   <meta name="robots" content="index, follow">
   <!-- SEO meta tags -->
-  <title>Web Tag Spec Generator for Adobe Analytics | Scott Gresack</title>
-  <meta name="description" content="Generate and preview utag.view() and utag.link() payloads for Adobe Analytics. Map to XDM and export results.">
-  <meta name="keywords" content="Adobe Analytics, Web SDK, XDM, Tealium, utag.view, utag.link, Martech, data integration, digital analytics, tag management, Scott Gresack">
+  <title>Free Web Tag Spec Generator for Adobe Analytics, XDM, and Tealium | Scott Gresack</title>
+  <meta name="description" content="Instantly generate utag.view() and utag.link() payloads for Adobe Analytics, Tealium, and XDM mapping. Built for Martech engineers, QA, and digital analysts seeking hands-on tag validation and implementation tooling.">
+  <meta name="keywords" content="Adobe Analytics, Web SDK, XDM, Tealium, utag.view, utag.link, tag spec generator, data layer validation, tag management, QA tracking, analytics tool, user interaction analytics, digital analytics, event tracking, data governance, martech tool">
+  <meta name="audience" content="Martech engineers, digital analysts, QA testers, tag managers, analytics developers, implementation specialists">
+  <meta name="topic" content="Tag spec generator, analytics implementation, data layer validation, XDM mapping, Adobe Analytics tooling, Tealium tag management">
+  <meta name="coverage" content="Worldwide">
   <link rel="canonical" href="https://scott-gresack.github.io/portfolio/tag-spec-generator.html">
+  <meta name="google-site-verification" content="tag-spec-generator-martech-scott-gresack">
   <!-- Open Graph & Twitter meta -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tag-spec-generator.html">
-  <meta property="og:title" content="Web Tag Spec Generator | Scott Gresack Portfolio">
-  <meta property="og:description" content="Generate Adobe Analytics utag.view() and utag.link() payloads with dynamic XDM mapping.">
+  <meta property="og:title" content="Web Tag Spec Generator – Free Tool for Adobe Analytics, XDM, Tealium | Scott Gresack">
+  <meta property="og:description" content="A free, interactive tool to create, test, and preview utag.view() and utag.link() payloads for Adobe Analytics and XDM. Perfect for QA, engineers, and digital analytics teams.">
   <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Web Tag Spec Generator | Scott Gresack Portfolio">
-  <meta name="twitter:description" content="Create and map Adobe Analytics payloads with XDM support using Scott Gresack's tool.">
+  <meta name="twitter:title" content="Web Tag Spec Generator – Free Tool for Adobe Analytics, XDM, Tealium | Scott Gresack">
+  <meta name="twitter:description" content="A free, interactive tool to create, test, and preview utag.view() and utag.link() payloads for Adobe Analytics and XDM. Perfect for QA, engineers, and digital analytics teams.">
   <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
-  <!-- Google Analytics (GA4) -->
+  <!-- Enhanced Analytics Integrations: GA4, PostHog, Clarity, Piwik PRO -->
+  <!-- Google Analytics (GA4) Enhanced -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-Y8617TLMYK', { anonymize_ip: true });
-    // GA4 Custom Event - Page Load
-    gtag('event', 'page_view_custom', {
-      page_title: document.title,
-      page_location: window.location.href,
-      page_path: window.location.pathname,
-      referrer: document.referrer
+    function gtag(){ dataLayer.push(arguments); }
+
+    // Wait for DOM to be ready before firing GA4 events to ensure title/referrer are accurate
+    document.addEventListener("DOMContentLoaded", function() {
+      const toolMeta = {
+        tool_version: '1.0.1',
+        tool_name: 'Web Tag Spec Generator',
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+        referrer: document.referrer
+      };
+      gtag('js', new Date());
+      gtag('config', 'G-Y8617TLMYK', {
+        anonymize_ip: true,
+        send_page_view: false,
+        ...toolMeta
+      });
+      console.log('[GA4] Config fired', toolMeta);
+
+      // Custom page_view event with enhanced metadata
+      gtag('event', 'page_view_custom', toolMeta);
+      console.log('[GA4] Custom page_view_custom event fired', toolMeta);
+
+      // Safe wrapper for custom events (now global and safe)
+      window.trackGA4Event = function(eventName, props) {
+        if (typeof gtag !== "function") {
+          console.warn('[GA4] gtag not available for event:', eventName, props);
+          return;
+        }
+        try {
+          const mergedProps = { ...toolMeta, ...props };
+          gtag('event', eventName, mergedProps);
+          console.log('[GA4] Event utag.view({});fired:', eventName, mergedProps);
+        } catch (e) {
+          console.warn('[GA4] Event error:', eventName, e);
+        }
+      }
     });
   </script>
-  <!-- PostHog Analytics -->
+  <!-- PostHog Enhanced -->
   <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}
-    (p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);
-    var u=e;void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"};
-    o="init capture identify alias people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-    for(n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1}(document,window.posthog||[]);
-    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U',{api_host:'https://us.i.posthog.com',person_profiles:'always'});
-    // PostHog Event - Page Loaded
-    posthog.capture('page_loaded', {
-      title: document.title,
-      url: window.location.href,
-      referrer: document.referrer
-    });
+    try {
+      console.log('[PostHog] Loading PostHog...');
+      !function(t,e){
+        var o,n,p,r;
+        e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){
+          function g(t,e){
+            var o=e.split(".");
+            2==o.length&&(t=t[o[0]],e=o[1]),
+            t[e]=function(){
+              t.push([e].concat(Array.prototype.slice.call(arguments,0)))
+            }
+          }
+          (p=t.createElement("script")).type="text/javascript";
+          p.async=!0;
+          p.src=s.api_host+"/static/array.js";
+          (r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);
+          var u=e;
+          void 0!==a?u=e[a]=[]:a="posthog",
+          u.people=u.people||[],
+          u.toString=function(t){
+            var e="posthog";
+            return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e
+          },
+          u.people.toString=function(){
+            return u.toString(1)+".people (stub)"
+          };
+          o="init capture identify alias people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+          for(n=0;n<o.length;n++)g(u,o[n]);
+          e._i.push([i,s,a])
+        },e.__SV=1)
+      }(document,window.posthog||[]);
+      console.log('[PostHog] Initializing...');
+      posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
+        api_host: 'https://us.i.posthog.com',
+        person_profiles: 'always'
+      });
+      // Consistent metadata
+      const posthogMeta = {
+        tool_version: '1.0.1',
+        tool_name: 'Web Tag Spec Generator',
+        page_title: document.title,
+        page_url: window.location.href,
+        referrer: document.referrer
+      };
+      console.log('[PostHog] posthogMeta:', posthogMeta);
+      posthog.capture('page_loaded', posthogMeta);
+      // Safe wrapper for custom events
+      window.trackPostHogEvent = function(event, props) {
+        try {
+          posthog.capture(event, { ...posthogMeta, ...props });
+          console.log('[PostHog] Event:', event, props);
+        } catch (e) {
+          console.warn('[PostHog] Error sending event:', e);
+        }
+      };
+    } catch (err) {
+      console.error('[PostHog] Critical error:', err);
+    }
   </script>
-  <!-- Microsoft Clarity -->
+  <!-- Microsoft Clarity Enhanced -->
   <script>
     (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pmp4efispy");
-    // Microsoft Clarity session recording and heatmaps initialized.
+    // Safe wrapper for Clarity custom events
+    window.trackClarityEvent = function(event, props) {
+      try {
+        if(window.clarity && typeof window.clarity === "function") {
+          window.clarity('event', event, props || {});
+        }
+      } catch (e) { /* fail silently */ }
+    }
   </script>
-  <!-- Piwik PRO Tag Manager -->
+  <!-- Piwik PRO Enhanced -->
   <script>
     (function(window,document,dataLayerName,id){
       window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
@@ -84,13 +171,23 @@
       tags.async=!0;tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js"+qPString;
       scripts.parentNode.insertBefore(tags,scripts);
       !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
-      // Piwik PRO Custom Event - Page View
-      window[dataLayerName].push({
+      // Consistent metadata
+      var piwikMeta = {
         event: "custom_page_view",
+        tool_version: "1.0.1",
+        tool_name: "Web Tag Spec Generator",
         page_title: document.title,
         page_url: window.location.href,
         referrer: document.referrer
-      });
+      };
+      window[dataLayerName].push(piwikMeta);
+      // Safe wrapper for custom events
+      window.trackPiwikEvent = function(event, props) {
+        try {
+          var evt = Object.assign({}, piwikMeta, {event}, props||{});
+          window[dataLayerName].push(evt);
+        } catch (e) { /* fail silently */ }
+      }
     })(window,document,'dataLayer','40c8a729-ebc6-4dfe-98be-6617064e43a9');
   </script>
   <!-- Structured Data -->
@@ -564,6 +661,13 @@
   <!-- Vue 2 -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script>
+    // Enhanced tracking: instrument Vue methods for analytics
+    function fireAllAnalytics(eventName, props) {
+      window.trackGA4Event && window.trackGA4Event(eventName, props);
+      window.trackPostHogEvent && window.trackPostHogEvent(eventName, props);
+      window.trackClarityEvent && window.trackClarityEvent(eventName, props);
+      window.trackPiwikEvent && window.trackPiwikEvent(eventName, props);
+    }
     new Vue({
       el: '#app',
       data: {
@@ -712,22 +816,27 @@
         },
         setEventType(type) {
           this.eventType = type;
+          fireAllAnalytics('set_event_type', { event_type: type });
         },
         addKeyValuePair() {
           this.keyValuePairs.push({ key: '', value: '', analyticsKey: '' });
+          fireAllAnalytics('add_key_value_pair', { total_pairs: this.keyValuePairs.length });
         },
         removeKeyValuePair(i) {
           this.keyValuePairs.splice(i, 1);
+          fireAllAnalytics('remove_key_value_pair', { index: i, total_pairs: this.keyValuePairs.length });
         },
         duplicateKeyValuePair(i) {
           const original = this.keyValuePairs[i];
           this.keyValuePairs.splice(i + 1, 0, { ...original });
+          fireAllAnalytics('duplicate_key_value_pair', { index: i, total_pairs: this.keyValuePairs.length });
         },
         copyToClipboard(txt, type) {
           navigator.clipboard.writeText(txt).then(() => {
             this.modalType = type;
             this.showModal = true;
             setTimeout(this.closeModal, 1200);
+            fireAllAnalytics('copy_to_clipboard', { copy_type: type });
           });
         },
         closeModal() {
