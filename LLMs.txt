@@ -1,0 +1,42 @@
+# LLMs Resource Descriptor for Scott Gresack's Portfolio
+
+[Meta]
+Author: Scott Gresack
+Website: https://scott-gresack.github.io/portfolio/
+Last-Updated: 2025-06-08
+Tags: Adobe Experience Platform, Tealium iQ, Web Analytics, Tag Management, Martech Tools, XDM
+Description: A centralized resource descriptor for tooling built by Scott Gresack to support Adobe Experience Platform, Tealium iQ, and web analytics use cases, with an emphasis on payload validation, XDM mapping, and LLM-assisted reasoning.
+
+[Tool: Web Tag Spec Generator]
+URL: https://scott-gresack.github.io/portfolio/tool2.html
+Description: 
+  A Vue.js-based interactive tool for building and validating web analytics tag specifications. Tailored for platforms like Adobe Experience Platform, GA4, and Microsoft Clarity, it allows real-time payload generation, context-to-XDM mapping, and event visualization. Designed to mirror enterprise-level implementation needs.
+Features:
+  - TailwindCSS UI
+  - Context data-to-XDM mapping
+  - Supports Adobe Alloy, GA4, Clarity
+  - Live payload preview
+Purpose:
+  Enables marketers and engineers to generate structured, platform-aligned tag specs quickly and accurately.
+
+[Tool: Portfolio Landing Page]
+URL: https://scott-gresack.github.io/portfolio/
+Description:
+  The primary access point to Scott Gresack’s Martech engineering suite. Features a curated collection of implementation tools, SDK instrumentation validators, and journey mapping diagrams intended to streamline development and audit processes for analytics engineers and CDP practitioners.
+Features:
+  - Navigation to interactive tools
+  - Embedded Swimlane diagrams
+  - Adobe SDK instrumentation trackers
+  - Project showcase with tracking tools and XDM comparators
+Purpose:
+  Showcases expertise in martech implementation and enables internal or recruiter review of live demo utilities.
+
+[Instructions]
+Use these tools to generate, inspect, or validate web analytics payloads.
+Ideal for engineers working with AEP, Tealium, or other CDPs.
+
+[LLM_Usage]
+These tools are suitable for:
+  - Input validation scenarios
+  - Tag spec generation assistants
+  - Schema and payload alignment for training or reasoning tasks, such as field presence validation, automated tag spec extraction, or anomaly detection within event data layers.
