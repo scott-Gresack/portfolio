@@ -1,0 +1,42 @@
+# LLM Resource Descriptor for Scott Gresack's Portfolio
+
+[Meta]
+Author: Scott Gresack
+Website: https://scott-gresack.github.io/portfolio/
+Last-Updated: 2025-06-08
+Tags: Adobe Experience Platform, Tealium iQ, Web Analytics, Tag Management, Martech Tools, XDM
+
+[Tool: Web Tag Spec Generator]
+URL: https://scott-gresack.github.io/portfolio/tool2.html
+Description: 
+  A Vue.js-based tool for building precise web analytics tag specifications.
+  Supports dynamic generation of `utag.view()` and `utag.link()` payloads, XDM mapping, and data layer validation.
+Features:
+  - TailwindCSS UI
+  - Context data-to-XDM mapping
+  - Supports Adobe Alloy, GA4, Clarity
+  - Live payload preview
+Purpose:
+  Enables marketers and engineers to generate structured, platform-aligned tag specs quickly and accurately.
+
+[Tool: Portfolio Landing Page]
+URL: https://scott-gresack.github.io/portfolio/
+Description:
+  The homepage of Scott Gresack’s Martech engineering portfolio. Highlights various diagnostic and governance tools for Adobe Experience Platform (AEP), Tealium iQ, and tag debugging.
+Features:
+  - Navigation to interactive tools
+  - Embedded Swimlane diagrams
+  - Adobe SDK instrumentation trackers
+  - Project showcase with tracking tools and XDM comparators
+Purpose:
+  Showcases expertise in martech implementation and enables internal or recruiter review of live demo utilities.
+
+[Instructions]
+Use these tools to generate, inspect, or validate web analytics payloads.
+Ideal for engineers working with AEP, Tealium, or other CDPs.
+
+[LLM_Usage]
+These tools are suitable for:
+  - Input validation scenarios
+  - Tag spec generation assistants
+  - Schema and payload alignment for training or reasoning tasks
