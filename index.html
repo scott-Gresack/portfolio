@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Scott Gresack is a Martech Engineer and AEP Specialist with expertise in Adobe Experience Platform, Tealium iQ, and Customer Data Platforms. Explore a portfolio of real-world solutions for identity resolution, tag management, XDM schemas, and real-time personalization.">
-  <meta name="keywords" content="Martech Engineer, Adobe Experience Platform, AEP, Web SDK, Tealium iQ, CDP, Customer Data Platform, Identity Resolution, Tag Management, XDM Schema, Adobe Analytics, Journey Orchestration, Adobe Target, Real-Time Personalization, Data Governance, Digital Analytics Jobs, Martech Hiring, Adobe Specialist Resume">
+  <meta name="description" content="Martech engineer specializing in Adobe Experience Platform, identity resolution and privacy-first personalization for enterprise brands.">
   <meta name="author" content="Scott Gresack">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://scott-gresack.github.io/portfolio/">
 
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://us.i.posthog.com">
+
+  <link rel="sitemap" type="application/xml" href="https://scott-gresack.github.io/portfolio/sitemap.xml">
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://scott-gresack.github.io/portfolio/">
-  <meta property="og:title" content="Scott Gresack | Martech Engineer for Adobe AEP & CDP Platforms">
-  <meta property="og:description" content="Hands-on Martech Engineer building scalable Adobe AEP and CDP solutions. Real-world experience in tag architecture, identity stitching, and privacy-first data collection.">
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
+  <meta property="og:title" content="Scott Gresack | Martech Engineer & Adobe AEP Specialist">
+  <meta property="og:description" content="Expert Martech Engineer crafting Adobe AEP and CDP solutions for seamless identity stitching and privacy-first personalization.">
+  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" alt="Scott Gresack Adobe AEP portfolio preview">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Scott Gresack | Adobe AEP & Martech Specialist for Hire">
-  <meta name="twitter:description" content="Discover how Scott Gresack drives Martech transformation using Adobe AEP, Web SDK, and tag governance strategies to power personalized digital experiences.">
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
+  <meta name="twitter:title" content="Scott Gresack | Expert in Adobe AEP & Martech Solutions">
+  <meta name="twitter:description" content="Transform your digital strategy with Scott Gresack’s Adobe AEP expertise, tag management, and real-time personalization solutions.">
+  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" alt="Scott Gresack Adobe AEP portfolio preview">
 
   <!-- Schema.org -->
   <script type="application/ld+json">
@@ -46,7 +50,16 @@
       "Real-Time Personalization",
       "XDM Schema Design",
       "Edge Computing"
-    ]
+    ],
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Martech Engineer",
+      "description": "Leading Adobe Experience Platform and CDP initiatives at CVS Health, specializing in identity resolution and real-time personalization.",
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": "CVS Health"
+      }
+    }
   }
   </script>
 
@@ -66,9 +79,23 @@
     .nav-link:hover, .nav-link.active {
       color: #2563eb;
       border-bottom: 2px solid #2563eb;
+      transition: all 0.2s ease-in-out;
     }
     .dropdown:hover .dropdown-menu {
       display: block;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .dropdown-menu {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    .cta-button {
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
     }
   </style>
 
@@ -130,7 +157,7 @@
     })(window, document, "clarity", "script", "pmp4efispy");
   </script>
 
-  <title>Scott Gresack | Martech & Identity Specialist</title>
+  <title>Scott Gresack – Martech Engineer & Adobe AEP Specialist</title>
 </head>
 <body>
   <div id="app" class="min-h-screen flex flex-col">
@@ -157,13 +184,13 @@
         </button>
       </nav>
       <div id="mobile-nav" class="hidden md:hidden bg-white border-t shadow-md">
-        <a href="#about" class="block px-4 py-2 text-sm">About</a>
-        <a href="#tools" class="block px-4 py-2 text-sm">Tools</a>
-        <a href="#contact" class="block px-4 py-2 text-sm text-blue-600">Contact</a>
-        <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">Alloy Inspector</a>
-        <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">Tag Spec Generator</a>
-        <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">XDM Comparator</a>
-        <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm">Mobile Updates</a>
+        <a href="#about" class="block px-4 py-2 text-sm hover:bg-gray-100">About</a>
+        <a href="#tools" class="block px-4 py-2 text-sm hover:bg-gray-100">Tools</a>
+        <a href="#contact" class="block px-4 py-2 text-sm text-blue-600 hover:bg-gray-100">Contact</a>
+        <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm hover:bg-gray-100">Alloy Inspector</a>
+        <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm hover:bg-gray-100">Tag Spec Generator</a>
+        <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm hover:bg-gray-100">XDM Comparator</a>
+        <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm hover:bg-gray-100">Mobile Updates</a>
       </div>
     </header>
 
@@ -171,49 +198,49 @@
       <!-- Hero Section -->
       <section class="py-12 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
         <div class="max-w-4xl mx-auto px-4 text-center">
-          <h1 class="text-4xl font-bold text-gray-900 mb-4">Martech & Identity Solutions</h1>
-          <p class="text-lg text-gray-600 mb-6">Building scalable, privacy-first data architectures with Adobe Experience Platform, Web SDK, and Tealium iQ for real-time personalization and identity resolution.</p>
-          <a href="#contact" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Get in Touch</a>
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Martech & Identity Solutions</h1>
+          <p class="text-lg md:text-xl text-gray-600 mb-6">Unlock scalable, privacy-first data architectures with Adobe Experience Platform, Web SDK, and Tealium iQ for seamless personalization and identity resolution.</p>
+          <a href="#contact" class="cta-button inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 text-lg font-medium">Connect Now</a>
         </div>
       </section>
 
       <!-- About Section -->
       <section id="about" class="py-12">
         <div class="max-w-4xl mx-auto px-4">
-          <h2 class="text-3xl font-semibold text-gray-900 mb-6">About Me</h2>
-          <p class="text-gray-600 mb-4">I'm a Martech Engineer with expertise in crafting data-driven, privacy-compliant solutions for enterprise-scale personalization and analytics. At CVS Health, I lead initiatives in Adobe Experience Platform (AEP), Web SDK, and Customer Data Platforms (CDP), focusing on:</p>
+          <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">About Me</h2>
+          <p class="text-gray-600 mb-4">As a Martech Engineer at CVS Health, I specialize in building data-driven, privacy-compliant solutions that power enterprise-scale personalization. My expertise spans Adobe Experience Platform (AEP), Web SDK, and Customer Data Platforms (CDP), delivering:</p>
           <ul class="list-disc pl-6 space-y-2 text-gray-600">
-            <li><strong>Identity Resolution:</strong> Unifying ECID and first-party IDs for seamless customer journeys.</li>
-            <li><strong>Edge Computing:</strong> Leveraging server-side tagging for performance and privacy.</li>
-            <li><strong>Tag Management:</strong> Building scalable solutions with Tealium iQ and Adobe Launch.</li>
-            <li><strong>Privacy & Compliance:</strong> Ensuring GDPR/HIPAA-compliant data pipelines.</li>
-            <li><strong>Experimentation:</strong> Powering A/B testing and analytics with real-time data.</li>
+            <li><strong>Identity Resolution:</strong> Seamlessly unifying ECID and first-party IDs for cohesive customer journeys.</li>
+            <li><strong>Edge Computing:</strong> Optimizing server-side tagging for performance and privacy.</li>
+            <li><strong>Tag Management:</strong> Creating scalable architectures with Tealium iQ and Adobe Launch.</li>
+            <li><strong>Privacy & Compliance:</strong> Ensuring GDPR and HIPAA-compliant data pipelines.</li>
+            <li><strong>Experimentation:</strong> Driving A/B testing and analytics with real-time insights.</li>
           </ul>
-          <p class="mt-4 text-gray-600">My work bridges engineering and analytics, delivering measurable outcomes through robust, open-source-friendly architectures.</p>
+          <p class="mt-4 text-gray-600">My solutions blend engineering precision with analytics expertise, delivering measurable impact through open-source-friendly architectures.</p>
         </div>
       </section>
 
       <!-- Tools Section -->
       <section id="tools" class="py-12">
         <div class="max-w-4xl mx-auto px-4">
-          <h2 class="text-3xl font-semibold text-gray-900 mb-6">Tools & Solutions</h2>
-          <p class="text-gray-600 mb-6">Explore my suite of open-source tools designed to streamline Martech workflows, enhance governance, and empower data-driven decisions.</p>
+          <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">Tools & Solutions</h2>
+          <p class="text-gray-600 mb-6">Discover my open-source tools designed to simplify Martech workflows, strengthen data governance, and drive smarter decisions.</p>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="bg-white border rounded-lg p-6 shadow-sm hover:shadow-md transition">
               <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-blue-600 font-semibold hover:underline">Alloy Payload Inspector</a>
-              <p class="mt-2 text-gray-600 text-sm">Real-time debugging for Adobe Web SDK payloads, capturing ECID, XDM, and datastreams for efficient QA.</p>
+              <p class="mt-2 text-gray-600 text-sm">Debug Adobe Web SDK payloads in real time, capturing ECID, XDM, and datastreams for streamlined QA.</p>
             </div>
             <div class="bg-white border rounded-lg p-6 shadow-sm hover:shadow-md transition">
               <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-blue-600 font-semibold hover:underline">Tag Spec Generator</a>
-              <p class="mt-2 text-gray-600 text-sm">Automates <code>utag.view()</code>/<code>utag.link()</code> specs with XDM mapping for Adobe Analytics.</p>
+              <p class="mt-2 text-gray-600 text-sm">Automate <code>utag.view()</code>/<code>utag.link()</code> specs with XDM mapping for Adobe Analytics.</p>
             </div>
             <div class="bg-white border rounded-lg p-6 shadow-sm hover:shadow-md transition">
               <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-blue-600 font-semibold hover:underline">Mobile Tracking Validator</a>
-              <p class="mt-2 text-gray-600 text-sm">Validates iOS/Android lifecycle events with AEP Mobile SDK for accurate tracking.</p>
+              <p class="mt-2 text-gray-600 text-sm">Validate iOS/Android lifecycle events with AEP Mobile SDK for precise tracking.</p>
             </div>
             <div class="bg-white border rounded-lg p-6 shadow-sm hover:shadow-md transition">
               <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-blue-600 font-semibold hover:underline">XDM Schema Comparator</a>
-              <p class="mt-2 text-gray-600 text-sm">Visual diff tool for Adobe XDM schemas, ideal for migrations and governance.</p>
+              <p class="mt-2 text-gray-600 text-sm">Compare Adobe XDM schemas visually, perfect for migrations and governance.</p>
             </div>
           </div>
         </div>
@@ -222,8 +249,8 @@
       <!-- Contact Section -->
       <section id="contact" class="py-12 bg-blue-50 rounded-lg">
         <div class="max-w-4xl mx-auto px-4">
-          <h2 class="text-3xl font-semibold text-gray-900 mb-6">Contact</h2>
-          <p class="text-gray-600 mb-6">Interested in collaborating on Martech, identity, or privacy-focused projects? Let's connect.</p>
+          <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">Let’s Collaborate</h2>
+          <p class="text-gray-600 mb-6">Ready to elevate your Martech, identity, or privacy initiatives? Reach out to discuss your next project.</p>
           <ul class="space-y-3 text-gray-600">
             <li><strong>Email:</strong> <a href="mailto:gresack.scott@gmail.com" class="underline hover:text-blue-600">gresack.scott@gmail.com</a></li>
             <li><strong>Phone:</strong> <a href="tel:+14403903237" class="underline hover:text-blue-600">(440) 390-3237</a></li>
@@ -236,8 +263,8 @@
 
     <footer class="bg-gray-800 text-white py-6">
       <div class="max-w-7xl mx-auto px-4 text-center text-sm">
-        <p>&copy; 2025 Scott Gresack. All rights reserved.</p>
-        <p class="mt-2">Built with privacy, performance, and open-source principles.</p>
+        <p>© 2025 Scott Gresack. All rights reserved.</p>
+        <p class="mt-2">Built with privacy, performance, and open-source principles by <a href="https://cgg-growth.netlify.app/?utm_source=portfolio&utm_medium=footer&utm_campaign=attribution" class="underline hover:text-blue-300" target="_blank">CGG Growth</a>.</p>
       </div>
     </footer>
   </div>
