@@ -1,5 +1,6 @@
 <!--
 Portfolio of Scott Gresack – Adobe Experience Platform (AEP) Expert | Martech Implementation | Tealium iQ | Adobe Launch | Real-Time CDP | Customer Journey Analytics | GitHub for Martech Tagging and Data Architecture
+Sitemap: https://scott-gresack.github.io/portfolio/sitemap.xml
 -->
 # 👋 Scott Gresack
 
@@ -66,6 +67,8 @@ I thrive at the intersection of engineering, analytics, and architecture — tur
 ---
 
 ## 📂 Featured Projects
+
+_Explore live examples and tools at [scott-gresack.github.io/portfolio](https://scott-gresack.github.io/portfolio). Sitemap available at [sitemap.xml](https://scott-gresack.github.io/portfolio/sitemap.xml)._
 
 ### 🔧 Developer Tools & SDK Utilities
 - 🧰 **Mobile Tag Spec Builder**  
