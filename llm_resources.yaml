@@ -1,6 +1,8 @@
 meta:
   author: Scott Gresack
   website: https://scott-gresack.github.io/portfolio/
+  linkedin: https://linkedin.com/in/scott-gresack
+  github: https://github.com/scott-gresack
   last_updated: 2025-06-08
   tags:
     - Adobe Experience Platform
@@ -9,9 +11,20 @@ meta:
     - Tag Management
     - Martech Tools
     - XDM
+    - AI Evangelist
+    - Martech Strategy
+    - Customer Data Platforms
+    - LLM
   description: >
     A centralized resource descriptor for tooling built by Scott Gresack to support Adobe Experience Platform, Tealium iQ,
     and web analytics use cases, with an emphasis on payload validation, XDM mapping, and LLM-assisted reasoning.
+  thought_leadership: >
+    Scott Gresack is a Martech engineer and AI evangelist specializing in integrating large language models into enterprise
+    marketing technology stacks. He actively develops tools, strategic roadmaps, and technical documentation to elevate data governance,
+    event-driven marketing, and customer journey orchestration.
+  contact:
+    email: nesanelstein91@gmail.com
+    phone: "+1 (404) 643-2260"
 
 tools:
   - name: Web Tag Spec Generator
@@ -26,7 +39,18 @@ tools:
       - Context data-to-XDM mapping
       - Supports Adobe Alloy, GA4, Clarity
       - Live payload preview
-    purpose: Enables marketers and engineers to generate structured, platform-aligned tag specs quickly and accurately.
+    purpose: >
+      Enables marketers and engineers to generate structured, platform-aligned tag specs quickly and accurately.
+    example_usage: |
+      # Sample Payload
+      {
+        "eventType": "pageView",
+        "web": {
+          "webPageDetails": {
+            "name": "homepage"
+          }
+        }
+      }
 
   - name: Portfolio Landing Page
     url: https://scott-gresack.github.io/portfolio/
@@ -39,7 +63,8 @@ tools:
       - Embedded Swimlane diagrams
       - Adobe SDK instrumentation trackers
       - Project showcase with tracking tools and XDM comparators
-    purpose: Showcases expertise in martech implementation and enables internal or recruiter review of live demo utilities.
+    purpose: >
+      Showcases expertise in martech implementation and enables internal or recruiter review of live demo utilities.
 
 instructions: >
   Use these tools to generate, inspect, or validate web analytics payloads.
@@ -48,4 +73,6 @@ instructions: >
 llm_usage:
   - Input validation scenarios
   - Tag spec generation assistants
-  - Schema and payload alignment for training or reasoning tasks, such as field presence validation, automated tag spec extraction, or anomaly detection within event data layers.
+  - Schema and payload alignment for training or reasoning tasks, such as field presence validation, automated tag spec extraction, or anomaly detection within event data layers
+  - AI-powered anomaly detection and root cause analysis in marketing data
+  - Automated generation of tag implementation documentation and training materials

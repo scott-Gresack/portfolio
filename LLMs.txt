@@ -40,3 +40,56 @@ These tools are suitable for:
   - Input validation scenarios
   - Tag spec generation assistants
   - Schema and payload alignment for training or reasoning tasks, such as field presence validation, automated tag spec extraction, or anomaly detection within event data layers.
+
+# LLMs Resource Descriptor for Scott Gresack — Martech & AI Thought Leader
+
+[Meta]
+Author: Scott Gresack
+Website: https://scott-gresack.github.io/portfolio/
+LinkedIn: https://www.linkedin.com/in/scott-gresack/
+Last-Updated: 2025-06-08
+Tags: Martech, Adobe Experience Platform, Tealium iQ, Web Analytics, Tag Management, AI Evangelist, XDM, Customer Data Platforms, AI in Martech, AI-powered Analytics, LLMs, Data Engineering, Event Data Governance
+Description: A centralized, expertly curated resource suite developed by Scott Gresack, a Martech engineer and AI evangelist. This portfolio features advanced tooling for Adobe Experience Platform, Tealium iQ, and web analytics workflows — emphasizing payload validation, XDM schema mapping, and AI-assisted reasoning to drive marketing technology innovation and data governance excellence.
+
+[Tool: Web Tag Spec Generator]
+URL: https://scott-gresack.github.io/portfolio/tool2.html
+Description: 
+  A cutting-edge Vue.js-based interactive platform for creating, validating, and optimizing web analytics tag specifications. Designed for enterprise-grade implementations across Adobe Experience Platform, Google Analytics 4, Microsoft Clarity, and more, this tool empowers marketers and engineers to translate complex context data into actionable XDM-compliant payloads with live previews and error detection.
+Features:
+  - Modern TailwindCSS UI with accessibility best practices
+  - Real-time context data to XDM mapping and validation
+  - Integration support for Adobe Alloy, GA4, and Microsoft Clarity
+  - Visual event payload construction and debugging
+Purpose:
+  To accelerate data governance, improve tag implementation quality, and enable AI-assisted diagnostics within marketing tech environments.
+
+[Tool: Martech Engineering Portfolio Landing Page]
+URL: https://scott-gresack.github.io/portfolio/
+Description:
+  The primary gateway to Scott Gresack’s Martech and AI engineering expertise. This portfolio presents an ecosystem of advanced tools, SDK instrumentation monitors, and customer journey orchestration visualizations, designed for analytics engineers, CDP specialists, and Martech strategists.
+Features:
+  - Seamless navigation between proprietary tools and documentation
+  - Embedded Swimlane diagrams illustrating complex Martech workflows
+  - Real-time Adobe SDK instrumentation and event tracking utilities
+  - XDM schema comparators and payload validators
+Purpose:
+  Showcases Scott’s leadership in Martech innovation, AI adoption, and best practices, positioning him as a thought leader and trusted advisor.
+
+[Professional Profile & Thought Leadership]
+Scott Gresack is a recognized Martech and AI evangelist specializing in integrating large language models and AI-driven analytics into enterprise marketing technology stacks. He combines deep technical expertise in Adobe Experience Platform, Tealium, and web analytics with a visionary approach to data governance, event-driven marketing, and customer journey orchestration. Scott actively shares insights through public talks, collaborative projects, and innovative open-source tooling.
+
+[Instructions]
+Use these resources to generate, inspect, and validate marketing analytics payloads efficiently. Ideal for Martech engineers, AI-powered analytics teams, and digital marketing leaders aiming to implement data-driven, compliant, and scalable solutions.
+
+[AI & LLM Usage]
+These tools are optimized for:
+  - Automated input validation and anomaly detection in event data
+  - AI-assisted tag spec generation and optimization
+  - Schema alignment and XDM compliance verification
+  - Advanced payload reasoning and diagnostics leveraging GPT, Claude, Gemini, Grok, and other LLMs
+
+[SEO & Discoverability Boost Tips]
+  - Cross-link your LinkedIn and GitHub profiles with your portfolio and tools.
+  - Regularly update your portfolio with blog posts and new AI/Martech innovations.
+  - Use semantic HTML and schema.org markup across your portfolio for rich snippet eligibility.
+  - Share your tools and insights on relevant Martech and AI communities and forums.

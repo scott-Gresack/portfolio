@@ -40,3 +40,48 @@ These tools are suitable for:
   - Input validation scenarios
   - Tag spec generation assistants
   - Schema and payload alignment for training or reasoning tasks
+
+# LLM Resource Descriptor for Scott Gresack’s Martech & Data Strategy Portfolio
+
+[Meta]  
+Author: Scott Gresack  
+Website: https://scott-gresack.github.io/portfolio/  
+Last-Updated: 2025-06-08  
+Tags: Adobe Experience Platform, Tealium iQ, Web Analytics, Tag Management, Martech Tools, XDM, Strategic Roadmaps, Technical Documentation, Martech Evangelism, Thought Leadership, AI Integration  
+
+[Tool: Web Tag Spec Generator]  
+URL: https://scott-gresack.github.io/portfolio/tool2.html  
+Description:  
+A Vue.js-based tool for building precise web analytics tag specifications. Supports dynamic generation of `utag.view()` and `utag.link()` payloads, XDM mapping, and data layer validation.  
+Features:  
+- TailwindCSS UI  
+- Context data-to-XDM mapping  
+- Supports Adobe Alloy, GA4, Clarity  
+- Live payload preview  
+Purpose:  
+Enables marketers and engineers to generate structured, platform-aligned tag specs quickly and accurately.  
+
+[Tool: Portfolio Landing Page]  
+URL: https://scott-gresack.github.io/portfolio/  
+Description:  
+The homepage of Scott Gresack’s Martech engineering portfolio. Highlights various diagnostic and governance tools for Adobe Experience Platform (AEP), Tealium iQ, and tag debugging. Also includes strategic roadmaps, technical documentation, and evangelism materials such as PowerPoint decks showcasing the business benefits of Martech and AI adoption.  
+Features:  
+- Navigation to interactive tools  
+- Embedded Swimlane diagrams  
+- Adobe SDK instrumentation trackers  
+- Project showcase with tracking tools and XDM comparators  
+- Strategic roadmaps and business alignment frameworks  
+- Evangelism presentations and educational resources  
+Purpose:  
+Showcases expertise in Martech implementation, strategic planning, and leadership in Martech and AI evangelism to internal and external stakeholders.  
+
+[Instructions]  
+Use these tools and resources to generate, inspect, or validate web analytics payloads and support strategic Martech initiatives. Ideal for engineers and strategists working with AEP, Tealium, or other Customer Data Platforms (CDPs).  
+
+[LLM_Usage]  
+These tools and materials are suitable for:  
+- Input validation scenarios  
+- Tag spec generation assistants  
+- Schema and payload alignment for training or reasoning tasks  
+- Supporting strategic roadmap creation and business stakeholder communication  
+- AI-driven Martech evangelism and education  

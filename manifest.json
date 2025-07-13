@@ -1,0 +1,24 @@
+{
+    "name": "Scott Gresack Martech Portfolio",
+    "short_name": "ScottG Martech",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#003366",
+    "description": "Portfolio of Scott Gresack, Martech engineer and AI evangelist specializing in Adobe Experience Platform and web analytics tools.",
+    "icons": [
+      {
+        "src": "/icons/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "orientation": "portrait-primary",
+    "lang": "en-US",
+    "scope": "/"
+  }
