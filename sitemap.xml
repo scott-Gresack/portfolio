@@ -2,91 +2,97 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://scott-gresack.github.io/</loc>
-    <lastmod>2025-05-05</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/#about</loc>
-    <lastmod>2025-05-05</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/#contact</loc>
-    <lastmod>2025-05-05</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/#tools</loc>
-    <lastmod>2025-05-05</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/#xdm</loc>
-    <lastmod>2025-05-05</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/#diagrams</loc>
-    <lastmod>2025-05-05</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://scott-gresack.github.io/#lab-notes</loc>
+    <lastmod>2025-07-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://scott-gresack.github.io/umap-comparator.html</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/xdm_comparator.html</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/tool2.html</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/mobile_updates</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/tag_generator.html</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/parse_tool</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/LLM.txt</loc>
-    <lastmod>2025-06-08</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/67743f77e33b42e593870b6418f3432a.txt</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://scott-gresack.github.io/portfolio/mobile_updates</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

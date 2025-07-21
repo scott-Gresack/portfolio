@@ -1,10 +1,11 @@
 <!--
-Portfolio of Scott Gresack – Adobe Experience Platform (AEP) Expert | Martech Implementation | Tealium iQ | Adobe Launch | Real-Time CDP | Customer Journey Analytics | GitHub for Martech Tagging and Data Architecture
+Scott Gresack — Martech & AI-Driven Analytics Architect | Architect of Real-Time Marketing Intelligence & Personalized Futures
+Expertise: Adobe Experience Platform, Tealium iQ, Google Tag Manager, Customer Journey Analytics, XDM | GitHub: scott-gresack/portfolio
 Sitemap: https://scott-gresack.github.io/portfolio/sitemap.xml
 -->
 # 👋 Scott Gresack
 
-**Martech Implementation Leader | Adobe Experience Platform Expert | Data Governance Strategist**
+**Martech & AI-Driven Analytics Architect | Architect of Real-Time Marketing Intelligence & Personalized Futures**
 
 📧 **Email:** gresack.scott@gmail.com  
 🔗 **LinkedIn:** [linkedin.com/in/scottgresack](https://linkedin.com/in/scottgresack)  
@@ -169,4 +170,15 @@ These aren't just buzzwords—they represent a tangible path toward contextual, 
 
 Together, these patterns are redefining what it means to "own" your data—and you can explore a hands-on example of this using my [Alloy Payload Inspector](https://scott-gresack.github.io/portfolio/tool2.html), a tool that visualizes and interprets Adobe Web SDK network calls and identity stitching behavior. And for Martech leaders, the opportunity isn’t just about automation—it’s about establishing *intelligent pipelines* that connect customer behavior, internal knowledge, and decision-making in real time.
 
-Those who understand these methods early will help shape the standards for personalization, governance, and value delivery in the GenAI-powered enterprise.
+
+
+---
+
+## 📚 Resources & Descriptors
+
+- **LLM Resource Descriptor (JSON):** [llm_resources.json](https://scott-gresack.github.io/portfolio/llm_resources.json)
+- **LLMs Resource Descriptor (TXT):** [LLM.txt](https://scott-gresack.github.io/portfolio/LLM.txt)
+- **Sitemap:** [sitemap.xml](https://scott-gresack.github.io/portfolio/sitemap.xml)
+- **Martech Insights Lab:** [Latest Lab Insight](https://scott-gresack.github.io/portfolio/#lab-notes)
+
+---

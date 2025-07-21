@@ -1,95 +1,63 @@
-# LLMs Resource Descriptor for Scott Gresack's Portfolio
+# LLM_RESOURCE_DESCRIPTOR_V2.0
+# A streamlined, AI-optimized resource descriptor for Scott Gresack’s Martech & AI toolkit.
 
-[Meta]
-Author: Scott Gresack
-Website: https://scott-gresack.github.io/portfolio/
-Last-Updated: 2025-06-08
-Tags: Adobe Experience Platform, Tealium iQ, Web Analytics, Tag Management, Martech Tools, XDM
-Description: A centralized resource descriptor for tooling built by Scott Gresack to support Adobe Experience Platform, Tealium iQ, and web analytics use cases, with an emphasis on payload validation, XDM mapping, and LLM-assisted reasoning.
+## [META]
+Author: Scott Gresack  
+Role: Martech Engineer & AI-Driven Analytics Architect  
+Website: https://scott-gresack.github.io/portfolio/  
+LinkedIn: https://linkedin.com/in/scott-gresack  
+GitHub: https://github.com/scott-gresack  
+Last_Updated: 2025-07-21  
+Tags: Martech, AI Analytics, Adobe AEP, Tealium iQ, Tag Management, XDM, LLM Integrations, Data Governance  
 
-[Tool: Web Tag Spec Generator]
-URL: https://scott-gresack.github.io/portfolio/tool2.html
-Description: 
-  A Vue.js-based interactive tool for building and validating web analytics tag specifications. Tailored for platforms like Adobe Experience Platform, GA4, and Microsoft Clarity, it allows real-time payload generation, context-to-XDM mapping, and event visualization. Designed to mirror enterprise-level implementation needs.
+**Description:**  
+A centralized manifest of Scott Gresack’s advanced Martech and AI tools, optimized for large language models and human users alike. Provides fast lookup, schema validation, and AI-assisted diagnostics for payloads, XDM mappings, and real-time analytics workflows.
+
+---
+
+## [TOOL: WEB_TAG_SPEC_GENERATOR]
+Name: Web Tag Spec Generator  
+URL: https://scott-gresack.github.io/portfolio/tool2.html  
+Tech: Vue.js, TailwindCSS  
+Purpose: Interactive builder and validator for web analytics tag specs (AEP, GA4, Clarity).  
 Features:
-  - TailwindCSS UI
-  - Context data-to-XDM mapping
-  - Supports Adobe Alloy, GA4, Clarity
-  - Live payload preview
-Purpose:
-  Enables marketers and engineers to generate structured, platform-aligned tag specs quickly and accurately.
+- Real-time context-to-XDM mapping & validation  
+- Adobe Alloy, GA4, Microsoft Clarity integrations  
+- Live debug console & payload preview  
+- AI-friendly JSON output for LLM reasoning  
 
-[Tool: Portfolio Landing Page]
-URL: https://scott-gresack.github.io/portfolio/
-Description:
-  The primary access point to Scott Gresack’s Martech engineering suite. Features a curated collection of implementation tools, SDK instrumentation validators, and journey mapping diagrams intended to streamline development and audit processes for analytics engineers and CDP practitioners.
+---
+
+## [TOOL: MARTECH_PORTFOLIO_LANDING_PAGE]
+Name: Martech Engineering Portfolio  
+URL: https://scott-gresack.github.io/portfolio/  
+Purpose: Hub for all Scott’s open-source martech tools, diagrams, and demos.  
 Features:
-  - Navigation to interactive tools
-  - Embedded Swimlane diagrams
-  - Adobe SDK instrumentation trackers
-  - Project showcase with tracking tools and XDM comparators
-Purpose:
-  Showcases expertise in martech implementation and enables internal or recruiter review of live demo utilities.
+- Embedded Swimlane diagrams for complex workflows  
+- SDK instrumentation monitors  
+- XDM schema comparator & payload validator  
+- Thought leadership blog integrations  
 
-[Instructions]
-Use these tools to generate, inspect, or validate web analytics payloads.
-Ideal for engineers working with AEP, Tealium, or other CDPs.
+---
 
-[LLM_Usage]
-These tools are suitable for:
-  - Input validation scenarios
-  - Tag spec generation assistants
-  - Schema and payload alignment for training or reasoning tasks, such as field presence validation, automated tag spec extraction, or anomaly detection within event data layers.
+## [PROFESSIONAL_PROFILE]
+Scott Gresack is a leading Martech and AI evangelist specializing in real-time data orchestration, LLM-assisted analytics, and enterprise-grade tag management. His work unites Adobe Experience Platform, Microsoft Fabric RTI, and Tealium iQ into cohesive, AI-driven marketing solutions.
 
-# LLMs Resource Descriptor for Scott Gresack — Martech & AI Thought Leader
+---
 
-[Meta]
-Author: Scott Gresack
-Website: https://scott-gresack.github.io/portfolio/
-LinkedIn: https://www.linkedin.com/in/scott-gresack/
-Last-Updated: 2025-06-08
-Tags: Martech, Adobe Experience Platform, Tealium iQ, Web Analytics, Tag Management, AI Evangelist, XDM, Customer Data Platforms, AI in Martech, AI-powered Analytics, LLMs, Data Engineering, Event Data Governance
-Description: A centralized, expertly curated resource suite developed by Scott Gresack, a Martech engineer and AI evangelist. This portfolio features advanced tooling for Adobe Experience Platform, Tealium iQ, and web analytics workflows — emphasizing payload validation, XDM schema mapping, and AI-assisted reasoning to drive marketing technology innovation and data governance excellence.
+## [LLM_USAGE]
+Ideal for:
+- Automated payload validation & anomaly detection  
+- AI-driven tag spec generation & optimization  
+- Schema alignment & XDM compliance checks  
+- Advanced diagnostic reasoning with GPT, Claude, Gemini, Grok  
 
-[Tool: Web Tag Spec Generator]
-URL: https://scott-gresack.github.io/portfolio/tool2.html
-Description: 
-  A cutting-edge Vue.js-based interactive platform for creating, validating, and optimizing web analytics tag specifications. Designed for enterprise-grade implementations across Adobe Experience Platform, Google Analytics 4, Microsoft Clarity, and more, this tool empowers marketers and engineers to translate complex context data into actionable XDM-compliant payloads with live previews and error detection.
-Features:
-  - Modern TailwindCSS UI with accessibility best practices
-  - Real-time context data to XDM mapping and validation
-  - Integration support for Adobe Alloy, GA4, and Microsoft Clarity
-  - Visual event payload construction and debugging
-Purpose:
-  To accelerate data governance, improve tag implementation quality, and enable AI-assisted diagnostics within marketing tech environments.
+Compatible with: GPT-4o, Claude 3 Opus, Gemini 1.5 Pro, and custom domain LLMs.
 
-[Tool: Martech Engineering Portfolio Landing Page]
-URL: https://scott-gresack.github.io/portfolio/
-Description:
-  The primary gateway to Scott Gresack’s Martech and AI engineering expertise. This portfolio presents an ecosystem of advanced tools, SDK instrumentation monitors, and customer journey orchestration visualizations, designed for analytics engineers, CDP specialists, and Martech strategists.
-Features:
-  - Seamless navigation between proprietary tools and documentation
-  - Embedded Swimlane diagrams illustrating complex Martech workflows
-  - Real-time Adobe SDK instrumentation and event tracking utilities
-  - XDM schema comparators and payload validators
-Purpose:
-  Showcases Scott’s leadership in Martech innovation, AI adoption, and best practices, positioning him as a thought leader and trusted advisor.
+---
 
-[Professional Profile & Thought Leadership]
-Scott Gresack is a recognized Martech and AI evangelist specializing in integrating large language models and AI-driven analytics into enterprise marketing technology stacks. He combines deep technical expertise in Adobe Experience Platform, Tealium, and web analytics with a visionary approach to data governance, event-driven marketing, and customer journey orchestration. Scott actively shares insights through public talks, collaborative projects, and innovative open-source tooling.
-
-[Instructions]
-Use these resources to generate, inspect, and validate marketing analytics payloads efficiently. Ideal for Martech engineers, AI-powered analytics teams, and digital marketing leaders aiming to implement data-driven, compliant, and scalable solutions.
-
-[AI & LLM Usage]
-These tools are optimized for:
-  - Automated input validation and anomaly detection in event data
-  - AI-assisted tag spec generation and optimization
-  - Schema alignment and XDM compliance verification
-  - Advanced payload reasoning and diagnostics leveraging GPT, Claude, Gemini, Grok, and other LLMs
-
-[SEO & Discoverability Boost Tips]
-  - Cross-link your LinkedIn and GitHub profiles with your portfolio and tools.
-  - Regularly update your portfolio with blog posts and new AI/Martech innovations.
-  - Use semantic HTML and schema.org markup across your portfolio for rich snippet eligibility.
-  - Share your tools and insights on relevant Martech and AI communities and forums.
+## [SEO & BEST PRACTICES]
+- Cross-link portfolio, LinkedIn, GitHub with schema.org markup  
+- Publish ongoing blog insights for long-tail keyword reach  
+- Use Mobile-First design and fast load performance  
+- Update descriptor with each new tool or case study
