@@ -1,811 +1,373 @@
-
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Refined Meta Description for SEO -->
-  <link rel="icon" type="image/png" href="favicon.png">
-  <meta name="description" content="Scott Gresack: The Architect of Real-Time Marketing Intelligence. Unifying Adobe AEP, Fabric RTI, and personalization to build unforgettable customer journeys.">
-  <!-- More comprehensive Keywords for SEO -->
-  <meta name="keywords" content="Real-Time Intelligence, Adobe AEP, Microsoft Fabric, FDE, Customer Data Platforms, Personalization, Martech, Scott Gresack Portfolio, Identity Resolution, Experience Orchestration, Server-side Tagging, AI UX, GTM Mobile">
-  <!-- AI-Powered Martech Copy Update -->
-  <meta property="og:title" content="Scott Gresack | AEP Rockstar & AI-Powered Martech Architect">
-  <meta property="og:description" content="Elevate your Martech stack with Scott Gresack’s Adobe AEP expertise, AI-fueled personalization, and high-performance data collection strategies.">
-  <meta name="twitter:title" content="Scott Gresack | AI Martech Architect for Web + Mobile">
-  <meta name="twitter:description" content="Fueling real-time personalization and AI-powered analytics across Adobe, Fabric, and Tealium ecosystems.">
-
-  <!-- AI Branding Keywords -->
-  <meta name="keywords" content="AI Martech, Personalization at Scale, Adobe AEP, RTCDP, Identity Graphs, Edge AI, Tagging Strategy, Web Performance, Mobile SDK, AI Analytics, XDM, Consent Management, Scott Gresack, Martech Copywriting, AI UX Optimization">
-  <meta name="geo.placename" content="Baltimore, Maryland">
-  <meta name="author" content="Scott Gresack">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/">
-
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="preconnect" href="https://us.i.posthog.com">
-
-  <link rel="sitemap" type="application/xml" href="https://scott-gresack.github.io/portfolio/sitemap.xml">
-
-  <!-- Open Graph - Added alt text for image -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/">
-  <meta property="og:title" content="Scott Gresack | Martech Engineer & Adobe AEP Specialist">
-  <meta property="og:description" content="Expert Martech Engineer crafting Adobe AEP and CDP solutions for seamless identity stitching, privacy-first personalization, and real-time customer experiences.">
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
-  <meta property="og:image:alt" content="Scott Gresack Adobe AEP portfolio preview showing Martech architecture diagram">
-
-  <!-- Twitter Card - Added alt text for image -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Scott Gresack | Expert in Adobe AEP & Martech Solutions">
-  <meta name="twitter:description" content="Transform your digital strategy with Scott Gresack’s Adobe AEP expertise, tag management, and real-time personalization solutions.">
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
-  <meta name="twitter:image:alt" content="Scott Gresack Adobe AEP portfolio preview showing Martech architecture diagram">
-
-  <!-- Schema.org: Person & Blog Posts - Corrected blog post URLs to target content sections -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "name": "Scott Gresack",
-        "url": "https://scott-gresack.github.io/portfolio/",
-        "sameAs": ["https://www.linkedin.com/in/scottgresack/"],
-        "jobTitle": "Martech Engineer | AEP & CDP Specialist",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "CVS Health"
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scott Gresack - Martech Engineer specializing in real-time customer data platforms, AI-powered personalization, and privacy-compliant data engineering.">
+    <title>Scott Gresack - Martech Engineer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1E3A8A; /* Navy Blue */
+            --secondary-color: #2DD4BF; /* Teal */
+            --text-color: #1F2937; /* Dark Gray */
+            --bg-color: #F3F4F6; /* Soft Gray */
+            --footer-bg: #E5E7EB; /* Slightly Darker Gray */
         }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "Real-Time Intelligence + AEP: A Smarter Martech Stack",
-        "description": "Learn how to integrate Microsoft Fabric RTI and MCP with Adobe Experience Platform to enable real-time customer intelligence and data-driven marketing orchestration.",
-        "author": {
-          "@type": "Person",
-          "name": "Scott Gresack"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Scott Gresack Portfolio",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://scott-gresack.github.io/portfolio/assets/preview-image.png"
-          }
-        },
-        "datePublished": "2025-07-07",
-        "url": "https://scott-gresack.github.io/portfolio/#blog1-content"
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "Palantir, AEP, Fabric & the Rise of Forward Deployed Engineering (FDE)",
-        "description": "Explore the rise of Forward Deployed Engineering (FDE) combining Microsoft Fabric, Adobe Experience Platform, and Palantir methodologies.",
-        "author": {
-          "@type": "Person",
-          "name": "Scott Gresack"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Scott Gresack Portfolio",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://scott-gresack.github.io/portfolio/assets/preview-image.png"
-          }
-        },
-        "datePublished": "2025-07-07",
-        "url": "https://scott-gresack.github.io/portfolio/#blog2-content"
-      }
-    ]
-  }
-  </script>
-
-  <meta name="article:published_time" content="2025-07-07T08:00:00-04:00">
-
-  <link rel="alternate" type="application/rss+xml" title="Scott Gresack Blog Feed" href="https://scott-gresack.github.io/portfolio/feed.xml">
-
-  <!-- Fonts and Styles - Updated font weights, added new styles for hero and animations -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      /* Subtle gradient background for overall page */
-      background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
-      margin: 0;
-      color: #1e293b;
-    }
-    /* Active navigation link styling */
-    .nav-link:hover, .nav-link[aria-current="page"] {
-      color: #7c3aed; /* Deeper purple for active/hover */
-      border-bottom: 2px solid #7c3aed;
-      transition: all 0.3s ease-in-out;
-    }
-    /* Dropdown menu animations */
-    .dropdown:hover .dropdown-menu {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .dropdown-menu {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    /* CTA button hover effects */
-    .cta-button {
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    }
-    .cta-button:hover {
-      transform: translateY(-3px); /* Lift effect */
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow */
-    }
-    /* Hero section specific styling */
-    .hero-section {
-      background: linear-gradient(to right, #4f46e5, #7c3aed); /* Gradient background */
-      position: relative;
-      overflow: hidden; /* Ensures pattern stays within bounds */
-      color: #fff; /* Text color for hero */
-    }
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      /* Placeholder for a subtle background pattern */
-      background: url('https://placehold.co/100x100/ffffff/000000?text=Pattern') repeat; /* Replace with actual pattern if desired */
-      opacity: 0.05; /* Very subtle */
-      z-index: 0;
-    }
-    /* Blog card hover effects */
-    .blog-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .blog-card:hover {
-      transform: translateY(-5px); /* More pronounced lift */
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow */
-    }
-    /* Back to Top button animation */
-    .back-to-top {
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .back-to-top.hidden {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    /* Fade-in-up animation for sections */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .animate-fade-in-up {
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-  </style>
-
-  <!-- Analytics - Consolidated and cleaned gtag config -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    // Primary GA4 config
-    gtag('config', 'G-Y8617TLMYK', {
-      anonymize_ip: true,
-      page_path: window.location.pathname
-    });
-    // Secondary GA4 config (if GT-MQBSZT8H is also a GA4 property, otherwise remove this line)
-    gtag('config', 'GT-MQBSZT8H');
-  </script>
-  <script>
-    !function(t,e){
-      var o,n,p,r;
-      if (!e.__SV) {
-        window.posthog = e;
-        e._i = [];
-        e.init = function(i,s,a){
-          function g(t,e){
-            var o=e.split(".");
-            2==o.length && (t=t[o[0]], e=o[1]);
-            t[e] = function(){ t.push([e].concat(Array.prototype.slice.call(arguments,0))) };
-          }
-          p = t.createElement("script");
-          p.type = "text/javascript";
-          p.async = !0;
-          p.src = s.api_host + "/static/array.js";
-          r = t.getElementsByTagName("script")[0];
-          r.parentNode.insertBefore(p,r);
-          var u = e;
-          void 0 !== a ? u = e[a] = [] : a = "posthog";
-          u.people = u.people || [];
-          u.toString = function(t){
-            var e = "posthog";
-            return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e;
-          };
-          u.people.toString = function(){ return u.toString(1) + ".people (stub)" };
-          o = "init capture identify".split(" ");
-          for (n = 0; n < o.length; n++) g(u, o[n]);
-          e._i.push([i, s, a]);
-        };
-        e.__SV = 1;
-      }
-    }(document, window.posthog || []);
-    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
-      api_host: 'https://us.i.posthog.com',
-      autocapture: true,
-      capture_pageview: true
-    });
-  </script>
-  <script defer>
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "pmp4efispy");
-  </script>
-
-  <!-- Updated Title for better SEO and clarity -->
-  <title>Scott Gresack – Martech Engineer | Adobe AEP + Microsoft Fabric RTI Integration Specialist</title>
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(16px, 2.5vw, 18px);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+        }
+        .blog-card, .cta-button {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .blog-card:hover, .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .blog-card {
+            width: 100%;
+            max-width: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 24px;
+        }
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(30, 58, 138, 0.7);
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            background: #D1D5DB;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .carousel-dot.active {
+            background: var(--secondary-color);
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            display: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
-  <div id="app" class="min-h-screen flex flex-col">
-    <!-- Header -->
-    <header class="bg-white shadow sticky top-0 z-50">
-      <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div class="text-xl font-bold text-gray-900 tracking-tight">Scott Gresack</div>
-        <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
-          <!-- Nav Links with hover and active states -->
-          <a href="#about" class="nav-link px-2 py-1 hover:scale-105" aria-current="page">About</a>
-          <a href="#tools" class="nav-link px-2 py-1 hover:scale-105">Tools</a>
-          <a href="#fabric-mcp" class="nav-link px-2 py-1 hover:scale-105">Blog</a>
-          <a href="#contact" class="nav-link px-2 py-1 text-purple-600 hover:text-purple-800 hover:scale-105">Contact</a>
-          <!-- Dropdown for Resources -->
-          <div class="relative dropdown">
-            <button class="nav-link px-2 py-1 flex items-center" aria-haspopup="true" aria-expanded="false">Resources <span class="ml-1 text-xs">▼</span></button>
-            <div class="dropdown-menu hidden absolute mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-1">
-              <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-purple-50 text-gray-800">Alloy Inspector</a>
-              <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-purple-50 text-gray-800">Tag Spec Generator</a>
-              <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-purple-50 text-gray-800">XDM Comparator</a>
-              <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 hover:bg-purple-50 text-gray-800">Mobile Updates</a>
+<body class="antialiased">
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-900">Scott Gresack</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-600 hover:text-teal-500">About</a>
+                <a href="#tools" class="text-gray-600 hover:text-teal-500">Tools</a>
+                <a href="#blog" class="text-gray-600 hover:text-teal-500">Blog</a>
+                <a href="#contact" class="text-gray-600 hover:text-teal-500">Contact</a>
+                <div class="relative group">
+                    <button class="text-gray-600 hover:text-teal-500 flex items-center">
+                        Resources
+                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2">
+                        <a href="#alloy-inspector" class="block px-4 py-2 text-gray-600 hover:bg-teal-50">Alloy Inspector</a>
+                        <a href="#tag-spec" class="block px-4 py-2 text-gray-600 hover:bg-teal-50">Tag Spec Generator</a>
+                        <a href="#xdm-comparator" class="block px-4 py-2 text-gray-600 hover:bg-teal-50">XDM Comparator</a>
+                        <a href="#mobile-updates" class="block px-4 py-2 text-gray-600 hover:bg-teal-50">Mobile Updates</a>
+                    </div>
+                </div>
             </div>
-          </div>
+            <button id="mobile-nav-toggle" class="md:hidden text-gray-600 hover:text-teal-500 focus:outline-none" aria-label="Toggle navigation menu" aria-expanded="false">
+                <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-nav" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#about" class="block text-gray-600 hover:text-teal-500">About</a>
+                <a href="#tools" class="block text-gray-600 hover:text-teal-500">Tools</a>
+                <a href="#blog" class="block text-gray-600 hover:text-teal-500">Blog</a>
+                <a href="#contact" class="block text-gray-600 hover:text-teal-500">Contact</a>
+                <a href="#alloy-inspector" class="block text-gray-600 hover:text-teal-500">Alloy Inspector</a>
+                <a href="#tag-spec" class="block text-gray-600 hover:text-teal-500">Tag Spec Generator</a>
+                <a href="#xdm-comparator" class="block text-gray-600 hover:text-teal-500">XDM Comparator</a>
+                <a href="#mobile-updates" class="block text-gray-600 hover:text-teal-500">Mobile Updates</a>
+            </div>
         </div>
-        <!-- Mobile Navigation Toggle -->
-        <button class="md:hidden text-purple-600 focus:outline-none" aria-label="Toggle navigation" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
-      </nav>
-      <!-- Mobile Navigation Menu -->
-      <div id="mobile-nav" class="hidden md:hidden bg-white border-t shadow-md">
-        <a href="#about" class="block px-4 py-2 text-sm hover:bg-purple-50">About</a>
-        <a href="#tools" class="block px-4 py-2 text-sm hover:bg-purple-50">Tools</a>
-        <a href="#fabric-mcp" class="block px-4 py-2 text-sm hover:bg-purple-50">Blog</a>
-        <a href="#contact" class="block px-4 py-2 text-sm text-purple-600 hover:bg-purple-50">Contact</a>
-        <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm hover:bg-purple-50">Alloy Inspector</a>
-        <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm hover:bg-purple-50">Tag Spec Generator</a>
-        <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm hover:bg-purple-50">XDM Comparator</a>
-        <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=nav&utm_campaign=tools" class="block px-4 py-2 text-sm hover:bg-purple-50">Mobile Updates</a>
-      </div>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-8">
-      <!-- Hero Section - Enhanced with new text and styling -->
-      <section class="hero-section py-16 md:py-24 rounded-xl text-white relative shadow-lg">
-        <div class="max-w-5xl mx-auto px-4 text-center z-10 relative animate-fade-in-up">
-          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Scott Gresack: The Architect of Real-Time Marketing Intelligence & Personalized Futures</h1>
-          <p class="text-lg md:text-2xl mb-8 opacity-90">Transforming Data into Unforgettable Customer Journeys with Adobe AEP, Microsoft Fabric, and Forward Deployed Engineering.</p>
-          <a href="#contact" class="cta-button inline-block bg-white text-purple-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-purple-100 hover:text-purple-800">Unify Your Data & Propel Your Brand</a>
-        </div>
-      </section>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+        <section id="hero" class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Scott Gresack: The Architect of Real-Time Marketing Intelligence & Personalized Futures</h1>
+            <p class="text-xl text-gray-600 mb-6">Transforming Data into Unforgettable Customer Journeys with Adobe AEP, Microsoft Fabric, and Forward Deployed Engineering.</p>
+            <a href="#contact" class="cta-button inline-block bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-400">Unify Your Data & Propel Your Brand</a>
+        </section>
 
-      <section class="py-20 bg-gradient-to-r from-purple-50 to-yellow-50 text-gray-900 text-center rounded-xl shadow-inner animate-fade-in-up">
-        <div class="max-w-5xl mx-auto px-4">
-          <h2 class="text-3xl md:text-4xl font-extrabold mb-6 tracking-tight">⚡ Where Martech Meets Machine Learning</h2>
-          <p class="text-lg md:text-xl mb-6 max-w-3xl mx-auto">
-            Your data stack deserves more than dashboards. It deserves intelligence.
-            I help enterprise brands weaponize <span class="font-semibold text-purple-600">AI + identity graphs</span> to drive personalization that converts — in milliseconds.
-          </p>
-          <p class="text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
-            From Adobe AEP to Firebase to Fabric, my tools bridge signal to strategy — in real time. Whether you’re optimizing <strong>healthcare experiences</strong> or <strong>consumer loyalty apps</strong>, I bring the AI muscle your Martech needs.
-          </p>
-          <a href="#contact" class="mt-8 inline-block bg-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-purple-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">Let’s Architect the Future</a>
-        </div>
-      </section>
+        <section id="intro">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">⚡ Where Martech Meets Machine Learning</h2>
+            <p class="text-lg text-gray-600 mb-4">Your data stack deserves more than dashboards. It deserves intelligence. I help enterprise brands weaponize AI + identity graphs to drive personalization that converts — in milliseconds.</p>
+            <p class="text-lg text-gray-600 mb-6">From Adobe AEP to Firebase to Fabric, my tools bridge signal to strategy — in real time. Whether you’re optimizing healthcare experiences or consumer loyalty apps, I bring the AI muscle your Martech needs.</p>
+            <a href="#contact" class="cta-button inline-block bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-400">Let’s Architect the Future</a>
+        </section>
 
-      <div class="my-16 border-t border-gray-200"></div> <!-- Separator -->
+        <section id="about">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Meet Scott Gresack</h2>
+            <p class="text-lg text-gray-600 mb-6">As a Martech Engineer at CVS Health, I architect real-time customer data platforms (CDPs), enable advanced identity resolution, and deliver AI-powered personalization at scale. My expertise includes Adobe AEP (Adobe Experience Platform), Microsoft Fabric RTI, server-side tagging, and Forward Deployed Engineering (FDE)—empowering enterprise brands to unify customer journeys, achieve GDPR and HIPAA compliance, and activate their data with confidence.</p>
+            <ul class="space-y-4 text-lg text-gray-600">
+                <li class="flex items-start"><svg class="w-6 h-6 text-blue-900 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Unified Customer Profiles: Resolving identities across ECID, hashed emails, and first-party IDs for a 360° customer view.</li>
+                <li class="flex items-start"><svg class="w-6 h-6 text-blue-900 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>High-Performance Tagging: Architecting robust, privacy-centric server-side and mobile data collection for analytics and marketing activation.</li>
+                <li class="flex items-start"><svg class="w-6 h-6 text-blue-900 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Scalable Tag Management: Building modern, future-proof architectures with Tealium iQ and Adobe Launch to support dynamic business needs.</li>
+                <li class="flex items-start"><svg class="w-6 h-6 text-blue-900 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Compliance-First Data Engineering: Delivering GDPR- and HIPAA-compliant pipelines—privacy is built-in, not bolted on.</li>
+                <li class="flex items-start"><svg class="w-6 h-6 text-blue-900 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Data-Driven Experimentation: Powering real-time A/B testing and analytics, enabling continuous optimization across channels.</li>
+            </ul>
+            <p class="text-lg text-gray-600 mt-6">Based in Baltimore and collaborating globally, I combine technical precision with strategic business insight—helping organizations scale, comply, and outperform in the era of AI-powered Martech.</p>
+            <a href="#contact" class="cta-button inline-block bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-400 mt-4">Connect with Scott</a>
+        </section>
 
-      <section id="about" class="py-16">
-        <div class="max-w-4xl mx-auto px-4 animate-fade-in-up">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Meet Scott Gresack</h2>
-          <p class="text-gray-700 mb-6 text-lg">
-            As a Martech Engineer at CVS Health, I design cutting-edge solutions that unify data, enhance personalization, and ensure compliance. My expertise delivers:
-          </p>
-          <ul class="list-none pl-0 space-y-4 text-gray-700">
-            <li class="flex items-start">
-              <svg class="w-6 h-6 text-purple-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              <span><strong>Unified Customer Profiles:</strong> Seamless identity resolution with ECID and first-party IDs.</span>
-            </li>
-            <li class="flex items-start">
-              <svg class="w-6 h-6 text-purple-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              <span><strong>High-Performance Tagging:</strong> Server-side solutions for speed and privacy.</span>
-            </li>
-            <li class="flex items-start">
-              <svg class="w-6 h-6 text-purple-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              <span><strong>Scalable Tag Management:</strong> Robust architectures with Tealium iQ and Adobe Launch.</span>
-            </li>
-            <li class="flex items-start">
-              <svg class="w-6 h-6 text-purple-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              <span><strong>Compliance-First:</strong> GDPR and HIPAA-compliant data pipelines.</span>
-            </li>
-            <li class="flex items-start">
-              <svg class="w-6 h-6 text-purple-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              <span><strong>Data-Driven Experimentation:</strong> Real-time A/B testing and analytics.</span>
-            </li>
-          </ul>
-          <p class="mt-6 text-gray-700 text-lg">
-            Based in Baltimore, I combine technical precision with strategic insight to deliver open-source-friendly solutions that scale globally.
-          </p>
-          <a href="#contact" class="cta-button inline-block mt-6 bg-purple-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-purple-700">Connect with Scott</a>
-        </div>
-      </section>
-
-      <div class="my-16 border-t border-gray-200"></div> <!-- Separator -->
-
-      <!-- Tools Section - Enhanced content and hover effects -->
-      <section id="tools" class="py-16 bg-gray-50 rounded-xl shadow-inner">
-        <div class="max-w-4xl mx-auto px-4 animate-fade-in-up">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">Martech Toolkit 🛠️</h2>
-          <p class="text-gray-700 mb-8 text-lg text-center max-w-2xl mx-auto">Explore my open-source tools designed to streamline workflows, enhance data governance, and supercharge decision-making.</p>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-              <h3 class="text-xl font-semibold mb-2">
-                <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-purple-600 hover:underline">Alloy Payload Inspector</a>
-              </h3>
-              <p class="mt-2 text-gray-600 text-base">
-                Frustrated by complex Adobe Web SDK debugging? My Alloy Payload Inspector slashes troubleshooting time by 50%, ensuring flawless data capture for your campaigns.
-              </p>
-            </div>
-            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-              <h3 class="text-xl font-semibold mb-2">
-                <a href="https://scott-gresack.github.io/portfolio/tag_generator.html?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-purple-600 hover:underline">Tag Spec Generator</a>
-              </h3>
-              <p class="mt-2 text-gray-600 text-base">Automate <code>utag.view()</code>/<code>utag.link()</code> specs with XDM mapping for Adobe Analytics.</p>
-            </div>
-            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-              <h3 class="text-xl font-semibold mb-2">
-                <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-purple-600 hover:underline">Mobile Tracking Validator</a>
-              </h3>
-              <p class="mt-2 text-gray-600 text-base">Validate iOS/Android lifecycle events with AEP Mobile SDK for precise tracking.</p>
-            </div>
-            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-              <h3 class="text-xl font-semibold mb-2">
-                <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=tools&utm_campaign=grid" class="text-purple-600 hover:underline">XDM Schema Comparator</a>
-              </h3>
-              <p class="mt-2 text-gray-600 text-base">Compare Adobe XDM schemas visually, ideal for migrations and maintaining robust data governance.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="my-16 border-t border-gray-200"></div> <!-- Separator -->
-
-      <!-- Blog Section with Carousel - Implemented a basic carousel with navigation -->
-      <section id="fabric-mcp" class="py-16">
-      <!-- Martech Insights Lab Section -->
-      <section id="lab-notes" class="py-16 bg-white text-center">
-        <div class="max-w-4xl mx-auto px-4 animate-fade-in-up">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">🔬 Martech Insights Lab</h2>
-          <p class="text-lg text-gray-700 mb-6">Explore forward-thinking insights, AI-powered strategies, and integration breakdowns — direct from the field. Your guide to building smarter experiences.</p>
-          <a href="https://scott-gresack.github.io/portfolio/#blog3-content" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-700">Read Latest Insight: GTM for Mobile</a>
-        </div>
-      </section>
-        <div class="max-w-4xl mx-auto px-4 animate-fade-in-up">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">Blog & Insights 🚀</h2>
-          <p class="text-gray-700 mb-8 text-lg text-center max-w-3xl mx-auto">
-            <strong>Business Impact:</strong> Discover how top organizations leverage Martech, real-time data, and AI to drive growth, efficiency, and compliance. Let’s unlock your data-driven transformation.
-          </p>
-          <div id="blog-carousel" class="relative">
-            <div class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4" style="scrollbar-width: none; -ms-overflow-style: none;">
-              <!-- Blog Card 1 -->
-              <div class="blog-card bg-white rounded-lg shadow-md p-6 min-w-[90%] sm:min-w-[48%] lg:min-w-[32%] mr-4 snap-center cursor-pointer hover:shadow-lg transition flex flex-col justify-between" onclick="toggleBlogContent('blog1')">
-                <div>
-                  <h3 class="text-xl font-semibold mb-2">Real-Time Intelligence + AEP: A Smarter Martech Stack</h3>
-                  <span class="inline-block bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">#AEP & #Fabric</span>
+        <section id="tools">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Martech Toolkit 🛠️</h2>
+            <p class="text-lg text-gray-600 mb-6">Explore my open-source tools designed to streamline workflows, enhance data governance, and supercharge decision-making.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="blog-card p-6 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Alloy Payload Inspector</h3>
+                    <p class="text-gray-600">Frustrated by complex Adobe Web SDK debugging? My Alloy Payload Inspector slashes troubleshooting time by 50%, ensuring flawless data capture for your campaigns.</p>
                 </div>
-                <p class="mt-4 text-sm text-gray-600">Discover how unifying real-time telemetry with marketing systems can transform customer experiences.</p>
-              </div>
-              <!-- Blog Card 2 -->
-              <div class="blog-card bg-white rounded-lg shadow-md p-6 min-w-[90%] sm:min-w-[48%] lg:min-w-[32%] mr-4 snap-center cursor-pointer hover:shadow-lg transition flex flex-col justify-between" onclick="toggleBlogContent('blog2')">
-                <div>
-                  <h3 class="text-xl font-semibold mb-2">Palantir, AEP, Fabric & the Rise of Forward Deployed Engineering</h3>
-                  <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">#FDE & #Platforms</span>
+                <div class="blog-card p-6 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Tag Spec Generator</h3>
+                    <p class="text-gray-600">Automate utag.view()/utag.link() specs with XDM mapping for Adobe Analytics.</p>
                 </div>
-                <p class="mt-4 text-sm text-gray-600">Explore how the FDE model is accelerating data-driven workflows in the martech and analytics space.</p>
-              </div>
-              <!-- Blog Card 3 -->
-              <div class="blog-card bg-white rounded-lg shadow-md p-6 min-w-[90%] sm:min-w-[48%] lg:min-w-[32%] mr-4 snap-center cursor-pointer hover:shadow-lg transition flex flex-col justify-between" onclick="toggleBlogContent('blog3')">
-                <div>
-                  <h3 class="text-xl font-semibold mb-2">Navigating GTM: Mobile vs. Web – Part 1</h3>
-                  <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">#GTM & #Mobile</span>
+                <div class="blog-card p-6 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Mobile Tracking Validator</h3>
+                    <p class="text-gray-600">Validate iOS/Android lifecycle events with AEP Mobile SDK for precise tracking.</p>
                 </div>
-                <p class="mt-4 text-sm text-gray-600">Understand the differences in Google Tag Manager implementation between mobile apps and web applications.</p>
-              </div>
+                <div class="blog-card p-6 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">XDM Schema Comparator</h3>
+                    <p class="text-gray-600">Compare Adobe XDM schemas visually, ideal for migrations and maintaining robust data governance.</p>
+                </div>
             </div>
-            <!-- Carousel Navigation Buttons -->
-            <button id="carousel-prev" class="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300" aria-label="Previous Blog">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-            </button>
-            <button id="carousel-next" class="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300" aria-label="Next Blog">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-            </button>
-          </div>
+        </section>
 
-          <!-- Blog Content: Hidden by default, displayed on click -->
-          <div id="blog1-content" class="hidden mt-8 animate-fade-in-up">
-            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
-              <button onclick="hideBlogContent('blog1')" class="float-right text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded-full p-1" aria-label="Close blog post">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-              </button>
-              <h3 class="text-2xl font-semibold text-gray-900 mb-4">Real-Time Intelligence + AEP: A Smarter Martech Stack</h3>
-              <p class="text-gray-600 mb-4 leading-relaxed">
-                <strong>What problem are we solving?</strong><br>
-                Enterprises need to act on signals as they happen—across operational systems and digital experiences. Siloed insights delay action and erode value. The challenge is unifying real-time telemetry with marketing systems like Adobe Experience Platform (AEP) for intelligent, responsive customer experiences.
-              </p>
-              <p class="text-gray-600 mb-4 leading-relaxed">
-                <strong>Enter Microsoft Fabric + MCP.</strong><br>
-                Microsoft’s MCP support for Fabric RTI enables AI agents to query real-time data from Eventhouse using natural language or structured requests—making signal discovery accessible and programmable.
-              </p>
-              <p class="text-gray-600 mb-4 leading-relaxed">
-                <strong>Why integrate with AEP?</strong><br>
-                Using AEP’s Edge Network + Event Forwarding, RTI-derived events (e.g., anomalies, process flags, or user classifications) enrich customer profiles, update segments in real-time, and trigger tools like Adobe Journey Optimizer or Analytics.
-              </p>
-              <ul class="list-disc pl-6 space-y-2 text-gray-600">
-                <li>🔁 Bi-directional signal flow: RTI fuels AEP audiences; AEP contextualizes RTI outputs.</li>
-                <li>⚙️ Compatible with AEPEdge and AEPEdgeBridge SDK flows.</li>
-                <li>🧠 Ideal for experimentation, security alerting, or experience tuning.</li>
-              </ul>
-              <p class="text-gray-600 mt-4 leading-relaxed">
-                Want to see a live diagram or discuss implementation? Reach out via <a href="#contact" class="underline hover:text-purple-600">contact</a> or check GitHub for starter templates.
-              </p>
+        <section id="blog">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">🔬 Martech Insights Lab</h2>
+            <p class="text-lg text-gray-600 mb-6">Explore forward-thinking insights, AI-powered strategies, and integration breakdowns — direct from the field. Your guide to building smarter experiences.</p>
+            <div id="blog-carousel" class="relative flex overflow-x-auto snap-x snap-mandatory scroll-smooth space-x-4">
+                <div class="blog-card flex-shrink-0 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Unified Mobile Data Flow: From Legacy to AEP Edge & Data Prep</h3>
+                    <p class="text-gray-600 mb-2">#AEP #Edge #DataPrep</p>
+                    <p class="text-lg text-gray-600 mb-4">How Modern Mobile Instrumentation Doubles Down on Value for Analytics and CDP</p>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">The Challenge: Mobile Analytics Before the Upgrade</h4>
+                    <p class="text-gray-600">For years, mobile apps using Adobe’s legacy AEPAnalytics SDK would track events with simple calls like MobileCore.trackState() or trackAction(). These events went directly to the Analytics report suite endpoint:</p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4">
+                        <li>One destination only: All telemetry enriched only Adobe Analytics.</li>
+                        <li>No Real-Time CDP or CJA: No profile-building or customer journey analytics.</li>
+                        <li>Legacy structure: Data was flat and not XDM-based.</li>
+                    </ul>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">The Modern Upgrade: Edge + Data Prep Mapping</h4>
+                    <p class="text-gray-600">Same Tracking Calls – More Powerful Outcomes:</p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4">
+                        <li>Your app still uses MobileCore.trackState() and trackAction().</li>
+                        <li>No code changes are needed to begin the upgrade—just a dependency and configuration update.</li>
+                    </ul>
+                    <p class="text-gray-600">Edge Datastream as the Hub:</p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4">
+                        <li>All events now flow to the AEP Edge Datastream endpoint.</li>
+                        <li>Data Prep runs on the Edge, mapping incoming event fields to your XDM schema.</li>
+                        <li>Field groups can be set up for Adobe Analytics, Real-Time CDP (AEP Profile), Customer Journey Analytics (CJA), or custom needs—all from the UI.</li>
+                        <li>No more code deploys for tagging or field updates—mapping logic is managed in the Datastream UI.</li>
+                    </ul>
+                    <p class="text-gray-600">Multi-Destination Enrichment:</p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4">
+                        <li>Adobe Analytics: Analytics hits are constructed from mapped XDM fields.</li>
+                        <li>Real-Time CDP: Enriched XDM data populates unified customer profiles, unlocking advanced segmentation and personalization.</li>
+                        <li>CJA: Events are streamed in real time for advanced journey and funnel analysis.</li>
+                    </ul>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Why It Matters: Engineering & Business Value</h4>
+                    <p class="text-gray-600">Implementation Value:</p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4">
+                        <li>No app code change required: Upgrade the SDK and update your Datastream—done!</li>
+                        <li>Tagging changes and field mapping happen centrally via Data Prep, reducing redeploy cycles.</li>
+                        <li>Compliance and consent are enforced in one place, streamlining audits and privacy controls.</li>
+                    </ul>
+                    <p class="text-gray-600">Business Value:</p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4">
+                        <li>Every app hit now powers Analytics, CDP, and CJA—simultaneously.</li>
+                        <li>Segmentation, personalization, and analytics happen in real time, right as the event is captured.</li>
+                        <li>Centralized logic enables more agile marketing, easier compliance, and future-proofed tech.</li>
+                    </ul>
+                    <a href="https://swimlanes.io/s/bAJa2dWMaP.png" target="_blank" class="text-teal-500 hover:underline">View the full interactive diagram on Swimlanes.io</a>
+                </div>
+                <div class="blog-card flex-shrink-0 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Real-Time Intelligence + AEP: A Smarter Martech Stack</h3>
+                    <p class="text-gray-600 mb-2">#AEP & #Fabric</p>
+                    <p class="text-lg text-gray-600 mb-4">Enterprises need to act on signals as they happen—across operational systems and digital experiences. Siloed insights delay action and erode value. The challenge is unifying real-time telemetry with marketing systems like Adobe Experience Platform (AEP) for intelligent, responsive customer experiences.</p>
+                    <p class="text-gray-600 mb-4">Microsoft’s MCP support for Fabric RTI enables AI agents to query real-time data from Eventhouse using natural language or structured requests—making signal discovery accessible and programmable.</p>
+                    <p class="text-gray-600 mb-4">Using AEP’s Edge Network + Event Forwarding, RTI-derived events (e.g., anomalies, process flags, or user classifications) enrich customer profiles, update segments in real-time, and trigger tools like Adobe Journey Optimizer or Analytics.</p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4">
+                        <li>🔁 Bi-directional signal flow: RTI fuels AEP audiences; AEP contextualizes RTI outputs.</li>
+                        <li>⚙️ Compatible with AEPEdge and AEPEdgeBridge SDK flows.</li>
+                        <li>🧠 Ideal for experimentation, security alerting, or experience tuning.</li>
+                    </ul>
+                    <p class="text-gray-600 mb-4">Want to see a live diagram or discuss implementation? Reach out via <a href="#contact" class="text-teal-500 hover:underline">contact</a> or check <a href="https://github.com/scott-gresack" target="_blank" class="text-teal-500 hover:underline">GitHub</a> for starter templates.</p>
+                </div>
+                <div class="blog-card flex-shrink-0 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Palantir, AEP, Fabric & the Rise of Forward Deployed Engineering</h3>
+                    <p class="text-gray-600 mb-2">#FDE & #Platforms</p>
+                    <p class="text-lg text-gray-600 mb-4">Forward Deployed Engineering (FDE), championed by Palantir, redefines enterprise software delivery. FDEs embed with client teams, rapidly building and deploying high-value solutions in production. Palantir’s DevCon events showcase this hands-on, production-first culture.</p>
+                    <p class="text-gray-600 mb-4">Combining Microsoft Fabric, Adobe AEP, and Palantir’s FDE methodology creates a blueprint for rapid, data-driven workflows. Move from whiteboard to customer-facing impact at unprecedented speed.</p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4">
+                        <li>Rapid Prototyping: Fabric and AEP enable fast testing and deployment of analytics or AI-powered experiences.</li>
+                        <li>Developer Enablement: Open-source communities accelerate knowledge sharing.</li>
+                        <li>Production-First: Iterate with live data and production-grade tools.</li>
+                    </ul>
+                    <p class="text-gray-600 mb-4">Curious how FDE can accelerate your martech transformation? Let’s connect at <a href="#contact" class="text-teal-500 hover:underline">contact</a> or discuss at the next DevCon or Adobe Summit.</p>
+                </div>
+                <div class="blog-card flex-shrink-0 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Navigating Google Tag Manager: Mobile Apps vs. Web Applications</h3>
+                    <p class="text-gray-600 mb-2">#GTM & #Mobile</p>
+                    <p class="text-lg text-gray-600 mb-4">As someone coming from the Adobe analytics world, transitioning to Google Tag Manager (GTM) for both web and mobile applications can feel like stepping into a new paradigm. While GTM offers powerful capabilities to manage tags and pixels without code changes, the implementation process for mobile apps (iOS and Android) differs significantly from web-based applications.</p>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">The Web vs. Mobile Paradigm: A Fundamental Shift</h4>
+                    <p class="text-gray-600 mb-4">In the web world, GTM implementation is straightforward. Developers inject a GTM snippet—a small piece of JavaScript—into the website’s <head> and <body> tags. Once embedded, the tag management system (TMS) professional has significant control.</p>
+                    <p class="text-gray-600 mb-4">Mobile apps, however, are a different beast.</p>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Implementation: Web vs. Mobile</h4>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4">
+                        <li>Web: Add the GTM snippet to the HTML. Tag updates happen in real time via the GTM interface.</li>
+                        <li>iOS: Add GTM via Swift Package Manager or CocoaPods, include the container file, and configure build settings in Xcode.</li>
+                        <li>Android: Use Gradle to add GTM dependencies, place the container in the assets folder, and initialize using Firebase.</li>
+                    </ul>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Testing Differences</h4>
+                    <p class="text-gray-600 mb-4">Web testing allows for real-time validation using browser tools. Mobile testing requires emulators/simulators, GTM preview URLs, and Firebase DebugView.</p>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Key Mobile Challenges</h4>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4">
+                        <li>Dependency management via SPM, CocoaPods, or Gradle</li>
+                        <li>Need for developer collaboration</li>
+                        <li>App store resubmission cycles and caching behavior</li>
+                    </ul>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Lessons from the Adobe World</h4>
+                    <p class="text-gray-600 mb-4">Coming from Adobe, I initially expected full control and quick wins. GTM mobile demands native build knowledge and collaboration. It’s a hybrid world of analytics and app development—and that’s okay.</p>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Tips for Success</h4>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4">
+                        <li>Collaborate early with developers</li>
+                        <li>Master Firebase logging APIs</li>
+                        <li>Test in controlled environments before publishing</li>
+                        <li>Monitor documentation and mobile SDK updates</li>
+                    </ul>
+                    <p class="text-gray-600 mb-4">Mobile GTM is more complex but worth mastering. Treat it as a journey in expanding your skill set—one that bridges analytics and native development. Part 2 will explore real-world GTM mobile debugging patterns and optimization strategies.</p>
+                </div>
             </div>
-          </div>
-          <div id="blog2-content" class="hidden mt-8 animate-fade-in-up">
-            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
-              <button onclick="hideBlogContent('blog2')" class="float-right text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded-full p-1" aria-label="Close blog post">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-              </button>
-              <h3 class="text-2xl font-semibold text-gray-900 mb-4">Palantir, AEP, Fabric & the Rise of Forward Deployed Engineering</h3>
-              <p class="text-gray-600 mb-4 leading-relaxed">
-                Forward Deployed Engineering (FDE), championed by Palantir, redefines enterprise software delivery. FDEs embed with client teams, rapidly building and deploying high-value solutions in production. Palantir’s DevCon events showcase this hands-on, production-first culture.
-              </p>
-              <p class="text-gray-600 mb-4 leading-relaxed">
-                Combining <strong>Microsoft Fabric, Adobe AEP, and Palantir’s FDE methodology</strong> creates a blueprint for rapid, data-driven workflows. Move from whiteboard to customer-facing impact at unprecedented speed.
-              </p>
-              <ul class="list-disc pl-6 text-gray-600 mb-4">
-                <li><strong>Rapid Prototyping:</strong> Fabric and AEP enable fast testing and deployment of analytics or AI-powered experiences.</li>
-                <li><strong>Developer Enablement:</strong> Open-source communities accelerate knowledge sharing.</li>
-                <li><strong>Production-First:</strong> Iterate with live data and production-grade tools.</li>
-              </ul>
-              <p class="text-gray-600 mt-4 leading-relaxed">
-                Curious how FDE can accelerate your martech transformation? Let’s connect at <a href="#contact" class="underline hover:text-purple-600">contact</a> or discuss at the next DevCon or Adobe Summit.
-              </p>
-            </div>
-          </div>
-          <div id="blog3-content" class="hidden mt-8 animate-fade-in-up">
-            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
-              <button onclick="hideBlogContent('blog3')" class="float-right text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-600 rounded-full p-1" aria-label="Close blog post">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-              </button>
-              <h3 class="text-2xl font-semibold text-gray-900 mb-4">Navigating Google Tag Manager: Mobile Apps vs. Web Applications</h3>
-              <p class="text-gray-600 mb-4 leading-relaxed">
-                As someone coming from the Adobe analytics world, transitioning to Google Tag Manager (GTM) for both web and mobile applications can feel like stepping into a new paradigm. While GTM offers powerful capabilities to manage tags and pixels without code changes, the implementation process for mobile apps (iOS and Android) differs significantly from web-based applications. This blog post explores these differences, drawing from my experience navigating the learning curve, and provides practical insights for analytics professionals and developers.
-              </p>
-              <p class="text-gray-600 mb-4 leading-relaxed"><strong>The Web vs. Mobile Paradigm: A Fundamental Shift</strong><br>
-                In the web world, GTM implementation is straightforward. Developers inject a GTM snippet—a small piece of JavaScript—into the website’s &lt;head&gt; and &lt;body&gt; tags. Once embedded, the tag management system (TMS) professional has significant control. Tools like browser developer tools or Adobe Experience Platform Debugger make it easy to test and override scripts on the fly. Mobile apps, however, are a different beast.
-              </p>
-              <p class="text-gray-600 mb-4 leading-relaxed"><strong>Implementation: Web vs. Mobile</strong></p>
-              <ul class="list-disc pl-6 space-y-2 text-gray-600">
-                <li><strong>Web:</strong> Add the GTM snippet to the HTML. Tag updates happen in real time via the GTM interface.</li>
-                <li><strong>iOS:</strong> Add GTM via Swift Package Manager or CocoaPods, include the container file, and configure build settings in Xcode.</li>
-                <li><strong>Android:</strong> Use Gradle to add GTM dependencies, place the container in the assets folder, and initialize using Firebase.</li>
-              </ul>
-              <p class="text-gray-600 mt-4 leading-relaxed"><strong>Testing Differences:</strong><br>
-                Web testing allows for real-time validation using browser tools. Mobile testing requires emulators/simulators, GTM preview URLs, and Firebase DebugView.
-              </p>
-              <p class="text-gray-600 mt-4 leading-relaxed"><strong>Key Mobile Challenges:</strong></p>
-              <ul class="list-disc pl-6 space-y-2 text-gray-600">
-                <li>Dependency management via SPM, CocoaPods, or Gradle</li>
-                <li>Need for developer collaboration</li>
-                <li>App store resubmission cycles and caching behavior</li>
-              </ul>
-              <p class="text-gray-600 mt-4 leading-relaxed"><strong>Lessons from the Adobe World:</strong><br>
-                Coming from Adobe, I initially expected full control and quick wins. GTM mobile demands native build knowledge and collaboration. It’s a hybrid world of analytics and app development—and that’s okay.
-              </p>
-              <p class="text-gray-600 mt-4 leading-relaxed"><strong>Tips for Success:</strong></p>
-              <ul class="list-disc pl-6 space-y-2 text-gray-600">
-                <li>Collaborate early with developers</li>
-                <li>Master Firebase logging APIs</li>
-                <li>Test in controlled environments before publishing</li>
-                <li>Monitor documentation and mobile SDK updates</li>
-              </ul>
-              <p class="text-gray-600 mt-4 leading-relaxed"><strong>Conclusion:</strong><br>
-                Mobile GTM is more complex but worth mastering. Treat it as a journey in expanding your skill set—one that bridges analytics and native development. Part 2 will explore real-world GTM mobile debugging patterns and optimization strategies.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+            <div class="carousel-nav left-0" onclick="scrollCarousel(-1)">❮</div>
+            <div class="carousel-nav right-0" onclick="scrollCarousel(1)">❯</div>
+            <div class="carousel-dots" id="carousel-dots"></div>
+        </section>
 
-      <div class="my-16 border-t border-gray-200"></div> <!-- Separator -->
-
-      <!-- Contact Section - Enhanced with icons and refined text -->
-      <section id="contact" class="py-16 bg-purple-50 rounded-xl shadow-inner">
-        <div class="max-w-4xl mx-auto px-4 animate-fade-in-up">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">Let’s Collaborate 🤝</h2>
-          <p class="text-gray-700 mb-8 text-lg text-center max-w-2xl mx-auto">Ready to elevate your Martech, identity, or privacy initiatives? Reach out directly, or connect with me on LinkedIn.</p>
-          <div class="flex flex-wrap justify-center gap-6 text-gray-800 text-lg">
-            <div class="flex items-center space-x-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18a2 2 0 002-2V6a2 2 0 00-2-2H3a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <span>Email:</span> <a href="mailto:gresack.scott@gmail.com" class="underline hover:text-purple-600 font-medium">gresack.scott@gmail.com</a>
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-              <span>Phone:</span> <a href="tel:+14403903237" class="underline hover:text-purple-600 font-medium">(440) 390-3237</a>
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-              <span>LinkedIn:</span> <a href="https://www.linkedin.com/in/scottgresack/" class="underline hover:text-purple-600 font-medium" target="_blank" rel="noopener noreferrer">linkedin.com/in/scottgresack</a>
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.08-.731.084-.716.084-.716 1.192.085 1.815 1.229 1.815 1.229 1.065 1.815 2.809 1.299 3.492.997.107-.775.418-1.299.762-1.59-2.665-.299-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.3-.535-1.524.118-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.876.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576c4.765-1.589 8.196-6.095 8.196-11.389 0-6.627-5.373-12-12-12z"/></svg>
-              <span>GitHub:</span> <a href="https://github.com/scott-gresack" class="underline hover:text-purple-600 font-medium" target="_blank" rel="noopener noreferrer">github.com/scott-gresack</a>
-            </div>
-          </div>
-        </div>
-      </section>
+        <section id="contact">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Let’s Collaborate 🤝</h2>
+            <p class="text-lg text-gray-600 mb-6">Ready to elevate your Martech, identity, or privacy initiatives? Reach out directly, or connect with me on LinkedIn.</p>
+            <ul class="space-y-4 text-lg text-gray-600">
+                <li><strong>Email:</strong> <a href="mailto:gresack.scott@gmail.com" class="text-teal-500 hover:underline">gresack.scott@gmail.com</a></li>
+                <li><strong>Phone:</strong> <a href="tel:+14403903237" class="text-teal-500 hover:underline">(440) 390-3237</a></li>
+                <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/scottgresack" target="_blank" class="text-teal-500 hover:underline">linkedin.com/in/scottgresack</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/scott-gresack" target="_blank" class="text-teal-500 hover:underline">github.com/scott-gresack</a></li>
+            </ul>
+        </section>
     </main>
 
-    <!-- Footer - Updated background color -->
-    <footer class="bg-gray-900 text-white py-8">
-      <div class="max-w-7xl mx-auto px-4 text-center text-sm">
-        <p>&copy; 2025 Scott Gresack. All rights reserved.</p>
-        <p class="mt-2">Built with privacy, performance, and open-source principles by <a href="https://cgg-growth.netlify.app/?utm_source=portfolio&utm_medium=footer&utm_campaign=attribution" class="underline hover:text-purple-300" target="_blank" rel="noopener noreferrer">CGG Growth</a>.</p>
-      </div>
+    <footer class="bg-gray-200 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600">
+            <p>© 2025 Scott Gresack. All rights reserved.</p>
+            <p class="mt-2">Built with privacy, performance, and open-source principles by CGG Growth.</p>
+        </div>
     </footer>
 
-    <!-- Back to Top Button - Added and controlled by JS -->
-    <button id="backToTop" class="fixed bottom-20 right-6 bg-purple-600 text-white rounded-full w-12 h-12 shadow-lg flex items-center justify-center hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300 z-50 hidden" aria-label="Back to Top">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
-    </button>
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">↑</button>
 
-    <!-- Floating Contact Modal Trigger Button - Enhanced hover effect -->
-    <button id="floatingContactBtn" aria-label="Open Contact Form" title="Contact Scott" class="fixed bottom-6 right-6 bg-purple-600 text-white rounded-full w-14 h-14 shadow-lg flex items-center justify-center hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300 z-50 transition duration-300 ease-in-out transform hover:scale-110">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18a2 2 0 002-2v-6a2 2 0 00-2-2H3a2 2 0 00-2 2v6a2 2 0 002 2z"/>
-      </svg>
-    </button>
-
-    <!-- Floating Contact Modal - Enhanced with accessibility and styling -->
-    <div id="floatingContactModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-      <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative animate-fade-in-up">
-        <button id="closeModalBtn" aria-label="Close Contact Form" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-600 rounded-full p-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-        <h3 class="text-2xl font-bold mb-5 text-gray-900 text-center">Get in Touch</h3>
-        <form id="floatingContactForm" class="space-y-5" action="mailto:gresack.scott@gmail.com" method="POST" enctype="text/plain">
-          <div>
-            <label for="fc-name" class="block text-gray-700 font-medium mb-1">Name</label>
-            <input type="text" id="fc-name" name="Name" placeholder="Your Name" required class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600">
-          </div>
-          <div>
-            <label for="fc-email" class="block text-gray-700 font-medium mb-1">Email</label>
-            <input type="email" id="fc-email" name="Email" placeholder="you@example.com" required class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600">
-          </div>
-          <div>
-            <label for="fc-message" class="block text-gray-700 font-medium mb-1">Message</label>
-            <textarea id="fc-message" name="Message" rows="5" placeholder="Tell me about your project or inquiry..." required class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
-          </div>
-          <button type="submit" class="w-full bg-purple-600 text-white rounded-full px-4 py-3 font-semibold hover:bg-purple-700 transition duration-200 ease-in-out transform hover:scale-105">Send Message</button>
-        </form>
-      </div>
-    </div>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
     <script>
-      // Floating Contact Modal Logic
-      const floatingContactBtn = document.getElementById('floatingContactBtn');
-      const floatingContactModal = document.getElementById('floatingContactModal');
-      const closeModalBtn = document.getElementById('closeModalBtn');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXX');
 
-      floatingContactBtn.addEventListener('click', () => {
-        floatingContactModal.classList.remove('hidden');
-        floatingContactModal.setAttribute('aria-modal', 'true');
-        floatingContactModal.setAttribute('role', 'dialog');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-        closeModalBtn.focus(); // Move focus to the close button for accessibility
-      });
+        // Mobile nav toggle
+        const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+        mobileNavToggle.addEventListener('click', () => {
+            const isExpanded = mobileNavToggle.getAttribute('aria-expanded') === 'true';
+            mobileNav.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+            mobileNavToggle.setAttribute('aria-expanded', !isExpanded);
+            if (!isExpanded) {
+                mobileNav.querySelector('a').focus(); // Focus trap for accessibility
+            }
+        });
 
-      closeModalBtn.addEventListener('click', () => {
-        floatingContactModal.classList.add('hidden');
-        floatingContactModal.removeAttribute('aria-modal');
-        floatingContactModal.removeAttribute('role');
-        document.body.style.overflow = ''; // Restore scrolling
-        floatingContactBtn.focus(); // Return focus to the trigger button
-      });
+        // Carousel navigation
+        const carousel = document.getElementById('blog-carousel');
+        const dotsContainer = document.getElementById('carousel-dots');
+        const cards = carousel.children;
+        let currentCard = 0;
 
-      floatingContactModal.addEventListener('click', (e) => {
-        if (e.target === floatingContactModal) {
-          floatingContactModal.classList.add('hidden');
-          floatingContactModal.removeAttribute('aria-modal');
-          floatingContactModal.removeAttribute('role');
-          document.body.style.overflow = '';
-          floatingContactBtn.focus();
+        function updateDots() {
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < cards.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot';
+                if (i === currentCard) dot.className += ' active';
+                dot.onclick = () => {
+                    currentCard = i;
+                    cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+                    updateDots();
+                };
+                dotsContainer.appendChild(dot);
+            }
         }
-      });
 
-      // Keyboard accessibility: Close modal with Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !floatingContactModal.classList.contains('hidden')) {
-          floatingContactModal.classList.add('hidden');
-          floatingContactModal.removeAttribute('aria-modal');
-          floatingContactModal.removeAttribute('role');
-          document.body.style.overflow = '';
-          floatingContactBtn.focus();
+        function scrollCarousel(direction) {
+            currentCard = Math.min(Math.max(currentCard + direction, 0), cards.length - 1);
+            cards[currentCard].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+            updateDots();
         }
-      });
 
-      // Optional: GA4 event tracking for modal open and form submission
-      if (typeof gtag === 'function') {
-        floatingContactBtn.addEventListener('click', () => {
-          gtag('event', 'contact_modal_open', {
-            event_category: 'engagement',
-            event_label: 'Floating Contact Modal Opened'
-          });
+        updateDots();
+
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
         });
-
-        const floatingContactForm = document.getElementById('floatingContactForm');
-        floatingContactForm.addEventListener('submit', () => {
-          gtag('event', 'contact_form_submit', {
-            event_category: 'engagement',
-            event_label: 'Floating Contact Form Submitted'
-          });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-      }
-
-      // Smooth scroll for internal links and active nav link logic
-      const navLinks = document.querySelectorAll('.nav-link');
-      const sections = document.querySelectorAll('main section'); // Select all main sections
-
-      // Function to set active nav link
-      const setActiveNavLink = (id) => {
-        navLinks.forEach(link => {
-          link.removeAttribute('aria-current');
-          // Ensure the href matches the section ID
-          if (link.getAttribute('href') && link.getAttribute('href').substring(1) === id) {
-            link.setAttribute('aria-current', 'page');
-          }
-        });
-      };
-
-      // Smooth scroll event listener
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-
-          if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: 'smooth'
-            });
-            setActiveNavLink(targetId); // Set active nav link immediately on click
-            // Close mobile nav if open
-            document.getElementById('mobile-nav').classList.add('hidden');
-          }
-        });
-      });
-
-      // Intersection Observer for active nav link on scroll
-      const observerOptions = {
-        root: null,
-        rootMargin: '-50% 0% -50% 0%', // Adjust this to make it active when section is roughly in the middle
-        threshold: 0 // No threshold needed, as rootMargin defines the active area
-      };
-
-      const sectionObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            setActiveNavLink(id);
-          }
-        });
-      }, observerOptions);
-
-      sections.forEach(section => {
-        sectionObserver.observe(section);
-      });
-
-      // Initial setting of active nav link on page load
-      window.addEventListener('load', () => {
-        const currentHash = window.location.hash.substring(1);
-        if (currentHash) {
-          setActiveNavLink(currentHash);
-        } else {
-          // Default to 'about' if no hash or invalid hash
-          setActiveNavLink('about');
-        }
-      });
-
-      // Back to Top Button Logic
-      const backToTopButton = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) { // Show button after scrolling 300px
-          backToTopButton.classList.remove('hidden');
-        } else {
-          backToTopButton.classList.add('hidden');
-        }
-      });
-
-      backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-
-      // Blog Carousel Logic
-      const blogCarousel = document.getElementById('blog-carousel').querySelector('div');
-      const carouselPrevBtn = document.getElementById('carousel-prev');
-      const carouselNextBtn = document.getElementById('carousel-next');
-
-      carouselPrevBtn.addEventListener('click', () => {
-        blogCarousel.scrollBy({
-          left: -blogCarousel.offsetWidth / 2, // Scroll by half the carousel width
-          behavior: 'smooth'
-        });
-      });
-
-      carouselNextBtn.addEventListener('click', () => {
-        blogCarousel.scrollBy({
-          left: blogCarousel.offsetWidth / 2, // Scroll by half the carousel width
-          behavior: 'smooth'
-        });
-      });
-
     </script>
-    <!-- Blog Content Toggle Logic -->
-    <script>
-      // Toggle visibility for a blog content block by ID
-      window.toggleBlogContent = function(id) {
-        const content = document.getElementById(id + '-content');
-        if (content) {
-          content.classList.toggle("hidden");
-        } else {
-          console.warn("Element not found for toggle:", id + '-content');
-        }
-      };
-
-      // Explicitly hide a blog content block by ID
-      window.hideBlogContent = function(id) {
-        const content = document.getElementById(id + '-content');
-        if (content) {
-          content.classList.add("hidden");
-        } else {
-          console.warn("Element not found for hide:", id + '-content');
-        }
-      };
-    </script>
-  </body>
+</body>
 </html>
