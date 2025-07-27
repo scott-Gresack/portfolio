@@ -1,21 +1,32 @@
-# Allow all crawlers full access except to /private
 # robots.txt for Scott Gresack's Portfolio
 # Gives search engines full access to public content and enables IndexNow
 
-# Allow all bots full access, except for /private
+# User-agent: * applies to all crawlers not specifically mentioned below.
 User-agent: *
 Disallow: /private/
 Allow: /
 
-# Explicit rules for major search engines
+# Googlebot specific rules (optional, good for clarity or future specialization)
 User-agent: Googlebot
 Allow: /
 
+# Bingbot specific rules (optional, good for clarity or future specialization)
 User-agent: Bingbot
 Allow: /
 
-# Sitemap location
+# Example: Specific bot disallowance (for image or news bots)
+# User-agent: Googlebot-Image
+# Disallow: /images/private/
+
+# Sitemap location for content discovery
 Sitemap: https://scott-gresack.github.io/portfolio/sitemap.xml
 
-# IndexNow verification
+# IndexNow verification URL for rapid indexing support
 IndexNow: https://scott-gresack.github.io/portfolio/67743f77e33b42e593870b6418f3432a.txt
+
+# Optional: Clean-param directive (useful for dynamic URLs with query parameters)
+# Clean-param: sort /portfolio/page
+
+# Optional: Crawl-delay (use only if specific crawlers are overloading the server)
+# User-agent: *
+# Crawl-delay: 1

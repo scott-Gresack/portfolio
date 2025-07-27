@@ -3,88 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Scott Gresack - Martech Engineer specializing in real-time customer data platforms, AI-powered personalization, and privacy-compliant data engineering.">
+    <meta name="description" content="Scott Gresack - Martech Engineer focused on real-time CDP implementation, AI-powered personalization, and actionable analytics. Explore tools, case studies, and optimization strategies using Adobe AEP, Microsoft Fabric, and Tealium iQ.">
+    <!-- Updated for SEO and GEO -->
+    <meta name="title" content="Scott Gresack: Real-Time Martech, Adobe AEP & Microsoft Fabric">
+    <meta name="keywords" content="Martech Engineer, Adobe AEP, Microsoft Fabric, Real-Time CDP, Personalization, GDPR-compliant CDP, Alloy Payload Inspector, Tag Spec Generator, XDM Comparator">
     <title>Scott Gresack - Martech Engineer</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #1E3A8A; /* Navy Blue */
-            --secondary-color: #2DD4BF; /* Teal */
-            --text-color: #1F2937; /* Dark Gray */
-            --bg-color: #F3F4F6; /* Soft Gray */
-            --footer-bg: #E5E7EB; /* Slightly Darker Gray */
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(16px, 2.5vw, 18px);
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            overflow-x: hidden;
-        }
-        .blog-card, .cta-button {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        .blog-card:hover, .cta-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        .blog-card {
-            width: 100%;
-            max-width: 400px;
-            max-height: 500px;
-            overflow-y: auto;
-            padding: 24px;
-        }
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(30, 58, 138, 0.7);
-            color: white;
-            padding: 8px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 16px;
-        }
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            background: #D1D5DB;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .carousel-dot.active {
-            background: var(--secondary-color);
-        }
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary-color);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 50%;
-            display: none;
-            cursor: pointer;
-        }
+      :root {
+          --primary-color: #1E3A8A; /* Navy Blue */
+          --secondary-color: #2DD4BF; /* Teal */
+          --accent-color: #FF4500;   /* CTA Orange */
+          --text-color: #111827;     /* Improved contrast gray-900 */
+          --muted-text: #4B5563;     /* Tailwind gray-600 */
+          --bg-color: #FFFFFF;       /* Pure white background */
+          --footer-bg: #F3F4F6;      /* Lighter gray */
+      }
+      body {
+          font-family: 'Inter', sans-serif;
+          font-size: clamp(16px, 2.5vw, 18px);
+          line-height: 1.6;
+          color: var(--text-color);
+          background-color: var(--bg-color);
+          overflow-x: hidden;
+      }
+      h1, h2, h3 {
+          line-height: 1.3;
+          letter-spacing: -0.01em;
+      }
+      .cta-button,
+      .blog-card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+      .cta-button:hover,
+      .blog-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      .cta-button:focus {
+          outline: 2px solid var(--secondary-color);
+          outline-offset: 2px;
+      }
+      .blog-card {
+          width: 100%;
+          max-width: 400px;
+          max-height: 500px;
+          overflow-y: auto;
+          padding: 24px;
+      }
+      .carousel-nav {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: rgba(30, 58, 138, 0.7);
+          color: white;
+          padding: 8px;
+          border-radius: 50%;
+          cursor: pointer;
+      }
+      .carousel-dots {
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+          margin-top: 16px;
+      }
+      .carousel-dot {
+          width: 12px;
+          height: 12px;
+          background: #D1D5DB;
+          border-radius: 50%;
+          cursor: pointer;
+      }
+      .carousel-dot.active {
+          background: var(--secondary-color);
+      }
+      .back-to-top {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: var(--primary-color);
+          color: white;
+          padding: 10px 15px;
+          border-radius: 50%;
+          display: none;
+          cursor: pointer;
+      }
+      button,
+      a.button,
+      .cta-button {
+          min-height: 44px; /* Accessibility: tap target size */
+          padding: 0.75rem 1.25rem;
+      }
     </style>
 </head>
 <body class="antialiased">
     <header class="bg-white shadow-sm">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <nav class="sticky top-0 z-50 bg-white shadow-md max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-blue-900">Scott Gresack</div>
             <div class="hidden md:flex space-x-8">
-                <a href="#about" class="text-gray-600 hover:text-teal-500">About</a>
                 <a href="#tools" class="text-gray-600 hover:text-teal-500">Tools</a>
                 <a href="#blog" class="text-gray-600 hover:text-teal-500">Blog</a>
+                <a href="#about" class="text-gray-600 hover:text-teal-500">About</a>
                 <a href="#contact" class="text-gray-600 hover:text-teal-500">Contact</a>
                 <div class="relative group">
                     <button class="text-gray-600 hover:text-teal-500 flex items-center">
@@ -112,9 +133,9 @@
         </nav>
         <div id="mobile-nav" class="hidden md:hidden bg-white shadow-lg">
             <div class="px-4 py-2 space-y-2">
-                <a href="#about" class="block text-gray-600 hover:text-teal-500">About</a>
                 <a href="#tools" class="block text-gray-600 hover:text-teal-500">Tools</a>
                 <a href="#blog" class="block text-gray-600 hover:text-teal-500">Blog</a>
+                <a href="#about" class="block text-gray-600 hover:text-teal-500">About</a>
                 <a href="#contact" class="block text-gray-600 hover:text-teal-500">Contact</a>
                 <a href="#alloy-inspector" class="block text-gray-600 hover:text-teal-500">Alloy Inspector</a>
                 <a href="#tag-spec" class="block text-gray-600 hover:text-teal-500">Tag Spec Generator</a>
@@ -128,7 +149,7 @@
         <section id="hero" class="text-center">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Scott Gresack: The Architect of Real-Time Marketing Intelligence & Personalized Futures</h1>
             <p class="text-xl text-gray-600 mb-6">Transforming Data into Unforgettable Customer Journeys with Adobe AEP, Microsoft Fabric, and Forward Deployed Engineering.</p>
-            <a href="#contact" class="cta-button inline-block bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-400">Unify Your Data & Propel Your Brand</a>
+            <a href="#services" class="cta-button inline-block bg-[#FF4500] text-white px-6 py-3 rounded-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-400">Start Your Martech Transformation</a>
         </section>
 
         <section id="intro">
@@ -176,115 +197,139 @@
         </section>
 
         <section id="blog">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">🔬 Martech Insights Lab</h2>
-            <p class="text-lg text-gray-600 mb-6">Explore forward-thinking insights, AI-powered strategies, and integration breakdowns — direct from the field. Your guide to building smarter experiences.</p>
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">🔬 Martech Insights Lab: Real-World CDP & AI Use Cases</h2>
+            <p class="text-lg text-gray-600 mb-6">Unlock actionable strategies and see how Martech Engineers drive business outcomes with Adobe AEP, Real-Time CDPs, and AI-powered personalization. Explore use cases, technical diagrams, and practical solutions—proven in the field.</p>
             <div id="blog-carousel" class="relative flex overflow-x-auto snap-x snap-mandatory scroll-smooth space-x-4">
                 <div class="blog-card flex-shrink-0 bg-white shadow-md rounded-lg">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Unified Mobile Data Flow: From Legacy to AEP Edge & Data Prep</h3>
-                    <p class="text-gray-600 mb-2">#AEP #Edge #DataPrep</p>
-                    <p class="text-lg text-gray-600 mb-4">How Modern Mobile Instrumentation Doubles Down on Value for Analytics and CDP</p>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">The Challenge: Mobile Analytics Before the Upgrade</h4>
-                    <p class="text-gray-600">For years, mobile apps using Adobe’s legacy AEPAnalytics SDK would track events with simple calls like MobileCore.trackState() or trackAction(). These events went directly to the Analytics report suite endpoint:</p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Unifying Mobile Data for CDP: From Legacy SDK to Adobe AEP Edge</h3>
+                    <p class="text-gray-600 mb-2">#MartechEngineer #AdobeAEP #CDP <a href="#tag-spec" class="text-teal-500 hover:underline">(see Tag Spec Generator)</a></p>
+                    <p class="text-lg text-gray-600 mb-4">How a major retail brand unified mobile analytics and real-time CDP activation—without rewriting app code. See how modern instrumentation powers segmentation and personalization instantly.</p>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2"><strong>The Challenge:</strong> Mobile Analytics Before the Upgrade</h4>
                     <ul class="list-disc pl-6 text-gray-600 mb-4">
-                        <li>One destination only: All telemetry enriched only Adobe Analytics.</li>
-                        <li>No Real-Time CDP or CJA: No profile-building or customer journey analytics.</li>
-                        <li>Legacy structure: Data was flat and not XDM-based.</li>
+                        <li><strong>Single destination:</strong> All telemetry enriched only Adobe Analytics.</li>
+                        <li><strong>No Real-Time CDP:</strong> No profile-building or customer journey analytics.</li>
+                        <li><strong>Legacy structure:</strong> Data was flat and not XDM-based.</li>
                     </ul>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">The Modern Upgrade: Edge + Data Prep Mapping</h4>
-                    <p class="text-gray-600">Same Tracking Calls – More Powerful Outcomes:</p>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2"><strong>The Modern Upgrade:</strong> Edge + Data Prep Mapping</h4>
                     <ul class="list-disc pl-6 text-gray-600 mb-4">
-                        <li>Your app still uses MobileCore.trackState() and trackAction().</li>
-                        <li>No code changes are needed to begin the upgrade—just a dependency and configuration update.</li>
+                        <li><strong>Same tracking calls, more destinations:</strong> Upgrade SDK and config—no code changes required.</li>
+                        <li><strong>Edge Datastream as hub:</strong> All events flow to AEP Edge, mapped to XDM in the UI.</li>
+                        <li><strong>Multi-destination enrichment:</strong> Power Analytics, Real-Time CDP, and CJA from the same event.</li>
+                        <li><strong>No redeploys for tagging:</strong> Mapping and logic managed centrally.</li>
                     </ul>
-                    <p class="text-gray-600">Edge Datastream as the Hub:</p>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2"><strong>Why It Matters: Engineering &amp; Business Value</strong></h4>
                     <ul class="list-disc pl-6 text-gray-600 mb-4">
-                        <li>All events now flow to the AEP Edge Datastream endpoint.</li>
-                        <li>Data Prep runs on the Edge, mapping incoming event fields to your XDM schema.</li>
-                        <li>Field groups can be set up for Adobe Analytics, Real-Time CDP (AEP Profile), Customer Journey Analytics (CJA), or custom needs—all from the UI.</li>
-                        <li>No more code deploys for tagging or field updates—mapping logic is managed in the Datastream UI.</li>
+                        <li><strong>No code change:</strong> Update SDK & Datastream—done!</li>
+                        <li><strong>Centralized privacy & consent:</strong> Streamlined audits and controls.</li>
+                        <li><strong>Every hit powers:</strong> Analytics, CDP, and CJA simultaneously.</li>
+                        <li><strong>Real-time segmentation & personalization:</strong> Right as the event is captured.</li>
+                        <li><strong>Future-proofed tech:</strong> Agile marketing and compliance.</li>
                     </ul>
-                    <p class="text-gray-600">Multi-Destination Enrichment:</p>
-                    <ul class="list-disc pl-6 text-gray-600 mb-4">
-                        <li>Adobe Analytics: Analytics hits are constructed from mapped XDM fields.</li>
-                        <li>Real-Time CDP: Enriched XDM data populates unified customer profiles, unlocking advanced segmentation and personalization.</li>
-                        <li>CJA: Events are streamed in real time for advanced journey and funnel analysis.</li>
-                    </ul>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Why It Matters: Engineering & Business Value</h4>
-                    <p class="text-gray-600">Implementation Value:</p>
-                    <ul class="list-disc pl-6 text-gray-600 mb-4">
-                        <li>No app code change required: Upgrade the SDK and update your Datastream—done!</li>
-                        <li>Tagging changes and field mapping happen centrally via Data Prep, reducing redeploy cycles.</li>
-                        <li>Compliance and consent are enforced in one place, streamlining audits and privacy controls.</li>
-                    </ul>
-                    <p class="text-gray-600">Business Value:</p>
-                    <ul class="list-disc pl-6 text-gray-600 mb-4">
-                        <li>Every app hit now powers Analytics, CDP, and CJA—simultaneously.</li>
-                        <li>Segmentation, personalization, and analytics happen in real time, right as the event is captured.</li>
-                        <li>Centralized logic enables more agile marketing, easier compliance, and future-proofed tech.</li>
-                    </ul>
-                    <a href="https://swimlanes.io/s/bAJa2dWMaP.png" target="_blank" class="text-teal-500 hover:underline">View the full interactive diagram on Swimlanes.io</a>
+                    <a href="https://swimlanes.io/s/bAJa2dWMaP.png" target="_blank" class="text-teal-500 hover:underline">See Data Flow Diagram</a>
+                    <!-- GEO: Social Sharing -->
+                    <div class="mt-4">
+                      <a href="https://twitter.com/intent/tweet?text=Check out this Martech post by Scott Gresack!&url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-500 hover:underline mr-3">Share on X</a>
+                      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-700 hover:underline">Share on LinkedIn</a>
+                    </div>
                 </div>
                 <div class="blog-card flex-shrink-0 bg-white shadow-md rounded-lg">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Real-Time Intelligence + AEP: A Smarter Martech Stack</h3>
-                    <p class="text-gray-600 mb-2">#AEP & #Fabric</p>
-                    <p class="text-lg text-gray-600 mb-4">Enterprises need to act on signals as they happen—across operational systems and digital experiences. Siloed insights delay action and erode value. The challenge is unifying real-time telemetry with marketing systems like Adobe Experience Platform (AEP) for intelligent, responsive customer experiences.</p>
-                    <p class="text-gray-600 mb-4">Microsoft’s MCP support for Fabric RTI enables AI agents to query real-time data from Eventhouse using natural language or structured requests—making signal discovery accessible and programmable.</p>
-                    <p class="text-gray-600 mb-4">Using AEP’s Edge Network + Event Forwarding, RTI-derived events (e.g., anomalies, process flags, or user classifications) enrich customer profiles, update segments in real-time, and trigger tools like Adobe Journey Optimizer or Analytics.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Real-Time Signal Intelligence: Integrating AEP & Microsoft Fabric RTI</h3>
+                    <p class="text-gray-600 mb-2">#CDP #AEP #MicrosoftFabric #AI</p>
+                    <p class="text-lg text-gray-600 mb-4">See how a global brand unified real-time telemetry and marketing signals—enabling instant audience updates and journey triggers in Adobe AEP with Microsoft Fabric RTI. <strong>Outcome:</strong> Faster personalization, smarter alerts, and AI-driven actions.</p>
                     <ul class="list-disc pl-6 text-gray-600 mb-4">
-                        <li>🔁 Bi-directional signal flow: RTI fuels AEP audiences; AEP contextualizes RTI outputs.</li>
-                        <li>⚙️ Compatible with AEPEdge and AEPEdgeBridge SDK flows.</li>
-                        <li>🧠 Ideal for experimentation, security alerting, or experience tuning.</li>
+                        <li><strong>Bi-directional signal flow:</strong> RTI fuels AEP audiences; AEP contextualizes RTI outputs.</li>
+                        <li><strong>Supports:</strong> AEPEdge and AEPEdgeBridge SDK flows.</li>
+                        <li><strong>Ideal for:</strong> Experimentation, security alerting, experience tuning.</li>
+                        <li><strong>AI agents:</strong> Query live data using natural language or code.</li>
                     </ul>
-                    <p class="text-gray-600 mb-4">Want to see a live diagram or discuss implementation? Reach out via <a href="#contact" class="text-teal-500 hover:underline">contact</a> or check <a href="https://github.com/scott-gresack" target="_blank" class="text-teal-500 hover:underline">GitHub</a> for starter templates.</p>
+                    <a href="https://github.com/scott-gresack" target="_blank" class="text-teal-500 hover:underline">Explore Starter Templates</a>
+                    <!-- GEO: Social Sharing -->
+                    <div class="mt-4">
+                      <a href="https://twitter.com/intent/tweet?text=Check out this Martech post by Scott Gresack!&url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-500 hover:underline mr-3">Share on X</a>
+                      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-700 hover:underline">Share on LinkedIn</a>
+                    </div>
                 </div>
                 <div class="blog-card flex-shrink-0 bg-white shadow-md rounded-lg">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Palantir, AEP, Fabric & the Rise of Forward Deployed Engineering</h3>
-                    <p class="text-gray-600 mb-2">#FDE & #Platforms</p>
-                    <p class="text-lg text-gray-600 mb-4">Forward Deployed Engineering (FDE), championed by Palantir, redefines enterprise software delivery. FDEs embed with client teams, rapidly building and deploying high-value solutions in production. Palantir’s DevCon events showcase this hands-on, production-first culture.</p>
-                    <p class="text-gray-600 mb-4">Combining Microsoft Fabric, Adobe AEP, and Palantir’s FDE methodology creates a blueprint for rapid, data-driven workflows. Move from whiteboard to customer-facing impact at unprecedented speed.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Forward Deployed Engineering: Accelerating CDP & Analytics with AEP + Fabric</h3>
+                    <p class="text-gray-600 mb-2">#MartechEngineer #AEP #Fabric #FDE</p>
+                    <p class="text-lg text-gray-600 mb-4">Discover how enterprise teams deliver rapid business value by embedding Martech Engineers and using Forward Deployed Engineering (FDE) with Adobe AEP and Microsoft Fabric. <strong>Key outcome:</strong> Move from whiteboard to live customer impact in weeks, not months.</p>
                     <ul class="list-disc pl-6 text-gray-600 mb-4">
-                        <li>Rapid Prototyping: Fabric and AEP enable fast testing and deployment of analytics or AI-powered experiences.</li>
-                        <li>Developer Enablement: Open-source communities accelerate knowledge sharing.</li>
-                        <li>Production-First: Iterate with live data and production-grade tools.</li>
+                        <li><strong>Rapid prototyping:</strong> Test and deploy analytics or AI-powered experiences fast.</li>
+                        <li><strong>Developer enablement:</strong> Leverage open-source and community knowledge.</li>
+                        <li><strong>Production-first:</strong> Iterate with live data and real users.</li>
                     </ul>
-                    <p class="text-gray-600 mb-4">Curious how FDE can accelerate your martech transformation? Let’s connect at <a href="#contact" class="text-teal-500 hover:underline">contact</a> or discuss at the next DevCon or Adobe Summit.</p>
+                    <a href="#contact" class="text-teal-500 hover:underline">Get the Breakdown</a>
+                    <!-- GEO: Social Sharing -->
+                    <div class="mt-4">
+                      <a href="https://twitter.com/intent/tweet?text=Check out this Martech post by Scott Gresack!&url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-500 hover:underline mr-3">Share on X</a>
+                      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-700 hover:underline">Share on LinkedIn</a>
+                    </div>
                 </div>
                 <div class="blog-card flex-shrink-0 bg-white shadow-md rounded-lg">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Navigating Google Tag Manager: Mobile Apps vs. Web Applications</h3>
-                    <p class="text-gray-600 mb-2">#GTM & #Mobile</p>
-                    <p class="text-lg text-gray-600 mb-4">As someone coming from the Adobe analytics world, transitioning to Google Tag Manager (GTM) for both web and mobile applications can feel like stepping into a new paradigm. While GTM offers powerful capabilities to manage tags and pixels without code changes, the implementation process for mobile apps (iOS and Android) differs significantly from web-based applications.</p>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">The Web vs. Mobile Paradigm: A Fundamental Shift</h4>
-                    <p class="text-gray-600 mb-4">In the web world, GTM implementation is straightforward. Developers inject a GTM snippet—a small piece of JavaScript—into the website’s <head> and <body> tags. Once embedded, the tag management system (TMS) professional has significant control.</p>
-                    <p class="text-gray-600 mb-4">Mobile apps, however, are a different beast.</p>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Implementation: Web vs. Mobile</h4>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Eliminating FOOC: Personalization Without the Flicker</h3>
+                    <p class="text-gray-600 mb-2">#Personalization #Performance #UX #AdobeAEP</p>
+                    <p class="text-lg text-gray-600 mb-4">How a leading e-commerce site eliminated the "Flash of Original Content" (FOOC) for seamless, personalized experiences—boosting engagement and conversion rates.</p>
                     <ul class="list-disc pl-6 text-gray-600 mb-4">
-                        <li>Web: Add the GTM snippet to the HTML. Tag updates happen in real time via the GTM interface.</li>
-                        <li>iOS: Add GTM via Swift Package Manager or CocoaPods, include the container file, and configure build settings in Xcode.</li>
-                        <li>Android: Use Gradle to add GTM dependencies, place the container in the assets folder, and initialize using Firebase.</li>
+                        <li><strong>Prehiding Snippet:</strong> Hide content before SDK loads</li>
+                        <li><strong>Sync SDK Load:</strong> Load blocking + CSS prehide</li>
+                        <li><strong>Server-Side Rendering (SSR):</strong> Fully personalize HTML on the backend</li>
+                        <li><strong>Edge Personalization:</strong> Use CDN functions for low-latency delivery</li>
+                        <li><strong>Skeleton Screens:</strong> Show engaging placeholders instead of blanks</li>
                     </ul>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Testing Differences</h4>
-                    <p class="text-gray-600 mb-4">Web testing allows for real-time validation using browser tools. Mobile testing requires emulators/simulators, GTM preview URLs, and Firebase DebugView.</p>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Key Mobile Challenges</h4>
+                    <a href="https://swimlanes.io/s/fooc-strategies" target="_blank" class="text-teal-500 hover:underline">Explore Solutions & Diagrams</a>
+                    <!-- GEO: Social Sharing -->
+                    <div class="mt-4">
+                      <a href="https://twitter.com/intent/tweet?text=Check out this Martech post by Scott Gresack!&url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-500 hover:underline mr-3">Share on X</a>
+                      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-700 hover:underline">Share on LinkedIn</a>
+                    </div>
+                </div>
+                <div class="blog-card flex-shrink-0 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">GTM for Mobile vs. Web: What Martech Engineers Must Know</h3>
+                    <p class="text-gray-600 mb-2">#GTM #Mobile #Tagging <a href="#tag-spec" class="text-teal-500 hover:underline">(see Tag Spec Generator)</a></p>
+                    <p class="text-lg text-gray-600 mb-4">Learn how a healthcare app team bridged the gap between web and mobile tagging—mastering Google Tag Manager for iOS, Android, and web. <strong>Outcome:</strong> Faster deployment, better debugging, and unified analytics.</p>
                     <ul class="list-disc pl-6 text-gray-600 mb-4">
-                        <li>Dependency management via SPM, CocoaPods, or Gradle</li>
-                        <li>Need for developer collaboration</li>
-                        <li>App store resubmission cycles and caching behavior</li>
+                        <li><strong>Web:</strong> Instant tag updates via GTM interface.</li>
+                        <li><strong>iOS/Android:</strong> Native SDKs, developer collaboration, and app store cycles.</li>
+                        <li><strong>Testing:</strong> Real-time browser validation vs. emulators and Firebase DebugView.</li>
+                        <li><strong>Tip:</strong> Master Firebase logging APIs and test before publishing.</li>
                     </ul>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Lessons from the Adobe World</h4>
-                    <p class="text-gray-600 mb-4">Coming from Adobe, I initially expected full control and quick wins. GTM mobile demands native build knowledge and collaboration. It’s a hybrid world of analytics and app development—and that’s okay.</p>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Tips for Success</h4>
+                    <a href="#tag-spec" class="text-teal-500 hover:underline">See Tag Spec Tool</a>
+                    <!-- GEO: Social Sharing -->
+                    <div class="mt-4">
+                      <a href="https://twitter.com/intent/tweet?text=Check out this Martech post by Scott Gresack!&url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-500 hover:underline mr-3">Share on X</a>
+                      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-700 hover:underline">Share on LinkedIn</a>
+                    </div>
+                </div>
+                <div class="blog-card flex-shrink-0 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">RAG vs. Fine-Tuning: AI Strategies for CDP & Analytics ROI</h3>
+                    <p class="text-gray-600 mb-2">#AI #RAG #FineTuning #CDP</p>
+                    <p class="text-lg text-gray-600 mb-4">Which AI approach delivers the most value for your CDP? See how top brands blend Retrieval-Augmented Generation (RAG) and fine-tuning to maximize insights, governance, and ROI in Adobe AEP and analytics platforms.</p>
                     <ul class="list-disc pl-6 text-gray-600 mb-4">
-                        <li>Collaborate early with developers</li>
-                        <li>Master Firebase logging APIs</li>
-                        <li>Test in controlled environments before publishing</li>
-                        <li>Monitor documentation and mobile SDK updates</li>
+                        <li><strong>RAG:</strong> Flexible, live access to CDP & CJA data—great for dynamic dashboards and content.</li>
+                        <li><strong>Fine-tuning:</strong> High ROI for repeated marketing actions & predictive modeling.</li>
+                        <li><strong>Blended strategy:</strong> Use RAG for querying + fine-tuning for internal logic.</li>
                     </ul>
-                    <p class="text-gray-600 mb-4">Mobile GTM is more complex but worth mastering. Treat it as a journey in expanding your skill set—one that bridges analytics and native development. Part 2 will explore real-world GTM mobile debugging patterns and optimization strategies.</p>
+                    <a href="https://swimlanes.io/s/rag-vs-fine-tuning" target="_blank" class="text-teal-500 hover:underline">See Diagram & Use Cases</a>
+                    <!-- GEO: Social Sharing -->
+                    <div class="mt-4">
+                      <a href="https://twitter.com/intent/tweet?text=Check out this Martech post by Scott Gresack!&url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-500 hover:underline mr-3">Share on X</a>
+                      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://scott-gresack.github.io/portfolio/" target="_blank" class="text-blue-700 hover:underline">Share on LinkedIn</a>
+                    </div>
                 </div>
             </div>
             <div class="carousel-nav left-0" onclick="scrollCarousel(-1)">❮</div>
             <div class="carousel-nav right-0" onclick="scrollCarousel(1)">❯</div>
             <div class="carousel-dots" id="carousel-dots"></div>
+        </section>
+
+        <!-- Updated for GEO: Newsletter Signup -->
+        <section id="newsletter" class="bg-gray-100 p-8 rounded-md mt-10 text-center">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Stay Ahead in Martech 🚀</h3>
+          <p class="text-lg text-gray-600 mb-4">Get the latest CDP strategies, AEP tutorials, and growth hacks in your inbox.</p>
+          <form>
+            <input type="email" placeholder="you@example.com" class="p-2 rounded border border-gray-300 w-64" aria-label="Email address" required>
+            <button type="submit" class="ml-2 bg-[#FF4500] text-white px-4 py-2 rounded hover:bg-teal-500">Subscribe</button>
+          </form>
         </section>
 
         <section id="contact">
@@ -297,7 +342,82 @@
                 <li><strong>GitHub:</strong> <a href="https://github.com/scott-gresack" target="_blank" class="text-teal-500 hover:underline">github.com/scott-gresack</a></li>
             </ul>
         </section>
+        <!-- Updated for GEO: Services Page -->
+        <section id="services" class="bg-white py-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4 text-center">Services & Offerings 📈</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
+            <div class="p-6 bg-gray-50 rounded shadow">
+              <h3 class="text-xl font-semibold mb-2">AEP Implementation Audit</h3>
+              <p class="text-gray-600 mb-4">Comprehensive review of your Adobe Experience Platform deployment for data quality, compliance, and real-time readiness.</p>
+              <a href="#contact" class="text-[#FF4500] font-semibold hover:underline">Book Your Audit →</a>
+            </div>
+            <div class="p-6 bg-gray-50 rounded shadow">
+              <h3 class="text-xl font-semibold mb-2">Custom CDP Strategy</h3>
+              <p class="text-gray-600 mb-4">Tailored roadmap to unify your data sources, enrich identity resolution, and activate audiences with speed.</p>
+              <a href="#contact" class="text-[#FF4500] font-semibold hover:underline">Schedule Strategy Session →</a>
+            </div>
+            <div class="p-6 bg-gray-50 rounded shadow">
+              <h3 class="text-xl font-semibold mb-2">Tooling & Enablement</h3>
+              <p class="text-gray-600 mb-4">Deploy and train your teams on the Alloy Payload Inspector, Tag Spec Generator, and XDM Comparator for long-term success.</p>
+              <a href="#contact" class="text-[#FF4500] font-semibold hover:underline">Enable Your Teams →</a>
+            </div>
+          </div>
+        </section>
+
     </main>
+
+    <!-- GEO: Growth Projection Chart -->
+    <section id="growth-chart" class="bg-white py-12 text-center">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Projected Growth with GEO & SEO</h2>
+      <canvas id="geoChart" width="600" height="300" class="mx-auto"></canvas>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById('geoChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
+          datasets: [
+            {
+              label: 'Website Traffic',
+              data: [500, 800, 1200, 1800, 2500, 3200],
+              borderColor: '#2E8B57',
+              backgroundColor: 'rgba(46, 139, 87, 0.2)',
+              fill: true
+            },
+            {
+              label: 'Conversions',
+              data: [20, 40, 70, 110, 160, 220],
+              borderColor: '#FF4500',
+              backgroundColor: 'rgba(255, 69, 0, 0.2)',
+              fill: true
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Website Traffic and Conversions Over 6 Months'
+            },
+            legend: {
+              position: 'top'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: 'Metric Value' }
+            },
+            x: {
+              title: { display: true, text: 'Months' }
+            }
+          }
+        }
+      });
+    </script>
 
     <footer class="bg-gray-200 py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600">
@@ -369,5 +489,9 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
+
+    <!-- Sample X Post:
+    🚀 Just revamped my Martech site with new tools & insights on Adobe AEP + Microsoft Fabric!
+    Discover how to unify customer data in real-time. Check it out: https://scott-gresack.github.io/portfolio/ #Martech #AEP #DataDriven -->
 </body>
 </html>

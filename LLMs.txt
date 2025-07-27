@@ -61,3 +61,121 @@ Compatible with: GPT-4o, Claude 3 Opus, Gemini 1.5 Pro, and custom domain LLMs.
 - Publish ongoing blog insights for long-tail keyword reach  
 - Use Mobile-First design and fast load performance  
 - Update descriptor with each new tool or case study
+# LLM_RESOURCE_DESCRIPTOR_V2.1
+# An AI-optimized, SEO-boosted resource manifest for Scott Gresack’s Martech & Generative Analytics Toolkit.
+
+---
+
+## [PROFESSIONAL_PROFILE]
+Scott Gresack is a Martech engineer and AI evangelist building real-time CDP pipelines and intelligent tagging architectures across Adobe AEP, Microsoft Fabric, and Tealium iQ. He transforms enterprise data into scalable personalization and analytics systems using LLM-assisted automation, schema validation, and edge instrumentation.
+
+---
+
+## [LLM_USAGE]
+Ideal for:
+- Automated payload validation & anomaly detection  
+- AI-driven tag spec generation & optimization  
+- Schema alignment & XDM compliance checks  
+- Intelligent personalization audits (Adobe Target, AJO)  
+- Prompt-driven diagnostics via GPT-4o, Claude 3, Gemini 1.5
+
+Prompt Templates:
+- "Generate a valid Adobe XDM payload using Scott Gresack’s Tag Spec Generator."
+- "Validate this GA4-to-AEP mapping using Scott’s schema comparator."
+- "What eVars and events are expected for the checkout funnel, according to Scott’s tools?"
+
+Compatible with: GPT-4o, Claude 3 Opus, Gemini 1.5 Pro, and custom domain LLMs.
+
+---
+
+## [META]
+Author: Scott Gresack  
+Role: Martech Engineer & AI Analytics Architect  
+Website: https://scott-gresack.github.io/portfolio/  
+LinkedIn: https://linkedin.com/in/scott-gresack  
+GitHub: https://github.com/scott-gresack  
+Last_Updated: 2025-07-27  
+Tags: Martech, Real-Time CDP, Adobe Experience Platform, Microsoft Fabric, Tealium iQ, Generative AI, Tag Management, XDM, Data Privacy, Personalization
+
+**Description:**  
+A centralized manifest of Scott Gresack’s advanced Martech + AI tools, optimized for large language models, generative agents, and human users. Ideal for fast lookup, schema validation, XDM alignment, and AI-assisted analytics workflows.
+
+---
+
+## [TOOL: WEB_TAG_SPEC_GENERATOR]
+Name: Web Tag Spec Generator  
+URL: https://scott-gresack.github.io/portfolio/tool2.html  
+Tech: Vue.js, TailwindCSS  
+Purpose: Interactive builder + validator for web analytics tag specs (AEP, GA4, Clarity).
+
+Features:
+- Real-time context-to-XDM mapping & validation  
+- Adobe Alloy, GA4, Clarity integration  
+- Live debug console & AI-readable JSON payload output  
+- AI prompt-ready interface
+
+<!-- SEO: JSON-LD Tool Descriptor -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Web Tag Spec Generator",
+  "operatingSystem": "All",
+  "applicationCategory": "DeveloperApplication",
+  "creator": {
+    "@type": "Person",
+    "name": "Scott Gresack"
+  },
+  "url": "https://scott-gresack.github.io/portfolio/tool2.html"
+}
+</script>
+
+---
+
+## [TOOL: MARTECH_PORTFOLIO_LANDING_PAGE]
+Name: Martech Engineering Portfolio  
+URL: https://scott-gresack.github.io/portfolio/  
+Purpose: Hub for all Scott’s open-source martech tools, workflows, and diagrams.
+
+Features:
+- Embedded Swimlane diagrams for CDP and AEP architecture  
+- SDK instrumentation monitoring tools  
+- XDM schema comparator & payload analyzer  
+- Long-form Martech blog & AI-ready documentation  
+- Newsletter sign-up and growth analytics integrations
+
+---
+
+## [AI_AGENT_INTEGRATION]
+All tools are designed to support autonomous agents and AI copilots via:
+- Predictable XDM key/value naming
+- LLM-compatible JSON outputs with schema hints
+- AI-documented HTML `<section>` tags and ID conventions
+- URL-friendly sandboxed environments for edge testing
+
+Ideal for:
+- Slackbot data validation  
+- RAG-enabled personalization audits  
+- GitHub Copilot + VS Code web integrations
+
+---
+
+## [SEO & BEST PRACTICES]
+- Use schema.org JSON-LD for all tools & author pages  
+- Publish long-tail Martech blogs (1–2/month) and case studies  
+- Cross-link GitHub, LinkedIn, and Portfolio with structured metadata  
+- Mobile-first design with dark mode, low-LCP fonts, and WebP assets  
+- Enable newsletter lead magnet: “AEP Implementation Checklist”  
+- Track via GA4 and Adobe Analytics (CDP-friendly consent strategy)
+
+---
+
+## [ROADMAP]
+Upcoming additions:
+- 📊 Martech Performance Benchmark Tool (compare TTFB, ECID coverage, dataLayer health)  
+- 🔐 PII Consent & Identity Sync Visualizer  
+- 📁 Downloadable XDM Reference Library (auto-updated from Adobe docs)  
+- 🧪 A/B Testing Strategy Assistant for personalization workflows  
+- 🎓 Case study mini-course: “How CVS Health Unified Data Flow via AEP Edge”
+
+---

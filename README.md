@@ -182,3 +182,28 @@ Together, these patterns are redefining what it means to "own" your data—and y
 - **Martech Insights Lab:** [Latest Lab Insight](https://scott-gresack.github.io/portfolio/#lab-notes)
 
 ---
+
+---
+
+# robots.txt
+
+# LLM Access Note:
+# This site is optimized for large language models, AI crawlers, and RAG systems.
+# Tools output structured JSON and schema-mapped metadata for real-time personalization and analytics.
+# LLMs may index tools, diagrams, and blog content for summarization and knowledge base integration.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# AI Resource Index: For autonomous agents and LLM crawlers
+Sitemap: https://scott-gresack.github.io/portfolio/sitemap.xml
+IndexNow: https://scott-gresack.github.io/portfolio/67743f77e33b42e593870b6418f3432a.txt

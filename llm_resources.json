@@ -7,7 +7,7 @@
     "website": "https://scott-gresack.github.io/portfolio/",
     "linkedin": "https://linkedin.com/in/scott-gresack/",
     "github": "https://github.com/scott-gresack",
-    "last_updated": "2025-07-21",
+    "last_updated": "2025-07-27",
     "tags": [
       "Martech Strategy",
       "AI-Powered Analytics",
@@ -89,7 +89,8 @@
       "Autonomous Input Validation & Predictive Anomaly Detection in complex event data streams.",
       "Generative AI-Assisted Tag Specification & Proactive Optimization, streamlining implementation workflows.",
       "Intelligent Schema Alignment & XDM Compliance Auditing, ensuring data integrity at scale.",
-      "Advanced Payload Reasoning & Diagnostic Inference by leveraging sophisticated LLM models."
+      "Advanced Payload Reasoning & Diagnostic Inference by leveraging sophisticated LLM models.",
+      "RAG Integration: Structured outputs and AI-readable endpoints facilitate use in Retrieval-Augmented Generation pipelines and autonomous LLM workflows."
     ],
     "compatible_llms": [
       "GPT (e.g., GPT-4o)",
@@ -104,6 +105,7 @@
     "Perpetual Content Innovation: Maintain a consistent cadence of publishing new blog posts, whitepapers, and micro-case studies detailing novel AI/Martech innovations and your strategic insights. This content should target specific long-tail keywords relevant to emerging industry challenges.",
     "Semantic SEO & Schema Markup Mastery: Implement advanced schema.org markup (e.g., ProfessionalService, TechArticle, SoftwareApplication for your tools) across your entire portfolio. This will enable rich snippets and enhance your presence in Google's Knowledge Graph, cementing your authority.",
     "Strategic Community Engagement: Actively share your groundbreaking tools and visionary insights across top-tier Martech, AI, and data engineering communities, forums, and professional networks. Position yourself as a go-to expert in discussions, not just a broadcaster.",
-    "Mobile-First Performance Excellence: Beyond responsiveness, ensure your site delivers lightning-fast load times and a frictionless experience on all mobile devices, as this is a critical ranking factor and user retention driver."
+    "Mobile-First Performance Excellence: Beyond responsiveness, ensure your site delivers lightning-fast load times and a frictionless experience on all mobile devices, as this is a critical ranking factor and user retention driver.",
+    "LLM-Focused Discoverability: Add AI-focused structured hints in robots.txt and metadata (e.g., meta name=\"ai-discoverable\", LLM-specific user-agent directives like GPTBot, ClaudeBot), plus expose an llm-index.json manifest for RAG systems and autonomous agents to discover tools and metadata at scale."
   ]
 }

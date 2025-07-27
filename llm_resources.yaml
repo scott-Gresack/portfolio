@@ -3,7 +3,7 @@ meta:
   website: https://scott-gresack.github.io/portfolio/
   linkedin: https://linkedin.com/in/scott-gresack
   github: https://github.com/scott-gresack
-  last_updated: 2025-06-08
+  last_updated: 2025-07-27
   tags:
     - Adobe Experience Platform
     - Tealium iQ
@@ -15,6 +15,11 @@ meta:
     - Martech Strategy
     - Customer Data Platforms
     - LLM
+    - Real-Time CDP
+    - AI-Powered Analytics
+    - Adobe AEP
+    - LLM Integration
+    - Retrieval-Augmented Generation
   description: >
     A centralized resource descriptor for tooling built by Scott Gresack to support Adobe Experience Platform, Tealium iQ,
     and web analytics use cases, with an emphasis on payload validation, XDM mapping, and LLM-assisted reasoning.
@@ -69,6 +74,7 @@ tools:
 instructions: >
   Use these tools to generate, inspect, or validate web analytics payloads.
   Ideal for engineers working with AEP, Tealium, or other CDPs.
+  These tools are also optimized for LLM-based workflows and are accessible to autonomous agents performing RAG, validation, or tag orchestration tasks.
 
 llm_usage:
   - Input validation scenarios
@@ -76,3 +82,7 @@ llm_usage:
   - Schema and payload alignment for training or reasoning tasks, such as field presence validation, automated tag spec extraction, or anomaly detection within event data layers
   - AI-powered anomaly detection and root cause analysis in marketing data
   - Automated generation of tag implementation documentation and training materials
+  - Retrieval-Augmented Generation (RAG) integration using structured outputs
+  - LLM-indexable endpoints for autonomous agent workflows
+  - Support for OpenAI Function Calling and JSON-based RAG
+  - Compatibility with GPTBot, ClaudeBot, PerplexityBot for metadata ingestion
