@@ -32,7 +32,6 @@
   <meta name="color-scheme" content="light dark">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
-  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <!-- LocalBusiness Schema -->
@@ -58,7 +57,52 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN fallback (if build tool fails, ensure Tailwind utilities available) -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Tailwind CSS (precompiled via build tool) and custom overrides -->
+  <style>
+    /* Tailwind utilities are precompiled and included via build tool output. */
+    body {
+      background-color: #111827;
+      color: #F9FAFB;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #F9FAFB;
+    }
+
+    p, li, label {
+      color: #D1D5DB;
+    }
+
+    .dark .text-gray-900 {
+      color: #F9FAFB;
+    }
+
+    .dark .text-gray-600 {
+      color: #D1D5DB;
+    }
+
+    .dark .text-gray-700 {
+      color: #D1D5DB;
+    }
+
+    .dark .text-gray-300 {
+      color: #E5E7EB;
+    }
+
+    .dark .text-gray-100 {
+      color: #FFFFFF;
+    }
+
+    .dark .bg-white {
+      background-color: #1F2937;
+    }
+
+    .dark .text-black {
+      color: #FFFFFF;
+    }
+  </style>
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://scott-gresack.github.io/portfolio/sitemap.xml" />
   <!-- Google Tag Manager -->
   <script>
@@ -86,7 +130,22 @@
       })
   </script>
 </head>
-<body class="antialiased">
+<body class="bg-gray-900 text-gray-100 antialiased">
+  <noscript>
+    <style>
+      body {
+        background: #fff !important;
+        color: #111 !important;
+      }
+      header, main, footer {
+        background: #fff !important;
+        color: #111 !important;
+      }
+    </style>
+    <div style="background:#fff;color:#111;padding:1em;text-align:center;">
+      JavaScript is disabled. This site works best with JavaScript enabled, but all content is accessible.
+    </div>
+  </noscript>
   <a href="#hero" class="sr-only focus:not-sr-only absolute top-0 left-0 bg-white text-black p-4 z-50">Skip to main content</a>
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -119,13 +178,13 @@
         </svg>
       </button>
     </nav>
-      <div id="mobile-nav" class="hidden fixed top-[64px] inset-x-0 md:hidden bg-white dark:bg-gray-900 shadow-lg z-50">
+      <div id="mobile-nav" class="hidden fixed top-[64px] left-0 right-0 md:hidden bg-white dark:bg-gray-900 shadow-lg z-50 max-h-[80vh] overflow-y-auto">
         <div class="px-6 py-4 space-y-4">
-          <a href="#services" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500">Services</a>
-          <a href="#tools" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500">Tools & Case Studies</a>
-          <a href="#blog" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500">Blog</a>
-          <a href="#about" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500">About</a>
-          <a href="#contact" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500">Contact</a>
+          <a href="#services" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500 py-2 px-4 text-lg">Services</a>
+          <a href="#tools" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500 py-2 px-4 text-lg">Tools & Case Studies</a>
+          <a href="#blog" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500 py-2 px-4 text-lg">Blog</a>
+          <a href="#about" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500 py-2 px-4 text-lg">About</a>
+          <a href="#contact" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500 py-2 px-4 text-lg">Contact</a>
           <button id="theme-toggle-mobile" class="theme-toggle mt-2 w-full text-left" aria-label="Toggle dark mode" type="button">
             Toggle Theme
           </button>
@@ -137,24 +196,41 @@
     <section id="hero" class="flex flex-col items-center text-center py-12 animate-slide-up">
       <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-3">
         Scott Gresack
-        <span class="block text-xl md:text-2xl font-semibold text-teal-600 dark:text-teal-300 mt-2">Martech Engineer & CDP Architect</span>
+        <span class="block text-xl md:text-2xl font-semibold text-teal-600 dark:text-teal-300 mt-2">Architecting Real-Time Martech & AI-Powered Personalization</span>
       </h1>
       <p class="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-3xl">
-        Unlock real-time data activation and measurable outcomes with <strong>Adobe AEP</strong>, <strong>Microsoft Fabric</strong>, and <strong>AI-powered CDP</strong> solutions tailored for enterprise growth.
+        Turning Data into Personalized Customer Experiences with AI and Real-Time CDPs
       </p>
       <p class="text-md text-gray-700 dark:text-gray-400 italic mt-2 max-w-2xl">
         I'm dedicated to building the next generation of intelligent, privacy-first customer data platforms that empower businesses to forge deeper, more personalized connections.
       </p>
-      <a href="#contact" class="cta-button" aria-label="Schedule Consultation" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'hero',event_label:'Schedule Consultation'});}">Schedule Consultation</a>
+      <a href="#contact" class="cta-button" aria-label="Book a Free Martech Strategy Consultation" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'hero',event_label:'Book a Free Martech Strategy Consultation'});}">Book a Free Martech Strategy Consultation</a>
     </section>
 
     <section id="about" class="max-w-4xl mx-auto animate-slide-up">
       <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">About Scott Gresack</h2>
-      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">I empower enterprise brands to unify customer data and drive measurable results. With over 8 years in Martech, I specialize in scalable CDP solutions, Adobe AEP integrations, and real-time audience orchestration.</p>
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        With a passion for transforming data into meaningful customer connections, I specialize in building scalable marketing infrastructure that bridges data and personalization.
+      </p>
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        I empower enterprise brands to unify customer data and drive measurable results. With over 8 years in Martech, I specialize in scalable CDP solutions, Adobe AEP integrations, and real-time audience orchestration.
+      </p>
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        <strong>Tools & Platforms:</strong> Adobe AEP, Microsoft Fabric, Tealium, Segment, Google Tag Manager, AI-powered CDP solutions.
+      </p>
       <ul class="checkmark-list text-lg text-gray-600 dark:text-gray-300 mb-6">
-        <li><strong>Location:</strong> Baltimore, MD – Serving clients nationwide and remotely.</li>
-        <li><strong>Expertise:</strong> 8+ years in Enterprise Martech, Data Engineering, and Digital Analytics.</li>
-        <li><strong>Certifications:</strong> Adobe AEP Architect, Microsoft Data Engineer, Tealium iQ Pro.</li>
+        <li>
+          <strong>Location:</strong> Baltimore, MD – Serving clients nationwide and remotely.
+        </li>
+
+        <li>
+          <strong>Expertise:</strong> 8+ years in Enterprise Martech, Data Engineering, and Digital Analytics.
+        </li>
+
+        <li>
+          <strong>Certifications:</strong> Adobe AEP Architect, Microsoft Data Engineer, Tealium iQ Pro.
+        </li>
+
         <li>
           <strong>Proven Impact:</strong>
           <ul class="checkmark-list pl-6 mt-2">
@@ -163,16 +239,33 @@
             <li>Ensured HIPAA/GDPR compliance for 10+ CDPs, enhancing trust and mitigating risks.</li>
           </ul>
         </li>
-        <li><strong>Specialties:</strong> Adobe AEP, Tag Governance, AI Personalization, Identity Resolution.</li>
+
+        <li>
+          <strong>Specialties:</strong> Adobe AEP, Tag Governance, AI Personalization, Identity Resolution.
+        </li>
       </ul>
       <div class="mt-12">
         <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">My Values</h3>
         <ul class="checkmark-list text-lg text-gray-600 dark:text-gray-300">
-          <li><strong>Client Empowerment:</strong> I believe in empowering teams through knowledge transfer and custom tooling, ensuring lasting independence and expertise.</li>
-          <li><strong>Data Ethics & Privacy:</strong> Committed to building platforms with privacy and compliance (HIPAA, GDPR) at their core.</li>
-          <li><strong>Measurable Impact:</strong> Focused on delivering tangible, quantifiable results that drive business growth.</li>
-          <li><strong>Transparency & Collaboration:</strong> Championing open communication and shared success.</li>
-          <li><strong>Continuous Innovation:</strong> Staying at the forefront of Martech and AI advancements to future-proof solutions.</li>
+          <li>
+            <strong>Client Empowerment:</strong> I believe in empowering teams through knowledge transfer and custom tooling, ensuring lasting independence and expertise.
+          </li>
+
+          <li>
+            <strong>Data Ethics & Privacy:</strong> Committed to building platforms with privacy and compliance (HIPAA, GDPR) at their core.
+          </li>
+
+          <li>
+            <strong>Measurable Impact:</strong> Focused on delivering tangible, quantifiable results that drive business growth.
+          </li>
+
+          <li>
+            <strong>Transparency & Collaboration:</strong> Championing open communication and shared success.
+          </li>
+
+          <li>
+            <strong>Continuous Innovation:</strong> Staying at the forefront of Martech and AI advancements to future-proof solutions.
+          </li>
         </ul>
       </div>
       <p class="text-lg text-gray-600 dark:text-gray-300 text-center mt-6 italic">
@@ -187,17 +280,17 @@
         <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg flex flex-col">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">AEP Implementation Audit</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">Comprehensive audit of your Adobe Experience Platform to ensure data quality, compliance, and performance optimization.</p>
-          <a href="#contact" class="cta-button" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'services',event_label:'Book Audit'});}">Book Your Audit</a>
+          <a href="#contact" class="cta-button" aria-label="Schedule Your AEP Audit Today" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'services',event_label:'Schedule Your AEP Audit Today'});}">Schedule Your AEP Audit Today</a>
         </div>
         <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg flex flex-col">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">CDP Strategy Development</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">Custom roadmap to unify data, enhance identity resolution, and accelerate audience activation. Proven to reduce time-to-value across Martech stacks.</p>
-          <a href="#contact" class="cta-button" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'services',event_label:'Schedule Strategy'});}">Schedule Strategy Session</a>
+          <a href="#contact" class="cta-button" aria-label="Design Your CDP Roadmap Now" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'services',event_label:'Design Your CDP Roadmap Now'});}">Design Your CDP Roadmap Now</a>
         </div>
         <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg flex flex-col">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Custom Tooling & Enablement</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">Deploy and train your team on powerful enablement tools like Alloy Inspector, Tag Spec Generator, and XDM Comparator to operationalize CDP excellence.</p>
-          <a href="#contact" class="cta-button" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'services',event_label:'Enable Teams'});}">Enable Your Teams</a>
+          <a href="#contact" class="cta-button" aria-label="Launch Custom Martech Enablement" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'services',event_label:'Launch Custom Martech Enablement'});}">Launch Custom Martech Enablement</a>
         </div>
       </div>
     </section>
@@ -208,19 +301,19 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         <div class="blog-card flex flex-col">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Alloy Payload Inspector</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2 flex-grow">Cut Adobe Web SDK troubleshooting time by 50% for a Fortune 100 retailer.</p>
+          <p class="text-gray-600 dark:text-gray-300 mb-2 flex-grow">Cut Adobe Web SDK troubleshooting time by 50% for a Fortune 100 retailer — reduced troubleshooting time by 50%</p>
           <p class="text-gray-700 dark:text-gray-400 mb-3 text-sm">Tech: JavaScript, Chrome Extension, Adobe Alloy</p>
           <a href="#tools" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','portfolio_view',{event_category:'tools',event_label:'Alloy Inspector'});}">See Details</a>
         </div>
         <div class="blog-card flex flex-col">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Tag Spec Generator</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2 flex-grow">Automated XDM mapping for Adobe Analytics, saving 10+ hours per project.</p>
+          <p class="text-gray-600 dark:text-gray-300 mb-2 flex-grow">Automated XDM mapping for Adobe Analytics, saving 10+ hours per project — saved over 10 hours per implementation</p>
           <p class="text-gray-700 dark:text-gray-400 mb-3 text-sm">Tech: Node.js, Express, XDM, Tealium</p>
           <a href="#tools" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','portfolio_view',{event_category:'tools',event_label:'Tag Spec Generator'});}">See Details</a>
         </div>
         <div class="blog-card flex flex-col">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Mobile Tracking Validator</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2 flex-grow">Validated 100% of mobile lifecycle events for a healthcare app in <strong>1/3 the time</strong>.</p>
+          <p class="text-gray-600 dark:text-gray-300 mb-2 flex-grow">Validated 100% of mobile lifecycle events for a healthcare app in <strong>1/3 the time</strong> — improved validation coverage by 100%</p>
           <p class="text-gray-700 dark:text-gray-400 mb-3 text-sm">Tech: Swift, Kotlin, AEP Mobile SDK</p>
           <a href="#tools" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','portfolio_view',{event_category:'tools',event_label:'Mobile Tracking Validator'});}">See Details</a>
         </div>
@@ -242,101 +335,50 @@
     <section id="blog" class="animate-slide-up">
       <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Martech Insights Lab</h2>
       <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 text-center">Actionable strategies and technical insights on Adobe AEP, CDPs, and AI personalization. <a href="#tools" class="text-teal-500 hover:underline">Explore related tools</a>.</p>
-      <div id="blog-carousel" class="relative flex overflow-x-auto snap-x snap-mandatory scroll-smooth space-x-4">
-        <div class="blog-card flex-shrink-0" data-expand="true">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Unifying Mobile Data for CDP</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2">#MartechEngineer #AdobeAEP #CDP <a href="#tools" class="text-teal-500 hover:underline">(see Tag Spec Generator)</a></p>
-          <div class="blog-summary">
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">How a retail brand unified mobile analytics for real-time CDP activation without app rewrites, enabling instant segmentation.</p>
-            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-              <span>4 min read</span>
-              <span>Last Updated: Feb 2024</span>
-            </div>
-          </div>
-          <a href="/blog/unifying-mobile-data-cdp.html" class="read-more">Read More about Unifying Mobile Data for CDP</a>
-          <a href="/blog/unifying-mobile-data-cdp.html" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'See Data Flow Diagram'});}">Read Full Blog Post</a>
-        </div>
-        <div class="blog-card flex-shrink-0" data-expand="true">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Real-Time Signal Intelligence</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2">#CDP #AEP #MicrosoftFabric #AI</p>
-          <div class="blog-summary">
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Unified real-time telemetry and marketing signals for instant audience updates using Adobe AEP and Microsoft Fabric RTI.</p>
-            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-              <span>3 min read</span>
-              <span>Last Updated: Jan 2024</span>
-            </div>
-          </div>
-          <a href="/blog/real-time-signal-intelligence.html" class="read-more">Read More about Real-Time Signal Intelligence</a>
-          <a href="/blog/real-time-signal-intelligence.html" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'Explore Starter Templates'});}">Dive into the Use Case</a>
-        </div>
-        <div class="blog-card flex-shrink-0" data-expand="true">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Forward Deployed Engineering</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2">#MartechEngineer #AEP #Fabric #FDE</p>
-          <div class="blog-summary">
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">How embedded Martech Engineers deliver rapid value using Adobe AEP and Microsoft Fabric.</p>
-            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-              <span>2 min read</span>
-              <span>Last Updated: Dec 2023</span>
-            </div>
-          </div>
-          <a href="/blog/forward-deployed-engineering.html" class="read-more">Read More about Forward Deployed Engineering</a>
-          <a href="#contact" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'Get the Breakdown'});}">Read the Engineering Overview</a>
-        </div>
-        <div class="blog-card flex-shrink-0" data-expand="true">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Eliminating FOOC</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2">#Personalization #Performance #UX #AdobeAEP</p>
-          <div class="blog-summary">
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Eliminated "Flash of Original Content" for an e-commerce site, boosting engagement and conversions.</p>
-            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-              <span>3 min read</span>
-              <span>Last Updated: Nov 2023</span>
-            </div>
-          </div>
-          <a href="/blog/eliminating-fooc.html" class="read-more">Read More about Eliminating FOOC</a>
-          <a href="/blog/eliminating-fooc.html" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'Explore Solutions & Diagrams'});}">See How It Was Solved</a>
-        </div>
-        <div class="blog-card flex-shrink-0" data-expand="true">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">GTM for Mobile vs. Web</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2">#GTM #Mobile #Tagging <a href="#tools" class="text-teal-500 hover:underline">(see Tag Spec Generator)</a></p>
-          <div class="blog-summary">
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Bridged web and mobile tagging for a healthcare app using Google Tag Manager.</p>
-            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-              <span>3 min read</span>
-              <span>Last Updated: Oct 2023</span>
-            </div>
-          </div>
-          <a href="/blog/gtm-mobile-vs-web.html" class="read-more">Read More about GTM for Mobile vs. Web</a>
-          <a href="#tools" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'See Tag Spec Tool'});}">Explore Tool in Action</a>
-        </div>
-        <div class="blog-card flex-shrink-0" data-expand="true">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">RAG vs. Fine-Tuning</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2">#AI #RAG #FineTuning #CDP</p>
-          <div class="blog-summary">
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Explore how Retrieval-Augmented Generation (RAG) enables chatbots to pull real-time insights from knowledge bases—perfect for customer support, compliance, and CDP orchestration—compared to static fine-tuned models.</p>
-            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-              <span>4 min read</span>
-              <span>Last Updated: Sep 2023</span>
-            </div>
-          </div>
-          <a href="/blog/rag-vs-finetuning.html" class="read-more">Read More about RAG vs. Fine-Tuning</a>
-          <a href="/blog/rag-vs-finetuning.html" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'See Diagram & Use Cases'});}">Compare CDP Models</a>
-        </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <a href="/blog/unifying-mobile-data-cdp.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Unifying Mobile Data for CDP</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#MartechEngineer #AdobeAEP #CDP</p>
+          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">How a retail brand unified mobile analytics for real-time CDP activation without app rewrites, enabling instant segmentation.</p>
+          <div class="text-sm text-gray-500 dark:text-gray-400">4 min read · Updated Feb 2024</div>
+        </a>
+        <a href="/blog/real-time-signal-intelligence.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Real-Time Signal Intelligence</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#CDP #AEP #MicrosoftFabric #AI</p>
+          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">Unified real-time telemetry and marketing signals for instant audience updates using Adobe AEP and Microsoft Fabric RTI.</p>
+          <div class="text-sm text-gray-500 dark:text-gray-400">3 min read · Updated Jan 2024</div>
+        </a>
+        <a href="/blog/forward-deployed-engineering.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Forward Deployed Engineering</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#MartechEngineer #AEP #Fabric #FDE</p>
+          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">How embedded Martech Engineers deliver rapid value using Adobe AEP and Microsoft Fabric.</p>
+          <div class="text-sm text-gray-500 dark:text-gray-400">2 min read · Updated Dec 2023</div>
+        </a>
+        <a href="/blog/eliminating-fooc.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Eliminating FOOC</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#Personalization #Performance #UX #AdobeAEP</p>
+          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">Eliminated "Flash of Original Content" for an e-commerce site, boosting engagement and conversions.</p>
+          <div class="text-sm text-gray-500 dark:text-gray-400">3 min read · Updated Nov 2023</div>
+        </a>
+        <a href="/blog/gtm-mobile-vs-web.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">GTM for Mobile vs. Web</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#GTM #Mobile #Tagging</p>
+          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">Bridged web and mobile tagging for a healthcare app using Google Tag Manager.</p>
+          <div class="text-sm text-gray-500 dark:text-gray-400">3 min read · Updated Oct 2023</div>
+        </a>
+        <a href="/blog/rag-vs-finetuning.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">RAG vs. Fine-Tuning</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#AI #RAG #FineTuning #CDP</p>
+          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">Explore how Retrieval-Augmented Generation (RAG) enables chatbots to pull real-time insights from knowledge bases—perfect for customer support, compliance, and CDP orchestration—compared to static fine-tuned models.</p>
+          <div class="text-sm text-gray-500 dark:text-gray-400">4 min read · Updated Sep 2023</div>
+        </a>
       </div>
-      <div class="carousel-nav left-0" onclick="scrollCarousel(-1)">❮</div>
-      <div class="carousel-nav right-0" onclick="scrollCarousel(1)">❯</div>
-      <div class="carousel-dots" id="carousel-dots"></div>
+      <div class="mt-8 text-center">
+        <a href="/blog/" class="text-teal-500 hover:underline font-medium text-lg">View All Posts →</a>
+      </div>
     </section>
 
-    <section id="newsletter" class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg mt-10 text-center animate-slide-up">
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Stay Ahead in Martech 🚀</h3>
-      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">Get exclusive CDP strategies, AEP tutorials, and growth hacks delivered to your inbox.</p>
-      <div id="newsletter-form" class="flex justify-center items-center">
-        <input type="email" id="newsletter-email" placeholder="you@example.com" class="p-3 rounded-l-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 w-64 focus:outline-none focus:ring-2 focus:ring-teal-500" aria-label="Email address" required>
-        <button type="submit" class="cta-button rounded-l-none" id="newsletter-submit">Subscribe</button>
-      </div>
-      <span id="newsletter-success" class="text-green-600 dark:text-green-400 mt-4 hidden">Thank you for subscribing!</span>
-      <span id="newsletter-error" class="text-red-600 dark:text-red-400 mt-4 hidden">Subscription failed. Try again.</span>
-    </section>
+    <!-- Newsletter section removed -->
 
     <section id="contact" class="animate-slide-up">
       <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Contact Scott</h2>
@@ -454,30 +496,6 @@
       }
     });
 
-    // Carousel navigation
-    const carousel = document.getElementById('blog-carousel');
-    const dotsContainer = document.getElementById('carousel-dots');
-    const cards = carousel.children;
-    let currentCard = 0;
-    function updateDots() {
-      dotsContainer.innerHTML = '';
-      for (let i = 0; i < cards.length; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'carousel-dot' + (i === currentCard ? ' active' : '');
-        dot.onclick = () => {
-          currentCard = i;
-          cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start' });
-          updateDots();
-        };
-        dotsContainer.appendChild(dot);
-      }
-    }
-    function scrollCarousel(direction) {
-      currentCard = Math.min(Math.max(currentCard + direction, 0), cards.length - 1);
-      cards[currentCard].scrollIntoView({ behavior: 'smooth', inline: 'start' });
-      updateDots();
-    }
-    updateDots();
 
     // Back to top
     const backToTop = document.getElementById('back-to-top');
@@ -505,35 +523,8 @@
         setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
       });
     }
-
-    // Newsletter submission
-    document.getElementById('newsletter-form').addEventListener('submit', e => {
-      e.preventDefault();
-      const email = document.getElementById('newsletter-email').value;
-      const submitBtn = document.getElementById('newsletter-submit');
-      const successMsg = document.getElementById('newsletter-success');
-      const errorMsg = document.getElementById('newsletter-error');
-      submitBtn.disabled = true;
-      successMsg.classList.add('hidden');
-      errorMsg.classList.add('hidden');
-      fetch('https://formspree.io/f/xwkgqjzv', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      }).then(response => {
-        submitBtn.disabled = false;
-        if (response.ok) {
-          successMsg.classList.remove('hidden');
-          document.getElementById('newsletter-form').reset();
-        } else {
-          errorMsg.classList.remove('hidden');
-        }
-      }).catch(() => {
-        submitBtn.disabled = false;
-        errorMsg.classList.remove('hidden');
-      });
-      if (typeof gtag === 'function') gtag('event', 'newsletter_subscribe', { event_category: 'newsletter', event_label: 'Subscribe' });
-    });
+    // No external CSS file (styles.css) is loaded or required.
+    // Newsletter submission (removed with newsletter section)
   </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
