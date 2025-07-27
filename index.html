@@ -33,6 +33,7 @@
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <!-- LocalBusiness Schema -->
   <script type="application/ld+json">
@@ -59,6 +60,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://scott-gresack.github.io/portfolio/sitemap.xml" />
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -118,7 +120,7 @@
         </svg>
       </button>
     </nav>
-      <div id="mobile-nav" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-lg fixed top-[64px] w-full z-40">
+      <div id="mobile-nav" class="hidden fixed top-[64px] inset-x-0 md:hidden bg-white dark:bg-gray-900 shadow-lg z-50">
         <div class="px-6 py-4 space-y-4">
           <a href="#services" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500">Services</a>
           <a href="#tools" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500">Tools & Case Studies</a>
@@ -443,8 +445,14 @@
       mobileNav.classList.toggle('hidden');
       hamburgerIcon.classList.toggle('hidden');
       closeIcon.classList.toggle('hidden');
-      mobileNavToggle.setAttribute('aria-expanded', !isExpanded);
-      if (!isExpanded) mobileNav.querySelector('a').focus();
+      mobileNavToggle.setAttribute('aria-expanded', (!isExpanded).toString());
+      // Remove any scroll lock or overflow-hidden on body (if present)
+      document.body.classList.remove('overflow-hidden');
+      if (!isExpanded) {
+        // Focus on first link in mobile nav for accessibility
+        const firstLink = mobileNav.querySelector('a');
+        if (firstLink) firstLink.focus();
+      }
     });
 
     // Carousel navigation
