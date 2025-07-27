@@ -58,263 +58,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    :root {
-      --primary-color: #1E3A8A;
-      --secondary-color: #2DD4BF;
-      --accent-color: #FF4500;
-      --text-color: #111827;
-      --muted-text: #4B5563;
-      --bg-color: #FFFFFF;
-      --footer-bg: #F3F4F6;
-      --success-color: #22C55E;
-      --error-color: #EF4444;
-      --warning-color: #F59E42;
-    }
-    [data-theme="dark"] {
-      --primary-color: #60A5FA;
-      --secondary-color: #2DD4BF;
-      --accent-color: #FB923C;
-      --text-color: #E5E7EB;
-      --muted-text: #D1D5DB;
-      --bg-color: #0F172A;
-      --footer-bg: #0B1120;
-      --success-color: #4ADE80;
-      --error-color: #F87171;
-      --warning-color: #FDBA74;
-    }
-    html {
-      color-scheme: light dark;
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(16px, 2.5vw, 18px);
-      line-height: 1.6;
-      color: var(--text-color);
-      background-color: var(--bg-color);
-      overflow-x: hidden;
-      transition: background 0.2s, color 0.2s;
-    }
-    h1, h2, h3 {
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-    }
-    .cta-button {
-      background: var(--accent-color);
-      color: #fff;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      min-width: 160px;
-      min-height: 44px;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .cta-button:hover,
-    .cta-button:focus-visible {
-      background: var(--secondary-color);
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-      outline: 2px solid var(--secondary-color);
-      outline-offset: 2px;
-    }
-    .blog-card {
-      width: 100%;
-      max-width: 400px;
-      padding: 24px;
-      background: var(--bg-color);
-      color: var(--text-color);
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: all 0.3s ease-in-out;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-    }
-
-    .blog-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    }
-
-    .blog-card[data-expand="true"] .blog-summary {
-      max-height: 0;
-      opacity: 0;
-      transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
-      overflow: hidden;
-    }
-
-    .blog-card.expanded .blog-summary {
-      max-height: 800px;
-      opacity: 1;
-    }
-
-    .blog-card .read-more {
-      color: var(--accent-color);
-      font-weight: 600;
-      margin-top: 1rem;
-      display: inline-block;
-    }
-
-    .blog-card .read-more:hover {
-      text-decoration: underline;
-    }
-    .animate-slide-up {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: slideUp 0.7s cubic-bezier(0.4,1.4,0.6,1) forwards;
-    }
-    @keyframes slideUp {
-      to { opacity: 1; transform: none; }
-    }
-    .carousel-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(30,58,138,0.8);
-      color: white;
-      padding: 12px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 10;
-      transition: all 0.2s ease;
-    }
-    .carousel-nav:hover, .carousel-nav:focus-visible {
-      background: var(--secondary-color);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-      outline: 2px solid var(--secondary-color);
-    }
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .carousel-dot {
-      width: 12px;
-      height: 12px;
-      background: #D1D5DB;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .carousel-dot.active {
-      background: var(--secondary-color);
-      border: 2px solid var(--primary-color);
-    }
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: var(--primary-color);
-      color: white;
-      padding: 12px 16px;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      font-size: 1.5rem;
-      transition: all 0.2s ease;
-      display: none;
-    }
-    .back-to-top:hover, .back-to-top:focus-visible {
-      background: var(--secondary-color);
-      transform: translateY(-4px);
-      outline: 2px solid var(--accent-color);
-    }
-    .theme-toggle {
-      background: none;
-      color: var(--text-color);
-      padding: 0.5rem 1rem;
-      font-weight: 600;
-      border: 2px solid var(--secondary-color);
-      border-radius: 8px;
-      transition: background 0.2s ease, color 0.2s ease;
-    }
-    .theme-toggle:hover,
-    .theme-toggle:focus-visible {
-      background: var(--secondary-color);
-      color: #fff;
-      outline: 2px solid var(--secondary-color);
-    }
-    a:focus, button:focus, input:focus, textarea:focus {
-      outline: 2px solid var(--secondary-color);
-      outline-offset: 2px;
-    }
-    header, footer {
-      background: var(--footer-bg);
-      color: var(--text-color);
-      transition: all 0.2s ease;
-    }
-    .checkmark-list {
-      list-style: none;
-      padding-left: 0;
-    }
-    .checkmark-list li {
-      position: relative;
-      padding-left: 2.2em;
-      margin-bottom: 1.2em;
-      font-size: 1.1em;
-    }
-    .checkmark-list li:before {
-      content: "✔";
-      color: var(--success-color);
-      position: absolute;
-      left: 0;
-      font-size: 1.3em;
-      top: 0.1em;
-    }
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      border: 0;
-    }
-    @media (max-width: 768px) {
-      .blog-card {
-        max-width: 100%;
-        padding: 16px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      }
-      #blog-carousel {
-        flex-direction: column;
-        overflow-x: visible;
-        scroll-snap-type: none;
-        gap: 1.5rem;
-      }
-      .carousel-nav, .carousel-dots {
-        display: none !important;
-      }
-    }
-    /* removed old .blog-card[data-expand="true"] and .blog-card.expanded rules, replaced above */
-    [data-theme="dark"] .blog-card.expanded {
-      background: #1E293B;
-    }
-    [data-theme="dark"] a {
-      color: #38BDF8;
-    }
-    [data-theme="dark"] .text-gray-600 {
-      color: #D1D5DB !important;
-    }
-    [data-theme="dark"] .text-gray-700 {
-      color: #E5E7EB !important;
-    }
-    [data-theme="dark"] .bg-white {
-      background-color: #1E293B !important;
-    }
-    [data-theme="dark"] .text-gray-900 {
-      color: #F3F4F6 !important;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -342,6 +86,7 @@
   </script>
 </head>
 <body class="antialiased">
+  <a href="#hero" class="sr-only focus:not-sr-only absolute top-0 left-0 bg-white text-black p-4 z-50">Skip to main content</a>
   <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GT-MQBSZT8H"
@@ -507,8 +252,8 @@
               <span>Last Updated: Feb 2024</span>
             </div>
           </div>
-          <a href="#" class="read-more">Read More</a>
-          <a href="#" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'See Data Flow Diagram'});}">Read Full Blog Post</a>
+          <a href="/blog/unifying-mobile-data-cdp.html" class="read-more">Read More about Unifying Mobile Data for CDP</a>
+          <a href="/blog/unifying-mobile-data-cdp.html" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'See Data Flow Diagram'});}">Read Full Blog Post</a>
         </div>
         <div class="blog-card flex-shrink-0" data-expand="true">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Real-Time Signal Intelligence</h3>
@@ -520,8 +265,8 @@
               <span>Last Updated: Jan 2024</span>
             </div>
           </div>
-          <a href="#" class="read-more">Read More</a>
-          <a href="#" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'Explore Starter Templates'});}">Dive into the Use Case</a>
+          <a href="/blog/real-time-signal-intelligence.html" class="read-more">Read More about Real-Time Signal Intelligence</a>
+          <a href="/blog/real-time-signal-intelligence.html" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'Explore Starter Templates'});}">Dive into the Use Case</a>
         </div>
         <div class="blog-card flex-shrink-0" data-expand="true">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Forward Deployed Engineering</h3>
@@ -533,7 +278,7 @@
               <span>Last Updated: Dec 2023</span>
             </div>
           </div>
-          <a href="#" class="read-more">Read More</a>
+          <a href="/blog/forward-deployed-engineering.html" class="read-more">Read More about Forward Deployed Engineering</a>
           <a href="#contact" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'Get the Breakdown'});}">Read the Engineering Overview</a>
         </div>
         <div class="blog-card flex-shrink-0" data-expand="true">
@@ -546,8 +291,8 @@
               <span>Last Updated: Nov 2023</span>
             </div>
           </div>
-          <a href="#" class="read-more">Read More</a>
-          <a href="#" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'Explore Solutions & Diagrams'});}">See How It Was Solved</a>
+          <a href="/blog/eliminating-fooc.html" class="read-more">Read More about Eliminating FOOC</a>
+          <a href="/blog/eliminating-fooc.html" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'Explore Solutions & Diagrams'});}">See How It Was Solved</a>
         </div>
         <div class="blog-card flex-shrink-0" data-expand="true">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">GTM for Mobile vs. Web</h3>
@@ -559,7 +304,7 @@
               <span>Last Updated: Oct 2023</span>
             </div>
           </div>
-          <a href="#" class="read-more">Read More</a>
+          <a href="/blog/gtm-mobile-vs-web.html" class="read-more">Read More about GTM for Mobile vs. Web</a>
           <a href="#tools" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'See Tag Spec Tool'});}">Explore Tool in Action</a>
         </div>
         <div class="blog-card flex-shrink-0" data-expand="true">
@@ -572,8 +317,8 @@
               <span>Last Updated: Sep 2023</span>
             </div>
           </div>
-          <a href="#" class="read-more">Read More</a>
-          <a href="#" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'See Diagram & Use Cases'});}">Compare CDP Models</a>
+          <a href="/blog/rag-vs-finetuning.html" class="read-more">Read More about RAG vs. Fine-Tuning</a>
+          <a href="/blog/rag-vs-finetuning.html" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'See Diagram & Use Cases'});}">Compare CDP Models</a>
         </div>
       </div>
       <div class="carousel-nav left-0" onclick="scrollCarousel(-1)">❮</div>
