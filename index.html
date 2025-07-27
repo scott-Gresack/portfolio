@@ -344,8 +344,30 @@
       color: #F3F4F6 !important;
     }
   </style>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GT-MQBSZT8H');
+  </script>
+  <!-- End Google Tag Manager -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "pmp4efispy");
+  </script>
 </head>
 <body class="antialiased">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GT-MQBSZT8H"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <header class="shadow-sm" id="site-header">
     <nav class="sticky top-0 z-50 shadow-md max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center bg-white dark:bg-gray-900 transition-colors">
       <div class="flex items-center gap-4">
@@ -644,19 +666,14 @@
 
   <button id="back-to-top" class="back-to-top" aria-label="Back to top">↑</button>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WQ5K9Z0T0"></script>
   <script>
-    // Google Analytics 4
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-2WQ5K9Z0T0');
-
-    // Custom GA4 Events
+    // Custom GA4 Events (gtag assumed present via GTM)
     document.addEventListener('DOMContentLoaded', () => {
       // Phone call tracking
       document.querySelectorAll('a[href^="tel:"]').forEach(link => {
-        link.addEventListener('click', () => gtag('event', 'phone_call', { event_category: 'header', event_label: 'Phone Link' }));
+        link.addEventListener('click', () => {
+          if (typeof gtag === 'function') gtag('event', 'phone_call', { event_category: 'header', event_label: 'Phone Link' });
+        });
       });
 
       // Contact form submit
@@ -664,21 +681,23 @@
       if (contactForm) {
         contactForm.addEventListener('submit', e => {
           e.preventDefault();
-          gtag('event', 'contact_form_submit', { event_category: 'contact', event_label: 'Form Submit' });
+          if (typeof gtag === 'function') gtag('event', 'contact_form_submit', { event_category: 'contact', event_label: 'Form Submit' });
           // Add form submission logic here
         });
       }
 
       // Portfolio card views
       document.querySelectorAll('#tools .blog-card a').forEach(link => {
-        link.addEventListener('click', () => gtag('event', 'portfolio_view', { event_category: 'tools' }));
+        link.addEventListener('click', () => {
+          if (typeof gtag === 'function') gtag('event', 'portfolio_view', { event_category: 'tools' });
+        });
       });
 
       // Scroll tracking (75%)
       let scrollTracked = false;
       window.addEventListener('scroll', () => {
         if (!scrollTracked && window.scrollY / (document.body.scrollHeight - window.innerHeight) > 0.75) {
-          gtag('event', 'scroll_75');
+          if (typeof gtag === 'function') gtag('event', 'scroll_75');
           scrollTracked = true;
         }
       });
@@ -784,7 +803,7 @@
         submitBtn.disabled = false;
         errorMsg.classList.remove('hidden');
       });
-      gtag('event', 'newsletter_subscribe', { event_category: 'newsletter', event_label: 'Subscribe' });
+      if (typeof gtag === 'function') gtag('event', 'newsletter_subscribe', { event_category: 'newsletter', event_label: 'Subscribe' });
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
