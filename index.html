@@ -132,11 +132,38 @@
       color: var(--text-color);
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: all 0.2s ease;
+      transition: all 0.3s ease-in-out;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
     }
+
     .blog-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .blog-card[data-expand="true"] .blog-summary {
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+      overflow: hidden;
+    }
+
+    .blog-card.expanded .blog-summary {
+      max-height: 800px;
+      opacity: 1;
+    }
+
+    .blog-card .read-more {
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-top: 1rem;
+      display: inline-block;
+    }
+
+    .blog-card .read-more:hover {
+      text-decoration: underline;
     }
     .animate-slide-up {
       opacity: 0;
@@ -268,18 +295,7 @@
         display: none !important;
       }
     }
-    .blog-card[data-expand="true"] {
-      cursor: pointer;
-      transition: max-height 0.3s ease, background 0.3s ease;
-      overflow: hidden;
-      max-height: 340px;
-    }
-    .blog-card.expanded {
-      max-height: 1200px !important;
-      overflow: visible !important;
-      background: #f8fafc;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
-    }
+    /* removed old .blog-card[data-expand="true"] and .blog-card.expanded rules, replaced above */
     [data-theme="dark"] .blog-card.expanded {
       background: #1E293B;
     }
@@ -490,78 +506,80 @@
         <div class="blog-card flex-shrink-0" data-expand="true">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Unifying Mobile Data for CDP</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-2">#MartechEngineer #AdobeAEP #CDP <a href="#tools" class="text-teal-500 hover:underline">(see Tag Spec Generator)</a></p>
-          <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">How a retail brand unified mobile analytics for real-time CDP activation without app rewrites, enabling instant segmentation.</p>
-          <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-            <span>4 min read</span>
-            <span>Last Updated: Feb 2024</span>
+          <div class="blog-summary">
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">How a retail brand unified mobile analytics for real-time CDP activation without app rewrites, enabling instant segmentation.</p>
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
+              <span>4 min read</span>
+              <span>Last Updated: Feb 2024</span>
+            </div>
           </div>
+          <a href="#" class="read-more">Read More</a>
           <a href="#" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'See Data Flow Diagram'});}">Read Full Blog Post</a>
         </div>
         <div class="blog-card flex-shrink-0" data-expand="true">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Real-Time Signal Intelligence</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-2">#CDP #AEP #MicrosoftFabric #AI</p>
-          <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Unified real-time telemetry and marketing signals for instant audience updates using Adobe AEP and Microsoft Fabric RTI.</p>
-          <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-            <span>3 min read</span>
-            <span>Last Updated: Jan 2024</span>
+          <div class="blog-summary">
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Unified real-time telemetry and marketing signals for instant audience updates using Adobe AEP and Microsoft Fabric RTI.</p>
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
+              <span>3 min read</span>
+              <span>Last Updated: Jan 2024</span>
+            </div>
           </div>
+          <a href="#" class="read-more">Read More</a>
           <a href="#" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'Explore Starter Templates'});}">Dive into the Use Case</a>
         </div>
         <div class="blog-card flex-shrink-0" data-expand="true">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Forward Deployed Engineering</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-2">#MartechEngineer #AEP #Fabric #FDE</p>
-          <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">How embedded Martech Engineers deliver rapid value using Adobe AEP and Microsoft Fabric.</p>
-          <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-            <span>2 min read</span>
-            <span>Last Updated: Dec 2023</span>
+          <div class="blog-summary">
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">How embedded Martech Engineers deliver rapid value using Adobe AEP and Microsoft Fabric.</p>
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
+              <span>2 min read</span>
+              <span>Last Updated: Dec 2023</span>
+            </div>
           </div>
+          <a href="#" class="read-more">Read More</a>
           <a href="#contact" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'Get the Breakdown'});}">Read the Engineering Overview</a>
         </div>
         <div class="blog-card flex-shrink-0" data-expand="true">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Eliminating FOOC</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-2">#Personalization #Performance #UX #AdobeAEP</p>
-          <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Eliminated "Flash of Original Content" for an e-commerce site, boosting engagement and conversions.</p>
-          <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-            <span>3 min read</span>
-            <span>Last Updated: Nov 2023</span>
+          <div class="blog-summary">
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Eliminated "Flash of Original Content" for an e-commerce site, boosting engagement and conversions.</p>
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
+              <span>3 min read</span>
+              <span>Last Updated: Nov 2023</span>
+            </div>
           </div>
+          <a href="#" class="read-more">Read More</a>
           <a href="#" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'Explore Solutions & Diagrams'});}">See How It Was Solved</a>
         </div>
         <div class="blog-card flex-shrink-0" data-expand="true">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">GTM for Mobile vs. Web</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-2">#GTM #Mobile #Tagging <a href="#tools" class="text-teal-500 hover:underline">(see Tag Spec Generator)</a></p>
-          <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Bridged web and mobile tagging for a healthcare app using Google Tag Manager.</p>
-          <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-            <span>3 min read</span>
-            <span>Last Updated: Oct 2023</span>
+          <div class="blog-summary">
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Bridged web and mobile tagging for a healthcare app using Google Tag Manager.</p>
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
+              <span>3 min read</span>
+              <span>Last Updated: Oct 2023</span>
+            </div>
           </div>
+          <a href="#" class="read-more">Read More</a>
           <a href="#tools" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'See Tag Spec Tool'});}">Explore Tool in Action</a>
         </div>
         <div class="blog-card flex-shrink-0" data-expand="true">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">RAG vs. Fine-Tuning</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-2">#AI #RAG #FineTuning #CDP</p>
-          <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Comparing RAG and fine-tuning for CDP to maximize insights and ROI in Adobe AEP.</p>
-          <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-            <span>4 min read</span>
-            <span>Last Updated: Sep 2023</span>
+          <div class="blog-summary">
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Explore how Retrieval-Augmented Generation (RAG) enables chatbots to pull real-time insights from knowledge bases—perfect for customer support, compliance, and CDP orchestration—compared to static fine-tuned models.</p>
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
+              <span>4 min read</span>
+              <span>Last Updated: Sep 2023</span>
+            </div>
           </div>
+          <a href="#" class="read-more">Read More</a>
           <a href="#" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'See Diagram & Use Cases'});}">Compare CDP Models</a>
-        </div>
-        <div class="blog-card flex-shrink-0" data-expand="true">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">LLM Interactions with GTM & AEP</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2">#LLM #ChatbotAnalytics #AEP #GTM <a href="#tools" class="text-teal-500 hover:underline">(see LLM Chat Metrics Tracker)</a></p>
-          <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Instrument chatbots to track user messages and responses, forwarding events to GTM or AEP for real-time analytics.</p>
-          <ul class="list-disc pl-6 text-gray-600 dark:text-gray-300 mb-4">
-            <li><strong>Prompt & Completion:</strong> Capture <code>chat_prompt_sent</code> and <code>chat_completion_received</code>.</li>
-            <li><strong>GTM/AEP:</strong> Route events to GA4, BigQuery, or RTCDP.</li>
-            <li><strong>Consent:</strong> Integrate with OneTrust or Tealium CMP.</li>
-            <li><strong>Analytics:</strong> Enable dashboards and AJO journey triggers.</li>
-          </ul>
-          <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-            <span>3 min read</span>
-            <span>Last Updated: Aug 2023</span>
-          </div>
-          <a href="#" class="text-teal-500 hover:underline" onclick="if(typeof gtag==='function'){gtag('event','cta_click',{event_category:'blog',event_label:'View Full Implementation Guide'});}">Read Implementation Guide</a>
         </div>
       </div>
       <div class="carousel-nav left-0" onclick="scrollCarousel(-1)">❮</div>
@@ -663,11 +681,15 @@
         }
       });
 
-      // Blog card expand/collapse
+      // Blog card expand/collapse with read-more toggle
       document.querySelectorAll('.blog-card[data-expand="true"]').forEach(card => {
+        const readMore = card.querySelector('.read-more');
         card.addEventListener('click', e => {
           if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
           card.classList.toggle('expanded');
+          if (readMore) {
+            readMore.textContent = card.classList.contains('expanded') ? 'Collapse' : 'Read More';
+          }
         });
       });
     });
