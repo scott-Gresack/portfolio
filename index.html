@@ -1,394 +1,726 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scott Gresack – Martech Engineer & CDP Architect</title>
-  <meta name="description" content="Martech Engineer in Baltimore specializing in Adobe AEP, Microsoft Fabric, and AI-powered CDP solutions for real-time personalization.">
-  <meta name="keywords" content="Martech Engineer, Adobe AEP, Microsoft Fabric, CDP, AI Personalization, Tag Governance, Data Engineering, Baltimore, Privacy, Open Source, GDPR, HIPAA">
-  <meta name="author" content="Scott Gresack">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#1E3A8A" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#1F2937" media="(prefers-color-scheme: dark)">
-  <meta name="geo.region" content="US-MD">
-  <meta name="geo.placename" content="Baltimore">
-  <meta name="geo.position" content="39.2904;-76.6122">
-  <meta name="ICBM" content="39.2904, -76.6122">
-  <!-- Open Graph -->
-  <meta property="og:site_name" content="Scott Gresack Portfolio">
-  <meta property="og:title" content="Scott Gresack – Martech Engineer & CDP Architect">
-  <meta property="og:description" content="Martech Engineer in Baltimore specializing in Adobe AEP, Microsoft Fabric, and AI-powered CDP solutions for real-time personalization.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/">
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/scott-gresack-headshot.webp">
-  <meta property="og:image:alt" content="Scott Gresack Headshot">
-  <meta property="og:locale" content="en_US">
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Scott Gresack – Martech Engineer & CDP Architect">
-  <meta name="twitter:description" content="Martech Engineer in Baltimore specializing in Adobe AEP, Microsoft Fabric, and AI-powered CDP solutions for real-time personalization.">
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/scott-gresack-headshot.webp">
-  <meta name="twitter:creator" content="@scottgresack">
-  <!-- Accessibility -->
-  <meta name="color-scheme" content="light dark">
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- LocalBusiness Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Scott Gresack Martech Consulting",
-    "image": "https://scott-gresack.github.io/portfolio/assets/scott-gresack-headshot.webp",
-    "telephone": "+14403903237",
-    "email": "gresack.scott@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Baltimore",
-      "addressRegion": "MD",
-      "addressCountry": "US"
-    },
-    "url": "https://scott-gresack.github.io/portfolio/",
-    "description": "Martech Engineer in Baltimore specializing in Adobe AEP, Microsoft Fabric, and AI-powered CDP solutions for real-time personalization."
-  }
-  </script>
-  <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Minimal Notion-inspired CSS overrides -->
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f7f7f5;
-      color: #111;
-      font-size: 16px;
-      line-height: 1.75;
-      padding: 1rem;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scott Gresack – Martech Engineer & CDP Architect</title>
+    <meta name="description" content="Martech Engineer specializing in Adobe Experience Platform, CDPs, and AI-driven personalization. Based in Baltimore, MD.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --border: #e5e7eb;
+            --success: #10b981;
+        }
 
-    a {
-      color: #2f76da;
-      text-decoration: none;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background);
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    .cta-button {
-      background-color: #2f76da;
-      color: white;
-      font-weight: 500;
-      border-radius: 6px;
-      padding: 0.75rem 1.5rem;
-      transition: background-color 0.2s ease;
-    }
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
 
-    .cta-button:hover {
-      background-color: #255bb5;
-    }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
 
-    .checkmark-list li::before {
-      content: "•";
-      color: #2f76da;
-      margin-right: 0.5rem;
-      font-size: 1.25rem;
-      line-height: 1;
-    }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
 
-    .shadow-lg, .rounded-lg {
-      box-shadow: none;
-      border-radius: 0;
-      border: 1px solid #e0e0e0;
-    }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-    .dark {
-      background-color: #1e1e1e;
-      color: #eaeaea;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
 
-    .dark a {
-      color: #66aaff;
-    }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
 
-    .dark .cta-button {
-      background-color: #66aaff;
-      color: #1e1e1e;
-    }
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--surface) 0%, rgba(37, 99, 235, 0.05) 100%);
+            text-align: center;
+        }
 
-    .dark .cta-button:hover {
-      background-color: #3388ff;
-    }
-  </style>
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://scott-gresack.github.io/portfolio/sitemap.xml" />
-  <!-- Google Tag Manager (deferred) -->
-  <script defer src="https://www.googletagmanager.com/gtm.js?id=GT-MQBSZT8H"></script>
-  <!-- Clarity (deferred) -->
-  <script defer src="https://www.clarity.ms/tag/pmp4efispy"></script>
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Capabilities */
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .capability-card {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .capability-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .capability-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .capability-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .tool-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .github-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .blog-title a:hover {
+            color: var(--primary-color);
+        }
+
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .blog-tag {
+            background: var(--surface);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--surface);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-gray-100 antialiased">
-  <noscript>
-    <div>JavaScript is disabled. This site works best with JavaScript enabled, but all content is accessible.</div>
-  </noscript>
-  <a href="#hero" class="sr-only focus:not-sr-only absolute top-0 left-0 bg-white text-black p-4 z-50">Skip to main content</a>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GT-MQBSZT8H" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <header class="shadow-sm" id="site-header">
-    <nav class="sticky top-0 z-50 shadow-md w-full px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center bg-white dark:bg-gray-900 transition-colors">
-      <div class="flex items-center gap-4">
-        <span class="text-2xl font-bold text-blue-900 dark:text-blue-200">Scott Gresack</span>
-      </div>
-      <div class="hidden md:flex space-x-8 items-center">
-        <a href="#services" class="text-gray-600 dark:text-gray-300 hover:text-teal-500 focus:outline-none">Services</a>
-        <a href="#tools" class="text-gray-600 dark:text-gray-300 hover:text-teal-500 focus:outline-none">Tools & Case Studies</a>
-        <a href="#blog" class="text-gray-600 dark:text-gray-300 hover:text-teal-500 focus:outline-none">Blog</a>
-        <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-teal-500 focus:outline-none">About</a>
-        <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-teal-500 focus:outline-none">Contact</a>
-        <a href="tel:+14403903237" class="text-gray-600 dark:text-gray-300 hover:text-teal-500 focus:outline-none" onclick="gtag('event','phone_call',{event_category:'header',event_label:'Phone Link'});">(440) 390-3237</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">Toggle Theme</button>
-      </div>
-      <button id="mobile-nav-toggle" class="md:hidden text-gray-600 dark:text-gray-300 hover:text-teal-500 focus:outline-none" aria-label="Toggle navigation menu" aria-expanded="false">
-        <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-        </svg>
-        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </nav>
-    <div id="mobile-nav" class="hidden fixed top-[64px] left-0 right-0 md:hidden bg-white dark:bg-gray-900 shadow-lg z-50 max-h-[80vh] overflow-y-auto">
-      <div class="px-6 py-4 space-y-4">
-        <a href="#services" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500 py-2 px-4 text-lg">Services</a>
-        <a href="#tools" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500 py-2 px-4 text-lg">Tools & Case Studies</a>
-        <a href="#blog" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500 py-2 px-4 text-lg">Blog</a>
-        <a href="#about" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500 py-2 px-4 text-lg">About</a>
-        <a href="#contact" class="block text-gray-600 dark:text-gray-300 hover:text-teal-500 py-2 px-4 text-lg">Contact</a>
-        <button id="theme-toggle-mobile" class="theme-toggle mt-2 w-full text-left text-gray-600 dark:text-gray-300 hover:text-teal-500" aria-label="Toggle dark mode" type="button">Toggle Theme</button>
-      </div>
-    </div>
-  </header>
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
-    <section id="hero" class="flex flex-col items-center text-center py-12 animate-slide-up">
-      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-        Scott Gresack
-        <span class="block text-xl md:text-2xl font-semibold text-teal-600 dark:text-teal-300 mt-2">Architecting Real-Time Martech & AI-Powered Personalization</span>
-      </h1>
-      <p class="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-3xl">
-        Turning Data into Personalized Customer Experiences with AI and Real-Time CDPs
-      </p>
-      <p class="text-md text-gray-700 dark:text-gray-400 italic mt-2 max-w-2xl">
-        I'm dedicated to building privacy-first customer data platforms that empower businesses to forge deeper, personalized connections.
-      </p>
-      <a href="#contact" class="cta-button" aria-label="Book a Free Martech Strategy Consultation" onclick="gtag('event','cta_click',{event_category:'hero',event_label:'Book a Free Martech Strategy Consultation'});">Book a Free Martech Strategy Consultation</a>
-    </section>
-    <section id="about" class="max-w-4xl mx-auto animate-slide-up">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">About Scott Gresack</h2>
-      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
-        With a passion for transforming data into meaningful customer connections, I’m a Martech Engineer at CVS Health, specializing in real-time customer data platforms (CDPs) and AI-driven personalization.
-      </p>
-      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
-        My expertise includes Adobe Experience Platform (AEP), Microsoft Fabric, server-side tagging, and Forward Deployed Engineering, enabling brands to unify customer journeys and achieve GDPR/HIPAA compliance.
-      </p>
-      <ul class="checkmark-list text-lg text-gray-600 dark:text-gray-300 mb-6">
-        <li><strong>Location:</strong> Baltimore, MD – Serving clients globally.</li>
-        <li><strong>Experience:</strong> 8+ years in Enterprise Martech and Data Engineering.</li>
-        <li><strong>Certifications:</strong> Adobe AEP Architect, Microsoft Data Engineer, Tealium iQ Pro.</li>
-        <li><strong>Proven Impact:</strong>
-          <ul class="checkmark-list pl-6 mt-2">
-            <li>Led AEP deployments for Fortune 100 healthcare and retail brands.</li>
-            <li>Reduced campaign activation time by <strong>60%</strong> via real-time CDPs.</li>
-            <li>Ensured HIPAA/GDPR compliance for 10+ CDPs, enhancing trust.</li>
-          </ul>
-        </li>
-        <li><strong>Specialties:</strong> Adobe AEP, Tag Governance, AI Personalization, Identity Resolution.</li>
-      </ul>
-      <div class="mt-12">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">My Values</h3>
-        <ul class="checkmark-list text-lg text-gray-600 dark:text-gray-300">
-          <li><strong>Client Empowerment:</strong> Empowering teams with knowledge and tools.</li>
-          <li><strong>Data Ethics:</strong> Building privacy-first platforms (HIPAA, GDPR).</li>
-          <li><strong>Measurable Impact:</strong> Delivering quantifiable business growth.</li>
-          <li><strong>Transparency:</strong> Championing open communication.</li>
-          <li><strong>Innovation:</strong> Staying ahead in Martech and AI advancements.</li>
-        </ul>
-      </div>
-      <p class="text-lg text-gray-600 dark:text-gray-300 text-center mt-6 italic">
-        Ready to transform your data strategy? Let’s architect scalable Martech solutions together.
-      </p>
-      <p class="text-lg text-gray-600 dark:text-gray-300 text-center">
-        <a href="#contact" class="text-teal-500 hover:underline">Connect to drive results</a>.
-      </p>
-    </section>
-    <section id="services" class="bg-gray-50 dark:bg-gray-800 py-12 rounded-lg animate-slide-up">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Capabilities & Impact</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-        <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg flex flex-col">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">AEP Implementation Audit</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">Comprehensive review of your Adobe Experience Platform for data quality, compliance, and performance.</p>
-          <a href="#contact" class="cta-button" aria-label="Schedule Your AEP Audit Today" onclick="gtag('event','cta_click',{event_category:'services',event_label:'Schedule Your AEP Audit Today'});">Schedule Your AEP Audit Today</a>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Scott Gresack</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#capabilities">Services</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#blog">Insights</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Architecting Real-Time Martech & AI-Powered Personalization</h1>
+                <p class="subtitle">Turning Data into Personalized Customer Experiences with AI and Real-Time CDPs</p>
+                <a href="#contact" class="cta-button">Book a Free Martech Strategy Consultation</a>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Scott Gresack</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>With a passion for transforming data into meaningful customer connections, I'm a Martech Engineer at CVS Health, specializing in real-time customer data platforms (CDPs) and AI-driven personalization.</p>
+                        
+                        <p>My expertise includes Adobe Experience Platform (AEP), Microsoft Fabric, server-side tagging, and Forward Deployed Engineering, enabling brands to unify customer journeys and achieve GDPR/HIPAA compliance.</p>
+
+                        <p><strong>Location:</strong> Baltimore, MD – Serving clients globally</p>
+                        <p><strong>Experience:</strong> 8+ years in Enterprise Martech and Data Engineering</p>
+                        <p><strong>Certifications:</strong> Adobe AEP Architect, Microsoft Data Engineer, Tealium iQ Pro</p>
+                        <p><strong>Specialties:</strong> Adobe AEP, Tag Governance, AI Personalization, Identity Resolution</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">60%</div>
+                            <div class="stat-label">Reduced campaign activation time via real-time CDPs</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">HIPAA/GDPR compliant CDPs delivered</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Fortune 100 brands supported</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="capabilities" class="capabilities">
+            <div class="container">
+                <h2 class="section-title">Capabilities & Impact</h2>
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <h3>AEP Implementation Audit</h3>
+                        <p>Comprehensive review of your Adobe Experience Platform for data quality, compliance, and performance optimization.</p>
+                        <a href="#contact" class="cta-button">Schedule Your AEP Audit Today</a>
+                    </div>
+                    <div class="capability-card">
+                        <h3>CDP Strategy Development</h3>
+                        <p>Custom roadmap to unify data, enhance identity resolution, and accelerate audience activation across all touchpoints.</p>
+                        <a href="#contact" class="cta-button">Design Your CDP Roadmap Now</a>
+                    </div>
+                    <div class="capability-card">
+                        <h3>Custom Tooling & Enablement</h3>
+                        <p>Deploy and train teams on tools like Alloy Inspector and XDM Comparator for CDP excellence and operational efficiency.</p>
+                        <a href="#contact" class="cta-button">Launch Custom Martech Enablement</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="tools">
+            <div class="container">
+                <h2 class="section-title">Case Studies & Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <h3 class="tool-title">Alloy Payload Inspector</h3>
+                        </div>
+                        <p>Cut Adobe Web SDK troubleshooting time by 50% for a Fortune 100 retailer through advanced payload inspection.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Chrome Extension</span>
+                            <span class="tech-tag">Adobe Alloy</span>
+                        </div>
+                        <a href="https://github.com/scott-gresack/alloy-payload-inspector" class="github-link">
+                            📁 View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <h3 class="tool-title">Tag Spec Generator</h3>
+                        </div>
+                        <p>Automated XDM mapping for Adobe Analytics, saving 10+ hours per project implementation.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">XDM</span>
+                            <span class="tech-tag">Tealium</span>
+                        </div>
+                        <a href="https://github.com/scott-gresack/tag-spec-generator" class="github-link">
+                            📁 View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <h3 class="tool-title">Mobile Tracking Validator</h3>
+                        </div>
+                        <p>Validated 100% of mobile lifecycle events for a healthcare app in 1/3 the time of manual testing.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Swift</span>
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">AEP Mobile SDK</span>
+                        </div>
+                        <a href="https://github.com/scott-gresack/mobile-tracking-validator" class="github-link">
+                            📁 View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <h3 class="tool-title">XDM Schema Comparator</h3>
+                        </div>
+                        <p>Streamlined schema migrations for multi-brand AEP rollouts with automated difference detection.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Adobe XDM</span>
+                            <span class="tech-tag">Diff</span>
+                        </div>
+                        <a href="https://github.com/scott-gresack/xdm-schema-comparator" class="github-link">
+                            📁 View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="blog">
+            <div class="container">
+                <h2 class="section-title">Martech Insights Lab</h2>
+                <div class="blog-grid">
+                    <article class="blog-card">
+                        <div class="blog-content">
+                            <div class="blog-meta">4 min read · Updated Feb 2024</div>
+                            <h3 class="blog-title">
+                                <a href="/blog/unifying-mobile-data-cdp.html">Unifying Mobile Data for CDP</a>
+                            </h3>
+                            <p>Unified mobile analytics for real-time CDP activation, enabling instant segmentation and personalization.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">#MartechEngineer</span>
+                                <span class="blog-tag">#AdobeAEP</span>
+                                <span class="blog-tag">#CDP</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-content">
+                            <div class="blog-meta">3 min read · Updated Jan 2024</div>
+                            <h3 class="blog-title">
+                                <a href="/blog/real-time-signal-intelligence.html">Real-Time Signal Intelligence</a>
+                            </h3>
+                            <p>Unified real-time telemetry for instant audience updates using Adobe AEP and Microsoft Fabric.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">#CDP</span>
+                                <span class="blog-tag">#AEP</span>
+                                <span class="blog-tag">#MicrosoftFabric</span>
+                                <span class="blog-tag">#AI</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-content">
+                            <div class="blog-meta">2 min read · Updated Dec 2023</div>
+                            <h3 class="blog-title">
+                                <a href="/blog/forward-deployed-engineering.html">Forward Deployed Engineering</a>
+                            </h3>
+                            <p>How embedded Martech Engineers deliver rapid value using Adobe AEP and Microsoft Fabric.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">#MartechEngineer</span>
+                                <span class="blog-tag">#AEP</span>
+                                <span class="blog-tag">#Fabric</span>
+                                <span class="blog-tag">#FDE</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-content">
+                            <div class="blog-meta">3 min read · Updated Nov 2023</div>
+                            <h3 class="blog-title">
+                                <a href="/blog/eliminating-fooc.html">Eliminating FOOC</a>
+                            </h3>
+                            <p>Eliminated "Flash of Original Content" for an e-commerce site, significantly boosting user engagement.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">#Personalization</span>
+                                <span class="blog-tag">#Performance</span>
+                                <span class="blog-tag">#UX</span>
+                                <span class="blog-tag">#AdobeAEP</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-content">
+                            <div class="blog-meta">4 min read · Updated Sep 2023</div>
+                            <h3 class="blog-title">
+                                <a href="/blog/rag-vs-finetuning.html">RAG vs. Fine-Tuning</a>
+                            </h3>
+                            <p>How Retrieval-Augmented Generation enables real-time insights for CDP orchestration and decision making.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">#AI</span>
+                                <span class="blog-tag">#RAG</span>
+                                <span class="blog-tag">#FineTuning</span>
+                                <span class="blog-tag">#CDP</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Contact Scott</h2>
+                <div class="contact-content">
+                    <p>Based in Baltimore, MD – Available for remote and on-site consulting.<br>
+                    Reply within 1 business day.</p>
+                    <div class="contact-links">
+                        <a href="https://linkedin.com/in/scottgresack" class="contact-link">
+                            💼 LinkedIn
+                        </a>
+                        <a href="https://github.com/scott-gresack" class="contact-link">
+                            📁 GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Scott Gresack. All rights reserved.</p>
         </div>
-        <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg flex flex-col">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">CDP Strategy Development</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">Custom roadmap to unify data, enhance identity resolution, and accelerate audience activation.</p>
-          <a href="#contact" class="cta-button" aria-label="Design Your CDP Roadmap Now" onclick="gtag('event','cta_click',{event_category:'services',event_label:'Design Your CDP Roadmap Now'});">Design Your CDP Roadmap Now</a>
-        </div>
-        <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg flex flex-col">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Custom Tooling & Enablement</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">Deploy and train teams on tools like Alloy Inspector and XDM Comparator for CDP excellence.</p>
-          <a href="#contact" class="cta-button" aria-label="Launch Custom Martech Enablement" onclick="gtag('event','cta_click',{event_category:'services',event_label:'Launch Custom Martech Enablement'});">Launch Custom Martech Enablement</a>
-        </div>
-      </div>
-    </section>
-    <section id="tools" class="animate-slide-up">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Case Studies & Tools</h2>
-      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 text-center">Explore open-source tools and real-world case studies driving Martech innovation.</p>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <div class="blog-card flex flex-col p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Alloy Payload Inspector</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2 flex-grow">Cut Adobe Web SDK troubleshooting time by 50% for a Fortune 100 retailer.</p>
-          <p class="text-gray-700 dark:text-gray-400 mb-3 text-sm">Tech: JavaScript, Chrome Extension, Adobe Alloy</p>
-          <a href="https://github.com/scott-gresack/alloy-payload-inspector" target="_blank" rel="noopener" class="text-teal-500 hover:underline" onclick="gtag('event','portfolio_view',{event_category:'tools',event_label:'Alloy Inspector'});">View on GitHub</a>
-        </div>
-        <div class="blog-card flex flex-col p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Tag Spec Generator</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2 flex-grow">Automated XDM mapping for Adobe Analytics, saving 10+ hours per project.</p>
-          <p class="text-gray-700 dark:text-gray-400 mb-3 text-sm">Tech: Node.js, Express, XDM, Tealium</p>
-          <a href="https://github.com/scott-gresack/tag-spec-generator" target="_blank" rel="noopener" class="text-teal-500 hover:underline" onclick="gtag('event','portfolio_view',{event_category:'tools',event_label:'Tag Spec Generator'});">View on GitHub</a>
-        </div>
-        <div class="blog-card flex flex-col p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Mobile Tracking Validator</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2 flex-grow">Validated 100% of mobile lifecycle events for a healthcare app in 1/3 the time.</p>
-          <p class="text-gray-700 dark:text-gray-400 mb-3 text-sm">Tech: Swift, Kotlin, AEP Mobile SDK</p>
-          <a href="https://github.com/scott-gresack/mobile-tracking-validator" target="_blank" rel="noopener" class="text-teal-500 hover:underline" onclick="gtag('event','portfolio_view',{event_category:'tools',event_label:'Mobile Tracking Validator'});">View on GitHub</a>
-        </div>
-        <div class="blog-card flex flex-col p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">XDM Schema Comparator</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2 flex-grow">Streamlined schema migrations for multi-brand AEP rollouts.</p>
-          <p class="text-gray-700 dark:text-gray-400 mb-3 text-sm">Tech: React, Adobe XDM, Diff</p>
-          <a href="https://github.com/scott-gresack/xdm-schema-comparator" target="_blank" rel="noopener" class="text-teal-500 hover:underline" onclick="gtag('event','portfolio_view',{event_category:'tools',event_label:'XDM Schema Comparator'});">View on GitHub</a>
-        </div>
-        <div class="blog-card flex flex-col p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Real-Time Data Activation</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-2 flex-grow">Unified web/mobile data for 35% faster campaign launches.</p>
-          <p class="text-gray-700 dark:text-gray-400 mb-3 text-sm">Tech: Adobe AEP, Microsoft Fabric, JavaScript</p>
-          <a href="/blog/real-time-signal-intelligence.html" class="text-teal-500 hover:underline" onclick="gtag('event','portfolio_view',{event_category:'tools',event_label:'Real-Time Data Activation'});">See Case Study</a>
-        </div>
-      </div>
-    </section>
-    <section id="blog" class="animate-slide-up">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Martech Insights Lab</h2>
-      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 text-center">Actionable strategies and technical insights on Adobe AEP, CDPs, and AI personalization. <a href="#tools" class="text-teal-500 hover:underline">Explore related tools</a>.</p>
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <a href="/blog/unifying-mobile-data-cdp.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Unifying Mobile Data for CDP</h3>
-          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#MartechEngineer #AdobeAEP #CDP</p>
-          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">Unified mobile analytics for real-time CDP activation, enabling instant segmentation.</p>
-          <div class="text-sm text-gray-500 dark:text-gray-400">4 min read · Updated Feb 2024</div>
-        </a>
-        <a href="/blog/real-time-signal-intelligence.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Real-Time Signal Intelligence</h3>
-          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#CDP #AEP #MicrosoftFabric #AI</p>
-          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">Unified real-time telemetry for instant audience updates using Adobe AEP and Microsoft Fabric.</p>
-          <div class="text-sm text-gray-500 dark:text-gray-400">3 min read · Updated Jan 2024</div>
-        </a>
-        <a href="/blog/forward-deployed-engineering.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Forward Deployed Engineering</h3>
-          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#MartechEngineer #AEP #Fabric #FDE</p>
-          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">How embedded Martech Engineers deliver rapid value using Adobe AEP and Microsoft Fabric.</p>
-          <div class="text-sm text-gray-500 dark:text-gray-400">2 min read · Updated Dec 2023</div>
-        </a>
-        <a href="/blog/eliminating-fooc.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Eliminating FOOC</h3>
-          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#Personalization #Performance #UX #AdobeAEP</p>
-          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">Eliminated "Flash of Original Content" for an e-commerce site, boosting engagement.</p>
-          <div class="text-sm text-gray-500 dark:text-gray-400">3 min read · Updated Nov 2023</div>
-        </a>
-        <a href="/blog/gtm-mobile-vs-web.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">GTM for Mobile vs. Web</h3>
-          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#GTM #Mobile #Tagging</p>
-          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">Bridged web and mobile tagging for a healthcare app using Google Tag Manager.</p>
-          <div class="text-sm text-gray-500 dark:text-gray-400">3 min read · Updated Oct 2023</div>
-        </a>
-        <a href="/blog/rag-vs-finetuning.html" class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition duration-300">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">RAG vs. Fine-Tuning</h3>
-          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">#AI #RAG #FineTuning #CDP</p>
-          <p class="text-gray-700 dark:text-gray-400 text-base mb-4">How Retrieval-Augmented Generation enables real-time insights for CDP orchestration.</p>
-          <div class="text-sm text-gray-500 dark:text-gray-400">4 min read · Updated Sep 2023</div>
-        </a>
-      </div>
-      <div class="mt-8 text-center">
-        <a href="/blog/" class="text-teal-500 hover:underline font-medium text-lg">View All Posts →</a>
-      </div>
-    </section>
-    <section id="contact" class="animate-slide-up">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Contact Scott</h2>
-      <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 text-center">Based in Baltimore, MD – Available for remote and on-site consulting. Reply within 1 business day.</p>
-      <form id="contact-form" class="max-w-lg mx-auto mb-8">
-        <div class="mb-4">
-          <label for="name" class="block text-gray-700 dark:text-gray-200 mb-1 font-medium">Name</label>
-          <input type="text" id="name" name="name" required aria-label="Your Name" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-teal-500">
-        </div>
-        <div class="mb-4">
-          <label for="email" class="block text-gray-700 dark:text-gray-200 mb-1 font-medium">Email</label>
-          <input type="email" id="email" name="email" required aria-label="Your Email" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-teal-500">
-        </div>
-        <div class="mb-4">
-          <label for="message" class="block text-gray-700 dark:text-gray-200 mb-1 font-medium">Message</label>
-          <textarea id="message" name="message" rows="5" required aria-label="Your Message" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-teal-500"></textarea>
-        </div>
-        <button type="submit" class="cta-button w-full" aria-label="Submit Contact Form">Send Message</button>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mt-4 text-center">
-          Or reach out directly: <a href="mailto:gresack.scott@gmail.com" class="text-teal-500 hover:underline" onclick="gtag('event','cta_click',{event_category:'contact',event_label:'Email Link'});">gresack.scott@gmail.com</a>
-          | <a href="tel:+14403903237" class="text-teal-500 hover:underline" onclick="gtag('event','phone_call',{event_category:'contact',event_label:'Phone Link'});">(440) 390-3237</a>
-        </p>
-      </form>
-      <ul class="space-y-2 text-lg text-gray-600 dark:text-gray-300 text-center">
-        <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/scottgresack" target="_blank" rel="noopener" class="text-teal-500 hover:underline" onclick="gtag('event','cta_click',{event_category:'contact',event_label:'LinkedIn'});">linkedin.com/in/scottgresack</a></li>
-        <li><strong>GitHub:</strong> <a href="https://github.com/scott-gresack" target="_blank" rel="noopener" class="text-teal-500 hover:underline" onclick="gtag('event','cta_click',{event_category:'contact',event_label:'GitHub'});">github.com/scott-gresack</a></li>
-      </ul>
-    </section>
-    <section id="growth-chart" class="bg-white dark:bg-gray-800 py-12 text-center rounded-lg animate-slide-up">
-      <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Projected Growth with SEO Optimization</h2>
-      <canvas id="geoChart" width="600" height="300" class="mx-auto"></canvas>
-    </section>
-  </main>
-  <footer class="py-8 bg-gray-200 dark:bg-gray-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600 dark:text-gray-300">
-      <nav class="mb-4 flex flex-wrap justify-center gap-6 text-sm">
-        <a href="/privacy-policy.html" class="hover:text-blue-900 dark:hover:text-blue-200 underline">Privacy Policy</a>
-        <a href="https://scott-gresack.github.io/portfolio/sitemap.xml" class="hover:text-blue-900 dark:hover:text-blue-200 underline">Sitemap</a>
-      </nav>
-      <p>© 2025 Scott Gresack. All rights reserved. Baltimore, MD.</p>
-      <p class="mt-2 text-sm">Built with privacy, performance, accessibility, and open-source principles.</p>
-    </div>
-  </footer>
-  <button id="back-to-top" class="back-to-top" aria-label="Back to top">↑</button>
-  <!-- PostHog Tracking (deferred) -->
-  <script defer>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register identify".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U',{
-      api_host:'https://us.i.posthog.com',
-      defaults:'2025-05-24',
-      person_profiles:'identified_only'
-    });
-  </script>
-  <!-- Chart.js and Custom JavaScript -->
-  <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded',()=>{const contactForm=document.querySelector('#contact-form');if(contactForm){contactForm.addEventListener('submit',e=>{e.preventDefault();if(typeof gtag==='function')gtag('event','contact_form_submit',{event_category:'contact',event_label:'Form Submit'});alert('Form submitted! (Placeholder for actual submission logic)');contactForm.reset()});}document.querySelectorAll('a[href^="tel:"]').forEach(link=>{link.addEventListener('click',()=>{if(typeof gtag==='function')gtag('event','phone_call',{event_category:'header',event_label:'Phone Link'});});});document.querySelectorAll('#tools .blog-card a').forEach(link=>{link.addEventListener('click',()=>{if(typeof gtag==='function')gtag('event','portfolio_view',{event_category:'tools'});});});let scrollTracked=false;window.addEventListener('scroll',()=>{if(!scrollTracked&&window.scrollY/(document.body.scrollHeight-window.innerHeight)>0.75){if(typeof gtag==='function')gtag('event','scroll_75');scrollTracked=true;}});const mobileNavToggle=document.getElementById('mobile-nav-toggle'),mobileNav=document.getElementById('mobile-nav'),hamburgerIcon=document.getElementById('hamburger-icon'),closeIcon=document.getElementById('close-icon');mobileNavToggle.addEventListener('click',()=>{const isExpanded=mobileNavToggle.getAttribute('aria-expanded')==='true';mobileNav.classList.toggle('hidden');hamburgerIcon.classList.toggle('hidden');closeIcon.classList.toggle('hidden');mobileNavToggle.setAttribute('aria-expanded',(!isExpanded).toString());document.body.classList.toggle('overflow-hidden',!isExpanded);if(!isExpanded){const firstLink=mobileNav.querySelector('a');if(firstLink)firstLink.focus();}});const backToTop=document.getElementById('back-to-top');window.addEventListener('scroll',()=>{backToTop.style.display=window.scrollY>300?'block':'none';});backToTop.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});function setTheme(theme){document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);}(function(){let userTheme=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');setTheme(userTheme);})();document.getElementById('theme-toggle').addEventListener('click',()=>{setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});document.getElementById('theme-toggle-mobile').addEventListener('click',()=>{setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});const ctx=document.getElementById('geoChart').getContext('2d');new Chart(ctx,{type:'line',data:{labels:['Month 1','Month 2','Month 3','Month 4','Month 5','Month 6'],datasets:[{label:'Website Traffic',data:[500,800,1200,1800,2500,3200],borderColor:'#2E8B57',backgroundColor:'rgba(46,139,87,0.2)',fill:true,tension:0.4},{label:'Conversions',data:[20,40,70,110,160,220],borderColor:'#FF4500',backgroundColor:'rgba(255,69,0,0.2)',fill:true,tension:0.4}]},options:{responsive:true,plugins:{title:{display:true,text:'Website Traffic and Conversions Over 6 Months',font:{size:18}},legend:{position:'top'}},scales:{y:{beginAtZero:true,title:{display:true,text:'Metric Value'}},x:{title:{display:true,text:'Months'}}}}});});
-  </script>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.capability-card, .tool-card, .blog-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
