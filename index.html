@@ -354,8 +354,9 @@
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .contact-link {
@@ -437,9 +438,9 @@
             <a href="#" class="logo">Scott Gresack</a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#capabilities">Services</a></li>
-                <li><a href="#tools">Tools</a></li>
-                <li><a href="#blog">Insights</a></li>
+                <li><a href="#capabilities">Skills</a></li>
+                <li><a href="#tools">Projects</a></li>
+                <li><a href="#blog">Writing</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -448,9 +449,9 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Architecting Real-Time Martech & AI-Powered Personalization</h1>
-                <p class="subtitle">Turning Data into Personalized Customer Experiences with AI and Real-Time CDPs</p>
-                <a href="#contact" class="cta-button">Book a Free Martech Strategy Consultation</a>
+                <h1>Scott Gresack</h1>
+                <p class="subtitle">Martech Engineer & Data Platform Architect</p>
+                <a href="#contact" class="cta-button">Get In Touch</a>
             </div>
         </section>
 
@@ -458,12 +459,16 @@
             <div class="container">
                 <h2 class="section-title">About Scott Gresack</h2>
                 <div class="about-content">
-                    <div class="about-text">
-                        <p>With a passion for transforming data into meaningful customer connections, I'm a Martech Engineer at CVS Health, specializing in real-time customer data platforms (CDPs) and AI-driven personalization.</p>
+                                            <div class="about-text">
+                        <p>I'm a results-driven Martech and Data Governance Specialist with deep experience designing and implementing enterprise-scale data collection strategies across web and mobile ecosystems.</p>
                         
-                        <p>My expertise includes Adobe Experience Platform (AEP), Microsoft Fabric, server-side tagging, and Forward Deployed Engineering, enabling brands to unify customer journeys and achieve GDPR/HIPAA compliance.</p>
+                        <p>I specialize in Adobe Experience Platform (AEP), Tealium iQ, Google Tag Manager (GTM), and Customer Journey Analytics (CJA), with expertise in scalable tagging frameworks, identity resolution, and real-time personalization.</p>
+
+                        <p>I thrive at the intersection of engineering, analytics, and architecture — turning complex customer data flows into actionable, compliant, and revenue-driving outcomes.</p>
 
                         <p><strong>Location:</strong> Baltimore, MD – Serving clients globally</p>
+                        <p><strong>Phone:</strong> (440) 390-3237</p>
+                        <p><strong>Email:</strong> gresack.scott@gmail.com</p>
                         <p><strong>Experience:</strong> 8+ years in Enterprise Martech and Data Engineering</p>
                         <p><strong>Certifications:</strong> Adobe AEP Architect, Microsoft Data Engineer, Tealium iQ Pro</p>
                         <p><strong>Specialties:</strong> Adobe AEP, Tag Governance, AI Personalization, Identity Resolution</p>
@@ -488,22 +493,19 @@
 
         <section id="capabilities" class="capabilities">
             <div class="container">
-                <h2 class="section-title">Capabilities & Impact</h2>
+                <h2 class="section-title">What I Do</h2>
                 <div class="capabilities-grid">
                     <div class="capability-card">
-                        <h3>AEP Implementation Audit</h3>
-                        <p>Comprehensive review of your Adobe Experience Platform for data quality, compliance, and performance optimization.</p>
-                        <a href="#contact" class="cta-button">Schedule Your AEP Audit Today</a>
+                        <h3>Adobe Experience Platform</h3>
+                        <p>Implementation, configuration, and optimization of AEP for enterprise data collection and real-time personalization.</p>
                     </div>
                     <div class="capability-card">
-                        <h3>CDP Strategy Development</h3>
-                        <p>Custom roadmap to unify data, enhance identity resolution, and accelerate audience activation across all touchpoints.</p>
-                        <a href="#contact" class="cta-button">Design Your CDP Roadmap Now</a>
+                        <h3>Tag Management</h3>
+                        <p>Scalable tagging architecture using Tealium iQ, Google Tag Manager, and server-side implementations.</p>
                     </div>
                     <div class="capability-card">
-                        <h3>Custom Tooling & Enablement</h3>
-                        <p>Deploy and train teams on tools like Alloy Inspector and XDM Comparator for CDP excellence and operational efficiency.</p>
-                        <a href="#contact" class="cta-button">Launch Custom Martech Enablement</a>
+                        <h3>Data Engineering</h3>
+                        <p>Building tools and frameworks for data validation, schema management, and mobile app tracking.</p>
                     </div>
                 </div>
             </div>
@@ -511,50 +513,19 @@
 
         <section id="tools" class="tools">
             <div class="container">
-                <h2 class="section-title">Case Studies & Tools</h2>
-                <div class="tools-grid">
+                <h2 class="section-title">Projects & Tools</h2>
+                    <div class="tools-grid">
                     <div class="tool-card">
                         <div class="tool-header">
-                            <h3 class="tool-title">Alloy Payload Inspector</h3>
+                            <h3 class="tool-title">Tag Generator Tool</h3>
                         </div>
-                        <p>Cut Adobe Web SDK troubleshooting time by 50% for a Fortune 100 retailer through advanced payload inspection.</p>
+                        <p>Automated tag specification generation for Adobe Analytics and AEP implementations, streamlining deployment workflows.</p>
                         <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
                             <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Chrome Extension</span>
-                            <span class="tech-tag">Adobe Alloy</span>
+                            <span class="tech-tag">Adobe Analytics</span>
                         </div>
-                        <a href="https://github.com/scott-gresack/alloy-payload-inspector" class="github-link">
-                            📁 View on GitHub
-                        </a>
-                    </div>
-
-                    <div class="tool-card">
-                        <div class="tool-header">
-                            <h3 class="tool-title">Tag Spec Generator</h3>
-                        </div>
-                        <p>Automated XDM mapping for Adobe Analytics, saving 10+ hours per project implementation.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">Express</span>
-                            <span class="tech-tag">XDM</span>
-                            <span class="tech-tag">Tealium</span>
-                        </div>
-                        <a href="https://github.com/scott-gresack/tag-spec-generator" class="github-link">
-                            📁 View on GitHub
-                        </a>
-                    </div>
-
-                    <div class="tool-card">
-                        <div class="tool-header">
-                            <h3 class="tool-title">Mobile Tracking Validator</h3>
-                        </div>
-                        <p>Validated 100% of mobile lifecycle events for a healthcare app in 1/3 the time of manual testing.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Swift</span>
-                            <span class="tech-tag">Kotlin</span>
-                            <span class="tech-tag">AEP Mobile SDK</span>
-                        </div>
-                        <a href="https://github.com/scott-gresack/mobile-tracking-validator" class="github-link">
+                        <a href="https://github.com/scott-gresack/portfolio/blob/main/tag_generator.html" class="github-link">
                             📁 View on GitHub
                         </a>
                     </div>
@@ -563,13 +534,73 @@
                         <div class="tool-header">
                             <h3 class="tool-title">XDM Schema Comparator</h3>
                         </div>
-                        <p>Streamlined schema migrations for multi-brand AEP rollouts with automated difference detection.</p>
+                        <p>Visual comparison tool for XDM schemas, enabling rapid schema migrations and multi-brand AEP rollouts.</p>
                         <div class="tech-stack">
-                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">Adobe XDM</span>
-                            <span class="tech-tag">Diff</span>
                         </div>
-                        <a href="https://github.com/scott-gresack/xdm-schema-comparator" class="github-link">
+                        <a href="https://github.com/scott-gresack/portfolio/blob/main/xdm_comparator.html" class="github-link">
+                            📁 View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <h3 class="tool-title">Tool2 Utility</h3>
+                        </div>
+                        <p>Advanced martech utility for data validation and quality assurance in enterprise CDP implementations.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Data Validation</span>
+                        </div>
+                        <a href="https://github.com/scott-gresack/portfolio/blob/main/tool2.html" class="github-link">
+                            📁 View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <h3 class="tool-title">Parse Tool</h3>
+                        </div>
+                        <p>Data parsing and transformation utility for complex martech data flows and schema validation.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Data Parsing</span>
+                            <span class="tech-tag">Schema Validation</span>
+                        </div>
+                        <a href="https://github.com/scott-gresack/portfolio/blob/main/parse_tool" class="github-link">
+                            📁 View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <h3 class="tool-title">Mobile Updates Dashboard</h3>
+                        </div>
+                        <p>Real-time mobile app tracking validation dashboard for healthcare and retail applications.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">Mobile SDK</span>
+                            <span class="tech-tag">Real-time</span>
+                        </div>
+                        <a href="https://github.com/scott-gresack/portfolio/blob/main/mobile_updates.html" class="github-link">
+                            📁 View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <h3 class="tool-title">Navigation Tool</h3>
+                        </div>
+                        <p>Site architecture and navigation optimization tool for enhanced user experience and data collection.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">UX/UI</span>
+                            <span class="tech-tag">Analytics</span>
+                        </div>
+                        <a href="https://github.com/scott-gresack/portfolio/blob/main/nav.html" class="github-link">
                             📁 View on GitHub
                         </a>
                     </div>
@@ -579,7 +610,7 @@
 
         <section id="blog" class="blog">
             <div class="container">
-                <h2 class="section-title">Martech Insights Lab</h2>
+                <h2 class="section-title">Writing</h2>
                 <div class="blog-grid">
                     <article class="blog-card">
                         <div class="blog-content">
@@ -666,15 +697,25 @@
         <section id="contact" class="contact">
             <div class="container">
                 <h2 class="section-title">Contact Scott</h2>
-                <div class="contact-content">
+                    <div class="contact-content">
+                    <p>Martech & AI-Driven Analytics Architect | Architect of Real-Time Marketing Intelligence & Personalized Futures</p>
                     <p>Based in Baltimore, MD – Available for remote and on-site consulting.<br>
                     Reply within 1 business day.</p>
                     <div class="contact-links">
+                        <a href="mailto:gresack.scott@gmail.com" class="contact-link">
+                            ✉️ Email
+                        </a>
+                        <a href="tel:+14403903237" class="contact-link">
+                            📞 Call
+                        </a>
                         <a href="https://linkedin.com/in/scottgresack" class="contact-link">
                             💼 LinkedIn
                         </a>
                         <a href="https://github.com/scott-gresack" class="contact-link">
                             📁 GitHub
+                        </a>
+                        <a href="https://scott-gresack.github.io/portfolio" class="contact-link">
+                            🌐 Live Portfolio
                         </a>
                     </div>
                 </div>
