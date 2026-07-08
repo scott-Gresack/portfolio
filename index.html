@@ -115,22 +115,30 @@
         }
 
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
+            --primary-color: #0f62fe;
+            --secondary-color: #0b3a75;
+            --accent-color: #16a34a;
+            --ink: #0b1020;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
             --background: #ffffff;
-            --surface: #f8fafc;
-            --border: #e5e7eb;
+            --surface: #f5f7fb;
+            --surface-strong: #eef4ff;
+            --border: #dbe3ef;
             --success: #10b981;
+            --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.10);
+            --shadow-card: 0 18px 50px rgba(15, 23, 42, 0.08);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
-            background: var(--background);
+            background:
+                radial-gradient(circle at 12% 0%, rgba(15, 98, 254, 0.10), transparent 26rem),
+                radial-gradient(circle at 85% 12%, rgba(22, 163, 74, 0.08), transparent 28rem),
+                linear-gradient(180deg, #fbfdff 0%, #ffffff 42%, #f8fafc 100%);
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -141,8 +149,8 @@
 
         /* Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(18px);
             position: fixed;
             top: 0;
             width: 100%;
@@ -159,8 +167,9 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--ink);
             text-decoration: none;
         }
 
@@ -172,8 +181,9 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 0.92rem;
             transition: color 0.3s ease;
         }
 
@@ -183,40 +193,77 @@
 
         /* Hero Section */
         .hero {
-            padding: 8rem 0 4rem;
-            background: linear-gradient(135deg, var(--surface) 0%, rgba(37, 99, 235, 0.05) 100%);
-            text-align: center;
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            padding: 7.5rem 0 4rem;
+            background:
+                linear-gradient(rgba(251, 253, 255, 0.78), rgba(251, 253, 255, 0.92)),
+                url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=80");
+            background-position: center;
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 980px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 36px;
+            padding: 0.45rem 0.85rem;
+            border: 1px solid rgba(15, 98, 254, 0.18);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.76);
+            color: var(--secondary-color);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            max-width: 900px;
+            font-size: clamp(3.2rem, 8vw, 6.8rem);
+            line-height: 0.92;
+            letter-spacing: -0.07em;
+            font-weight: 900;
+            margin: 1rem 0 1.25rem;
+            color: var(--ink);
         }
 
         .hero .subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
+            font-size: clamp(1.15rem, 2vw, 1.55rem);
+            color: #1f2937;
             margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 780px;
+            font-weight: 650;
+            line-height: 1.35;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.9rem;
+            margin-bottom: 2rem;
         }
 
         .cta-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
             background: var(--primary-color);
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
+            padding: 0.95rem 1.35rem;
+            border-radius: 999px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 800;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 18px 45px rgba(15, 98, 254, 0.28);
         }
 
         .cta-button:hover {
@@ -225,30 +272,173 @@
             box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
         }
 
+        .secondary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0.95rem 1.35rem;
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.78);
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 800;
+            box-shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .secondary-button:hover {
+            transform: translateY(-2px);
+            border-color: rgba(15, 98, 254, 0.30);
+            color: var(--primary-color);
+        }
+
+        .hero-proof {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            max-width: 900px;
+        }
+
+        .proof-pill {
+            min-height: 108px;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.70);
+            border-radius: 1.25rem;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(18px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .proof-pill strong {
+            display: block;
+            color: var(--ink);
+            font-size: 1rem;
+            line-height: 1.2;
+        }
+
+        .proof-pill span {
+            display: block;
+            margin-top: 0.45rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 650;
+            line-height: 1.35;
+        }
+
+        .trust-band {
+            margin-top: -2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-panel {
+            display: grid;
+            grid-template-columns: 1.1fr repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid rgba(219, 227, 239, 0.82);
+            border-radius: 1.5rem;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(18px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .trust-panel h2 {
+            font-size: 1.15rem;
+            line-height: 1.25;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+        }
+
+        .trust-panel p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 650;
+            line-height: 1.45;
+        }
+
+        .trust-item {
+            padding: 1rem;
+            border-radius: 1rem;
+            background: var(--surface);
+        }
+
+        .trust-label {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: var(--primary-color);
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
         /* Sections */
         section {
-            padding: 4rem 0;
+            padding: 5rem 0;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: clamp(2.1rem, 4vw, 3.4rem);
+            line-height: 0.98;
+            letter-spacing: -0.055em;
+            font-weight: 900;
             text-align: center;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
+            margin-bottom: 1rem;
+            color: var(--ink);
+        }
+
+        .section-kicker {
+            max-width: 780px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-weight: 650;
+            line-height: 1.55;
         }
 
         /* About Section */
         .about-content {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 4rem;
+            grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.75fr);
+            gap: 2rem;
             align-items: start;
         }
 
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            background: rgba(255, 255, 255, 0.78);
+            box-shadow: var(--shadow-card);
+            padding: 2rem;
+        }
+
+        .about-text p + p {
+            margin-top: 1rem;
+        }
+
+        .credential-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.25rem;
+        }
+
+        .credential-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 36px;
+            padding: 0.45rem 0.75rem;
+            border-radius: 999px;
+            background: var(--surface-strong);
+            color: var(--secondary-color);
+            font-size: 0.86rem;
+            font-weight: 800;
         }
 
         .stats-grid {
@@ -257,38 +447,87 @@
         }
 
         .stat-card {
-            background: var(--surface);
+            background: rgba(255, 255, 255, 0.88);
             padding: 1.5rem;
-            border-radius: 0.75rem;
+            border-radius: 1.25rem;
             border: 1px solid var(--border);
+            box-shadow: var(--shadow-card);
         }
 
         .stat-number {
             font-size: 2rem;
-            font-weight: 700;
+            font-weight: 900;
             color: var(--primary-color);
         }
 
         .stat-label {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.92rem;
+            font-weight: 650;
+            line-height: 1.4;
+        }
+
+        .architecture-flow {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 0.8rem;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            background: var(--ink);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .flow-step {
+            min-height: 118px;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.06);
+            color: white;
+        }
+
+        .flow-step span {
+            display: block;
+            color: #93c5fd;
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .flow-step strong {
+            display: block;
+            margin-top: 0.45rem;
+            font-size: 1rem;
+            line-height: 1.2;
+        }
+
+        .flow-step p {
+            margin-top: 0.45rem;
+            color: #cbd5e1;
+            font-size: 0.86rem;
+            font-weight: 650;
+            line-height: 1.35;
         }
 
         /* Capabilities */
         .capabilities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 1.25rem;
         }
 
         .capability-card {
-            background: var(--background);
+            background: rgba(255, 255, 255, 0.86);
             border: 1px solid var(--border);
-            border-radius: 1rem;
+            border-radius: 1.4rem;
             padding: 2rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
         }
 
         .capability-card::before {
@@ -303,19 +542,21 @@
 
         .capability-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-card);
         }
 
         .capability-card h3 {
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 850;
             margin-bottom: 1rem;
-            color: var(--text-primary);
+            color: var(--ink);
+            letter-spacing: -0.03em;
         }
 
         .capability-card p {
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
+            font-weight: 620;
         }
 
         /* Tools Grid */
@@ -326,16 +567,17 @@
         }
 
         .tool-card {
-            background: var(--background);
+            background: rgba(255, 255, 255, 0.86);
             border: 1px solid var(--border);
-            border-radius: 1rem;
+            border-radius: 1.25rem;
             padding: 1.5rem;
             transition: all 0.3s ease;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
         }
 
         .tool-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-card);
         }
 
         .tool-header {
@@ -347,8 +589,9 @@
 
         .tool-title {
             font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
+            font-weight: 850;
+            color: var(--ink);
+            letter-spacing: -0.03em;
         }
 
         .tech-stack {
@@ -359,12 +602,12 @@
         }
 
         .tech-tag {
-            background: rgba(37, 99, 235, 0.1);
+            background: rgba(15, 98, 254, 0.10);
             color: var(--primary-color);
             padding: 0.25rem 0.75rem;
             border-radius: 1rem;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 800;
         }
 
         .github-link {
@@ -436,9 +679,9 @@
         }
 
         .blog-card {
-            background: var(--background);
+            background: rgba(255, 255, 255, 0.86);
             border: 1px solid var(--border);
-            border-radius: 1rem;
+            border-radius: 1.25rem;
             overflow: hidden;
             transition: all 0.3s ease;
         }
@@ -490,13 +733,18 @@
 
         /* Contact Section */
         .contact {
-            background: var(--surface);
+            background: linear-gradient(180deg, var(--surface), #fff);
         }
 
         .contact-content {
             text-align: center;
-            max-width: 600px;
+            max-width: 720px;
             margin: 0 auto;
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: var(--shadow-soft);
         }
 
         .contact-links {
@@ -515,9 +763,10 @@
             text-decoration: none;
             font-weight: 500;
             padding: 0.75rem 1.5rem;
-            border: 2px solid var(--primary-color);
-            border-radius: 0.5rem;
+            border: 1px solid rgba(15, 98, 254, 0.28);
+            border-radius: 999px;
             transition: all 0.3s ease;
+            background: rgba(15, 98, 254, 0.06);
         }
 
         .contact-link:hover {
@@ -540,7 +789,28 @@
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: clamp(3rem, 15vw, 4.4rem);
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 6.75rem 0 4rem;
+            }
+
+            .hero-proof,
+            .trust-panel,
+            .architecture-flow {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .cta-button,
+            .secondary-button {
+                width: 100%;
             }
 
             .about-content {
@@ -555,6 +825,11 @@
             .contact-links {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .contact-link {
+                width: 100%;
+                justify-content: center;
             }
         }
 
@@ -597,15 +872,59 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Scott Gresack</h1>
-                <p class="subtitle">Senior MarTech Architect | Principal AEP Consultant | Customer Data & Personalization Strategy</p>
-                <a href="#contact" class="cta-button" onclick="trackPortfolioEvent('cta_click', { linkText: 'Get In Touch', destination: '#contact' })">Get In Touch</a>
+                <div class="hero-content">
+                    <div class="eyebrow">Senior MarTech Architect for Adobe Experience Platform programs</div>
+                    <h1>Scott Gresack builds customer data architecture people can trust.</h1>
+                    <p class="subtitle">Principal AEP consultant focused on Real-Time CDP, identity, governed profile strategy, Web SDK modernization, CJA measurement, AJO activation, and executive-ready implementation roadmaps.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="cta-button" onclick="trackPortfolioEvent('cta_click', { linkText: 'Start a Conversation', destination: '#contact' })">Start a Conversation</a>
+                        <a href="#capabilities" class="secondary-button" onclick="trackPortfolioEvent('cta_click', { linkText: 'Review Architecture Focus', destination: '#capabilities' })">Review Architecture Focus</a>
+                    </div>
+                    <div class="hero-proof" aria-label="Portfolio trust signals">
+                        <div class="proof-pill">
+                            <strong>Architecture before tooling</strong>
+                            <span>Clarifies identity, profile, consent, datasets, audiences, and measurement before implementation choices harden.</span>
+                        </div>
+                        <div class="proof-pill">
+                            <strong>Executive-ready outcomes</strong>
+                            <span>Turns platform ambiguity into phased roadmaps, dependency maps, governance models, and measurable adoption priorities.</span>
+                        </div>
+                        <div class="proof-pill">
+                            <strong>Hands-on technical depth</strong>
+                            <span>Works across AEP, RTCDP, AJO, CJA, Target, Web SDK, Mobile SDK, Query Service, APIs, SQL, Python, and JavaScript.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="trust-band" aria-label="How Scott Gresack builds trust">
+            <div class="container">
+                <div class="trust-panel">
+                    <div class="trust-item">
+                        <span class="trust-label">Trust Model</span>
+                        <h2>Calm architecture for high-stakes customer data programs.</h2>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-label">Sectors</span>
+                        <p>Financial services B2C, enterprise technology B2B, healthcare B2C, retail, and digital commerce.</p>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-label">Operating Mode</span>
+                        <p>Discovery, maturity assessment, solution design, technical QA, stakeholder alignment, and enablement.</p>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-label">Decision Lens</span>
+                        <p>Every recommendation ties platform capability to activation velocity, data quality, governance, and measurement confidence.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="about" class="about">
             <div class="container">
                 <h2 class="section-title">About Scott Gresack</h2>
+                <p class="section-kicker">The portfolio is designed to answer one practical question: can Scott turn complex customer data systems into architecture that executives, engineers, analysts, and marketers can all act on?</p>
                 <div class="about-content">
                                             <div class="about-text">
                         <p>I'm a Senior MarTech Architect specializing in Adobe Experience Platform, Real-Time CDP, identity architecture, customer profile strategy, and enterprise personalization.</p>
@@ -620,6 +939,13 @@
                         <p><strong>Experience:</strong> 8+ years in Enterprise Martech and Data Engineering</p>
                         <p><strong>Certifications:</strong> Adobe AEP Architect, Microsoft Data Engineer, Tealium iQ Pro</p>
                         <p><strong>Specialties:</strong> AEP architecture, identity resolution, RTCDP, Web SDK, Mobile SDK, AJO, CJA, Target, consent, governance, and executive roadmap development</p>
+                        <div class="credential-row" aria-label="Core credentials">
+                            <span class="credential-chip">Adobe AEP Architect</span>
+                            <span class="credential-chip">Real-Time CDP</span>
+                            <span class="credential-chip">Identity & Profile Strategy</span>
+                            <span class="credential-chip">Web SDK / Mobile SDK</span>
+                            <span class="credential-chip">CJA & AJO</span>
+                        </div>
                     </div>
                     <div class="stats-grid">
                         <div class="stat-card">
@@ -636,12 +962,40 @@
                         </div>
                     </div>
                 </div>
+                <div class="architecture-flow" aria-label="Architecture operating model">
+                    <div class="flow-step">
+                        <span>01 Discover</span>
+                        <strong>Find the real business question.</strong>
+                        <p>Surface audience, journey, reporting, compliance, and operating-model constraints early.</p>
+                    </div>
+                    <div class="flow-step">
+                        <span>02 Model</span>
+                        <strong>Define the customer data contract.</strong>
+                        <p>Align schemas, datasets, identity namespaces, merge policies, and profile eligibility.</p>
+                    </div>
+                    <div class="flow-step">
+                        <span>03 Govern</span>
+                        <strong>Make trust operational.</strong>
+                        <p>Apply consent, QA, ownership, naming, and release controls before activation scales.</p>
+                    </div>
+                    <div class="flow-step">
+                        <span>04 Activate</span>
+                        <strong>Move from audiences to outcomes.</strong>
+                        <p>Connect RTCDP, AJO, Target, paid media, and lifecycle journeys with clear guardrails.</p>
+                    </div>
+                    <div class="flow-step">
+                        <span>05 Measure</span>
+                        <strong>Prove the architecture works.</strong>
+                        <p>Use CJA, calculated metrics, diagnostics, and adoption signals to tune the program.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="capabilities" class="capabilities">
             <div class="container">
-                <h2 class="section-title">What I Do</h2>
+                <h2 class="section-title">Architecture Focus</h2>
+                <p class="section-kicker">AEP work fails when identity, consent, profile logic, and measurement are treated as separate workstreams. This operating model keeps them connected.</p>
                 <div class="capabilities-grid">
                     <div class="capability-card">
                         <h3>AEP & Real-Time CDP Architecture</h3>
@@ -673,7 +1027,8 @@
 
         <section id="tools" class="tools">
             <div class="container">
-                <h2 class="section-title">Projects & Tools</h2>
+                <h2 class="section-title">Proof of Work</h2>
+                <p class="section-kicker">These tools show the architecture mindset in practice: make the data contract visible, make QA repeatable, and make complicated Adobe implementation decisions easier to explain.</p>
                     <div class="tools-grid">
                     <div class="tool-card featured-tool">
                         <div class="tool-header">
@@ -792,6 +1147,7 @@
         <section id="blog" class="blog">
             <div class="container">
                 <h2 class="section-title">Writing</h2>
+                <p class="section-kicker">Short-form thinking on CDP architecture, personalization, implementation quality, and the operating model needed to make customer data useful.</p>
                 <div class="blog-grid">
                     <article class="blog-card">
                         <div class="blog-content">
@@ -877,11 +1233,10 @@
 
         <section id="contact" class="contact">
             <div class="container">
-                <h2 class="section-title">Contact Scott</h2>
+                <h2 class="section-title">Work With Scott</h2>
                     <div class="contact-content">
-                    <p>Senior MarTech Architect | Principal AEP Consultant | Customer Data & Personalization Strategy</p>
-                    <p>Based in Baltimore, MD – Available for remote and on-site consulting.<br>
-                    Reply within 1 business day.</p>
+                    <p><strong>Bring me in when the platform is complex, the stakeholders need clarity, and the customer data architecture needs to become executable.</strong></p>
+                    <p>Based in Baltimore, MD. Available for remote and on-site consulting. Reply within 1 business day.</p>
                     <div class="contact-links">
                         <a href="mailto:gresack.scott@gmail.com" class="contact-link" onclick="trackPortfolioEvent('contact_click', { contactType: 'email' })">
                             ✉️ Email
