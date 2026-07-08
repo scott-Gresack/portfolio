@@ -927,6 +927,49 @@
             line-height: 1.5;
         }
 
+        .saas-example-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .saas-example-card {
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: 1.15rem;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: var(--shadow-card);
+        }
+
+        .saas-example-card h3 {
+            color: var(--ink);
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+
+        .saas-example-card h4 {
+            margin-top: 1rem;
+            color: var(--secondary-color);
+            font-size: 0.82rem;
+            font-weight: 900;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+        }
+
+        .saas-example-card p,
+        .saas-example-card li {
+            color: var(--text-secondary);
+            font-weight: 650;
+            line-height: 1.5;
+        }
+
+        .saas-example-card ul {
+            margin-top: 0.5rem;
+            padding-left: 1.2rem;
+        }
+
         .article-content-grid {
             display: grid;
             grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
@@ -1078,7 +1121,8 @@
             }
 
             .cdp-sequence,
-            .cdp-decision-grid {
+            .cdp-decision-grid,
+            .saas-example-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1555,6 +1599,54 @@
                             <h3>Business-Centric CDP</h3>
                             <p><strong>Business lens:</strong> optimize account growth, buying-group influence, expansion, relationship health, pipeline acceleration, and retention.</p>
                             <p><strong>Technical lens:</strong> emphasize account objects, person-account relationships, opportunities, product usage, firmographics, hierarchies, and role-based influence.</p>
+                        </div>
+                    </div>
+
+                    <div class="saas-example-grid">
+                        <div class="saas-example-card">
+                            <h3>B2B SaaS Example: Expansion and Renewal Intelligence</h3>
+                            <p>A B2B SaaS company uses RTCDP to understand accounts, buying groups, admins, champions, end users, product usage, contract status, and renewal risk.</p>
+                            <h4>Business outcome</h4>
+                            <p>Grow expansion revenue, protect renewals, identify product-qualified accounts, and help sales and customer success prioritize the right relationships.</p>
+                            <h4>Signals RTCDP would use</h4>
+                            <ul>
+                                <li>Product usage events: feature adoption, workspace creation, integrations enabled, seats used.</li>
+                                <li>Account attributes: industry, ARR tier, lifecycle stage, renewal date, region, segment.</li>
+                                <li>Relationship data: admins, decision makers, champions, detractors, buying committee roles.</li>
+                                <li>Engagement signals: webinar attendance, docs visits, pricing visits, support tickets, NPS, community activity.</li>
+                            </ul>
+                            <h4>Audience and journey examples</h4>
+                            <ul>
+                                <li>Accounts with high usage but low seat penetration -> expansion journey for sales and lifecycle marketing.</li>
+                                <li>Renewals in 90 days with declining usage -> customer success alert and retention nurture.</li>
+                                <li>Admins who enabled key integrations -> adoption milestone journey and advocacy request.</li>
+                                <li>Target accounts with multiple engaged people -> ABM destination sync for paid media and sales orchestration.</li>
+                            </ul>
+                            <h4>ROI logic</h4>
+                            <p>The ROI comes from higher renewal rates, more expansion pipeline, better account prioritization, less wasted media, and earlier intervention when adoption drops.</p>
+                        </div>
+
+                        <div class="saas-example-card">
+                            <h3>B2C SaaS Example: Activation, Retention, and Lifetime Value</h3>
+                            <p>A B2C SaaS company uses RTCDP to understand each user across web, app, product, email, subscription, billing, support, and in-app behavior.</p>
+                            <h4>Business outcome</h4>
+                            <p>Increase trial conversion, reduce churn, personalize onboarding, recover abandoned upgrades, and grow lifetime value.</p>
+                            <h4>Signals RTCDP would use</h4>
+                            <ul>
+                                <li>Behavioral events: signup, onboarding completion, feature usage, search, save, share, export, invite.</li>
+                                <li>Subscription data: plan, billing status, trial end date, failed payment, upgrade eligibility.</li>
+                                <li>Engagement data: email opens, push clicks, app sessions, content affinity, support interactions.</li>
+                                <li>Risk data: inactivity, repeated errors, downgrade intent, cancellation page visits, negative feedback.</li>
+                            </ul>
+                            <h4>Audience and journey examples</h4>
+                            <ul>
+                                <li>Trial users who completed setup but have not used the core feature -> product education journey.</li>
+                                <li>High-intent users who viewed upgrade pricing twice -> personalized offer or sales-assist workflow.</li>
+                                <li>Paid users with declining engagement -> win-back journey before cancellation intent appears.</li>
+                                <li>Users with failed payments -> billing recovery sequence across email, in-app, and push.</li>
+                            </ul>
+                            <h4>ROI logic</h4>
+                            <p>The ROI comes from better activation, higher conversion, lower churn, fewer failed-payment losses, more relevant personalization, and stronger lifecycle measurement.</p>
                         </div>
                     </div>
 
