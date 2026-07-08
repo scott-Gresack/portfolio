@@ -280,6 +280,53 @@
             color: var(--secondary-color);
         }
 
+        .tool-card.featured-tool {
+            border-color: rgba(37, 99, 235, 0.35);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(16, 185, 129, 0.08)), var(--background);
+        }
+
+        .tool-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .tool-action-primary,
+        .tool-action-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tool-action-primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.18);
+        }
+
+        .tool-action-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .tool-action-secondary {
+            border: 1px solid var(--border);
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.72);
+        }
+
+        .tool-action-secondary:hover {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.08);
+        }
+
         /* Blog Section */
         .blog-grid {
             display: grid;
@@ -515,6 +562,27 @@
             <div class="container">
                 <h2 class="section-title">Projects & Tools</h2>
                     <div class="tools-grid">
+                    <div class="tool-card featured-tool">
+                        <div class="tool-header">
+                            <h3 class="tool-title">AEP Academy: B2B XDM Relationship Builder</h3>
+                        </div>
+                        <p>Interactive training game that teaches Adobe Experience Platform B2B XDM relationships, identity, segmentation, profile assembly, and activation through guided lessons and visual decision exercises.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Adobe AEP</span>
+                            <span class="tech-tag">B2B XDM</span>
+                            <span class="tech-tag">Segmentation</span>
+                            <span class="tech-tag">Training Game</span>
+                        </div>
+                        <div class="tool-actions">
+                            <a href="https://scott-gresack.github.io/aep-b2b-xdm-academy/" class="tool-action-primary">
+                                Open Academy
+                            </a>
+                            <a href="https://github.com/scott-Gresack/aep-b2b-xdm-academy" class="tool-action-secondary">
+                                View Source
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="tool-card">
                         <div class="tool-header">
                             <h3 class="tool-title">Tag Generator Tool</h3>
