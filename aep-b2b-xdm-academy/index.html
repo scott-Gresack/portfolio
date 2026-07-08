@@ -1,0 +1,2668 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AEP Academy - B2B XDM Relationships</title>
+  <script>
+    window.digitalData = window.digitalData || {
+      page: {
+        pageName: "AEP Academy | B2B XDM Relationship Builder",
+        siteSection: "AEP Academy",
+        toolName: "B2B XDM Relationship Builder",
+        language: "en-US"
+      },
+      user: {
+        learnerType: "architect",
+        authenticationStatus: "anonymous"
+      },
+      academy: {
+        program: "Adobe Experience Platform",
+        module: "B2B XDM Relationships",
+        methodology: "first principles architecture",
+        currentLevel: "Orientation",
+        currentLevelId: "philosophy",
+        xp: 0,
+        progressPercent: 0
+      },
+      eventData: {},
+      events: []
+    };
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-Y8617TLMYK", {
+      anonymize_ip: true,
+      page_title: "AEP Academy | B2B XDM Relationship Builder",
+      page_path: window.location.pathname || "/aep-b2b-xdm-academy"
+    });
+  </script>
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture identify register register_once unregister reset get_distinct_id get_session_id get_session_replay_url set_config opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init("phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U", {
+      api_host: "https://us.i.posthog.com",
+      person_profiles: "always",
+      capture_pageview: true
+    });
+  </script>
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "pmp4efispy");
+  </script>
+  <script async src="https://assets.adobedtm.com/0ded84b93882/71f267854b6d/launch-b015179db04d-development.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            spectrum: {
+              ink: "#151515",
+              red: "#fa0f00",
+              blue: "#1473e6",
+              bg: "#f8f8f8"
+            }
+          },
+          boxShadow: {
+            soft: "0 18px 60px rgba(15, 23, 42, .10)",
+            glow: "0 0 0 1px rgba(255,255,255,.8), 0 20px 70px rgba(20,115,230,.18)"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(20,115,230,.14), transparent 28rem),
+        radial-gradient(circle at top right, rgba(250,15,0,.09), transparent 24rem),
+        linear-gradient(180deg, #fff, #f7f7f7);
+    }
+    main, section, aside, header, div, p, h1, h2, h3, button, pre, textarea, select {
+      min-width: 0;
+    }
+    p, h1, h2, h3, button, div {
+      overflow-wrap: anywhere;
+    }
+    pre {
+      max-width: 100%;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    button, select, textarea {
+      touch-action: manipulation;
+    }
+    button, a, select, textarea, input, [onclick] {
+      min-height: 44px;
+    }
+    button, a, [onclick] {
+      min-width: 44px;
+    }
+    .text-xs {
+      font-size: .875rem !important;
+      line-height: 1.35 !important;
+    }
+    .leading-5 {
+      line-height: 1.45 !important;
+    }
+    .leading-6, .leading-7 {
+      line-height: 1.5 !important;
+    }
+    .responsive-scroll {
+      max-width: 100%;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+    .responsive-scroll > * {
+      min-width: 0;
+    }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(15, 23, 42, .68);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .modal-panel {
+      width: min(760px, 100%);
+      max-height: min(86vh, 760px);
+      overflow: auto;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255,255,255,.72);
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 34px 110px rgba(15, 23, 42, .34);
+    }
+    .text-spectrum-blue {
+      color: #075aa8 !important;
+    }
+    .bg-spectrum-blue {
+      background-color: #075aa8 !important;
+    }
+    .text-spectrum-red {
+      color: #c80d00 !important;
+    }
+    .bg-spectrum-red {
+      background-color: #c80d00 !important;
+    }
+    .text-slate-500 {
+      color: #475569 !important;
+    }
+    .bg-emerald-600 {
+      background-color: #047857 !important;
+    }
+    .glass { background: rgba(255,255,255,.78); backdrop-filter: blur(22px); }
+    .node { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+    .node:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(15,23,42,.12); }
+    .dropzone.active { outline: 3px solid rgba(20,115,230,.35); }
+    .snap-target { outline: 2px dashed rgba(20,115,230,.35); outline-offset: 4px; }
+    .pulse-win { animation: pulseWin .7s ease both; }
+    @keyframes pulseWin {
+      0% { transform: scale(.98); opacity: .7; }
+      55% { transform: scale(1.03); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    .confetti {
+      position: fixed;
+      top: -12px;
+      width: 10px;
+      height: 16px;
+      border-radius: 3px;
+      animation: fall 1200ms ease-in forwards;
+      z-index: 80;
+    }
+    @keyframes fall {
+      to { transform: translateY(105vh) rotate(380deg); opacity: 0; }
+    }
+    @media (max-width: 480px) {
+      main { padding: 0.75rem; }
+      header { position: static !important; border-radius: 1.25rem !important; margin-bottom: 1rem !important; }
+      #stage { min-height: auto !important; padding: 1rem !important; border-radius: 1.25rem !important; }
+      aside { border-radius: 1.25rem !important; }
+      h1, h2 { font-size: clamp(1.75rem, 9vw, 2.35rem) !important; line-height: 1.05 !important; }
+      h3 { font-size: clamp(1.25rem, 6vw, 1.65rem) !important; line-height: 1.12 !important; }
+      .rounded-3xl, .rounded-\[2rem\] { border-radius: 1.25rem !important; }
+      .p-5 { padding: 1rem !important; }
+      .p-6 { padding: 1rem !important; }
+      .text-4xl, .text-5xl, .text-6xl { font-size: clamp(1.75rem, 9vw, 2.35rem) !important; line-height: 1.05 !important; }
+      .min-h-80 { min-height: 14rem !important; }
+      .min-h-32 { min-height: 9rem !important; }
+      button { min-height: 44px; }
+    }
+    @media (max-width: 767px) {
+      body {
+        font-size: 16px;
+      }
+      p, li, textarea, select, input {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+      }
+      .text-sm {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+      }
+      .text-xs {
+        font-size: .875rem !important;
+        line-height: 1.4 !important;
+      }
+      button, a, select, textarea, input, [onclick] {
+        min-height: 44px;
+        min-width: 44px;
+      }
+      #levelNav button {
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+      }
+      .modal-backdrop {
+        align-items: flex-end;
+        padding: .75rem;
+      }
+      .modal-panel {
+        max-height: 88vh;
+        border-radius: 1.25rem;
+      }
+    }
+    @media (min-width: 768px) and (max-width: 1279px) {
+      .tablet-stack {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen text-spectrum-ink">
+  <main class="mx-auto w-full max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+    <header class="sticky top-3 z-40 mb-6 rounded-3xl border border-white/80 glass shadow-soft">
+      <div class="flex flex-col gap-4 p-4 lg:flex-row lg:items-center lg:justify-between">
+        <div class="flex items-center gap-3">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-spectrum-red text-xl font-black text-white shadow-lg">A</div>
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">AEP Academy</div>
+            <h1 class="text-xl font-black tracking-tight sm:text-2xl">B2B XDM Relationship Builder</h1>
+          </div>
+        </div>
+        <div class="grid gap-2 sm:grid-cols-[180px_90px_110px] sm:items-center">
+          <div>
+            <div class="mb-1 flex justify-between text-xs font-bold text-slate-500"><span>Progress</span><span id="progressLabel">0%</span></div>
+            <div class="h-3 overflow-hidden rounded-full bg-slate-200">
+              <div id="progressBar" class="h-full w-0 rounded-full bg-spectrum-blue transition-all"></div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-center">
+            <div class="text-xs font-bold text-slate-500">XP</div>
+            <div id="xp" class="text-lg font-black">0</div>
+          </div>
+          <button id="resetBtn" class="rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5">Reset</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="mb-6 overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-glow">
+      <div class="grid gap-6 p-6 lg:grid-cols-[1.2fr_.8fr] lg:p-8">
+        <div>
+          <div class="mb-4 flex flex-wrap gap-2">
+            <span class="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-black">First principles method</span>
+            <span class="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-black">Schema -> Identity -> Relationship -> Audience</span>
+          </div>
+          <h2 class="max-w-3xl text-4xl font-black tracking-tight sm:text-6xl">Learn AEP B2B relationships by building the graph.</h2>
+          <p class="mt-5 max-w-2xl text-base font-semibold leading-7 text-slate-300">
+            This game teaches the first principles behind Adobe Experience Platform B2B XDM relationships, then turns them into architecture decisions: classes, schemas, identities, relationship descriptors, profile assembly, segmentation, and activation.
+          </p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/10 p-5 backdrop-blur">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Mission</div>
+          <ol class="mt-4 space-y-3 text-sm font-semibold leading-6 text-slate-200">
+            <li>1. Establish first principles.</li>
+            <li>2. Build the B2B ontology.</li>
+            <li>3. Connect relationships correctly.</li>
+            <li>4. Assemble profile context.</li>
+            <li>5. Build a qualified audience.</li>
+            <li>6. Activate to destination.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="badges" class="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5"></section>
+
+    <section class="grid gap-5 lg:grid-cols-[280px_1fr]">
+      <aside class="h-max rounded-3xl border border-white/80 glass p-3 shadow-soft">
+        <nav id="levelNav" class="space-y-2"></nav>
+      </aside>
+      <section id="stage" class="min-h-[680px] w-full rounded-3xl border border-white/80 glass p-5 shadow-soft"></section>
+    </section>
+  </main>
+  <div id="academyModal" class="modal-backdrop" aria-hidden="true" onclick="if (event.target === this) closeAuditModal()"></div>
+
+  <script>
+    const state = {
+      level: 0,
+      module: 0,
+      xp: 0,
+      completed: new Set(),
+      matched: {},
+      audience: new Set(),
+      socratic: {},
+      schemaDraft: {
+        sourceSchema: "Business Person",
+        sourceIdentity: "CRMID",
+        targetSchema: "Business Account",
+        targetIdentity: "AccountID",
+        cardinality: "many-to-one",
+        fieldGroup: "B2B Person Details"
+      },
+      mastery: {},
+      weakSpots: [],
+      ontology: {
+        version: "1.0",
+        generatedAt: new Date().toISOString(),
+        moduleId: "b2b_xdm",
+        businessBrief: "A wealth firm wants to target CFOs at accounts with open opportunities over $1M who viewed retirement planning content.",
+        objects: [
+          { name: "Business Account", type: "entity", owner: "CRM" },
+          { name: "Business Person", type: "entity", owner: "CRM" },
+          { name: "Opportunity", type: "entity", owner: "CRM" },
+          { name: "Campaign", type: "entity", owner: "Marketing Automation" }
+        ],
+        identities: [
+          { namespace: "CRMID", strength: "strong", entity: "Business Person" },
+          { namespace: "AccountID", strength: "strong", entity: "Business Account" },
+          { namespace: "ECID", strength: "device", entity: "Experience Event" }
+        ],
+        relationships: [],
+        audiences: [],
+        activationPlan: [],
+        reasoningTrace: []
+      },
+      capstone: {
+        startedAt: null,
+        submitted: false,
+        score: null,
+        answer: "",
+        certificateVisible: false
+      },
+      selectedSource: null
+    };
+
+    const modules = [
+      {
+        id: "b2b_xdm",
+        name: "B2B XDM Relationships",
+        shortName: "B2B XDM",
+        brief: "Model Business Account, Business Person, Opportunity, Campaign, and Account-Person Relation so account context can drive activation.",
+        objects: ["Business Account", "Business Person", "Opportunity", "Campaign", "Account-Person Relation"],
+        socraticConcept: "Account-Person Relation",
+        socraticAnswer: "Relationship",
+        practiceFocus: "relationship descriptors, identity namespaces, cardinality",
+        whyItMatters: "Without governed relationships, ABM segments drift by team and channel."
+      },
+      {
+        id: "identity_resolution",
+        name: "Identity Resolution and Namespaces",
+        shortName: "Identity",
+        brief: "Design ECID, CRMID, email, account ID, and fallback identity behavior without collapsing unrelated profiles.",
+        objects: ["ECID", "CRMID", "Email", "AccountID", "Identity Namespace"],
+        socraticConcept: "Fallback identity",
+        socraticAnswer: "Identity",
+        practiceFocus: "namespace strength, graph collapse risk, merge behavior",
+        whyItMatters: "Bad identity rules create false households, duplicate profiles, and duplicate journeys."
+      },
+      {
+        id: "rtcdp_audience",
+        name: "RTCDP Audience Composition",
+        shortName: "RTCDP",
+        brief: "Choose rule-based or streaming audiences, merge policy behavior, and evaluation timing for activation.",
+        objects: ["Audience", "Merge Policy", "Streaming Segment", "Batch Segment", "Destination"],
+        socraticConcept: "Visited pricing page in last 10 minutes",
+        socraticAnswer: "Experience Event",
+        practiceFocus: "audience logic, evaluation method, merge policy",
+        whyItMatters: "Audience timing and merge policy decide who enters activation and when."
+      },
+      {
+        id: "ajo_orchestration",
+        name: "Journey and AJO Orchestration",
+        shortName: "AJO",
+        brief: "Distinguish event-triggered journeys, campaigns, decisions, offers, and suppressions.",
+        objects: ["Journey", "Event Trigger", "Decision", "Offer", "Suppression Rule"],
+        socraticConcept: "Form submit starts advisor follow-up",
+        socraticAnswer: "Journey",
+        practiceFocus: "trigger design, decisioning, journey versus campaign",
+        whyItMatters: "Orchestration fails when triggers, decisions, and eligibility are blurred."
+      },
+      {
+        id: "cja_data_views",
+        name: "CJA Data Views and Calculated Metrics",
+        shortName: "CJA",
+        brief: "Design connections, data views, dimensions, calculated metrics, and stitching rules for cross-channel analysis.",
+        objects: ["Connection", "Dataset", "Data View", "Calculated Metric", "Workspace"],
+        socraticConcept: "Advisor conversion rate",
+        socraticAnswer: "Derived Attribute",
+        practiceFocus: "connections versus datasets, metrics, attribution, stitching",
+        whyItMatters: "CJA trust depends on clean definitions, not just connected datasets."
+      },
+      {
+        id: "capstone",
+        name: "Capstone: Schema plus Activation Plan",
+        shortName: "Capstone",
+        brief: "Design a full B2B schema, identity, relationship, audience, journey, CJA, and activation plan from a business brief.",
+        objects: ["Schema", "Identity", "Relationship", "Audience", "Destination"],
+        socraticConcept: "Full business brief",
+        socraticAnswer: "Architecture",
+        practiceFocus: "end-to-end architecture and engineering proof",
+        whyItMatters: "A real architect must defend the whole system, not one feature."
+      }
+    ];
+
+    const businessBriefs = [
+      "A wealth firm wants to target CFOs at accounts with open opportunities over $1M who viewed retirement planning content.",
+      "A bank wants to suppress existing loan customers from acquisition campaigns while routing high-intent visitors to advisor outreach.",
+      "A B2B software company wants to identify buying committee members at accounts with active opportunities and recent pricing visits.",
+      "A healthcare network wants to separate patient, household, provider, appointment, and insurance context before activation.",
+      "A travel company wants to connect traveler, loyalty account, booking, flight, and disruption events for journey orchestration.",
+      "A branch-led financial services team wants household, advisor, branch, account, and campaign context in one activation model."
+    ];
+
+    const levels = [
+      { id: "philosophy", title: "Orientation", name: "First Principles", badge: "First Principles" },
+      { id: "foundation", title: "Level 1", name: "Foundation", badge: "Schema Scout" },
+      { id: "ontology", title: "Level 2", name: "Build Ontology", badge: "Ontology Builder" },
+      { id: "socratic", title: "Level 3", name: "Socratic Modeling", badge: "Modeling Coach" },
+      { id: "relationships", title: "Level 4", name: "Link Relationships", badge: "Graph Architect" },
+      { id: "profile", title: "Level 5", name: "Profile Assembly", badge: "Profile Assembler" },
+      { id: "segments", title: "Level 6", name: "Segmentation Challenge", badge: "Audience Strategist" },
+      { id: "activation", title: "Boss Battle", name: "Activate Journey", badge: "Activation Lead" }
+    ];
+
+    const objects = [
+      ["Business Account", "Company or organization profile, commonly keyed by account identity."],
+      ["Business Person", "Individual connected to accounts through role or relationship data."],
+      ["Opportunity", "Sales opportunity tied back to an account."],
+      ["Campaign", "Marketing campaign or engagement context."],
+      ["Account-Person Relation", "Bridge object describing how people relate to accounts."]
+    ];
+
+    const relationships = {
+      "Business Person": "Business Account",
+      "Opportunity": "Business Account",
+      "Campaign": "Opportunity",
+      "Account-Person Relation": "Business Person"
+    };
+
+    const ontologyQuestions = [
+      ["Identity", "Who?", "Passport: different systems may know the same person differently; Adobe proves they are the same."],
+      ["Entity", "What?", "Business Account is like the company building; Business Person is an employee inside it."],
+      ["Relationship", "How are they connected?", "Family tree: the people already exist; the relationship explains how they are connected."],
+      ["Experience Event", "What happened?", "Every doctor's visit recorded forever; the history grows event by event."],
+      ["Profile Attribute", "What is currently true?", "Medical chart: current medication, current allergy, current blood pressure."],
+      ["Audience", "Who satisfies these conditions?", "The invite list: only records matching the business rule enter."],
+      ["Journey", "What happens next?", "The playbook: once someone qualifies, the next best action happens."]
+    ];
+
+    const analyticsActions = {
+      moduleSelect: "academy_module_select",
+      masteryDashboardView: "academy_mastery_dashboard_view",
+      ontologyInspect: "academy_ontology_inspect",
+      ontologyExport: "academy_ontology_export",
+      reasoningTraceView: "academy_reasoning_trace_view",
+      levelView: "academy_level_view",
+      levelComplete: "academy_level_complete",
+      socraticAnswer: "academy_socratic_answer",
+      socraticTutorFallback: "academy_api_tutor_fallback",
+      relationshipMatch: "academy_relationship_match",
+      relationshipMismatch: "academy_relationship_mismatch",
+      schemaValidate: "academy_schema_validate",
+      audienceValidate: "academy_audience_validate",
+      capstoneStart: "academy_capstone_start",
+      capstoneSubmit: "academy_capstone_submit",
+      capstoneScore: "academy_capstone_score",
+      certificateGenerate: "academy_certificate_generate",
+      activationComplete: "academy_activation_complete",
+      reset: "academy_reset"
+    };
+
+    function currentLevel() {
+      return levels[state.level] || levels[0];
+    }
+
+    function currentModule() {
+      return modules[state.module] || modules[0];
+    }
+
+    function storageKey() {
+      return "aepAcademyMasteryV2";
+    }
+
+    function loadMastery() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey()) || "{}");
+        state.mastery = saved.mastery || {};
+        state.weakSpots = saved.weakSpots || [];
+        state.ontology = saved.ontology || state.ontology;
+      } catch (error) {
+        state.mastery = {};
+        state.weakSpots = [];
+      }
+    }
+
+    function saveMastery() {
+      try {
+        localStorage.setItem(storageKey(), JSON.stringify({
+          mastery: state.mastery,
+          weakSpots: state.weakSpots,
+          ontology: state.ontology
+        }));
+      } catch (error) {
+        console.info("[AEP Academy] mastery persistence unavailable", error);
+      }
+    }
+
+    function recordMastery(concept, correct) {
+      const key = `${currentModule().id}:${concept}`;
+      const current = state.mastery[key] || { correct: 0, attempts: 0, concept, moduleId: currentModule().id };
+      current.attempts += 1;
+      if (correct) current.correct += 1;
+      state.mastery[key] = current;
+      if (!correct) {
+        state.weakSpots = [current, ...state.weakSpots.filter(item => item.concept !== concept || item.moduleId !== currentModule().id)].slice(0, 12);
+      }
+      saveMastery();
+    }
+
+    function logReasoning(action, detail = {}) {
+      const entry = {
+        action,
+        detail,
+        moduleId: currentModule().id,
+        levelId: currentLevel().id,
+        timestamp: new Date().toISOString()
+      };
+      state.ontology.reasoningTrace = [entry, ...(state.ontology.reasoningTrace || [])].slice(0, 80);
+      saveMastery();
+      return entry;
+    }
+
+    function syncOntologyFromState() {
+      state.ontology.generatedAt = new Date().toISOString();
+      state.ontology.moduleId = currentModule().id;
+      state.ontology.businessBrief = businessBriefs[(state.xp + state.module) % businessBriefs.length];
+      state.ontology.relationships = Object.entries(state.matched).map(([source, target]) => ({
+        source,
+        target,
+        sourceIdentityNamespace: state.schemaDraft.sourceIdentity,
+        targetIdentityNamespace: state.schemaDraft.targetIdentity,
+        cardinality: state.schemaDraft.cardinality,
+        owner: "Architecture team"
+      }));
+      state.ontology.audiences = [{
+        name: "High-value buying committee intent",
+        criteria: [...state.audience],
+        requiredCriteria: ["Business Person role = Decision Maker", "Account has open opportunity > $1M", "Visited pricing page"]
+      }];
+      state.ontology.activationPlan = [
+        { destination: "AJO", purpose: "advisor follow-up journey" },
+        { destination: "LinkedIn", purpose: "account-based media activation" },
+        { destination: "CJA", purpose: "audience and journey measurement" }
+      ];
+      saveMastery();
+      return state.ontology;
+    }
+
+    const tutorEngine = {
+      name: "local-rubric",
+      grade({ answer, expectedConcept, ontology }) {
+        const lower = answer.toLowerCase();
+        const containsExpected = lower.includes(expectedConcept.toLowerCase());
+        const mentionsWhy = /why|because|break|risk|fail|purpose|therefore/i.test(answer);
+        const mentionsOntology = /identity|schema|relationship|audience|journey|profile|event/i.test(answer);
+        const pass = containsExpected && mentionsWhy && mentionsOntology && answer.split(/\s+/).length >= 18;
+        return {
+          pass,
+          engine: this.name,
+          followUp: pass
+            ? "Which source owns this truth, and what evidence proves the downstream audience can use it safely?"
+            : "State the concept type, explain why it must exist, and name what breaks if the ontology models it incorrectly.",
+          ontologyVersion: ontology.version
+        };
+      }
+    };
+
+    function syncDigitalData(action, detail = {}) {
+      const level = currentLevel();
+      const event = {
+        event: action,
+        eventName: action,
+        timestamp: new Date().toISOString(),
+        moduleId: currentModule().id,
+        moduleName: currentModule().name,
+        levelId: level.id,
+        levelName: level.name,
+        levelTitle: level.title,
+        xp: state.xp,
+        progressPercent: progress(),
+        completedLevels: [...state.completed],
+        ...detail
+      };
+
+      window.digitalData = window.digitalData || {};
+      window.digitalData.page = {
+        ...(window.digitalData.page || {}),
+        pageName: `AEP Academy | ${level.title} | ${level.name}`,
+        siteSection: "AEP Academy",
+        toolName: "B2B XDM Relationship Builder"
+      };
+      window.digitalData.academy = {
+        ...(window.digitalData.academy || {}),
+        currentModule: currentModule().name,
+        currentModuleId: currentModule().id,
+        currentLevel: level.name,
+        currentLevelId: level.id,
+        xp: state.xp,
+        progressPercent: progress(),
+        completedLevels: [...state.completed],
+        lastAction: action
+      };
+      window.digitalData.eventData = event;
+      window.digitalData.events = [...(window.digitalData.events || []), event].slice(-25);
+      return event;
+    }
+
+    function sendWebSdkEvent(action, event) {
+      if (typeof window.alloy !== "function") return;
+      window.alloy("sendEvent", {
+        xdm: {
+          eventType: action === analyticsActions.levelView ? "web.webpagedetails.pageViews" : "web.webinteraction.linkClicks",
+          web: {
+            webPageDetails: {
+              name: window.digitalData.page.pageName,
+              URL: window.location.href
+            },
+            webInteraction: {
+              name: event.eventName,
+              type: "other",
+              linkClicks: { value: action === analyticsActions.levelView ? 0 : 1 }
+            }
+          }
+        },
+        data: {
+          digitalData: window.digitalData,
+          academy: event
+        }
+      });
+    }
+
+    function sendGa4Event(action, event) {
+      if (typeof window.gtag !== "function") return;
+      window.gtag("event", action, {
+        event_category: "AEP Academy",
+        event_label: event.levelName,
+        module_id: event.moduleId,
+        module_name: event.moduleName,
+        level_id: event.levelId,
+        level_name: event.levelName,
+        xp: event.xp,
+        progress_percent: event.progressPercent
+      });
+    }
+
+    function sendPostHogEvent(action, event) {
+      if (!window.posthog || typeof window.posthog.capture !== "function") return;
+      window.posthog.capture(action, {
+        module_id: event.moduleId,
+        module_name: event.moduleName,
+        level_id: event.levelId,
+        level_name: event.levelName,
+        xp: event.xp,
+        progress_percent: event.progressPercent,
+        completed_levels: event.completedLevels,
+        detail: event
+      });
+    }
+
+    function sendClarityEvent(action, event) {
+      if (typeof window.clarity !== "function") return;
+      window.clarity("event", action);
+      window.clarity("set", "academy_module", event.moduleName || "unknown");
+      window.clarity("set", "academy_level", event.levelName || "unknown");
+      window.clarity("set", "academy_progress", String(event.progressPercent || 0));
+    }
+
+    function trackAcademyAction(action, detail = {}) {
+      const event = syncDigitalData(action, detail);
+
+      if (window._satellite && typeof window._satellite.track === "function") {
+        window._satellite.track(action);
+        if (action !== "academy_action") window._satellite.track("academy_action");
+      }
+
+      sendWebSdkEvent(action, event);
+      sendGa4Event(action, event);
+      sendPostHogEvent(action, event);
+      sendClarityEvent(action, event);
+      console.info("[AEP Academy analytics]", action, event);
+      return event;
+    }
+
+    function addXp(points) {
+      state.xp += points;
+      document.getElementById("xp").textContent = state.xp;
+    }
+
+    function complete(id, points = 100) {
+      if (!state.completed.has(id)) {
+        state.completed.add(id);
+        addXp(points);
+        burst();
+        trackAcademyAction(id === "activation" ? analyticsActions.activationComplete : analyticsActions.levelComplete, {
+          completedLevelId: id,
+          pointsAwarded: points,
+          badge: levels.find(level => level.id === id)?.badge || "Unknown"
+        });
+      }
+      renderChrome();
+    }
+
+    function progress() {
+      return Math.round((state.completed.size / levels.length) * 100);
+    }
+
+    function renderChrome() {
+      const pct = progress();
+      document.getElementById("progressBar").style.width = pct + "%";
+      document.getElementById("progressLabel").textContent = pct + "%";
+      document.getElementById("levelNav").innerHTML = levels.map((level, index) => `
+        <button onclick="go(${index})" class="w-full rounded-2xl px-4 py-3 text-left transition ${state.level === index ? "bg-slate-950 text-white shadow-lg" : "bg-white/80 hover:bg-white"}">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <div class="text-xs font-black uppercase tracking-[.14em] ${state.level === index ? "text-slate-400" : "text-slate-500"}">${level.title}</div>
+              <div class="font-black">${level.name}</div>
+            </div>
+            <div>${state.completed.has(level.id) ? "✓" : "○"}</div>
+          </div>
+        </button>
+      `).join("");
+      document.getElementById("badges").innerHTML = modules.map((module, index) => `
+        <div class="rounded-3xl border ${state.module === index ? "border-spectrum-blue bg-blue-50" : "border-slate-200 bg-white/70"} p-4 shadow-sm">
+          <div class="text-xs font-black uppercase tracking-[.14em] text-slate-500">Module</div>
+          <button onclick="selectModule(${index})" class="mt-1 text-left font-black ${state.module === index ? "text-spectrum-blue" : "text-slate-950"}">${module.shortName}</button>
+          <div class="mt-2 text-sm font-semibold text-slate-600">${module.practiceFocus}</div>
+        </div>
+      `).join("");
+    }
+
+    function go(index) {
+      state.level = index;
+      trackAcademyAction(analyticsActions.levelView, {
+        navigationType: "level_nav",
+        targetLevelIndex: index
+      });
+      render();
+    }
+
+    function selectModule(index) {
+      state.module = index;
+      state.level = index === 5 ? 7 : 0;
+      state.matched = {};
+      state.audience = new Set();
+      state.selectedSource = null;
+      trackAcademyAction(analyticsActions.moduleSelect, {
+        moduleId: currentModule().id,
+        moduleName: currentModule().name
+      });
+      render();
+    }
+
+    function card(title, body) {
+      return `<div class="node rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.16em] text-spectrum-blue">${title}</div>
+        <p class="mt-3 text-sm font-semibold leading-6 text-slate-700">${body}</p>
+      </div>`;
+    }
+
+    function practicalExample(title, scenario, takeaway) {
+      return `<div class="rounded-3xl border border-blue-100 bg-blue-50 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Practical example</div>
+        <h3 class="mt-2 text-xl font-black text-slate-950">${title}</h3>
+        <p class="mt-3 text-sm font-semibold leading-6 text-slate-700">${scenario}</p>
+        <div class="mt-4 rounded-2xl bg-white p-4 text-sm font-black leading-6 text-spectrum-blue">${takeaway}</div>
+      </div>`;
+    }
+
+    function whyForQuestion(question) {
+      const q = question.toLowerCase();
+      if (q.includes("problem") || q.includes("outcome")) return "Why: architecture starts with pain. If the pain is vague, the solution becomes feature-chasing.";
+      if (q.includes("must") || q.includes("exist")) return "Why: this tests necessity. If the concept is not necessary, the model is probably overbuilt.";
+      if (q.includes("definition") || q.includes("essential")) return "Why: a crisp definition prevents teams from using the same word for different things.";
+      if (q.includes("relate") || q.includes("connected") || q.includes("relationship")) return "Why: AEP work fails when identity, events, attributes, and relationships are mixed together.";
+      if (q.includes("break") || q.includes("wrong") || q.includes("fail")) return "Why: failure mode thinking reveals whether the learner understands the consequence, not just the label.";
+      if (q.includes("source") || q.includes("owns")) return "Why: ownership decides which system is trusted, which team fixes defects, and which value wins during conflict.";
+      if (q.includes("profile-enabled")) return "Why: profile-enabled data affects activation. Bad profile data turns into bad customer experiences.";
+      if (q.includes("lake") || q.includes("warehouse")) return "Why: not every useful dataset belongs in AEP Profile. Some data is better kept for analysis or preparation.";
+      if (q.includes("identit")) return "Why: identity is a claim of sameness. Wrong identity design creates false merges or fragmented profiles.";
+      if (q.includes("event") || q.includes("trace")) return "Why: traceability proves the pipeline works from collection to activation and measurement.";
+      if (q.includes("audience") || q.includes("journey") || q.includes("destination")) return "Why: activation is where bad modeling becomes visible to customers.";
+      if (q.includes("ai")) return "Why: AI recommendations are only as trustworthy as the layer of data they consume.";
+      return "Why: the question forces the learner to connect configuration to purpose, evidence, and risk.";
+    }
+
+    function questionCard(question, tone = "slate") {
+      const color = tone === "amber" ? "text-amber-950" : "text-slate-800";
+      const whyColor = tone === "amber" ? "text-amber-800" : "text-spectrum-blue";
+      return `<div class="rounded-2xl bg-white p-3 text-sm leading-5">
+        <div class="font-black ${color}">${question}</div>
+        <div class="mt-2 text-xs font-bold leading-5 ${whyColor}">${whyForQuestion(question)}</div>
+      </div>`;
+    }
+
+    function businessReasoning(question, isYes) {
+      const q = question.toLowerCase();
+      if (q.includes("reuse") || q.includes("multiple")) {
+        return isYes
+          ? "Business reason: reuse raises ROI because one governed model supports many teams, channels, and reports."
+          : "Business reason: keeping one-off logic downstream avoids overbuilding and saves implementation cost.";
+      }
+      if (q.includes("business meaning") || q.includes("ontology")) {
+        return isYes
+          ? "Business reason: governed meaning improves trust, reduces rework, and makes decisions explainable."
+          : "Business reason: temporary logic should not become enterprise architecture because it increases maintenance cost.";
+      }
+      if (q.includes("different teams") || q.includes("drift")) {
+        return isYes
+          ? "Business reason: standardization prevents conflicting audiences, inconsistent dashboards, and duplicated delivery effort."
+          : "Business reason: if drift risk is low, the cheaper path is to keep the logic closer to the consuming team.";
+      }
+      if (q.includes("object types") || q.includes("person") || q.includes("account")) {
+        return isYes
+          ? "Business reason: modeling object boundaries protects against false identity merges and bad customer targeting."
+          : "Business reason: if it is same-entity stitching, identity resolution is cheaper and more accurate than relationship modeling.";
+      }
+      if (q.includes("segmentation") || q.includes("activation") || q.includes("journey") || q.includes("destination")) {
+        return isYes
+          ? "Business reason: upstream modeling improves speed to activation and reduces campaign defects."
+          : "Business reason: if no activation depends on it, avoid adding platform complexity without revenue or risk benefit.";
+      }
+      if (q.includes("primary key") || q.includes("foreign key") || q.includes("owner")) {
+        return isYes
+          ? "Business reason: named ownership lowers support cost and makes defects easier to route."
+          : "Business reason: unclear ownership creates operational risk, so delay promotion until accountability exists.";
+      }
+      if (q.includes("trusted") || q.includes("evidence") || q.includes("prove") || q.includes("working")) {
+        return isYes
+          ? "Business reason: proof protects revenue, compliance, and stakeholder trust before scaling activation."
+          : "Business reason: missing proof means higher support cost, lower trust, and greater rollout risk.";
+      }
+      if (q.includes("ai")) {
+        return isYes
+          ? "Business reason: governed AI use can accelerate analysis and decisions without losing auditability."
+          : "Business reason: preventing unsafe AI inference avoids expensive customer, compliance, and trust failures.";
+      }
+      if (q.includes("profile-enabled")) {
+        return isYes
+          ? "Business reason: profile-enabled data is worth the cost when it drives personalization, journeys, or audience revenue."
+          : "Business reason: keeping non-activation data out of Profile saves cost and reduces governance burden.";
+      }
+      return isYes
+        ? "Business reason: the yes path should improve revenue, speed, trust, compliance, or operating leverage."
+        : "Business reason: the no path should avoid cost, complexity, risk, or premature platform commitment.";
+    }
+
+    function decisionRubricCard(question, determines, yesDecision, noDecision, tone = "slate") {
+      const border = tone === "amber" ? "border-amber-200" : "border-slate-200";
+      return `<div class="rounded-3xl border ${border} bg-white p-4">
+        <div class="font-black text-slate-950">${question}</div>
+        <div class="mt-3 rounded-2xl bg-blue-50 p-3 text-sm font-bold leading-5 text-spectrum-blue">What we are trying to determine: ${determines}</div>
+        <div class="mt-3 grid gap-3 tablet-stack md:grid-cols-2">
+          <div class="rounded-2xl bg-emerald-50 p-3">
+            <div class="text-xs font-black uppercase tracking-[.14em] text-emerald-700">If yes</div>
+            <p class="mt-1 text-sm font-semibold leading-5 text-slate-700">${yesDecision}</p>
+            <div class="mt-3 rounded-xl bg-white p-3 text-xs font-black leading-5 text-emerald-800">${businessReasoning(question, true)}</div>
+          </div>
+          <div class="rounded-2xl bg-amber-50 p-3">
+            <div class="text-xs font-black uppercase tracking-[.14em] text-amber-700">If no</div>
+            <p class="mt-1 text-sm font-semibold leading-5 text-slate-700">${noDecision}</p>
+            <div class="mt-3 rounded-xl bg-white p-3 text-xs font-black leading-5 text-amber-800">${businessReasoning(question, false)}</div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    function auditModalButton(row, index) {
+      const [question, determines] = row;
+      const payload = encodeURIComponent(JSON.stringify(row));
+      return `<button onclick="openAuditModal('${payload}', ${index + 1})" class="group w-full rounded-3xl border border-amber-200 bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-amber-400">
+        <div class="flex items-start gap-3">
+          <div class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-amber-100 text-sm font-black text-amber-900">${index + 1}</div>
+          <div class="min-w-0">
+            <div class="font-black text-slate-950">${question}</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${determines}</p>
+            <div class="mt-3 inline-flex min-h-[44px] items-center rounded-2xl bg-amber-50 px-4 py-2 text-sm font-black text-amber-900">Open audit popout</div>
+          </div>
+        </div>
+      </button>`;
+    }
+
+    function openAuditModal(encodedRow, number) {
+      const [question, determines, yesDecision, noDecision] = JSON.parse(decodeURIComponent(encodedRow));
+      const modal = document.getElementById("academyModal");
+      if (!modal) return;
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      modal.innerHTML = `<div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="auditModalTitle">
+        <div class="sticky top-0 z-10 border-b border-slate-200 bg-white/95 p-4 backdrop-blur">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <div class="text-xs font-black uppercase tracking-[.16em] text-amber-700">AI audit question ${number}</div>
+              <h3 id="auditModalTitle" class="mt-2 text-2xl font-black text-slate-950">${question}</h3>
+            </div>
+            <button onclick="closeAuditModal()" class="rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white">Close</button>
+          </div>
+        </div>
+        <div class="grid gap-4 p-4 sm:p-5">
+          <div class="rounded-3xl border border-blue-100 bg-blue-50 p-4">
+            <div class="text-xs font-black uppercase tracking-[.14em] text-spectrum-blue">What we are trying to determine</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-800">${determines}</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-3xl border border-emerald-200 bg-emerald-50 p-4">
+              <div class="text-xs font-black uppercase tracking-[.14em] text-emerald-700">If yes</div>
+              <p class="mt-2 text-sm font-semibold leading-6 text-slate-800">${yesDecision}</p>
+              <div class="mt-4 rounded-2xl bg-white p-4 text-sm font-black leading-6 text-emerald-900">${businessReasoning(question, true)}</div>
+            </div>
+            <div class="rounded-3xl border border-amber-200 bg-amber-50 p-4">
+              <div class="text-xs font-black uppercase tracking-[.14em] text-amber-700">If no</div>
+              <p class="mt-2 text-sm font-semibold leading-6 text-slate-800">${noDecision}</p>
+              <div class="mt-4 rounded-2xl bg-white p-4 text-sm font-black leading-6 text-amber-900">${businessReasoning(question, false)}</div>
+            </div>
+          </div>
+          <div class="rounded-3xl bg-slate-950 p-4 text-white">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-slate-300">How to use this in the real build</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-200">Ask this before letting AI influence a production workflow. The point is to decide whether AI is inspecting, recommending, explaining, monitoring, or making a decision that needs human approval.</p>
+          </div>
+        </div>
+      </div>`;
+      const closeButton = modal.querySelector("button");
+      if (closeButton) closeButton.focus();
+    }
+
+    function closeAuditModal() {
+      const modal = document.getElementById("academyModal");
+      if (!modal) return;
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      modal.innerHTML = "";
+    }
+
+    function moduleCallout() {
+      const module = currentModule();
+      return `<div class="mb-6 rounded-3xl border border-blue-100 bg-blue-50 p-5">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Active module</div>
+            <h3 class="mt-2 text-2xl font-black">${module.name}</h3>
+            <p class="mt-2 max-w-4xl text-sm font-semibold leading-6 text-slate-700">${module.brief}</p>
+          </div>
+          <button onclick="go(0)" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-spectrum-blue shadow-sm">Curriculum map</button>
+        </div>
+        <div class="mt-4 rounded-2xl bg-white p-4 text-sm font-black leading-6 text-slate-800">Why this matters: ${module.whyItMatters}</div>
+      </div>`;
+    }
+
+    function levelValueQuestions(levelId) {
+      const values = {
+        foundation: {
+          title: "Foundation value questions",
+          summary: "This level should help the learner slow down before configuration and identify the primitive they are really working with.",
+          rows: [
+            ["What decision becomes easier after this level?", "Whether the learner can separate identity, event, attribute, relationship, audience, and journey.", "They can choose the right AEP primitive before building.", "They will likely configure features by habit and create rework."],
+            ["What business value does the primitive create?", "Whether the concept connects to revenue, cost, risk, or trust.", "The learner can explain why the design matters to stakeholders.", "The design will sound technical but not fundable."],
+            ["What mistake are we preventing?", "Which expensive failure this concept avoids.", "The team avoids false profile merges, lost history, brittle audiences, or bad journeys.", "The same error will surface later as QA defects or campaign waste."]
+          ]
+        },
+        ontology: {
+          title: "Ontology value questions",
+          summary: "This level should prove that the learner can model the business before modeling the platform.",
+          rows: [
+            ["Which business objects must stand on their own?", "Whether entities are being preserved instead of flattened too early.", "Schemas remain reusable across audiences, CJA, journeys, and destinations.", "A flattened model saves time now but creates expensive ambiguity later."],
+            ["Who owns each object and key?", "Whether support and stewardship are clear.", "Defects can be routed to the right team quickly.", "Unowned data creates support cost and stakeholder distrust."],
+            ["Which object boundaries protect customer experience?", "Whether the model avoids mixing people, accounts, opportunities, and events.", "Activation stays precise and explainable.", "Bad boundaries create mis-targeting and compliance risk."]
+          ]
+        },
+        socratic: {
+          title: "Socratic value questions",
+          summary: "This level should train the learner to justify their model, not just recognize the correct answer.",
+          rows: [
+            ["Can the learner explain why this concept is what it is?", "Whether they understand purpose, not vocabulary.", "They can defend the design in review and avoid cargo-cult configuration.", "They may pick correct terms but fail under a new scenario."],
+            ["Can the learner name what breaks if modeled wrong?", "Whether they understand downstream consequences.", "They can prevent defects before implementation.", "Mistakes move into QA, reporting, or customer-facing activation."],
+            ["Can the learner revise after feedback?", "Whether mastery is improving through reasoning trace, not guessing.", "The training captures growth and weak spots.", "XP goes up while conceptual risk remains hidden."]
+          ]
+        },
+        relationships: {
+          title: "Relationship value questions",
+          summary: "This level should prove whether a connection belongs in governed schema structure or downstream logic.",
+          rows: [
+            ["Will this relationship create reusable business context?", "Whether the connection has enterprise value beyond one report.", "Modeling upstream improves reuse and consistency.", "Keep it downstream to save cost until reuse is proven."],
+            ["Does activation depend on this connection?", "Whether AEP needs the relationship at decision time.", "Audience and journey logic can reason across objects safely.", "If no activation needs it, avoid unnecessary platform complexity."],
+            ["Can we validate the keys and cardinality?", "Whether the relationship is mature enough for governed use.", "The model can pass QA and support production workflows.", "Unvalidated relationships create silent targeting and reporting errors."]
+          ]
+        },
+        profile: {
+          title: "Profile assembly value questions",
+          summary: "This level should show why identity, events, attributes, and relationships become useful only when assembled into context.",
+          rows: [
+            ["What context does the profile need to make a better decision?", "Whether profile assembly supports a real customer experience.", "Journeys and audiences become more relevant and valuable.", "The profile becomes a data dump with low activation value."],
+            ["Which context should not be collapsed into identity?", "Whether same-entity stitching is separated from related-entity context.", "The profile graph stays accurate and explainable.", "False merges create customer harm and remediation cost."],
+            ["Can we explain profile qualification?", "Whether business users can understand why someone qualifies.", "Support, compliance, and sales teams can trust activation.", "Opaque qualification lowers adoption and raises risk."]
+          ]
+        },
+        segments: {
+          title: "Segmentation value questions",
+          summary: "This level should make segmentation feel like a business decision, not a filter-building exercise.",
+          rows: [
+            ["What action will this segment trigger?", "Whether the audience has a concrete activation or measurement purpose.", "The segment can drive revenue, service, retention, or risk reduction.", "A segment with no action becomes reporting clutter."],
+            ["What is the cost of a false positive?", "Whether over-targeting has business, compliance, or customer-experience risk.", "Suppressions and eligibility rules protect trust and reduce waste.", "Bad targeting wastes media, damages experience, and creates escalations."],
+            ["What is the cost of a false negative?", "Whether missed qualification loses revenue or service opportunity.", "The team can tune rules to capture valuable intent.", "Overly strict logic leaves money or risk mitigation on the table."]
+          ]
+        },
+        activation: {
+          title: "Activation value questions",
+          summary: "This level should prove that the architecture can produce a safe, useful, measurable customer action.",
+          rows: [
+            ["What experience changes because of this activation?", "Whether AEP produces a visible outcome.", "The implementation can show business impact.", "The work remains plumbing with no measurable value."],
+            ["How do we measure whether the action worked?", "Whether activation is tied to CJA, journey outcomes, or operational KPIs.", "The team can prove ROI and improve the model.", "Success becomes anecdotal and hard to defend."],
+            ["What rollback or suppression protects the business?", "Whether release risk is controlled.", "The team can stop bad activation quickly and protect trust.", "A bad audience or journey can scale mistakes quickly."]
+          ]
+        }
+      };
+      const config = values[levelId];
+      if (!config) return "";
+      return `<div class="mb-6 rounded-3xl border border-emerald-100 bg-emerald-50 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-emerald-700">${config.title}</div>
+        <h3 class="mt-2 text-2xl font-black">What value should this level unlock?</h3>
+        <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${config.summary}</p>
+        <div class="mt-4 grid gap-3 lg:grid-cols-3">
+          ${config.rows.map(row => decisionRubricCard(...row)).join("")}
+        </div>
+      </div>`;
+    }
+
+    function curriculumMap() {
+      return `<div class="rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Mastery curriculum</div>
+            <h3 class="mt-2 text-2xl font-black">Six modules, one teaching engine.</h3>
+            <p class="mt-2 max-w-3xl text-sm font-semibold leading-6 text-slate-600">Each module uses the same pattern: purpose, primitives, object model, Socratic classification, hands-on practice, assembly, and assessment.</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="renderOntologyInspector()" class="rounded-2xl bg-spectrum-blue px-4 py-3 text-sm font-black text-white">Inspect ontology</button>
+            <button onclick="renderMasteryDashboard()" class="rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white">View mastery dashboard</button>
+          </div>
+        </div>
+        <div class="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          ${modules.map((module, index) => `<button onclick="selectModule(${index})" class="node rounded-3xl border ${state.module === index ? "border-spectrum-blue bg-blue-50" : "border-slate-200 bg-white"} p-5 text-left shadow-sm">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-slate-500">Module ${index + 1}</div>
+            <div class="mt-2 text-xl font-black">${module.name}</div>
+            <p class="mt-3 text-sm font-semibold leading-6 text-slate-600">${module.brief}</p>
+            <div class="mt-4 rounded-2xl bg-slate-50 p-3 text-xs font-black leading-5 text-slate-700">${module.practiceFocus}</div>
+          </button>`).join("")}
+        </div>
+      </div>`;
+    }
+
+    function lessonJumpControls() {
+      return `<div class="rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Skip between lessons</div>
+            <h3 class="mt-2 text-2xl font-black">Jump to the concept you need.</h3>
+          </div>
+          <button onclick="renderMasteryDashboard()" class="rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white">Mastery dashboard</button>
+        </div>
+        <div class="mt-4 grid gap-2 md:grid-cols-4">
+          ${levels.map((level, index) => `<button onclick="go(${index})" class="rounded-2xl border border-slate-200 bg-white p-3 text-left text-sm font-black transition hover:-translate-y-0.5 hover:border-spectrum-blue">
+            <div class="text-xs font-black uppercase tracking-[.14em] text-slate-500">${level.title}</div>
+            <div>${level.name}</div>
+          </button>`).join("")}
+        </div>
+      </div>`;
+    }
+
+    function aepPurposeOverview() {
+      const outcomes = [
+        ["Unify context", "Bring clean customer, account, event, consent, and relationship context into a governed experience model.", "Why: channels cannot coordinate when every system has its own partial version of the customer."],
+        ["Decide eligibility", "Use profile, event, audience, and relationship context to determine who should qualify for which experience.", "Why: activation should be based on explicit rules and trusted context, not hidden joins or ad hoc lists."],
+        ["Orchestrate action", "Send the right audience or event context to journeys, offers, destinations, and personalization surfaces.", "Why: AEP only matters when trusted context changes what the customer experiences."],
+        ["Measure and learn", "Use CJA, dashboards, parity checks, and operational feedback to prove what happened and improve the system.", "Why: without measurement, teams cannot distinguish a good model from a lucky campaign."]
+      ];
+      const flow = [
+        ["Source systems", "CRM, web, app, call center, commerce, consent"],
+        ["Silver data", "Clean IDs, valid timestamps, mapped events, governed keys"],
+        ["XDM model", "Schemas, identities, relationships, consent, field groups"],
+        ["Profile context", "Identity graph, attributes, events, account context"],
+        ["Audience logic", "Who qualifies, when, under which merge policy"],
+        ["Activation", "AJO, destinations, personalization, paid media"],
+        ["Measurement", "CJA, parity, QA, journey outcomes, feedback"]
+      ];
+      const purposeQuestions = [
+        ["Are we trying to unify customer context or just move data?", "Whether AEP is being used for experience decisions, not generic storage.", "Design around profile, audience, journey, destination, and measurement use cases.", "Keep the work in warehouse or lakehouse until an experience use case exists."],
+        ["Is the data trusted enough to affect a customer experience?", "Whether the data has reached silver quality and business meaning.", "Ingest into AEP with clear schema, identity, consent, and quality checks.", "Clean and conform upstream before profile-enabling it."],
+        ["Will the outcome change a journey, offer, destination, or analysis?", "Whether AEP will drive an observable business action.", "Build the activation and measurement path end to end.", "Do not model complexity that has no decision or measurement consequence."],
+        ["Can we explain why someone qualified?", "Whether activation is transparent and governable.", "Expose audience logic, source context, and relationship reasoning.", "Do not operationalize opaque segments."],
+        ["Can we prove the outcome after launch?", "Whether success is measurable.", "Define CJA views, parity checks, QA rules, and feedback loops.", "Do not call the implementation complete without proof."]
+      ];
+      return `<div class="rounded-[2rem] border border-white/80 bg-white/80 p-5 shadow-soft">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-red">Overarching outcome</div>
+        <h3 class="mt-2 text-3xl font-black tracking-tight">What are we trying to accomplish with AEP?</h3>
+        <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">AEP is meant to turn governed experience data into coordinated customer decisions. The purpose is not to collect every possible field. The purpose is to create trusted context that can power segmentation, journeys, destinations, personalization, CJA, and operational learning.</p>
+        <div class="mt-5 grid gap-3 lg:grid-cols-4">
+          ${outcomes.map(([title, body, why], index) => `<div class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+            <div class="grid h-10 w-10 place-items-center rounded-2xl ${index === 0 ? "bg-slate-950" : index === 1 ? "bg-spectrum-blue" : index === 2 ? "bg-spectrum-red" : "bg-emerald-600"} text-sm font-black text-white">${index + 1}</div>
+            <div class="mt-3 font-black">${title}</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${body}</p>
+            <div class="mt-3 rounded-2xl bg-white p-3 text-xs font-black leading-5 text-spectrum-blue">${why}</div>
+          </div>`).join("")}
+        </div>
+        <div class="mt-5 overflow-hidden rounded-3xl border border-slate-200 bg-slate-950 text-white">
+          <div class="grid md:grid-cols-7">
+            ${flow.map(([title, body], index) => `<div class="border-b border-white/10 p-4 md:border-b-0 md:border-r md:last:border-r-0">
+              <div class="text-xs font-black uppercase tracking-[.14em] text-slate-400">Step ${index + 1}</div>
+              <div class="mt-2 font-black">${title}</div>
+              <p class="mt-2 text-xs font-semibold leading-5 text-slate-300">${body}</p>
+            </div>`).join("")}
+          </div>
+        </div>
+        <div class="mt-5 grid gap-3 lg:grid-cols-2">
+          ${purposeQuestions.map(row => decisionRubricCard(...row)).join("")}
+        </div>
+      </div>`;
+    }
+
+    function masteryPercent(moduleId) {
+      const rows = Object.values(state.mastery).filter(item => item.moduleId === moduleId);
+      if (!rows.length) return 0;
+      const correct = rows.reduce((sum, row) => sum + row.correct, 0);
+      const attempts = rows.reduce((sum, row) => sum + row.attempts, 0);
+      return attempts ? Math.round((correct / attempts) * 100) : 0;
+    }
+
+    function renderMasteryDashboard() {
+      trackAcademyAction(analyticsActions.masteryDashboardView, {
+        masteryKeys: Object.keys(state.mastery).length
+      });
+      document.getElementById("stage").innerHTML = `
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Mastery dashboard</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">Strengths, gaps, and review queue.</h2>
+          <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-600">XP shows motion. Mastery shows whether the concepts are sticking.</p>
+        </div>
+        <div class="grid gap-4 lg:grid-cols-3">
+          ${modules.map(module => {
+            const pct = masteryPercent(module.id);
+            return `<div class="rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+              <div class="text-xs font-black uppercase tracking-[.16em] text-slate-500">${module.shortName}</div>
+              <div class="mt-3 flex items-end gap-3">
+                <div class="text-4xl font-black">${pct}%</div>
+                <div class="pb-2 text-sm font-bold text-slate-500">mastery</div>
+              </div>
+              <div class="mt-4 h-3 overflow-hidden rounded-full bg-slate-200"><div class="h-full rounded-full bg-spectrum-blue" style="width:${pct}%"></div></div>
+              <p class="mt-3 text-sm font-semibold leading-6 text-slate-600">${module.whyItMatters}</p>
+            </div>`;
+          }).join("")}
+        </div>
+        <div class="mt-6 rounded-3xl border border-amber-200 bg-amber-50 p-5">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-amber-700">Weak spots review</div>
+          <div class="mt-4 grid gap-3 md:grid-cols-2">
+            ${(state.weakSpots.length ? state.weakSpots : [{ concept: "No weak spots yet", moduleId: "Start practice to populate this deck", correct: 0, attempts: 0 }]).map(item => `<div class="rounded-2xl bg-white p-4">
+              <div class="font-black">${item.concept}</div>
+              <p class="mt-1 text-sm font-semibold text-slate-600">${item.moduleId}</p>
+              <p class="mt-2 text-sm font-black text-amber-800">${item.correct}/${item.attempts} correct</p>
+            </div>`).join("")}
+          </div>
+        </div>
+        <div class="mt-6">${cohortView()}</div>
+        <div class="mt-6">${ontologyAssetPanel()}</div>
+      `;
+    }
+
+    function ontologyAssetPanel() {
+      return `<div class="rounded-3xl border border-blue-100 bg-blue-50 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Owned artifact</div>
+        <h3 class="mt-2 text-2xl font-black">Export the ontology, not just the completion score.</h3>
+        <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">The schema, relationship graph, audiences, activation plan, and reasoning trace are stored as a structured artifact that can be inspected, exported, or graded by a replaceable tutor engine.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <button onclick="renderOntologyInspector()" class="rounded-2xl bg-spectrum-blue px-4 py-3 text-sm font-black text-white">Inspect ontology</button>
+          <button onclick="exportOntologyJson()" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-spectrum-blue shadow-sm">Download JSON</button>
+          <button onclick="exportRelationshipGraphHtml()" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-spectrum-blue shadow-sm">Download graph</button>
+        </div>
+      </div>`;
+    }
+
+    function cohortView() {
+      const rows = [
+        ["Maya R.", "Identity", 94],
+        ["Brian A.", "B2B XDM", 91],
+        ["Current learner", currentModule().shortName, Math.max(68, masteryPercent(currentModule().id))],
+        ["Jordan K.", "CJA", 82]
+      ];
+      return `<div class="rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Cohort view</div>
+            <h3 class="mt-2 text-2xl font-black">Internal enablement leaderboard.</h3>
+          </div>
+          <button onclick="trackAcademyAction('academy_results_share', { shareType: 'mock_team_assignment' })" class="rounded-2xl bg-spectrum-blue px-4 py-3 text-sm font-black text-white">Share results</button>
+        </div>
+        <div class="mt-4 grid gap-2">
+          ${rows.map(([name, focus, score], index) => `<div class="grid grid-cols-[40px_1fr_80px] items-center gap-3 rounded-2xl bg-slate-50 p-3">
+            <div class="grid h-8 w-8 place-items-center rounded-xl bg-slate-950 text-xs font-black text-white">${index + 1}</div>
+            <div><div class="font-black">${name}</div><div class="text-xs font-bold text-slate-500">${focus}</div></div>
+            <div class="text-right font-black">${score}%</div>
+          </div>`).join("")}
+        </div>
+      </div>`;
+    }
+
+    function downloadText(filename, text, type = "application/json") {
+      const blob = new Blob([text], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function exportOntologyJson() {
+      const ontology = syncOntologyFromState();
+      trackAcademyAction(analyticsActions.ontologyExport, {
+        exportType: "json",
+        relationshipCount: ontology.relationships.length,
+        audienceCount: ontology.audiences.length
+      });
+      downloadText("aep-academy-ontology.json", JSON.stringify(ontology, null, 2));
+    }
+
+    function exportRelationshipGraphHtml() {
+      const ontology = syncOntologyFromState();
+      const rows = ontology.relationships.length ? ontology.relationships : [{ source: "Business Person", target: "Business Account", cardinality: "many-to-one" }];
+      const html = `<!doctype html><html><head><title>AEP Relationship Graph</title><script src="https://cdn.tailwindcss.com"><\/script></head><body class="bg-slate-100 p-8"><main class="mx-auto max-w-5xl rounded-[2rem] bg-white p-8 shadow-xl"><div class="text-xs font-black uppercase tracking-[.2em] text-blue-600">AEP Academy export</div><h1 class="mt-3 text-4xl font-black">Relationship Graph</h1><p class="mt-3 text-sm font-semibold text-slate-600">${ontology.businessBrief}</p><div class="mt-6 grid gap-4 md:grid-cols-2">${rows.map(row => `<div class="rounded-3xl border border-emerald-200 bg-emerald-50 p-5"><div class="text-xs font-black uppercase tracking-[.16em] text-emerald-700">Relationship</div><div class="mt-2 text-xl font-black">${row.source} -> ${row.target}</div><p class="mt-2 text-sm font-semibold text-slate-700">Cardinality: ${row.cardinality || "not set"}</p></div>`).join("")}</div></main></body></html>`;
+      trackAcademyAction(analyticsActions.ontologyExport, {
+        exportType: "relationship_graph_html",
+        relationshipCount: rows.length
+      });
+      downloadText("aep-relationship-graph.html", html, "text/html");
+    }
+
+    function renderOntologyInspector() {
+      const ontology = syncOntologyFromState();
+      trackAcademyAction(analyticsActions.ontologyInspect, {
+        relationshipCount: ontology.relationships.length,
+        traceCount: ontology.reasoningTrace.length
+      });
+      document.getElementById("stage").innerHTML = `
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Executable ontology</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">The durable artifact is the ontology, not the screen.</h2>
+          <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">The UI, dashboard, certificate, schema export, and graph export are all views over this same structured object. A model can grade or explain it, but the owned asset is the ontology and reasoning trace.</p>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-[1fr_.8fr]">
+          <div class="rounded-3xl bg-slate-950 p-5 text-white">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Ontology JSON</div>
+            <pre class="mt-4 max-h-[560px] overflow-auto rounded-2xl bg-white/10 p-4 text-xs font-semibold leading-5">${JSON.stringify(ontology, null, 2)}</pre>
+          </div>
+          <div class="space-y-4">
+            <button onclick="exportOntologyJson()" class="w-full rounded-2xl bg-spectrum-blue px-5 py-4 text-left font-black text-white shadow-lg">Download XDM-style ontology JSON</button>
+            <button onclick="exportRelationshipGraphHtml()" class="w-full rounded-2xl bg-slate-950 px-5 py-4 text-left font-black text-white shadow-lg">Download relationship graph HTML</button>
+            <button onclick="renderReasoningTrace()" class="w-full rounded-2xl bg-white px-5 py-4 text-left font-black text-spectrum-blue shadow-sm">View reasoning trace</button>
+            ${practicalExample("Ontology, not transcript", "The valuable output is not the tutor conversation. The valuable output is the learner's structured schema, identity, relationship, audience, activation, and reasoning artifact.", "Memory: own the graph. The model is replaceable.")}
+          </div>
+        </div>`;
+    }
+
+    function renderReasoningTrace() {
+      const ontology = syncOntologyFromState();
+      trackAcademyAction(analyticsActions.reasoningTraceView, {
+        traceCount: ontology.reasoningTrace.length
+      });
+      document.getElementById("stage").innerHTML = `
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Reasoning trace</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">How the learner got there matters.</h2>
+          <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">Wrong attempts, revisions, validations, and final submissions feed mastery. This is the operational reasoning layer, not just a score.</p>
+        </div>
+        <div class="grid gap-3">
+          ${(ontology.reasoningTrace.length ? ontology.reasoningTrace : [{ action: "No trace yet", timestamp: new Date().toISOString(), detail: { nextStep: "Complete a Socratic answer, schema validation, relationship match, or capstone." } }]).map(item => `<div class="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div class="text-xs font-black uppercase tracking-[.14em] text-slate-500">${item.timestamp}</div>
+            <div class="mt-2 font-black">${item.action}</div>
+            <pre class="mt-3 overflow-auto rounded-2xl bg-slate-50 p-3 text-xs font-semibold leading-5 text-slate-700">${JSON.stringify(item.detail, null, 2)}</pre>
+          </div>`).join("")}
+        </div>`;
+    }
+
+    function aepRealityCheck() {
+      const isAep = [
+        ["Identity and profile system", "AEP resolves known identifiers into profile context that can be used for audiences, journeys, destinations, and CJA."],
+        ["Activation layer", "AEP turns governed customer context into action: qualify an audience, personalize a message, send to a destination, or analyze in CJA."],
+        ["Experience data model", "AEP expects data shaped into XDM schemas with useful identities, timestamps, consent, and business meaning."],
+        ["Golden context", "AEP should know enough current and behavioral context to decide what experience should happen next."]
+      ];
+      const notAep = [
+        ["Not a raw data lake", "Do not dump every clickstream log, malformed CRM extract, duplicate batch, or untyped JSON blob into Profile and hope AEP fixes it."],
+        ["Not the system of record for everything", "CRM, ERP, data warehouse, policy systems, and product systems still own their source-of-truth records."],
+        ["Not a cleanup engine", "If names, emails, account IDs, consent, timestamps, or event names are unreliable upstream, AEP will activate unreliable context faster."],
+        ["Not a replacement for data engineering", "Deduplication, normalization, quality rules, semantic naming, and contract checks should happen before ingestion."]
+      ];
+      return `<div class="mt-6 rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-red">AEP reality check</div>
+        <h3 class="mt-2 text-2xl font-black">Golden record versus golden context.</h3>
+        <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">AEP is usually not the enterprise golden record. The golden record remains in the governed source system or warehouse. AEP should assemble <b>golden context</b>: identity, consent, recent behavior, meaningful attributes, relationships, audience qualification, and activation readiness.</p>
+        <div class="mt-5 grid gap-4 lg:grid-cols-2">
+          <div class="rounded-3xl border border-emerald-200 bg-emerald-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-emerald-700">What AEP is</div>
+            <div class="mt-4 space-y-3">
+              ${isAep.map(([title, body]) => `<div class="rounded-2xl bg-white p-4">
+                <div class="font-black text-emerald-950">${title}</div>
+                <p class="mt-1 text-sm font-semibold leading-6 text-slate-700">${body}</p>
+              </div>`).join("")}
+            </div>
+          </div>
+          <div class="rounded-3xl border border-red-200 bg-red-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-red-700">What AEP is not</div>
+            <div class="mt-4 space-y-3">
+              ${notAep.map(([title, body]) => `<div class="rounded-2xl bg-white p-4">
+                <div class="font-black text-red-950">${title}</div>
+                <p class="mt-1 text-sm font-semibold leading-6 text-slate-700">${body}</p>
+              </div>`).join("")}
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 grid gap-4 lg:grid-cols-3">
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-slate-500">Bronze</div>
+            <h4 class="mt-2 font-black">Raw landing data</h4>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">Example: raw web server logs, unvalidated CRM exports, duplicate event files, inconsistent campaign names. Keep this in a lake or warehouse, not directly profile-enabled in AEP.</p>
+          </div>
+          <div class="rounded-3xl border border-blue-200 bg-blue-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-spectrum-blue">Silver</div>
+            <h4 class="mt-2 font-black">Clean, conformed, contract-ready data</h4>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">Example: standardized event names, valid timestamps, known identity namespaces, deduped account IDs, consent attached, XDM mapping understood. This is the normal AEP ingestion target.</p>
+          </div>
+          <div class="rounded-3xl border border-amber-200 bg-amber-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-amber-700">Gold</div>
+            <h4 class="mt-2 font-black">Business-ready metrics and aggregates</h4>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">Example: lifetime value, propensity score, account health tier, advisor segment, churn risk. Send to AEP when it is needed for audience, journey, destination, or CJA use cases.</p>
+          </div>
+        </div>
+        <div class="mt-5 rounded-3xl bg-slate-950 p-5 text-white">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Best practice</div>
+          <p class="mt-2 text-sm font-semibold leading-6 text-slate-300">Ingest silver by default. Profile-enable only data that needs identity resolution, audience qualification, journey orchestration, destination activation, personalization, or customer journey analysis. Keep noisy bronze data outside Profile until it is cleaned and given business meaning.</p>
+        </div>
+      </div>`;
+    }
+
+    function identityEdgePersonalizationLesson() {
+      const identityRows = [
+        ["Identity Descriptor", "A fixed schema field is marked as an identity, such as CRMID, email hash, loyalty ID, or account ID.", "Use for profile and record schemas where identity should be visible, governed, and consistent.", "Business value: easier audits, fewer identity defects, better support, and safer schema relationships."],
+        ["identityMap", "A dynamic map of identity values, commonly used by Web SDK and Experience Event ingestion.", "Use for event schemas, anonymous ECID continuity, variable identity payloads, and advanced identity-loading scenarios.", "Business value: real-time collection stays flexible without over-modeling every event payload."],
+        ["ECID gotcha", "Do not mark ECID as both an identity descriptor and an identityMap identity in Web SDK event data.", "Duplicate ECID representations can create ambiguous identity state and break anonymous profile storage.", "Business value: prevents silent personalization and profile-continuity failures that are expensive to diagnose."],
+        ["Reference schema constraint", "Schema relationships need a reference schema with explicit identity fields.", "If a schema relies only on identityMap, it may not serve as a useful reference schema for relationships.", "Business value: relationship modeling stays inspectable and reusable across audiences, journeys, and analysis."]
+      ];
+      const pathRows = [
+        ["Hub", "Central profile and historical-processing path.", "Use when complete customer context matters more than response time: batch segmentation, profile analysis, source connectors, destinations, and historical context.", "Business reason: better completeness and governance for scheduled campaigns, analytics, and durable profile decisions."],
+        ["Edge Network", "Distributed, low-latency personalization path.", "Use when the customer is acting now: same-page, next-page, event forwarding, edge segmentation, and SDK-based collection.", "Business reason: faster response improves personalization relevance and reduces latency-driven experience loss."],
+        ["at.js direct to Target", "Legacy Target delivery path that does not use AEP Edge directly.", "Use when next-session personalization is enough or migration is not ready.", "Business reason: lower migration cost now, but with a ceiling on same-page and next-page personalization."],
+        ["Web SDK through AEP Edge", "Modern path using datastream services for Target, AEP, Analytics, and event forwarding.", "Use when real-time personalization, unified collection, and AEP audience activation are strategic requirements.", "Business reason: higher implementation discipline, but better long-term ROI from unified calls and real-time activation."]
+      ];
+      const decisionRows = [
+        ["Is the identity deterministic and governed?", "Whether the identifier should be visible as a durable schema identity.", "Use an Identity Descriptor and document namespace ownership.", "Keep it in identityMap or as context until it is trusted."],
+        ["Is the event anonymous and Web SDK driven?", "Whether the payload needs dynamic identity support and ECID continuity.", "Use identityMap and avoid duplicating ECID as a descriptor.", "Use descriptors for stable record/profile identity fields instead."],
+        ["Does personalization need to happen in the same page or next page?", "Whether low-latency Edge processing is required.", "Use Web SDK routed through AEP Edge and Target services.", "If next-session is enough, a legacy Target path may be acceptable."],
+        ["Does the decision need the full customer history?", "Whether Hub context is more important than speed.", "Use Hub-powered audiences, batch or streaming segmentation, and governed profile context.", "Use Edge when immediate behavior is the main decision signal."]
+      ];
+      return `<div class="mt-6 rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Identity, Edge, and personalization</div>
+        <h3 class="mt-2 text-2xl font-black">Early architecture decisions define the ceiling of personalization.</h3>
+        <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">AEP identity and personalization issues often come from early choices that looked small: descriptor versus identityMap, Hub versus Edge, direct Target versus Web SDK through AEP Edge. This lesson makes those choices explicit.</p>
+        <div class="mt-5 rounded-3xl bg-slate-950 p-5 text-white">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Identity decision model</div>
+          <div class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            ${identityRows.map(([title, definition, use, value]) => `<div class="rounded-2xl bg-white/10 p-4">
+              <div class="font-black">${title}</div>
+              <p class="mt-2 text-sm font-semibold leading-6 text-slate-300">${definition}</p>
+              <div class="mt-3 rounded-xl bg-white p-3 text-xs font-black leading-5 text-slate-900">${use}</div>
+              <div class="mt-3 rounded-xl bg-emerald-100 p-3 text-xs font-black leading-5 text-emerald-900">${value}</div>
+            </div>`).join("")}
+          </div>
+        </div>
+        <div class="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          ${pathRows.map(([title, definition, use, value]) => `<div class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+            <div class="font-black">${title}</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${definition}</p>
+            <div class="mt-3 rounded-2xl bg-white p-3 text-xs font-black leading-5 text-spectrum-blue">${use}</div>
+            <div class="mt-3 rounded-2xl bg-emerald-50 p-3 text-xs font-black leading-5 text-emerald-800">${value}</div>
+          </div>`).join("")}
+        </div>
+        <div class="mt-5 rounded-3xl border border-amber-200 bg-amber-50 p-5">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-amber-700">Decision rubric</div>
+          <div class="mt-4 grid gap-3 lg:grid-cols-2">
+            ${decisionRows.map(row => decisionRubricCard(...row, "amber")).join("")}
+          </div>
+        </div>
+        ${practicalExample("Hybrid identity example", "A public website may send ECID only through identityMap for anonymous visitors. After login, the authenticated portal can add a hashed email or CRMID as a deterministic identity while preserving ECID continuity. One event schema can support both states if the identity strategy is deliberate.", "Memory: anonymous continuity belongs to identityMap. Deterministic person identity should be governed and visible when it drives relationships, segmentation, or profile analysis.")}
+      </div>`;
+    }
+
+    function activationRoutingLesson() {
+      const routes = [
+        ["Next-session personalization", "Hub audience qualifies, Target receives the audience, visitor sees the experience on a later session.", "Good when speed is not the differentiator and migration cost must stay low."],
+        ["Same-page or next-page personalization", "Web SDK sends events through AEP Edge, Target and AEP services receive context through the datastream.", "Good when current behavior should change the experience immediately."],
+        ["Full-history decision", "Hub and profile context evaluate richer history and durable audiences.", "Good when completeness matters more than millisecond response."],
+        ["Immediate behavioral decision", "Edge evaluates current-session behavior and lightweight profile context.", "Good when latency directly affects conversion or customer experience."]
+      ];
+      return `<div class="mt-6 rounded-3xl border border-blue-100 bg-blue-50 p-5">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Personalization routing</div>
+        <h3 class="mt-2 text-2xl font-black">Choose the route based on business timing.</h3>
+        <div class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          ${routes.map(([title, body, value]) => `<div class="rounded-3xl bg-white p-4">
+            <div class="font-black">${title}</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${body}</p>
+            <div class="mt-3 rounded-2xl bg-emerald-50 p-3 text-xs font-black leading-5 text-emerald-800">Business reason: ${value}</div>
+          </div>`).join("")}
+        </div>
+      </div>`;
+    }
+
+    function analyticsInstrumentation() {
+      return `<div class="mt-6 rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-red">Analytics instrumentation</div>
+        <h3 class="mt-2 text-2xl font-black">Legacy Launch, digitalData, Web SDK, GA4, PostHog, and Clarity side by side.</h3>
+        <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">This prototype loads the provided Adobe Launch development library, keeps a practical <b>digitalData</b> contract, fires legacy direct-call actions with <b>_satellite.track()</b>, sends Web SDK-style events through <b>alloy("sendEvent")</b> when Web SDK is available, and forwards normalized Academy events to GA4, PostHog, and Microsoft Clarity.</p>
+        <div class="mt-5 grid gap-4 lg:grid-cols-3">
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-slate-500">Launch library</div>
+            <p class="mt-2 break-all text-sm font-semibold leading-6 text-slate-700">https://assets.adobedtm.com/0ded84b93882/71f267854b6d/launch-b015179db04d-development.min.js</p>
+          </div>
+          <div class="rounded-3xl border border-blue-200 bg-blue-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-spectrum-blue">digitalData object</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">Stores page, learner, academy progress, current level, latest eventData, and recent events for Launch rules or debugger inspection.</p>
+          </div>
+          <div class="rounded-3xl border border-emerald-200 bg-emerald-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-emerald-700">Web SDK call</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">Sends page views and interactions as XDM web events, with the full digitalData context passed in the data payload.</p>
+          </div>
+          <div class="rounded-3xl border border-purple-200 bg-purple-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-purple-700">Product analytics</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">GA4 receives event metrics, PostHog receives product behavior, and Clarity receives session-level context for replay and UX diagnostics.</p>
+          </div>
+        </div>
+        <div class="mt-5 rounded-3xl bg-slate-950 p-5 text-white">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Tracked actions</div>
+          <div class="mt-4 grid gap-2 md:grid-cols-2 xl:grid-cols-4">
+            ${Object.values(analyticsActions).map(action => `<div class="rounded-2xl bg-white/10 p-3 text-xs font-black">${action}</div>`).join("")}
+          </div>
+        </div>
+        <div class="mt-5 grid gap-4 lg:grid-cols-2">
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-500">Example direct call</div>
+            <pre class="mt-3 overflow-auto rounded-2xl bg-white p-4 text-xs font-semibold leading-5 text-slate-800">window.digitalData.eventData = {
+  eventName: "academy_relationship_match",
+  sourceObject: "Opportunity",
+  targetObject: "Business Account"
+};
+_satellite.track("academy_relationship_match");</pre>
+          </div>
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-500">Example Web SDK event</div>
+            <pre class="mt-3 overflow-auto rounded-2xl bg-white p-4 text-xs font-semibold leading-5 text-slate-800">alloy("sendEvent", {
+  xdm: {
+    eventType: "web.webinteraction.linkClicks",
+    web: { webInteraction: { name: "academy_level_complete" } }
+  },
+  data: { digitalData: window.digitalData }
+});</pre>
+          </div>
+        </div>
+        ${practicalExample("Migration lesson", "The same interaction can be represented in the old model as digitalData + _satellite.track, and in the new model as Web SDK sendEvent with XDM. That makes the prototype useful for explaining how legacy Adobe Analytics actions migrate into AEP/Web SDK thinking.", "Memory: digitalData is the local contract, Launch is the rule engine, Web SDK is the event pipe into AEP.")}
+      </div>`;
+    }
+
+    function schemaBuilder() {
+      const draft = state.schemaDraft;
+      const module = currentModule();
+      const schemaOptions = module.objects;
+      const identities = ["ECID", "CRMID", "Email", "AccountID", "HouseholdID", "OpportunityID"];
+      const cardinalities = ["one-to-one", "one-to-many", "many-to-one", "many-to-many"];
+      const fieldGroups = ["B2B Person Details", "Account Details", "Opportunity Details", "Campaign Details", "Identity Details", "Journey Signals"];
+      const brief = businessBriefs[(state.xp + state.module) % businessBriefs.length];
+      return `<div class="mt-6 rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Mini schema engine</div>
+        <h3 class="mt-2 text-2xl font-black">Build the relationship contract.</h3>
+        <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">Scenario: ${brief}</p>
+        <div class="mt-5 grid gap-4 lg:grid-cols-[1fr_.9fr]">
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+            <div class="grid gap-4 md:grid-cols-2">
+              ${selectField("sourceSchema", "Source schema", schemaOptions, draft.sourceSchema)}
+              ${selectField("targetSchema", "Target schema", schemaOptions, draft.targetSchema)}
+              ${selectField("sourceIdentity", "Source identity namespace", identities, draft.sourceIdentity)}
+              ${selectField("targetIdentity", "Target identity namespace", identities, draft.targetIdentity)}
+              ${selectField("cardinality", "Cardinality", cardinalities, draft.cardinality)}
+              ${selectField("fieldGroup", "Field group", fieldGroups, draft.fieldGroup)}
+            </div>
+            <button onclick="validateSchemaDraft()" class="mt-5 rounded-2xl bg-spectrum-blue px-5 py-3 font-black text-white shadow-lg">Validate schema relationship</button>
+            <div id="schemaValidationResult" class="mt-4"></div>
+          </div>
+          <div class="rounded-3xl bg-slate-950 p-5 text-white">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">XDM-like JSON</div>
+            <pre id="schemaJson" class="mt-4 overflow-auto rounded-2xl bg-white/10 p-4 text-xs font-semibold leading-5 text-slate-100">${JSON.stringify({
+              schema: draft.sourceSchema,
+              fieldGroup: draft.fieldGroup,
+              identityNamespace: draft.sourceIdentity,
+              relationship: {
+                targetSchema: draft.targetSchema,
+                targetIdentityNamespace: draft.targetIdentity,
+                cardinality: draft.cardinality
+              }
+            }, null, 2)}</pre>
+          </div>
+        </div>
+        <div class="mt-5 rounded-3xl border border-indigo-100 bg-indigo-50 p-5">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-indigo-700">Keyboard path</div>
+          <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">The dropdowns are fully keyboard-operable. For the graph game below, choose a source with Enter or Space, then choose the target with Enter or Space.</p>
+        </div>
+      </div>`;
+    }
+
+    function selectField(key, label, options, value) {
+      return `<label class="block">
+        <span class="text-xs font-black uppercase tracking-[.14em] text-slate-500">${label}</span>
+        <select onchange="updateSchemaDraft('${key}', this.value)" class="mt-2 w-full rounded-2xl border border-slate-200 bg-white p-3 text-sm font-black">
+          ${options.map(option => `<option value="${option}" ${option === value ? "selected" : ""}>${option}</option>`).join("")}
+        </select>
+      </label>`;
+    }
+
+    function updateSchemaDraft(key, value) {
+      state.schemaDraft[key] = value;
+      const json = document.getElementById("schemaJson");
+      if (json) {
+        json.textContent = JSON.stringify({
+          schema: state.schemaDraft.sourceSchema,
+          fieldGroup: state.schemaDraft.fieldGroup,
+          identityNamespace: state.schemaDraft.sourceIdentity,
+          relationship: {
+            targetSchema: state.schemaDraft.targetSchema,
+            targetIdentityNamespace: state.schemaDraft.targetIdentity,
+            cardinality: state.schemaDraft.cardinality
+          }
+        }, null, 2);
+      }
+    }
+
+    function validateSchemaDraft() {
+      const draft = state.schemaDraft;
+      const errors = [];
+      if (draft.sourceSchema === draft.targetSchema) errors.push(["E_SCHEMA_SELF_RELATIONSHIP", "Source and target schemas must be distinct for this exercise."]);
+      if (!draft.sourceIdentity || !draft.targetIdentity) errors.push(["E_IDENTITY_NAMESPACE_REQUIRED", "Both sides need explicit identity namespaces."]);
+      if (draft.sourceSchema.includes("Person") && draft.targetSchema.includes("Opportunity") && draft.cardinality === "one-to-one") errors.push(["E_CARDINALITY_MISMATCH", "A person to opportunity relationship is rarely one-to-one in B2B."]);
+      if (draft.fieldGroup.includes("Campaign") && !draft.sourceSchema.includes("Campaign")) errors.push(["E_FIELD_GROUP_MISMATCH", "Campaign field groups should not be attached to unrelated schemas."]);
+
+      const valid = errors.length === 0;
+      recordMastery("Schema relationship validation", valid);
+      logReasoning("schema_validation", {
+        draft: { ...draft },
+        valid,
+        errors: errors.map(([code, message]) => ({ code, message }))
+      });
+      trackAcademyAction(analyticsActions.schemaValidate, {
+        isValid: valid,
+        errors: errors.map(([code]) => code),
+        draft
+      });
+      document.getElementById("schemaValidationResult").innerHTML = valid
+        ? `<div class="rounded-3xl border border-emerald-200 bg-emerald-50 p-5 font-black text-emerald-900">Valid schema relationship. The contract has distinct schemas, explicit namespaces, and acceptable cardinality.</div>`
+        : `<div class="rounded-3xl border border-red-200 bg-red-50 p-5">
+          <div class="font-black text-red-950">Validation failed</div>
+          <div class="mt-3 grid gap-2">${errors.map(([code, message]) => `<div class="rounded-2xl bg-white p-3 text-sm font-black text-red-900">${code}: ${message}</div>`).join("")}</div>
+        </div>`;
+    }
+
+    function masteryStory() {
+      const masteryRows = [
+        ["House architect", "Defines rooms, flow, load-bearing walls, plumbing paths, electrical zones, safety rules, and how people live in the space.", "If this is wrong, the house may look nice but fail when people actually live in it."],
+        ["Company architect", "Defines teams, ownership, operating model, decision rights, data flows, controls, and escalation paths.", "If this is wrong, work duplicates, accountability blurs, and execution slows down."],
+        ["AEP architect", "Defines schemas, identities, datasets, relationships, consent, profile strategy, sandboxes, destinations, CJA views, and governance.", "If this is wrong, audiences misfire, profiles fragment, and reports become untrusted."],
+        ["AEP engineer", "Builds the pipelines, mappings, Web SDK events, Launch rules, validation checks, monitoring, API jobs, and release process.", "If this is wrong, the architecture remains a slide instead of a working system."]
+      ];
+      const questions = [
+        ["What is the business outcome this structure must support?", "Whether the architecture is anchored to an actual operating goal.", "Design only the data structures needed to support that outcome.", "Stop and clarify the outcome before modeling schemas or audiences."],
+        ["Which objects must exist independently before they can be connected?", "Whether the learner can separate entities before creating relationships.", "Model the objects separately, then define keys and relationships.", "Do not create relationship logic yet. The object model is still unclear."],
+        ["Which source system owns the truth?", "Whether there is a clear system of record for each key field.", "Use that source as the authority and define conflict rules.", "Treat the field as ungoverned until ownership is assigned."],
+        ["Which data should be profile-enabled, and why?", "Whether the data needs activation, personalization, journey logic, or identity resolution.", "Profile-enable only if it affects customer-level decisions.", "Keep it outside Profile for preparation, reporting, or offline analysis."],
+        ["Which data should stay in the lake or warehouse?", "Whether the data is too raw, too detailed, or not needed for activation.", "Keep it in analytical storage and send AEP only governed context.", "If activation needs it, promote a clean silver version into AEP."],
+        ["Which identities are allowed to stitch profiles?", "Whether identifiers are strong enough to claim sameness.", "Mark only trusted identity fields and document namespace rules.", "Do not use weak identifiers for stitching. Keep them as attributes or context."],
+        ["What is the expected path from event to profile to audience to destination?", "Whether the implementation has an end-to-end activation chain.", "Build instrumentation, mapping, audience, and destination tests around that path.", "The design is not implementation-ready until the path is explicit."],
+        ["How will we know the implementation is working?", "Whether the team has observable proof, not just configuration.", "Define QA checks, parity checks, monitoring, and acceptance criteria.", "Do not release until success can be measured."]
+      ];
+      return `<div class="mt-6 rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Architectural mastery + engineering mastery</div>
+        <h3 class="mt-2 text-2xl font-black">Design the building. Then prove the plumbing works.</h3>
+        <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">A strong AEP implementation needs both roles. Architectural mastery decides what the system should be. Engineering mastery makes it real, observable, testable, and maintainable.</p>
+        <div class="mt-5 grid gap-3 lg:grid-cols-4">
+          ${masteryRows.map(([title, body, risk], index) => `<div class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+            <div class="mx-auto mb-3 grid h-10 w-10 place-items-center rounded-2xl ${index < 2 ? "bg-slate-950" : index === 2 ? "bg-spectrum-blue" : "bg-spectrum-red"} text-sm font-black text-white">${index + 1}</div>
+            <div class="font-black">${title}</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${body}</p>
+            <div class="mt-3 rounded-2xl bg-white p-3 text-xs font-black leading-5 text-slate-700">${risk}</div>
+          </div>`).join("")}
+        </div>
+        <div class="mt-5 overflow-hidden rounded-3xl border border-slate-200 bg-slate-950 text-white">
+          <div class="grid gap-0 md:grid-cols-5">
+            ${[
+              ["Blueprint", "Schemas, identities, relationships"],
+              ["Foundation", "Source quality, consent, namespaces"],
+              ["Plumbing", "Pipelines, mappings, Web SDK"],
+              ["Inspection", "QA, monitoring, parity checks"],
+              ["Occupancy", "Audiences, journeys, CJA, destinations"]
+            ].map(([label, body], index) => `<div class="border-b border-white/10 p-4 md:border-b-0 md:border-r md:last:border-r-0">
+              <div class="text-xs font-black uppercase tracking-[.16em] text-slate-400">Scene ${index + 1}</div>
+              <div class="mt-2 font-black">${label}</div>
+              <p class="mt-2 text-sm font-semibold leading-6 text-slate-300">${body}</p>
+            </div>`).join("")}
+          </div>
+        </div>
+        <div class="mt-5 grid gap-4 lg:grid-cols-[.9fr_1.1fr]">
+          ${practicalExample("House memory hook", "You would never pour concrete before knowing where the kitchen, bathrooms, electrical panel, and load-bearing walls belong. In AEP, do not ingest and profile-enable everything before defining the schema, identity, consent, and activation purpose.", "Memory: blueprint before concrete. Schema before ingestion. Identity before audience. QA before activation.")}
+          <div class="rounded-3xl border border-amber-200 bg-amber-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-amber-700">Architect questions</div>
+            <div class="mt-4 grid gap-2">
+              ${questions.map(row => decisionRubricCard(...row, "amber")).join("")}
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 rounded-3xl border border-blue-100 bg-blue-50 p-5">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Engineering proof questions</div>
+          <div class="mt-4 grid gap-3 md:grid-cols-2">
+            ${[
+              ["Can we trace one event from browser call to dataset row to profile update?", "Whether the pipeline can be observed end to end.", "Use the trace as QA evidence for collection, mapping, ingestion, and profile update.", "Do not trust downstream activation until the event path is observable."],
+              ["Can we prove identity stitching worked for a known test user?", "Whether identity rules create the expected profile graph.", "Use known test identities as acceptance criteria.", "Do not enable broad activation until stitching is proven."],
+              ["Can we compare Adobe Analytics events against Web SDK/AEP events for parity?", "Whether migration preserved measurement intent.", "Use parity gaps to prioritize fixes before rollout.", "Do not assume old and new measurement are equivalent."],
+              ["Can we detect missing fields, invalid enums, duplicate events, and delayed batches?", "Whether data quality failures are visible.", "Add monitoring and defect routing.", "Do not rely on manual inspection after launch."],
+              ["Can we roll back a bad Launch/Web SDK release?", "Whether release risk is controlled.", "Document rollback paths and version ownership.", "Do not ship without a recovery plan."],
+              ["Can business users understand why someone entered an audience?", "Whether activation is explainable.", "Expose eligibility reasons and source context.", "Do not activate opaque audiences that cannot be defended."]
+            ].map(row => decisionRubricCard(...row)).join("")}
+          </div>
+        </div>
+      </div>`;
+    }
+
+    function coreInsightSection() {
+      const contrast = [
+        ["Prebuilt course", "Starts with the feature, then shows configuration steps, screenshots, and a use case.", "Useful for operating the tool after the learner already understands the architecture."],
+        ["This academy", "Starts with the problem, then derives the necessary concept, structure, relationships, implementation, and failure mode.", "Useful for training architects who must defend why a design is correct before configuring it."],
+        ["Prebuilt accelerator", "Can install a pattern quickly, but may hide the assumptions behind identity, profile, data quality, and relationships.", "Risk: the team can run the pattern but cannot explain when it should not be used."],
+        ["First-principles training", "Makes the assumptions explicit: what is the entity, what is the context, what is the relationship, what is the activation proof.", "Benefit: the team can adapt the pattern when the business model changes."]
+      ];
+      const featureVsStructure = [
+        ["Identity namespace", "Not just a field setting", "A claim that two records can safely represent the same person or entity."],
+        ["Profile enrichment", "Not just adding attributes", "Governed context that is trusted enough for segmentation, journey logic, CJA, or destinations."],
+        ["Relationship", "Not just a join", "Durable business structure that explains how different objects connect."],
+        ["Web SDK event", "Not just tracking", "A contract for experience data that must survive downstream activation and analysis."],
+        ["CJA metric", "Not just reporting", "A governed interpretation of cross-channel behavior that business users can trust."]
+      ];
+      const architectQuestions = [
+        ["Why must this concept exist?", "Whether the concept is necessary or just platform vocabulary.", "Keep it and teach its purpose before configuration.", "Remove it or defer it until a real need appears."],
+        ["What problem does it solve that a simpler model cannot solve?", "Whether complexity is justified.", "Use the richer AEP pattern because the simpler model fails.", "Use the simpler model and avoid unnecessary schema or activation complexity."],
+        ["What is the minimum structure required?", "The smallest set of schemas, identities, relationships, and events needed.", "Build the minimum viable architecture and expand only with evidence.", "Do not build until the minimum structure is clear."],
+        ["What breaks if this is modeled as the wrong primitive?", "Whether the learner understands consequences, not just terms.", "Document the failure mode as a design guardrail.", "Revisit the concept until the risk is clear."],
+        ["When should we not use this pattern?", "Whether the learner can identify boundaries and anti-patterns.", "Use the pattern only inside those boundaries.", "Avoid the pattern when the business case is temporary, weak, or better served downstream."],
+        ["Which proof tells us the implementation is working?", "Whether success can be measured after release.", "Define trace tests, parity checks, and business acceptance criteria.", "Do not treat the design as complete without proof."]
+      ];
+      return `<div class="mt-6 rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Why not just use a prebuilt solution?</div>
+        <h3 class="mt-2 text-2xl font-black">The core insight is the order of learning.</h3>
+        <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">The new idea is not that this academy invents AEP concepts. The new idea is that it teaches the reasoning layer before the configuration layer. A prebuilt solution can show what to click. This tool trains the learner to know why the structure must exist, when it applies, and what fails when it is wrong.</p>
+        <div class="mt-5 grid gap-3 lg:grid-cols-2">
+          ${contrast.map(([title, body, note]) => `<div class="rounded-3xl border ${title.includes("This") || title.includes("First") ? "border-emerald-200 bg-emerald-50" : "border-slate-200 bg-slate-50"} p-5">
+            <div class="font-black text-slate-950">${title}</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${body}</p>
+            <div class="mt-3 rounded-2xl bg-white p-3 text-sm font-black leading-5 text-spectrum-blue">${note}</div>
+          </div>`).join("")}
+        </div>
+        <div class="mt-5 rounded-3xl bg-slate-950 p-5 text-white">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Memory model</div>
+          <div class="mt-4 grid gap-3 md:grid-cols-5">
+            ${["Problem", "Concept", "Structure", "Implementation", "Failure mode"].map((item, index) => `<div class="rounded-2xl bg-white/10 p-4">
+              <div class="text-xs font-black text-slate-400">Step ${index + 1}</div>
+              <div class="mt-2 font-black">${item}</div>
+            </div>`).join("")}
+          </div>
+          <p class="mt-4 text-sm font-semibold leading-6 text-slate-300">Before feature: purpose. Before config: structure. Before audience: ontology. Before activation: proof.</p>
+        </div>
+        <div class="mt-5 grid gap-4 lg:grid-cols-[1fr_.9fr]">
+          <div class="rounded-3xl border border-blue-100 bg-blue-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Feature versus structure</div>
+            <div class="mt-4 grid gap-3">
+              ${featureVsStructure.map(([feature, wrongFrame, rightFrame]) => `<div class="rounded-2xl bg-white p-4">
+                <div class="font-black">${feature}</div>
+                <p class="mt-1 text-sm font-semibold leading-6 text-slate-600">${wrongFrame}; ${rightFrame}</p>
+              </div>`).join("")}
+            </div>
+          </div>
+          <div class="rounded-3xl border border-amber-200 bg-amber-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-amber-700">Architect questions</div>
+            <div class="mt-4 grid gap-2">
+              ${architectQuestions.map(row => decisionRubricCard(...row, "amber")).join("")}
+            </div>
+          </div>
+        </div>
+        ${practicalExample("Identity example", "A prebuilt tutorial might say: mark CRMID and email as identities, then enable profile. The architect question is stricter: which identifiers prove sameness, which identifiers are weak, and which relationships must never be collapsed into identity?", "Memory: configuration tells you where the checkbox is. Architecture tells you whether checking it is true.")}
+      </div>`;
+    }
+
+    function aiConsumptionAssembly() {
+      const stages = [
+        ["Bronze landing", "Raw logs, raw CRM exports, raw clickstream, duplicate files, unnormalized names.", "AI can profile quality, detect duplicates, suggest mappings, summarize anomalies.", "AI should not directly decide audiences or journeys from this layer. Raw data is not trusted activation context."],
+        ["Silver conformed data", "Clean IDs, valid timestamps, standardized events, consent flags, known namespaces, deduped account keys.", "AI can recommend XDM mappings, detect missing fields, infer likely entity types, and generate validation tests.", "AI should still cite confidence and source lineage. Silver is usable, but not automatically a business decision."],
+        ["XDM schema and ontology", "Schemas, field groups, identity namespaces, relationships, cardinality, consent fields.", "AI can review architecture, explain why a model is valid, identify relationship gaps, and generate implementation stories.", "AI should not invent source-of-truth ownership. The data owner and architect must confirm the business meaning."],
+        ["Profile and identity context", "Resolved profile, identity graph signals, profile attributes, enriched account or household context.", "AI can explain why a profile qualifies, find fragmentation risks, and suggest enrichment opportunities.", "AI should not collapse relationships into identity. Same entity and related entity are different claims."],
+        ["Audience and journey logic", "Segment rules, merge policy, evaluation method, trigger, suppression, offer, destination.", "AI can critique rules, explain eligibility, generate test cases, and flag over-targeting or missing suppressions.", "AI should not optimize only for conversion. It must respect consent, frequency, eligibility, and customer harm controls."],
+        ["CJA and measurement", "Data views, calculated metrics, attribution, workspace dashboards, parity checks.", "AI can summarize performance, diagnose metric movement, explain variance, and recommend analysis paths.", "AI should not treat metrics as trusted until definitions, stitching, and filters are known."],
+        ["Operational feedback", "QA results, failed batches, event parity, destination match rates, journey exits, support issues.", "AI can monitor drift, prioritize defects, write release notes, and recommend rollback or tuning actions.", "AI should not hide uncertainty. It should surface failed assumptions and unresolved evidence."]
+      ];
+      const questions = [
+        ["Is this data raw, conformed, modeled, activated, or measured?", "Which layer of truth AI is consuming.", "Match AI behavior to the layer, inspection for raw data, reasoning for governed context.", "Do not let AI make activation decisions from an untrusted layer."],
+        ["What business decision will AI influence from this step?", "Whether AI is summarizing, recommending, deciding, or monitoring.", "Set the right control level and review path.", "Keep AI in explanation mode until the decision is defined."],
+        ["What evidence proves the data is trusted enough for that decision?", "Whether lineage, quality, and definitions support AI use.", "Allow AI to recommend with cited evidence.", "Require cleanup, validation, or human review first."],
+        ["Which fields are identities, which are attributes, which are events, and which are relationships?", "Whether AI can reason with the right primitive.", "Let AI explain context using the correct ontology.", "Prevent AI from collapsing different concepts into one generic profile field."],
+        ["What should AI refuse to infer from this layer?", "The boundary of safe inference.", "Document refusal rules and uncertainty language.", "Do not expose the AI output to business users yet."],
+        ["How will a human architect audit the recommendation?", "Whether the recommendation is reviewable.", "Show inputs, assumptions, confidence, and the path to evidence.", "Do not operationalize recommendations that cannot be inspected."]
+      ];
+      return `<div class="mt-6 rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">AI consumption model</div>
+        <h3 class="mt-2 text-2xl font-black">What AI should consume at each step of the assembly line.</h3>
+        <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">AI is most useful when it consumes the right level of truth for the job. Raw data is good for inspection. Silver data is good for mapping and validation. Modeled AEP context is good for reasoning. Activation and CJA feedback are good for optimization and governance.</p>
+        <div class="mt-5 grid gap-3">
+          ${stages.map(([stage, input, canConsume, shouldAvoid], index) => `<div class="grid gap-3 rounded-3xl border border-slate-200 bg-slate-50 p-4 lg:grid-cols-[170px_1fr_1fr_1fr]">
+            <div>
+              <div class="grid h-10 w-10 place-items-center rounded-2xl ${index < 2 ? "bg-slate-950" : index < 5 ? "bg-spectrum-blue" : "bg-spectrum-red"} text-sm font-black text-white">${index + 1}</div>
+              <div class="mt-3 font-black">${stage}</div>
+            </div>
+            <div class="rounded-2xl bg-white p-4">
+              <div class="text-xs font-black uppercase tracking-[.14em] text-slate-500">What exists here</div>
+              <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${input}</p>
+            </div>
+            <div class="rounded-2xl bg-emerald-50 p-4">
+              <div class="text-xs font-black uppercase tracking-[.14em] text-emerald-700">AI can consume</div>
+              <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${canConsume}</p>
+            </div>
+            <div class="rounded-2xl bg-red-50 p-4">
+              <div class="text-xs font-black uppercase tracking-[.14em] text-red-700">AI should avoid</div>
+              <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${shouldAvoid}</p>
+            </div>
+          </div>`).join("")}
+        </div>
+        <div class="mt-5 rounded-3xl bg-slate-950 p-5 text-white">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Rule of thumb</div>
+          <p class="mt-2 text-sm font-semibold leading-6 text-slate-300">AI should inspect bronze, help shape silver, reason over governed ontology, explain profile and audience qualification, and optimize only after measurement is trusted.</p>
+        </div>
+        <div class="mt-5 grid gap-4 lg:grid-cols-[1fr_.9fr]">
+          ${practicalExample("Advisor journey example", "At the bronze layer, AI can detect that form submit events are duplicated. At the silver layer, AI can suggest mapping the clean form submit to an XDM Experience Event. At the ontology layer, AI can check whether the person, household, account, and opportunity are modeled separately. At the audience layer, AI can explain why a CFO qualifies. At the measurement layer, AI can compare conversion in CJA against activation counts.", "Memory: AI should move from inspection to recommendation to explanation as the data becomes more governed.")}
+          <div class="rounded-3xl border border-amber-200 bg-amber-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-amber-700">AI audit questions</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">Tap a question to open the full decision rubric. This keeps the lesson scannable on mobile while preserving the deeper architecture reasoning.</p>
+            <div class="mt-4 grid gap-3">
+              ${questions.map((row, index) => auditModalButton(row, index)).join("")}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    function ontologyVsTokensCallout() {
+      const rows = [
+        ["Model tokens", "Interchangeable compute that can summarize, classify, grade, or explain.", "Use models as engines behind a contract. Do not let the transcript become the product."],
+        ["Ontology", "Owned structure: objects, identities, relationships, audiences, activation plan, and reasoning trace.", "Treat this as the durable enterprise asset. Export it, inspect it, and test it."],
+        ["Rubric", "The decision logic that defines what good looks like.", "Keep rubrics explicit so any tutor engine can grade against the same architecture standard."],
+        ["Artifact", "The portable output: schema JSON, relationship graph, certificate, and trace.", "The learner should leave with an owned artifact, not a chat history."]
+      ];
+      return `<div class="mt-6 rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Ontology versus tokens</div>
+        <h3 class="mt-2 text-2xl font-black">The model is replaceable. The ontology is the asset.</h3>
+        <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">Enterprise AI should not depend on one chat loop. The durable value is the structured operating model: what entities exist, how they connect, which identities are trusted, which audiences can activate, and what evidence proves the decision.</p>
+        <div class="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          ${rows.map(([title, body, why]) => `<div class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+            <div class="font-black">${title}</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${body}</p>
+            <div class="mt-3 rounded-2xl bg-white p-3 text-xs font-black leading-5 text-spectrum-blue">${why}</div>
+          </div>`).join("")}
+        </div>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <button onclick="renderOntologyInspector()" class="rounded-2xl bg-spectrum-blue px-4 py-3 text-sm font-black text-white">Inspect ontology</button>
+          <button onclick="exportOntologyJson()" class="rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white">Export ontology JSON</button>
+          <button onclick="renderReasoningTrace()" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-spectrum-blue shadow-sm">View reasoning trace</button>
+        </div>
+      </div>`;
+    }
+
+    function relationshipRationale() {
+      const compareRows = [
+        ["Schema-level relationship", "The relationship is part of the governed data model. AEP services can understand it consistently for profile context, segmentation, activation, lineage, and reuse.", "Person -> Account -> Opportunity is modeled once and reused many times."],
+        ["Downstream business logic only", "Each report, query, journey, or audience has to recreate the join logic. The rule may drift by team, channel, or analyst.", "One team joins by CRM account ID, another by email domain, another by a spreadsheet mapping."],
+        ["Schema-level relationship", "It makes the object graph explicit: these are independent objects, these are the keys, this is how they connect.", "A Business Person is not an Opportunity. A Business Person is related to an Account that has Opportunities."],
+        ["Downstream business logic only", "It hides architecture inside code. The audience may work once, but the next builder cannot tell whether the logic is authoritative.", "A journey qualifies someone, but nobody can explain which account/opportunity relationship caused entry."]
+      ];
+      const realWorldExamples = [
+        ["Hospital system", "Patient, doctor, appointment, insurance plan, and prescription are separate objects. You would not copy every doctor and insurance field onto the patient record. You model the relationships so care teams know who treated the patient, under which plan, and for which visit.", "AEP analogy: Person, Account, Opportunity, Campaign, and Event stay distinct; relationships explain the context."],
+        ["Banking household", "One person may belong to a household, own multiple accounts, co-sign a loan, and have a financial advisor. If every report invents its own household logic, eligibility, risk, and service messages become inconsistent.", "AEP analogy: model Household -> Person -> Account upstream when household context drives journeys or audiences."],
+        ["Company org chart", "An employee belongs to a department, reports to a manager, supports a region, and may sit on a project team. The org chart is not rebuilt inside every email campaign; it is governed once and reused.", "AEP analogy: Business Person -> Business Account -> Buying Committee should be governed when ABM logic depends on roles."],
+        ["Airline booking", "Traveler, reservation, flight, loyalty account, seat, and payment are related but not the same thing. If you flatten everything into the traveler, cancellations, upgrades, and shared bookings become messy.", "AEP analogy: events and lookup entities should preserve their role so activation can understand what happened and what it relates to."],
+        ["Library catalog", "A reader, book, author, checkout, branch, and fine are connected. The checkout is not the reader; it is an event connecting reader and book at a time.", "AEP analogy: a pricing-page visit or form submit is an Experience Event tied to identity, not a permanent profile attribute."]
+      ];
+      const analogies = [
+        ["Family tree", "The people already exist. The family tree explains parent, child, spouse, and sibling connections. Without the tree, every person is just an isolated record."],
+        ["Blueprint wiring", "A house has rooms, lights, switches, and circuits. Wiring belongs in the blueprint because every electrician and inspector must use the same map."],
+        ["Map legend", "A city map works because roads, stations, neighborhoods, and landmarks have standard meanings. If every driver invents a route model, navigation breaks."],
+        ["Contract clause", "A durable business relationship is like a contract clause. It should be written where everyone can inspect and enforce it, not hidden in one person's spreadsheet."]
+      ];
+      const relationshipDecisionRubric = [
+        [
+          "Will this relationship be reused across multiple audiences, journeys, dashboards, or destinations?",
+          "We are determining whether this is shared enterprise context or a one-off use case.",
+          "Model it upstream so every consuming service uses the same relationship.",
+          "Keep it downstream in a query, report, or experiment until reuse is proven."
+        ],
+        [
+          "Does this relationship define the business meaning of the data, not just one temporary report?",
+          "We are determining whether the relationship is part of the business ontology.",
+          "Treat it as governed structure, like Person belongs to Account or Opportunity belongs to Account.",
+          "Do not promote it to schema-level structure if it is only a temporary analytical shortcut."
+        ],
+        [
+          "Would different teams create different answers if they rebuilt the join themselves?",
+          "We are determining drift risk. If teams would join differently, the business needs one authoritative model.",
+          "Move the relationship upstream to reduce inconsistent segments, journeys, and dashboards.",
+          "If teams would all use the same simple join with low risk, downstream logic may be acceptable."
+        ],
+        [
+          "Does the relationship cross object types, such as Person to Account or Opportunity to Account?",
+          "We are determining whether this is a relationship between different entities, not identity sameness.",
+          "Use a relationship model so AEP understands that two different objects are connected.",
+          "If it is the same entity across systems, use identity resolution instead of a relationship."
+        ],
+        [
+          "Do we need AEP to reason across this relationship during segmentation or activation?",
+          "We are determining whether AEP services need this connection at decision time.",
+          "Model it upstream if audience qualification, AJO routing, personalization, or destinations depend on it.",
+          "If only an offline analyst needs it, keep it in warehouse logic or CJA analysis."
+        ],
+        [
+          "Can we name the primary key, foreign key, identity namespace, and owner of the relationship?",
+          "We are determining whether the relationship is mature enough to govern.",
+          "Proceed if keys, namespaces, ownership, and quality rules are explicit.",
+          "Do not model upstream yet if nobody owns the keys or the join cannot be validated."
+        ]
+      ];
+      return `<div class="mt-6 rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Why model relationships upstream?</div>
+        <h3 class="mt-2 text-2xl font-black">Because relationships are business structure, not just query logic.</h3>
+        <p class="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">You can segment with downstream business logic when the relationship is temporary, local, or experimental. But if the relationship expresses durable business truth, it should move upstream into the schema model so AEP can reuse it consistently.</p>
+        <div class="mt-5 grid gap-3 lg:grid-cols-2">
+          ${compareRows.map(([mode, body, example]) => `<div class="rounded-3xl border ${mode === "Schema-level relationship" ? "border-emerald-200 bg-emerald-50" : "border-amber-200 bg-amber-50"} p-5">
+            <div class="text-xs font-black uppercase tracking-[.16em] ${mode === "Schema-level relationship" ? "text-emerald-700" : "text-amber-700"}">${mode}</div>
+            <p class="mt-3 text-sm font-semibold leading-6 text-slate-700">${body}</p>
+            <div class="mt-4 rounded-2xl bg-white p-3 text-sm font-black leading-5 text-slate-800">${example}</div>
+          </div>`).join("")}
+        </div>
+        <div class="mt-5 grid gap-4 lg:grid-cols-[1fr_.9fr]">
+          ${practicalExample("Advisor/account example", "A financial advisor may be tied to many households, branches, books of business, campaigns, and opportunities. If every segment rebuilds that relationship downstream, one campaign may target by household, another by branch, another by CRM owner, and the experience becomes inconsistent.", "Memory: if the relationship is reusable truth, model it upstream. If it is one-off analysis, downstream logic may be enough.")}
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-500">Decision questions</div>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">These questions determine whether the connection belongs in the governed AEP schema model or should stay as downstream business logic.</p>
+            <div class="mt-4 grid gap-3">
+              ${relationshipDecisionRubric.map(row => decisionRubricCard(...row)).join("")}
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 rounded-3xl border border-white/80 bg-white p-5">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Real-world examples</div>
+          <div class="mt-4 grid gap-3 lg:grid-cols-2">
+            ${realWorldExamples.map(([title, body, analogy]) => `<div class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+              <div class="font-black text-slate-950">${title}</div>
+              <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${body}</p>
+              <div class="mt-3 rounded-2xl bg-white p-3 text-sm font-black leading-5 text-spectrum-blue">${analogy}</div>
+            </div>`).join("")}
+          </div>
+        </div>
+        <div class="mt-5 rounded-3xl border border-indigo-100 bg-indigo-50 p-5">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-indigo-700">Memory analogies</div>
+          <div class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            ${analogies.map(([title, body]) => `<div class="rounded-2xl bg-white p-4">
+              <div class="font-black text-indigo-950">${title}</div>
+              <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">${body}</p>
+            </div>`).join("")}
+          </div>
+        </div>
+        <div class="mt-5 rounded-3xl bg-slate-950 p-5 text-white">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Rule of thumb</div>
+          <p class="mt-2 text-sm font-semibold leading-6 text-slate-300">Use downstream business logic for exploration. Use schema-level relationships for durable, reusable, governed customer context that AEP must activate or analyze repeatedly.</p>
+        </div>
+      </div>`;
+    }
+
+    function fiveQuestionMatrix(concept, rows) {
+      return `<div class="rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+        <div class="mb-4 flex items-center justify-between gap-3">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.16em] text-spectrum-blue">Five-question drill</div>
+            <h3 class="mt-1 text-2xl font-black">${concept}</h3>
+          </div>
+          <div class="rounded-2xl bg-slate-950 px-3 py-2 text-xs font-black text-white">Pain → Purpose → Meaning → Map → Mistake</div>
+        </div>
+        <div class="grid gap-3">
+          ${rows.map(([question, answer, memory]) => `<div class="grid gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 xl:grid-cols-[minmax(0,220px)_minmax(0,1fr)_minmax(0,260px)_minmax(0,220px)]">
+            <div class="font-black text-slate-900">${question}</div>
+            <div class="text-sm font-semibold leading-6 text-slate-700">${answer}</div>
+            <div class="rounded-xl bg-white p-3 text-sm font-bold leading-6 text-slate-700">${whyForQuestion(question)}</div>
+            <div class="rounded-xl bg-white p-3 text-sm font-black text-spectrum-blue">${memory}</div>
+          </div>`).join("")}
+        </div>
+      </div>`;
+    }
+
+    function render() {
+      renderChrome();
+      closeAuditModal();
+      const level = levels[state.level];
+      const stage = document.getElementById("stage");
+      if (level.id === "philosophy") stage.innerHTML = philosophy();
+      if (level.id === "foundation") stage.innerHTML = foundation();
+      if (level.id === "ontology") stage.innerHTML = ontology();
+      if (level.id === "socratic") stage.innerHTML = socratic();
+      if (level.id === "relationships") stage.innerHTML = relationshipGame();
+      if (level.id === "profile") stage.innerHTML = profileAssembly();
+      if (level.id === "segments") stage.innerHTML = segmentation();
+      if (level.id === "activation") stage.innerHTML = activation();
+    }
+
+    function teachingTree() {
+      const steps = ["Need", "Concept", "Definition", "Purpose", "Relationships", "Architecture", "Implementation", "Best Practices", "Common Mistakes"];
+      return `<div class="grid gap-2 md:grid-cols-3 xl:grid-cols-9">
+        ${steps.map((step, index) => `<div class="rounded-2xl border border-white/80 bg-white/80 p-3 text-center shadow-sm">
+          <div class="mx-auto mb-2 grid h-8 w-8 place-items-center rounded-xl bg-spectrum-blue text-xs font-black text-white">${index + 1}</div>
+          <div class="text-xs font-black">${step}</div>
+        </div>`).join("")}
+      </div>`;
+    }
+
+    function philosophy() {
+      return `
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-red">Orientation</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">This is not a documentation viewer. It is an architect school.</h2>
+          <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-600">Features are downstream of structure. The goal is not memorization; the goal is mastery. If the structure is clear, the learner can derive the Adobe feature set.</p>
+        </div>
+        ${aepPurposeOverview()}
+        <div class="mt-6">${lessonJumpControls()}</div>
+        ${curriculumMap()}
+        ${coreInsightSection()}
+        ${aiConsumptionAssembly()}
+        ${ontologyVsTokensCallout()}
+        <div class="grid gap-4 lg:grid-cols-[1fr_.85fr]">
+          <div class="rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+            <div class="text-xs font-black uppercase tracking-[.16em] text-spectrum-blue">Five questions before terminology</div>
+            <div class="mt-4 grid gap-3">
+              ${["What problem exists?", "Why must this concept exist?", "What is its essential definition?", "How does it relate to everything else?", "What breaks if we misunderstand it?"].map(q => questionCard(q)).join("")}
+            </div>
+          </div>
+          <div class="rounded-3xl bg-slate-950 p-5 text-white shadow-lg">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Learner feeling</div>
+            <p class="mt-3 text-2xl font-black leading-tight">“Of course. There was no other way Adobe could have designed this.”</p>
+            <p class="mt-4 text-sm font-semibold leading-6 text-slate-300">Every level builds from need to implementation and then shows what breaks when the model is wrong.</p>
+          </div>
+        </div>
+        <div class="mt-6">
+          ${practicalExample("LPL-style advisor journey", "A visitor reads retirement planning content, submits a form, becomes a known lead, and later gets tied to a household or account. The learner should be able to say which facts are events, which facts are profile attributes, which fields are identities, and which links are relationships.", "Memory: do not start by naming Adobe features. Start by explaining the real-world business object and what would break if it were modeled incorrectly.")}
+        </div>
+        ${analyticsInstrumentation()}
+        ${masteryStory()}
+        <div class="mt-6">
+          ${teachingTree()}
+        </div>
+        <button onclick="complete('philosophy'); go(1)" class="mt-6 rounded-2xl bg-spectrum-blue px-5 py-3 font-black text-white shadow-lg transition hover:-translate-y-0.5">Begin from first principles</button>
+      `;
+    }
+
+    function foundation() {
+      const identityRows = [
+        ["What problem exists?", "Customer and account data arrive from many systems with different IDs: email, CRM ID, ECID, phone, account ID.", "Pain: records are split."],
+        ["Why must this concept exist?", "AEP needs a defensible way to know which records describe the same person or account.", "Purpose: prove who."],
+        ["What is its essential definition?", "An identity is a field used to recognize and connect the same person, account, or entity across records.", "Meaning: passport."],
+        ["How does it relate to everything else?", "Schemas contain identity fields. Datasets send identity values. Identity graph links profiles. Audiences depend on stitched profiles.", "Map: thread through AEP."],
+        ["What breaks if misunderstood?", "Profiles split, journeys duplicate messages, audiences miss people, and measurement undercounts.", "Mistake: broken truth."]
+      ];
+      const eventRows = [
+        ["What problem exists?", "We need history: visits, clicks, purchases, form submits, campaign touches, opportunity changes.", "Pain: need timeline."],
+        ["Why must this concept exist?", "Attributes say what is true now. Events preserve what happened over time.", "Purpose: preserve behavior."],
+        ["What is its essential definition?", "An Experience Event is a timestamped fact about something that happened.", "Meaning: receipt."],
+        ["How does it relate to everything else?", "Events attach to identities, update profiles, drive audiences, and feed CJA or journey logic.", "Map: profile timeline."],
+        ["What breaks if misunderstood?", "If you model events as attributes, you overwrite history and lose sequence.", "Mistake: time disappears."]
+      ];
+      const relationshipRows = [
+        ["What problem exists?", "B2B is not just people. People belong to accounts, accounts have opportunities, campaigns influence pipeline.", "Pain: person alone is not enough."],
+        ["Why must this concept exist?", "AEP needs to understand how independent business objects connect without duplicating everything onto the person.", "Purpose: create context."],
+        ["What is its essential definition?", "A relationship connects one schema/object to another using keys or identities.", "Meaning: family tree."],
+        ["How does it relate to everything else?", "Schemas define objects. Identities identify records. Relationships connect them. Audiences use the graph.", "Map: records become graph."],
+        ["What breaks if misunderstood?", "You flatten everything, duplicate account data, lose many-to-many logic, and build brittle B2B audiences.", "Mistake: fake graph."]
+      ];
+      return `
+        ${moduleCallout()}
+        ${levelValueQuestions("foundation")}
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Exercise 1</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">Five questions before terminology.</h2>
+          <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-600">Before saying “schema,” “identity,” or “relationship,” force the concept through the same five gates. This turns Adobe features into architectural structure.</p>
+        </div>
+        <div class="grid gap-4 lg:grid-cols-[.85fr_1.15fr]">
+          <div class="rounded-3xl bg-slate-950 p-5 text-white shadow-lg">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Memory system</div>
+            <h3 class="mt-3 text-3xl font-black">Pain → Purpose → Meaning → Map → Mistake</h3>
+            <div class="mt-5 space-y-3 text-sm font-semibold leading-6 text-slate-300">
+              <p><b class="text-white">Pain:</b> What hurts without this concept?</p>
+              <p><b class="text-white">Purpose:</b> Why must it exist?</p>
+              <p><b class="text-white">Meaning:</b> Define it in one sentence.</p>
+              <p><b class="text-white">Map:</b> Where does it fit in AEP?</p>
+              <p><b class="text-white">Mistake:</b> What breaks if modeled wrong?</p>
+            </div>
+          </div>
+          <div class="grid gap-3 md:grid-cols-2">
+            ${card("Identity", "Ask: Who? Analogy: passport. Adobe proves records from different systems describe the same person or account.")}
+            ${card("Experience Event", "Ask: What happened? Analogy: receipt or doctor visit. It is history, not current state.")}
+            ${card("Profile Attribute", "Ask: What is currently true? Analogy: current medical chart.")}
+            ${card("Relationship", "Ask: How are they connected? Analogy: family tree. The objects already exist; the relationship explains the connection.")}
+          </div>
+        </div>
+        <div class="mt-6 space-y-4">
+          ${fiveQuestionMatrix("Identity", identityRows)}
+          ${fiveQuestionMatrix("Experience Event", eventRows)}
+          ${fiveQuestionMatrix("Relationship", relationshipRows)}
+        </div>
+        ${relationshipRationale()}
+        ${aepRealityCheck()}
+        ${identityEdgePersonalizationLesson()}
+        <div class="mt-6 rounded-3xl border border-amber-200 bg-amber-50 p-5">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-amber-700">Practice prompt</div>
+          <p class="mt-2 text-sm font-semibold leading-6 text-amber-950">Before building an AEP audience, ask: is this about who, what, what happened, what is true now, how things connect, who qualifies, or what happens next?</p>
+        </div>
+        <button onclick="complete('foundation'); go(2)" class="mt-6 rounded-2xl bg-spectrum-blue px-5 py-3 font-black text-white shadow-lg transition hover:-translate-y-0.5">I understand the primitives</button>
+      `;
+    }
+
+    function ontology() {
+      return `
+        ${moduleCallout()}
+        ${levelValueQuestions("ontology")}
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Level 2</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">Build the ontology.</h2>
+          <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-600">Each object exists independently first. Relationships come after you know what each object is responsible for.</p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          ${objects.map(([name, desc]) => card(name, desc)).join("")}
+        </div>
+        <div class="mt-6 rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Ontology categories</div>
+          <div class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            ${ontologyQuestions.map(([category, question, analogy]) => `<div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div class="font-black">${category}</div>
+              <div class="mt-1 text-sm font-black text-spectrum-blue">${question}</div>
+              <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">${analogy}</p>
+            </div>`).join("")}
+          </div>
+        </div>
+        <div class="mt-6">
+          ${practicalExample("Do not flatten B2B too early", "A Business Person can be connected to multiple Business Accounts: current employer, former employer, household account, advisory relationship, or committee role. If you copy every account field directly onto the person, the model becomes confusing as soon as one person has multiple account relationships.", "Memory: object first, relationship second, audience third. Flatten only when the business question truly requires a person-level shortcut.")}
+        </div>
+        <div class="mt-6 rounded-3xl border border-slate-200 bg-slate-950 p-5 text-white">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">First principle</div>
+          <p class="mt-2 text-lg font-black">Do not start with segments. Start with objects, identities, and relationship keys.</p>
+        </div>
+        <button onclick="complete('ontology'); go(3)" class="mt-6 rounded-2xl bg-spectrum-blue px-5 py-3 font-black text-white shadow-lg transition hover:-translate-y-0.5">Ontology is built</button>
+      `;
+    }
+
+    function socratic() {
+      const question = currentModule().socraticConcept;
+      const choices = ["Experience Event", "Profile Attribute", "Identity", "Relationship", "Derived Attribute", "Audience", "Journey", "Architecture"];
+      const answer = currentModule().socraticAnswer;
+      return `
+        ${moduleCallout()}
+        ${levelValueQuestions("socratic")}
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Level 3</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">Socratic modeling: classify before you configure.</h2>
+          <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-600">Do not memorize object types. Ask what the thing is doing in the architecture. Then choose the model.</p>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
+          <div class="rounded-3xl bg-slate-950 p-5 text-white shadow-lg">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Classify this</div>
+            <h3 class="mt-3 text-4xl font-black">${question}</h3>
+            <p class="mt-4 text-sm font-semibold leading-6 text-slate-300">Classify the concept by what it does in the architecture, then explain why the wrong model would break something.</p>
+          </div>
+          <div class="rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+            <div class="grid gap-3 md:grid-cols-2">
+              ${choices.map(choice => `<button onclick="answerSocratic('${choice}', '${answer}')" class="rounded-2xl border border-slate-200 bg-white p-4 text-left font-black shadow-sm transition hover:-translate-y-0.5">${choice}</button>`).join("")}
+            </div>
+            <div id="socraticResult" class="mt-4"></div>
+          </div>
+        </div>
+        <div class="mt-6 rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Free-text Socratic tutor</div>
+          <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">Answer in two sentences: what is this concept, and what breaks if it is modeled incorrectly?</p>
+          <textarea id="socraticText" class="mt-4 min-h-32 w-full rounded-3xl border border-slate-200 bg-white p-4 text-sm font-semibold" placeholder="Example: This is a relationship because... If modeled as an attribute..."></textarea>
+          <button onclick="gradeSocraticText()" class="mt-4 rounded-2xl bg-slate-950 px-5 py-3 font-black text-white">Ask Socratic coach</button>
+          <div id="socraticTextResult" class="mt-4"></div>
+        </div>
+        <div class="mt-6 grid gap-4 md:grid-cols-3">
+          ${card("Ask Why", "What changes more frequently: the purchase event, or the customer’s current lifetime value?")}
+          ${card("Ask Upstream", "Which upstream facts are needed to calculate it: orders, amounts, returns, time windows?")}
+          ${card("Ask What Breaks", "If modeled as identity, the system would try to stitch people by a value that is not who they are.")}
+        </div>
+        <div class="mt-6">
+          ${practicalExample("Lifetime value in the real system", "A purchase event says: a customer bought product A on July 3 for $120. Lifetime value says: across many purchase events, that customer is currently worth $4,820. The first is historical behavior. The second is a calculated current truth.", "Memory: event = receipt. derived attribute = current score produced from many receipts.")}
+        </div>
+      `;
+    }
+
+    function answerSocratic(choice, answer) {
+      const result = document.getElementById("socraticResult");
+      recordMastery(`Socratic classification: ${currentModule().socraticConcept}`, choice === answer);
+      logReasoning("socratic_multiple_choice", {
+        concept: currentModule().socraticConcept,
+        selectedAnswer: choice,
+        correctAnswer: answer,
+        isCorrect: choice === answer
+      });
+      trackAcademyAction(analyticsActions.socraticAnswer, {
+        selectedAnswer: choice,
+        correctAnswer: answer,
+        isCorrect: choice === answer,
+        concept: "Customer Lifetime Value"
+      });
+      if (choice === answer) {
+        result.innerHTML = `<div class="rounded-3xl border border-emerald-200 bg-emerald-50 p-5 font-black text-emerald-900">✓ Correct. Customer Lifetime Value is derived from historical events and stored/used as a current calculated truth.</div>`;
+        complete("socratic", 140);
+        setTimeout(() => go(4), 900);
+        return;
+      }
+      const coaching = {
+        "Experience Event": "A purchase is an event. Lifetime value is not one purchase; it is a value derived from many events.",
+        "Profile Attribute": "Close, but ask how it came to exist. If it is calculated from historical behavior, it is better understood as a derived attribute.",
+        "Identity": "Identity answers who. Lifetime value does not prove who someone is.",
+        "Relationship": "Relationship answers how two existing objects connect. Lifetime value is not a connection between records.",
+        "Derived Attribute": "A derived attribute is a calculated current truth. Use it only when the concept is computed from upstream facts.",
+        "Audience": "Audience answers who qualifies. It is a result of rules, not the source object itself.",
+        "Journey": "Journey answers what happens next after a trigger or qualification.",
+        "Architecture": "Architecture is the full structure across schemas, identities, relationships, activation, and proof."
+      };
+      result.innerHTML = `<div class="rounded-3xl border border-amber-200 bg-amber-50 p-5 text-amber-950">
+        <div class="font-black">Think again.</div>
+        <p class="mt-2 text-sm font-semibold leading-6">${coaching[choice]}</p>
+        <p class="mt-2 text-sm font-black">Question: what changes more frequently, the purchase event or the customer’s current lifetime value?</p>
+      </div>`;
+    }
+
+    function gradeSocraticText() {
+      const text = (document.getElementById("socraticText")?.value || "").trim();
+      const grade = tutorEngine.grade({
+        answer: text,
+        expectedConcept: currentModule().socraticAnswer,
+        ontology: syncOntologyFromState()
+      });
+      const correct = grade.pass;
+      recordMastery(`Free-text tutor: ${currentModule().socraticConcept}`, correct);
+      logReasoning("socratic_free_text", {
+        concept: currentModule().socraticConcept,
+        answer: text,
+        grade
+      });
+      trackAcademyAction(analyticsActions.socraticTutorFallback, {
+        reason: "local_offline_rubric_used",
+        tutorEngine: grade.engine,
+        apiAvailable: false,
+        isCorrect: correct
+      });
+      document.getElementById("socraticTextResult").innerHTML = correct
+        ? `<div class="rounded-3xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950"><div class="font-black">Good architectural answer.</div><p class="mt-2 text-sm font-semibold leading-6">Follow-up: ${grade.followUp}</p></div>`
+        : `<div class="rounded-3xl border border-amber-200 bg-amber-50 p-5 text-amber-950"><div class="font-black">Push the reasoning further.</div><p class="mt-2 text-sm font-semibold leading-6">${grade.followUp} This local build uses a replaceable rubric engine because no external tutor key is stored client-side.</p></div>`;
+    }
+
+    function relationshipGame() {
+      return `
+        ${moduleCallout()}
+        ${levelValueQuestions("relationships")}
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Level 3</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">Connect the B2B graph.</h2>
+          <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-600">Drag each source object to the right reference object. Correct matches animate into the relationship graph.</p>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-2">
+          <div>
+            <h3 class="mb-3 font-black">Sources</h3>
+            <div class="space-y-3">
+              ${Object.keys(relationships).map(item => `<button draggable="true" ondragstart="drag(event)" onclick="selectGraphSource('${item}')" onkeydown="graphKeySource(event, '${item}')" data-source="${item}" class="node w-full cursor-grab rounded-2xl border border-slate-200 bg-white p-4 text-left font-black shadow-sm">${item}</button>`).join("")}
+            </div>
+          </div>
+          <div>
+            <h3 class="mb-3 font-black">Reference objects</h3>
+            <div class="space-y-3">
+              ${["Business Account", "Opportunity", "Business Person"].map(target => `<button ondragover="allowDrop(event)" ondrop="drop(event)" onclick="selectGraphTarget('${target}', this)" onkeydown="graphKeyTarget(event, '${target}', this)" data-target="${target}" class="dropzone min-h-20 w-full rounded-2xl border-2 border-dashed border-slate-300 bg-white/70 p-4 text-left"><div class="font-black">${target}</div><div class="mt-1 text-sm font-semibold text-slate-500">Drop or keyboard-select matching source here</div></button>`).join("")}
+            </div>
+          </div>
+        </div>
+        <div id="graph" class="mt-6 grid gap-3 md:grid-cols-2"></div>
+        ${schemaBuilder()}
+        <div class="mt-6">
+          ${practicalExample("Account-based marketing example", "A Business Person named Sarah is a CFO at Acme. Acme has an open $1.4M opportunity. A campaign influenced that opportunity. The relationship graph lets AEP find Sarah because of her role at Acme and Acme's opportunity context.", "Memory: Sarah did not personally own the opportunity. The account relationship gives her the business context needed for segmentation.")}
+        </div>
+      `;
+    }
+
+    function drag(event) {
+      event.dataTransfer.setData("text/plain", event.target.dataset.source);
+    }
+
+    function selectGraphSource(source) {
+      state.selectedSource = source;
+      document.querySelectorAll("[data-source]").forEach(el => el.classList.remove("border-spectrum-blue", "bg-blue-50"));
+      document.querySelector(`[data-source="${source}"]`)?.classList.add("border-spectrum-blue", "bg-blue-50");
+      document.querySelectorAll("[data-target]").forEach(el => el.classList.add("snap-target"));
+    }
+
+    function selectGraphTarget(target, element) {
+      if (!state.selectedSource) return;
+      evaluateGraphDrop(state.selectedSource, target, element);
+      state.selectedSource = null;
+      document.querySelectorAll("[data-target]").forEach(el => el.classList.remove("snap-target"));
+    }
+
+    function graphKeySource(event, source) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectGraphSource(source);
+      }
+    }
+
+    function graphKeyTarget(event, target, element) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectGraphTarget(target, element);
+      }
+    }
+
+    function allowDrop(event) {
+      event.preventDefault();
+      event.currentTarget.classList.add("active");
+    }
+
+    function drop(event) {
+      event.preventDefault();
+      event.currentTarget.classList.remove("active");
+      const source = event.dataTransfer.getData("text/plain");
+      const target = event.currentTarget.dataset.target;
+      evaluateGraphDrop(source, target, event.currentTarget);
+    }
+
+    function evaluateGraphDrop(source, target, element) {
+      if (relationships[source] === target) {
+        state.matched[source] = target;
+        recordMastery("Relationship graph", true);
+        logReasoning("relationship_match", {
+          sourceObject: source,
+          targetObject: target,
+          isCorrect: true
+        });
+        trackAcademyAction(analyticsActions.relationshipMatch, {
+          sourceObject: source,
+          targetObject: target,
+          relationshipType: `${source} -> ${target}`,
+          matchedCount: Object.keys(state.matched).length
+        });
+        element.classList.add("border-emerald-400", "bg-emerald-50", "pulse-win");
+        element.innerHTML = `<div class="font-black text-emerald-900">✓ ${source} -> ${target}</div><div class="mt-1 text-sm font-semibold text-emerald-700">Relationship descriptor accepted</div>`;
+        renderGraph();
+        if (Object.keys(state.matched).length === Object.keys(relationships).length) {
+          complete("relationships", 180);
+          setTimeout(() => go(5), 900);
+        }
+      } else {
+        recordMastery("Relationship graph", false);
+        logReasoning("relationship_mismatch", {
+          sourceObject: source,
+          attemptedTargetObject: target,
+          expectedTargetObject: relationships[source],
+          isCorrect: false
+        });
+        trackAcademyAction(analyticsActions.relationshipMismatch, {
+          sourceObject: source,
+          attemptedTargetObject: target,
+          expectedTargetObject: relationships[source]
+        });
+        element.classList.add("border-red-300", "bg-red-50");
+        setTimeout(() => element.classList.remove("border-red-300", "bg-red-50"), 700);
+      }
+    }
+
+    function renderGraph() {
+      document.getElementById("graph").innerHTML = Object.entries(state.matched).map(([source, target]) => `
+        <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+          <div class="text-xs font-black uppercase tracking-[.14em] text-emerald-700">Relationship</div>
+          <div class="mt-1 font-black">${source} → ${target}</div>
+        </div>
+      `).join("");
+    }
+
+    function profileAssembly() {
+      return `
+        ${moduleCallout()}
+        ${levelValueQuestions("profile")}
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Level 4</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">Profile assembly: graph context becomes audience context.</h2>
+          <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-600">AEP can reason across related B2B records when identities and relationships are modeled correctly.</p>
+        </div>
+        <div class="grid gap-3 md:grid-cols-5">
+          ${["Source Systems", "AEP Schemas", "Relationships", "Profile Context", "Audience Ready"].map((step, index) => `
+            <div class="pulse-win rounded-3xl border border-white/80 bg-white/80 p-5 text-center shadow-sm" style="animation-delay:${index * 120}ms">
+              <div class="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-spectrum-blue font-black text-white">${index + 1}</div>
+              <div class="font-black">${step}</div>
+            </div>
+          `).join("")}
+        </div>
+        <div class="mt-6 rounded-3xl bg-slate-950 p-5 text-white">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Mental model</div>
+          <p class="mt-2 text-lg font-black">Relationships do not just join tables. They give segmentation and activation a business graph.</p>
+        </div>
+        <div class="mt-6">
+          ${practicalExample("What profile assembly makes possible", "A pricing page visit is tied to a person. Opportunity value is tied to an account. Campaign influence is tied to an opportunity. Profile assembly makes those connected facts usable together, so activation can say: this person is connected to a high-value account showing buying intent.", "Memory: profile assembly turns separate records into usable context, not one giant spreadsheet.")}
+        </div>
+        <button onclick="complete('profile'); go(6)" class="mt-6 rounded-2xl bg-spectrum-blue px-5 py-3 font-black text-white shadow-lg transition hover:-translate-y-0.5">Assemble profile graph</button>
+      `;
+    }
+
+    function segmentation() {
+      const options = [
+        "Business Person role = Decision Maker",
+        "Account has open opportunity > $1M",
+        "Visited pricing page",
+        "Campaign membership exists",
+        "Lives in California",
+        "Clicked unsubscribe"
+      ];
+      const segmentationRubric = [
+        ["What business action will this audience drive?", "Whether segmentation has a clear activation or measurement purpose.", "Build the segment and connect it to the journey, destination, or CJA readout.", "Do not build a segment just because the data is available."],
+        ["Which profile, event, and relationship facts are required?", "Whether the audience depends on current attributes, behavior, and connected business objects.", "Use the right primitive for each rule so the audience can be explained.", "Go back to schema, identity, or relationship modeling before segmenting."],
+        ["Does the audience need streaming or batch evaluation?", "Whether timing matters for the customer experience.", "Use streaming when immediate behavior should trigger action, use batch for slower operational decisions.", "Do not over-engineer streaming when same-day or daily evaluation is enough."],
+        ["Which merge policy or identity view should apply?", "Which version of the profile AEP should use when deciding eligibility.", "Choose and document the merge policy so qualification is repeatable.", "Do not validate the audience until profile assembly rules are clear."],
+        ["What suppressions or exclusions protect the customer experience?", "Whether the audience avoids over-targeting, ineligible users, or compliance issues.", "Add suppression logic for customers, unsubscribers, frequency, and consent.", "Do not activate until harm controls are explicit."],
+        ["Can we explain why a person entered or exited?", "Whether the audience is transparent enough for governance and support.", "Expose qualifying rules and source context.", "Do not operationalize a black-box audience."]
+      ];
+      const segmentationFlow = [
+        ["Who", "Profile attributes", "role = decision maker"],
+        ["What account", "Relationship context", "account has open opportunity"],
+        ["What happened", "Experience event", "visited pricing page"],
+        ["When", "Evaluation timing", "recent enough to act"],
+        ["Should exclude", "Suppression", "unsubscribe or existing customer"],
+        ["Where next", "Activation", "journey or destination"]
+      ];
+      return `
+        ${moduleCallout()}
+        ${levelValueQuestions("segments")}
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Level 5</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">Segmentation challenge.</h2>
+          <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-600">Segmentation is the decision layer. It turns governed profile, event, and relationship context into a qualified set of people or accounts that should receive a specific action or measurement treatment.</p>
+        </div>
+        <div class="rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Segmentation visual model</div>
+          <h3 class="mt-2 text-2xl font-black">Who qualifies, why now, and what happens next?</h3>
+          <div class="mt-5 grid gap-3 md:grid-cols-3 xl:grid-cols-6">
+            ${segmentationFlow.map(([title, type, example], index) => `<div class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+              <div class="grid h-10 w-10 place-items-center rounded-2xl ${index < 3 ? "bg-spectrum-blue" : index === 4 ? "bg-spectrum-red" : "bg-emerald-600"} text-sm font-black text-white">${index + 1}</div>
+              <div class="mt-3 font-black">${title}</div>
+              <div class="mt-1 text-xs font-black uppercase tracking-[.14em] text-slate-500">${type}</div>
+              <p class="mt-2 text-sm font-semibold leading-5 text-slate-700">${example}</p>
+            </div>`).join("")}
+          </div>
+        </div>
+        <div class="mt-6 rounded-3xl border border-amber-200 bg-amber-50 p-5">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-amber-700">Segmentation decision rubric</div>
+          <p class="mt-2 text-sm font-semibold leading-6 text-amber-950">Before building the rule, determine whether the segment is purposeful, explainable, timed correctly, and safe to activate.</p>
+          <div class="mt-4 grid gap-3 lg:grid-cols-2">
+            ${segmentationRubric.map(row => decisionRubricCard(...row, "amber")).join("")}
+          </div>
+        </div>
+        <div class="mt-6 rounded-3xl bg-slate-950 p-5 text-white">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Build this audience</div>
+          <p class="mt-2 text-sm font-semibold leading-6 text-slate-300">Find decision makers at accounts with open opportunities over $1M who visited the pricing page.</p>
+        </div>
+        <div class="mt-6 grid gap-3 md:grid-cols-2">
+          ${options.map(option => `<button onclick="toggleAudience('${option.replaceAll("'", "\\'")}')" id="aud-${btoa(option).replaceAll("=", "")}" class="rounded-2xl border border-slate-200 bg-white p-4 text-left font-black shadow-sm transition hover:-translate-y-0.5">${option}</button>`).join("")}
+        </div>
+        <button onclick="checkAudience()" class="mt-6 rounded-2xl bg-spectrum-blue px-5 py-3 font-black text-white shadow-lg transition hover:-translate-y-0.5">Validate audience</button>
+        <div id="audienceResult" class="mt-4"></div>
+        <div class="mt-6">
+          ${practicalExample("Why these three rules matter", "Decision Maker is a person-level role. Open opportunity over $1M is account or opportunity context. Visited pricing page is behavior. A strong B2B audience often combines all three: who the person is, what the account is worth, and what the person did.", "Memory: person + account + behavior is stronger than any one signal alone.")}
+        </div>
+      `;
+    }
+
+    function toggleAudience(option) {
+      const id = "aud-" + btoa(option).replaceAll("=", "");
+      const el = document.getElementById(id);
+      if (state.audience.has(option)) {
+        state.audience.delete(option);
+        el.classList.remove("bg-blue-50", "border-spectrum-blue");
+      } else {
+        state.audience.add(option);
+        el.classList.add("bg-blue-50", "border-spectrum-blue");
+      }
+    }
+
+    function checkAudience() {
+      const needed = ["Business Person role = Decision Maker", "Account has open opportunity > $1M", "Visited pricing page"];
+      const correct = needed.every(item => state.audience.has(item)) && [...state.audience].every(item => needed.includes(item));
+      recordMastery("Audience composition", correct);
+      logReasoning("audience_validation", {
+        selectedCriteria: [...state.audience],
+        requiredCriteria: needed,
+        isCorrect: correct
+      });
+      trackAcademyAction(analyticsActions.audienceValidate, {
+        selectedCriteria: [...state.audience],
+        requiredCriteria: needed,
+        isCorrect: correct
+      });
+      document.getElementById("audienceResult").innerHTML = correct
+        ? `<div class="rounded-3xl border border-emerald-200 bg-emerald-50 p-5 font-black text-emerald-900">✓ Audience is valid. Cross-object segmentation succeeded.</div>`
+        : `<div class="rounded-3xl border border-amber-200 bg-amber-50 p-5 font-black text-amber-900">Not quite. Use only decision maker + opportunity value + pricing behavior.</div>`;
+      if (correct) {
+        complete("segments", 180);
+        setTimeout(() => go(7), 900);
+      }
+    }
+
+    function activation() {
+      if (currentModule().id === "capstone") return capstoneAssessment();
+      return `
+        ${moduleCallout()}
+        ${levelValueQuestions("activation")}
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-red">Boss Battle</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">Activate the journey.</h2>
+          <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-600">Push the audience from source systems through AEP relationships into a destination such as Marketo or LinkedIn.</p>
+        </div>
+        <div class="grid gap-3 md:grid-cols-6">
+          ${["Source Systems", "AEP", "Relationships", "Profile", "Audience", "Destination"].map((step, index) => `
+            <div class="rounded-3xl border border-white/80 bg-white/80 p-4 text-center shadow-sm">
+              <div class="mx-auto mb-3 grid h-11 w-11 place-items-center rounded-2xl ${index === 5 ? "bg-spectrum-red" : "bg-spectrum-blue"} font-black text-white">${index + 1}</div>
+              <div class="text-sm font-black">${step}</div>
+            </div>
+          `).join("")}
+        </div>
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
+          ${card("Marketo", "Send known B2B people into nurture, sales alerting, or account-based orchestration.")}
+          ${card("LinkedIn", "Activate account/person audience context into paid media or matched audience workflows.")}
+        </div>
+        ${activationRoutingLesson()}
+        <div class="mt-6">
+          ${practicalExample("Activation touchpoint", "If Sarah, the CFO at Acme, qualifies for the high-value opportunity audience, AEP can send her to Marketo for an advisor follow-up sequence and LinkedIn for account-based media. The destination receives an audience, but the reason she qualifies came from the graph.", "Memory: activation is the last mile. Bad modeling upstream creates bad outreach downstream.")}
+        </div>
+        <button onclick="complete('activation', 250)" class="mt-6 rounded-2xl bg-spectrum-red px-5 py-3 font-black text-white shadow-lg transition hover:-translate-y-0.5">Complete boss battle</button>
+      `;
+    }
+
+    function capstoneAssessment() {
+      const rubric = [
+        ["Purpose and business outcome", 15],
+        ["Schema and object model", 20],
+        ["Identity and namespace strategy", 20],
+        ["Relationships and cardinality", 15],
+        ["Audience, journey, and destination plan", 15],
+        ["Engineering proof and QA", 15]
+      ];
+      return `
+        <div class="mb-6">
+          <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-red">Timed capstone</div>
+          <h2 class="mt-2 text-4xl font-black tracking-tight">Design the full B2B schema plus activation plan.</h2>
+          <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-600">No hints mode. Use the rubric before you begin, then submit one concise architecture plan.</p>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
+          <div class="rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+            <div class="text-xs font-black uppercase tracking-[.18em] text-spectrum-blue">Forward-deployed brief</div>
+            <p class="mt-3 text-sm font-semibold leading-6 text-slate-700">A strategic account escalated after receiving irrelevant nurture while an active $1.4M opportunity was open. Sales needs qualified buying committee members routed to advisor follow-up within 15 minutes of pricing intent. Compliance requires consent-aware suppression. Analytics needs CJA proof that the new journey improves opportunity progression. Design the schema, identity, relationship, audience, AJO, destination, CJA, and QA plan that would hold up in production.</p>
+            <div class="mt-5 rounded-3xl bg-slate-950 p-5 text-white">
+              <div class="text-xs font-black uppercase tracking-[.18em] text-slate-400">Rubric</div>
+              <div class="mt-4 grid gap-2">
+                ${rubric.map(([label, points]) => `<div class="flex items-center justify-between rounded-2xl bg-white/10 p-3 text-sm font-black"><span>${label}</span><span>${points}</span></div>`).join("")}
+              </div>
+            </div>
+            <button onclick="startCapstone()" class="mt-5 rounded-2xl bg-spectrum-red px-5 py-3 font-black text-white shadow-lg">Start timer</button>
+          </div>
+          <div class="rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm">
+            <div class="flex items-center justify-between">
+              <div class="text-xs font-black uppercase tracking-[.18em] text-slate-500">Response</div>
+              <div id="capstoneTimer" class="rounded-2xl bg-slate-100 px-3 py-2 text-sm font-black">20:00</div>
+            </div>
+            <textarea id="capstoneAnswer" class="mt-4 min-h-80 w-full rounded-3xl border border-slate-200 bg-white p-4 text-sm font-semibold" placeholder="Write your architecture plan here...">${state.capstone.answer}</textarea>
+            <button onclick="submitCapstone()" class="mt-4 rounded-2xl bg-slate-950 px-5 py-3 font-black text-white">Submit capstone</button>
+            <div id="capstoneResult" class="mt-4">${state.capstone.score === null ? "" : certificateView(false)}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function startCapstone() {
+      state.capstone.startedAt = Date.now();
+      trackAcademyAction(analyticsActions.capstoneStart, {
+        timeLimitMinutes: 20
+      });
+      const timer = document.getElementById("capstoneTimer");
+      const tick = () => {
+        if (!state.capstone.startedAt || state.capstone.submitted) return;
+        const elapsed = Math.floor((Date.now() - state.capstone.startedAt) / 1000);
+        const remaining = Math.max(0, 1200 - elapsed);
+        const minutes = String(Math.floor(remaining / 60)).padStart(2, "0");
+        const seconds = String(remaining % 60).padStart(2, "0");
+        if (timer) timer.textContent = `${minutes}:${seconds}`;
+        if (remaining > 0) setTimeout(tick, 1000);
+      };
+      tick();
+    }
+
+    function submitCapstone() {
+      const answer = (document.getElementById("capstoneAnswer")?.value || "").trim();
+      state.capstone.answer = answer;
+      const checks = [
+        /business|outcome|purpose/i,
+        /schema|xdm|object/i,
+        /identity|namespace|ecid|crmid|email/i,
+        /relationship|cardinality|account|person/i,
+        /audience|journey|destination|activation/i,
+        /qa|test|validate|monitor|parity/i
+      ];
+      const score = checks.reduce((sum, check) => sum + (check.test(answer) ? 1 : 0), 0);
+      const finalScore = Math.round((score / checks.length) * 100);
+      state.capstone.score = finalScore;
+      state.capstone.submitted = true;
+      recordMastery("Capstone architecture", finalScore >= 80);
+      state.ontology.activationPlan = [
+        { destination: "AJO", purpose: "journey orchestration from capstone plan" },
+        { destination: "RTCDP destination", purpose: "audience activation from capstone plan" },
+        { destination: "CJA", purpose: "measurement and proof from capstone plan" }
+      ];
+      logReasoning("capstone_submission", {
+        answer,
+        score: finalScore,
+        passed: finalScore >= 80,
+        checksMatched: checks.map(check => check.test(answer))
+      });
+      trackAcademyAction(analyticsActions.capstoneSubmit, {
+        wordCount: answer.split(/\s+/).filter(Boolean).length
+      });
+      trackAcademyAction(analyticsActions.capstoneScore, {
+        score: finalScore,
+        passed: finalScore >= 80
+      });
+      document.getElementById("capstoneResult").innerHTML = certificateView(false);
+      complete("activation", 250);
+    }
+
+    function certificateView(fullPage) {
+      const score = state.capstone.score ?? 0;
+      const passed = score >= 80;
+      return `<div class="rounded-3xl border ${passed ? "border-emerald-200 bg-emerald-50" : "border-amber-200 bg-amber-50"} p-5">
+        <div class="text-xs font-black uppercase tracking-[.18em] ${passed ? "text-emerald-700" : "text-amber-700"}">Architect certificate</div>
+        <h3 class="mt-2 text-3xl font-black">${passed ? "AEP Architect Readiness" : "Practice Review Needed"}</h3>
+        <p class="mt-3 text-sm font-semibold leading-6 text-slate-700">Issued to: Current learner. Score: ${score}%. Date: ${new Date().toLocaleDateString()}.</p>
+        <div class="mt-4 grid gap-2 md:grid-cols-3">
+          <div class="rounded-2xl bg-white p-3 text-sm font-black">Modules: ${modules.length}</div>
+          <div class="rounded-2xl bg-white p-3 text-sm font-black">Method: First principles architecture</div>
+          <div class="rounded-2xl bg-white p-3 text-sm font-black">Mode: Timed capstone</div>
+        </div>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <button onclick="generateCertificate()" class="rounded-2xl bg-spectrum-blue px-5 py-3 font-black text-white">Generate certificate view</button>
+          <button onclick="exportOntologyJson()" class="rounded-2xl bg-white px-5 py-3 font-black text-spectrum-blue shadow-sm">Download ontology JSON</button>
+          <button onclick="exportRelationshipGraphHtml()" class="rounded-2xl bg-white px-5 py-3 font-black text-spectrum-blue shadow-sm">Download graph</button>
+        </div>
+      </div>`;
+    }
+
+    function generateCertificate() {
+      state.capstone.certificateVisible = true;
+      trackAcademyAction(analyticsActions.certificateGenerate, {
+        score: state.capstone.score
+      });
+      const cert = window.open("", "_blank");
+      if (!cert) return;
+      cert.document.write(`<!doctype html><html><head><title>AEP Architect Certificate</title><script src="https://cdn.tailwindcss.com"><\/script></head><body class="min-h-screen bg-slate-100 p-8"><main class="mx-auto max-w-4xl rounded-[2rem] bg-white p-10 shadow-2xl"><div class="text-xs font-black uppercase tracking-[.2em] text-blue-600">AEP Academy</div><h1 class="mt-4 text-5xl font-black">AEP Architect Readiness Certificate</h1><p class="mt-6 text-xl font-semibold">The learner completed the capstone assessment for B2B XDM schema and activation architecture.</p><div class="mt-8 grid gap-4 md:grid-cols-3"><div class="rounded-3xl bg-slate-100 p-5"><div class="text-sm font-bold text-slate-500">Score</div><div class="text-4xl font-black">${state.capstone.score}%</div></div><div class="rounded-3xl bg-slate-100 p-5"><div class="text-sm font-bold text-slate-500">Date</div><div class="text-2xl font-black">${new Date().toLocaleDateString()}</div></div><div class="rounded-3xl bg-slate-100 p-5"><div class="text-sm font-bold text-slate-500">Method</div><div class="text-2xl font-black">First principles</div></div></div><p class="mt-8 text-sm font-semibold text-slate-600">Certificate generated locally by the AEP Academy prototype.</p></main></body></html>`);
+      cert.document.close();
+    }
+
+    function burst() {
+      const colors = ["#fa0f00", "#1473e6", "#10b981", "#f59e0b", "#111827"];
+      for (let i = 0; i < 26; i++) {
+        const piece = document.createElement("div");
+        piece.className = "confetti";
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.background = colors[i % colors.length];
+        piece.style.animationDelay = Math.random() * 250 + "ms";
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 1500);
+      }
+    }
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      state.level = 0;
+      state.xp = 0;
+      state.completed = new Set();
+      state.matched = {};
+      state.audience = new Set();
+      state.socratic = {};
+      trackAcademyAction(analyticsActions.reset, {
+        resetType: "manual"
+      });
+      render();
+      document.getElementById("xp").textContent = "0";
+    });
+
+    loadMastery();
+    render();
+    window.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeAuditModal();
+    });
+    trackAcademyAction(analyticsActions.levelView, {
+      navigationType: "initial_load",
+      targetLevelIndex: state.level
+    });
+  </script>
+</body>
+</html>
