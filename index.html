@@ -731,6 +731,139 @@
             font-size: 0.75rem;
         }
 
+        .article-trigger {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border: 0;
+            border-radius: 999px;
+            background: var(--ink);
+            color: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 800;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .article-trigger:hover {
+            background: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .article-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(11, 16, 32, 0.72);
+            backdrop-filter: blur(16px);
+        }
+
+        .article-modal.is-open {
+            display: flex;
+        }
+
+        .article-dialog {
+            width: min(1120px, 100%);
+            max-height: 90vh;
+            overflow: auto;
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            border-radius: 1.5rem;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.28);
+        }
+
+        .article-modal-header {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+        }
+
+        .article-modal-title {
+            margin: 0;
+            color: var(--ink);
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .article-close {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            min-width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--ink);
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: 900;
+        }
+
+        .article-modal-body {
+            padding: 1.5rem;
+        }
+
+        .article-hero-image {
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .article-content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .article-panel {
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            background: var(--surface);
+        }
+
+        .article-panel h3 {
+            margin-bottom: 0.6rem;
+            color: var(--ink);
+            font-size: 1.15rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+
+        .article-panel p,
+        .article-panel li {
+            color: var(--text-secondary);
+            font-weight: 650;
+            line-height: 1.55;
+        }
+
+        .article-panel ul,
+        .article-panel ol {
+            margin-top: 0.75rem;
+            padding-left: 1.2rem;
+        }
+
         /* Contact Section */
         .contact {
             background: linear-gradient(180deg, var(--surface), #fff);
@@ -830,6 +963,20 @@
             .contact-link {
                 width: 100%;
                 justify-content: center;
+            }
+
+            .article-modal {
+                align-items: flex-end;
+                padding: 0.5rem;
+            }
+
+            .article-dialog {
+                max-height: 92vh;
+                border-radius: 1.25rem;
+            }
+
+            .article-content-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1151,6 +1298,23 @@
                 <div class="blog-grid">
                     <article class="blog-card">
                         <div class="blog-content">
+                            <div class="blog-meta">Architecture note · CDP strategy</div>
+                            <h3 class="blog-title">
+                                <a href="#cdp-output-framework" onclick="openArticleModal('cdp-output-framework'); return false;">What Should a CDP Actually Produce?</a>
+                            </h3>
+                            <p>A business and technical narrative for aligning CDP architecture to outcomes, ROI, identity, audiences, journeys, and measurement.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">#CDPStrategy</span>
+                                <span class="blog-tag">#RTCDP</span>
+                                <span class="blog-tag">#B2B</span>
+                                <span class="blog-tag">#B2C</span>
+                            </div>
+                            <button type="button" class="article-trigger" onclick="openArticleModal('cdp-output-framework')">Read Framework</button>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-content">
                             <div class="blog-meta">4 min read · Updated Feb 2024</div>
                             <h3 class="blog-title">
                                 <a href="/blog/unifying-mobile-data-cdp.html">Unifying Mobile Data for CDP</a>
@@ -1231,6 +1395,71 @@
             </div>
         </section>
 
+        <div id="cdp-output-framework" class="article-modal" aria-hidden="true" onclick="if (event.target === this) closeArticleModal('cdp-output-framework')">
+            <article class="article-dialog" role="dialog" aria-modal="true" aria-labelledby="cdp-output-title">
+                <div class="article-modal-header">
+                    <h2 id="cdp-output-title" class="article-modal-title">What Should a CDP Actually Produce?</h2>
+                    <button type="button" class="article-close" aria-label="Close article" onclick="closeArticleModal('cdp-output-framework')">&times;</button>
+                </div>
+                <div class="article-modal-body">
+                    <div class="article-content-grid">
+                        <div class="article-panel">
+                            <h3>The Real Question</h3>
+                            <p>A CDP is not valuable because it stores profiles. It is valuable when it helps the business decide who to understand, what to activate, how to personalize, and how to measure whether those decisions created value.</p>
+                            <p>The first architecture question is not “which connector do we use?” It is: what business output are we trying to produce from customer data over the next 3-5 years?</p>
+                        </div>
+                        <div class="article-panel">
+                            <h3>Business Lens</h3>
+                            <p>From a business lens, a CDP should help the enterprise grow the right relationships. In B2C, that often means engagement, retention, lifetime value, loyalty, conversion, and personalization for individuals.</p>
+                            <p>In B2B, the value often shifts toward account growth, buying group influence, expansion, retention, product adoption, pipeline acceleration, and relationship health.</p>
+                        </div>
+                        <div class="article-panel">
+                            <h3>Technical Lens</h3>
+                            <p>From a technical lens, a CDP turns governed data into reusable activation and measurement assets: schemas, datasets, identities, profiles, audiences, journeys, destinations, and reporting views.</p>
+                            <p>The architecture has to answer which entity is primary, which identities are trusted, which data is profile-enabled, which relationships matter, and which signals are safe to activate.</p>
+                        </div>
+                        <div class="article-panel">
+                            <h3>Where ROI Comes From</h3>
+                            <p>ROI comes from reducing waste and increasing precision. Better identity reduces duplicate spend. Better audiences reduce irrelevant activation. Better governance reduces rework. Better measurement gives leaders confidence to invest.</p>
+                            <ul>
+                                <li>Marketing gets faster activation with clearer audience ownership.</li>
+                                <li>Analytics gets more reliable measurement across channels.</li>
+                                <li>Technology gets fewer one-off integrations and more reusable data contracts.</li>
+                                <li>Executives get a roadmap tied to growth, retention, and operating efficiency.</li>
+                            </ul>
+                        </div>
+                        <div class="article-panel">
+                            <h3>How Enterprises Should Shape the CDP</h3>
+                            <p>Enterprises should shape a CDP around the outcomes they need to manage, not around the tools they already own. The work starts by deciding whether the CDP is primarily person-centric, account-centric, or intentionally hybrid.</p>
+                            <ol>
+                                <li>Define the business outcome: growth, retention, expansion, loyalty, engagement, or relationship health.</li>
+                                <li>Define the primary entity: person, household, account, organization, opportunity, or buying group.</li>
+                                <li>Define the data model: events, attributes, relationships, identities, and lifecycle states.</li>
+                                <li>Define activation: audiences, journeys, personalization, paid media, and downstream destinations.</li>
+                                <li>Define measurement: parity, lift, adoption, revenue, retention, and operational confidence.</li>
+                            </ol>
+                        </div>
+                        <div class="article-panel">
+                            <h3>What the Visual Represents</h3>
+                            <p>The visual below is a decision aid. It compares two common CDP operating models: a person-centric CDP for individual outcomes and a business-centric CDP for account or organization outcomes.</p>
+                            <p>It is not meant to say one side is always better. It is meant to help leadership see which data model, identity strategy, lifecycle, use cases, and success metrics fit the value they are trying to create.</p>
+                        </div>
+                    </div>
+                    <img class="article-hero-image" src="assets/cdp-output-decision-framework.png" alt="CDP output decision framework comparing person-centric CDP and business-centric B2B CDP architecture" />
+                    <div class="article-content-grid">
+                        <div class="article-panel">
+                            <h3>Practical Takeaway</h3>
+                            <p>A CDP should produce governed customer intelligence that can be activated repeatedly and measured credibly. If the CDP only creates more data movement, it has not become a business capability yet.</p>
+                        </div>
+                        <div class="article-panel">
+                            <h3>Architecture Principle</h3>
+                            <p>Decide the output before designing the input. Once the target outcome is clear, schema strategy, identity resolution, profile enablement, segmentation, journeys, destinations, and dashboards become easier to sequence.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
         <section id="contact" class="contact">
             <div class="container">
                 <h2 class="section-title">Work With Scott</h2>
@@ -1266,9 +1495,38 @@
     </footer>
 
     <script>
+        function openArticleModal(id) {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            trackPortfolioEvent('article_modal_open', {
+                articleId: id,
+                articleTitle: 'What Should a CDP Actually Produce?'
+            });
+        }
+
+        function closeArticleModal(id) {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.article-modal.is-open').forEach(modal => {
+                    closeArticleModal(modal.id);
+                });
+            }
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === '#cdp-output-framework') return;
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
