@@ -5,6 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scott Gresack – Martech Engineer & CDP Architect</title>
     <meta name="description" content="Martech Engineer specializing in Adobe Experience Platform, CDPs, and AI-driven personalization. Based in Baltimore, MD.">
+    <script>
+        window.digitalData = window.digitalData || {
+            page: {
+                pageName: "Scott Gresack Portfolio | Home",
+                siteSection: "Portfolio",
+                pageType: "portfolio_home",
+                language: "en-US"
+            },
+            user: {
+                authenticationStatus: "anonymous"
+            },
+            eventData: {},
+            events: []
+        };
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            window.dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-Y8617TLMYK", {
+            anonymize_ip: true,
+            page_title: "Scott Gresack Portfolio | Home",
+            page_path: window.location.pathname || "/portfolio/"
+        });
+    </script>
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture identify register register_once unregister reset get_distinct_id get_session_id get_session_replay_url set_config opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        posthog.init("phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U", {
+            api_host: "https://us.i.posthog.com",
+            person_profiles: "always",
+            capture_pageview: true
+        });
+    </script>
+    <script>
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "pmp4efispy");
+    </script>
+    <script async src="https://assets.adobedtm.com/0ded84b93882/71f267854b6d/launch-b015179db04d-development.min.js"></script>
+    <script>
+        window.trackPortfolioEvent = function(action, detail) {
+            const event = {
+                action: action,
+                pageName: window.digitalData.page.pageName,
+                siteSection: window.digitalData.page.siteSection,
+                pageType: window.digitalData.page.pageType,
+                timestamp: new Date().toISOString(),
+                ...(detail || {})
+            };
+            window.digitalData.eventData = event;
+            window.digitalData.events.push(event);
+
+            if (typeof window._satellite !== "undefined" && typeof window._satellite.track === "function") {
+                window._satellite.track("portfolio_event", event);
+            }
+            if (typeof window.alloy === "function") {
+                window.alloy("sendEvent", {
+                    xdm: {
+                        eventType: "web.webinteraction.linkClicks",
+                        web: {
+                            webPageDetails: {
+                                name: event.pageName,
+                                siteSection: event.siteSection
+                            },
+                            webInteraction: {
+                                name: action,
+                                type: "other"
+                            }
+                        }
+                    },
+                    data: {
+                        portfolio: event
+                    }
+                });
+            }
+            if (typeof window.gtag === "function") {
+                window.gtag("event", action, event);
+            }
+            if (window.posthog && typeof window.posthog.capture === "function") {
+                window.posthog.capture(action, event);
+            }
+            if (typeof window.clarity === "function") {
+                window.clarity("event", action);
+                window.clarity("set", "portfolio_section", event.siteSection);
+            }
+        };
+    </script>
     
     <style>
         * {
@@ -498,7 +590,7 @@
             <div class="container">
                 <h1>Scott Gresack</h1>
                 <p class="subtitle">Martech Engineer & Data Platform Architect</p>
-                <a href="#contact" class="cta-button">Get In Touch</a>
+                <a href="#contact" class="cta-button" onclick="trackPortfolioEvent('cta_click', { linkText: 'Get In Touch', destination: '#contact' })">Get In Touch</a>
             </div>
         </section>
 
@@ -574,10 +666,10 @@
                             <span class="tech-tag">Training Game</span>
                         </div>
                         <div class="tool-actions">
-                            <a href="https://scott-gresack.github.io/portfolio/aep-b2b-xdm-academy/index.html" class="tool-action-primary">
+                            <a href="https://scott-gresack.github.io/portfolio/aep-b2b-xdm-academy/index.html" class="tool-action-primary" onclick="trackPortfolioEvent('project_open', { projectName: 'AEP Academy', destination: this.href })">
                                 Open Academy
                             </a>
-                            <a href="https://github.com/scott-Gresack/portfolio/tree/main/aep-b2b-xdm-academy" class="tool-action-secondary">
+                            <a href="https://github.com/scott-Gresack/portfolio/tree/main/aep-b2b-xdm-academy" class="tool-action-secondary" onclick="trackPortfolioEvent('source_open', { projectName: 'AEP Academy', destination: this.href })">
                                 View Source
                             </a>
                         </div>
@@ -770,19 +862,19 @@
                     <p>Based in Baltimore, MD – Available for remote and on-site consulting.<br>
                     Reply within 1 business day.</p>
                     <div class="contact-links">
-                        <a href="mailto:gresack.scott@gmail.com" class="contact-link">
+                        <a href="mailto:gresack.scott@gmail.com" class="contact-link" onclick="trackPortfolioEvent('contact_click', { contactType: 'email' })">
                             ✉️ Email
                         </a>
-                        <a href="tel:+14403903237" class="contact-link">
+                        <a href="tel:+14403903237" class="contact-link" onclick="trackPortfolioEvent('contact_click', { contactType: 'phone' })">
                             📞 Call
                         </a>
-                        <a href="https://linkedin.com/in/scottgresack" class="contact-link">
+                        <a href="https://linkedin.com/in/scottgresack" class="contact-link" onclick="trackPortfolioEvent('contact_click', { contactType: 'linkedin', destination: this.href })">
                             💼 LinkedIn
                         </a>
-                        <a href="https://github.com/scott-gresack" class="contact-link">
+                        <a href="https://github.com/scott-gresack" class="contact-link" onclick="trackPortfolioEvent('contact_click', { contactType: 'github', destination: this.href })">
                             📁 GitHub
                         </a>
-                        <a href="https://scott-gresack.github.io/portfolio" class="contact-link">
+                        <a href="https://scott-gresack.github.io/portfolio" class="contact-link" onclick="trackPortfolioEvent('contact_click', { contactType: 'live_portfolio', destination: this.href })">
                             🌐 Live Portfolio
                         </a>
                     </div>
