@@ -193,6 +193,72 @@
     @keyframes fall {
       to { transform: translateY(105vh) rotate(380deg); opacity: 0; }
     }
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      margin: -1.25rem -1rem 1rem;
+      border-bottom: 1px solid rgba(226, 232, 240, .9);
+      background: rgba(255, 255, 255, .86);
+      backdrop-filter: blur(18px);
+    }
+    .site-nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: .75rem 1rem;
+    }
+    .site-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: -.01em;
+    }
+    .site-nav-mark {
+      display: grid;
+      width: 2.25rem;
+      height: 2.25rem;
+      place-items: center;
+      border-radius: .85rem;
+      background: #fa0f00;
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(250, 15, 0, .18);
+    }
+    .site-nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+    .site-nav-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border-radius: 999px;
+      padding: .65rem .95rem;
+      color: #334155;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 800;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .site-nav-link:hover {
+      background: rgba(20, 115, 230, .1);
+      color: #075aa8;
+      transform: translateY(-1px);
+    }
+    .site-nav-link.active {
+      background: #0f172a;
+      color: #fff;
+    }
     @media (max-width: 480px) {
       main { padding: 0.75rem; }
       header { position: static !important; border-radius: 1.25rem !important; margin-bottom: 1rem !important; }
@@ -228,6 +294,19 @@
         min-height: 44px;
         min-width: 44px;
       }
+      .site-nav {
+        margin: -.75rem -.75rem 1rem;
+      }
+      .site-nav-inner {
+        align-items: stretch;
+        flex-direction: column;
+      }
+      .site-nav-links {
+        justify-content: stretch;
+      }
+      .site-nav-link {
+        flex: 1 1 auto;
+      }
       #levelNav button {
         padding-top: .5rem;
         padding-bottom: .5rem;
@@ -250,6 +329,20 @@
 </head>
 <body class="min-h-screen text-spectrum-ink">
   <main class="mx-auto w-full max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+    <nav class="site-nav" aria-label="Portfolio navigation">
+      <div class="site-nav-inner">
+        <a class="site-nav-brand" href="https://scott-gresack.github.io/portfolio/">
+          <span class="site-nav-mark">A</span>
+          <span>Scott Gresack Portfolio</span>
+        </a>
+        <div class="site-nav-links">
+          <a class="site-nav-link" href="https://scott-gresack.github.io/portfolio/">Portfolio Home</a>
+          <a class="site-nav-link" href="https://scott-gresack.github.io/portfolio/#tools">Projects</a>
+          <a class="site-nav-link active" href="https://scott-gresack.github.io/portfolio/aep-b2b-xdm-academy/index.html" aria-current="page">AEP Academy</a>
+        </div>
+      </div>
+    </nav>
+
     <header class="sticky top-3 z-40 mb-6 rounded-3xl border border-white/80 glass shadow-soft">
       <div class="flex flex-col gap-4 p-4 lg:flex-row lg:items-center lg:justify-between">
         <div class="flex items-center gap-3">
