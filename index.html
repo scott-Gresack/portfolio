@@ -821,12 +821,110 @@
             padding: 1.5rem;
         }
 
-        .article-hero-image {
-            width: 100%;
-            height: auto;
+        .cdp-sequence {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin: 0 0 1.5rem;
+            padding: 1rem;
             border: 1px solid var(--border);
-            border-radius: 1rem;
+            border-radius: 1.25rem;
+            background:
+                linear-gradient(135deg, rgba(15, 98, 254, 0.10), rgba(22, 163, 74, 0.08)),
+                #fff;
             box-shadow: var(--shadow-card);
+        }
+
+        .cdp-step {
+            position: relative;
+            min-height: 142px;
+            padding: 1rem;
+            border: 1px solid rgba(15, 98, 254, 0.14);
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.84);
+        }
+
+        .cdp-step:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -0.55rem;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-top: 2px solid rgba(15, 98, 254, 0.45);
+            border-right: 2px solid rgba(15, 98, 254, 0.45);
+            transform: translateY(-50%) rotate(45deg);
+            background: transparent;
+        }
+
+        .cdp-step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 999px;
+            background: var(--ink);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 900;
+        }
+
+        .cdp-step strong {
+            display: block;
+            margin-top: 0.75rem;
+            color: var(--ink);
+            font-size: 0.98rem;
+            line-height: 1.18;
+            letter-spacing: -0.02em;
+        }
+
+        .cdp-step span {
+            display: block;
+            margin-top: 0.55rem;
+            color: var(--text-secondary);
+            font-size: 0.86rem;
+            font-weight: 650;
+            line-height: 1.35;
+        }
+
+        .cdp-decision-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .cdp-decision-card {
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: 1.15rem;
+            background: #fff;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+        }
+
+        .cdp-decision-card.person {
+            border-color: rgba(15, 98, 254, 0.24);
+            background: linear-gradient(180deg, rgba(15, 98, 254, 0.08), #fff);
+        }
+
+        .cdp-decision-card.business {
+            border-color: rgba(22, 163, 74, 0.24);
+            background: linear-gradient(180deg, rgba(22, 163, 74, 0.08), #fff);
+        }
+
+        .cdp-decision-card h3 {
+            color: var(--ink);
+            font-size: 1.15rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+
+        .cdp-decision-card p {
+            margin-top: 0.6rem;
+            color: var(--text-secondary);
+            font-weight: 650;
+            line-height: 1.5;
         }
 
         .article-content-grid {
@@ -977,6 +1075,18 @@
 
             .article-content-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .cdp-sequence,
+            .cdp-decision-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cdp-step:not(:last-child)::after {
+                top: auto;
+                right: 50%;
+                bottom: -0.55rem;
+                transform: translateX(50%) rotate(135deg);
             }
         }
 
@@ -1402,6 +1512,52 @@
                     <button type="button" class="article-close" aria-label="Close article" onclick="closeArticleModal('cdp-output-framework')">&times;</button>
                 </div>
                 <div class="article-modal-body">
+                    <div class="cdp-sequence" aria-label="CDP outcome architecture sequence">
+                        <div class="cdp-step">
+                            <div class="cdp-step-number">01</div>
+                            <strong>Business Outcome</strong>
+                            <span>Clarify whether the CDP is meant to drive growth, retention, loyalty, expansion, efficiency, or relationship health.</span>
+                        </div>
+                        <div class="cdp-step">
+                            <div class="cdp-step-number">02</div>
+                            <strong>Primary Entity</strong>
+                            <span>Choose the core object: person, household, account, organization, opportunity, buying group, or hybrid model.</span>
+                        </div>
+                        <div class="cdp-step">
+                            <div class="cdp-step-number">03</div>
+                            <strong>Data Contract</strong>
+                            <span>Model events, attributes, identities, consent, relationships, lifecycle states, and governed source ownership.</span>
+                        </div>
+                        <div class="cdp-step">
+                            <div class="cdp-step-number">04</div>
+                            <strong>Audience Logic</strong>
+                            <span>Turn governed profiles into reusable audience rules, qualification logic, suppression, and prioritization.</span>
+                        </div>
+                        <div class="cdp-step">
+                            <div class="cdp-step-number">05</div>
+                            <strong>Activation</strong>
+                            <span>Send the right decision to AJO, Target, paid media, email, sales, service, or downstream systems.</span>
+                        </div>
+                        <div class="cdp-step">
+                            <div class="cdp-step-number">06</div>
+                            <strong>Measurement</strong>
+                            <span>Prove whether the architecture improved revenue, retention, speed, quality, adoption, or confidence.</span>
+                        </div>
+                    </div>
+
+                    <div class="cdp-decision-grid">
+                        <div class="cdp-decision-card person">
+                            <h3>Person-Centric CDP</h3>
+                            <p><strong>Business lens:</strong> optimize engagement, conversion, retention, loyalty, personalization, and individual lifetime value.</p>
+                            <p><strong>Technical lens:</strong> emphasize individual identity resolution, event history, preferences, consent, profile attributes, and lifecycle stages.</p>
+                        </div>
+                        <div class="cdp-decision-card business">
+                            <h3>Business-Centric CDP</h3>
+                            <p><strong>Business lens:</strong> optimize account growth, buying-group influence, expansion, relationship health, pipeline acceleration, and retention.</p>
+                            <p><strong>Technical lens:</strong> emphasize account objects, person-account relationships, opportunities, product usage, firmographics, hierarchies, and role-based influence.</p>
+                        </div>
+                    </div>
+
                     <div class="article-content-grid">
                         <div class="article-panel">
                             <h3>The Real Question</h3>
@@ -1440,12 +1596,11 @@
                             </ol>
                         </div>
                         <div class="article-panel">
-                            <h3>What the Visual Represents</h3>
-                            <p>The visual below is a decision aid. It compares two common CDP operating models: a person-centric CDP for individual outcomes and a business-centric CDP for account or organization outcomes.</p>
-                            <p>It is not meant to say one side is always better. It is meant to help leadership see which data model, identity strategy, lifecycle, use cases, and success metrics fit the value they are trying to create.</p>
+                            <h3>How to Read the Sequence</h3>
+                            <p>The sequence at the top is an original decision aid. It starts with the business outcome, then works backward into entity choice, data contract, audience logic, activation, and measurement.</p>
+                            <p>It is not meant to say one CDP model is always better. It is meant to help leadership see which data model, identity strategy, lifecycle, use cases, and success metrics fit the value they are trying to create.</p>
                         </div>
                     </div>
-                    <img class="article-hero-image" src="assets/cdp-output-decision-framework.png" alt="CDP output decision framework comparing person-centric CDP and business-centric B2B CDP architecture" />
                     <div class="article-content-grid">
                         <div class="article-panel">
                             <h3>Practical Takeaway</h3>
