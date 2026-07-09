@@ -196,6 +196,124 @@
             }(window, "ppms", ["tm", "cm"]);
         })(window, document, 'dataLayer', '40c8a729-ebc6-4dfe-98be-6617064e43a9');
     </script>
+    <!-- Adobe Launch / Web SDK container -->
+    <script async src="https://assets.adobedtm.com/0ded84b93882/71f267854b6d/launch-b015179db04d-development.min.js"></script>
+    <script>
+        window.digitalData = window.digitalData || {
+            page: {
+                pageName: "Alloy and AppMeasurement Payload Analyzer",
+                siteSection: "Portfolio Tools",
+                pageType: "tool",
+                language: "en-US"
+            },
+            user: {
+                authenticationStatus: "anonymous"
+            },
+            eventData: {},
+            events: []
+        };
+
+        window.trackToolInteraction = function (action, detail) {
+            const safeAction = String(action || "tool_interaction").replace(/[^a-zA-Z0-9_:-]/g, "_");
+            const event = {
+                action: safeAction,
+                tool_name: "Alloy and AppMeasurement Payload Analyzer",
+                tool_version: "1.1.0",
+                page_name: window.digitalData.page.pageName,
+                site_section: window.digitalData.page.siteSection,
+                page_type: window.digitalData.page.pageType,
+                page_location: window.location.href,
+                timestamp: new Date().toISOString(),
+                ...(detail || {})
+            };
+
+            window.digitalData.eventData = event;
+            window.digitalData.events = window.digitalData.events || [];
+            window.digitalData.events.push(event);
+
+            try {
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: `ppms.cm:${safeAction}`,
+                        ...event
+                    });
+                }
+                if (typeof window.gtag === "function") {
+                    window.gtag("event", safeAction, event);
+                }
+                if (window.posthog && typeof window.posthog.capture === "function") {
+                    window.posthog.capture(safeAction, event);
+                }
+                if (typeof window.clarity === "function") {
+                    window.clarity("event", safeAction);
+                    window.clarity("set", "tool_name", event.tool_name);
+                    window.clarity("set", "tool_action", safeAction);
+                }
+                if (typeof window._satellite !== "undefined" && typeof window._satellite.track === "function") {
+                    window._satellite.track("tool_interaction", event);
+                }
+                if (typeof window.alloy === "function") {
+                    window.alloy("sendEvent", {
+                        xdm: {
+                            eventType: "web.webinteraction.linkClicks",
+                            web: {
+                                webPageDetails: {
+                                    name: event.page_name,
+                                    siteSection: event.site_section
+                                },
+                                webInteraction: {
+                                    name: safeAction,
+                                    type: "other"
+                                }
+                            }
+                        },
+                        data: {
+                            tool: event
+                        }
+                    });
+                }
+            } catch (error) {
+                if (window.console && console.warn) {
+                    console.warn("Tool interaction tracking failed", error);
+                }
+            }
+
+            return event;
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            window.trackToolInteraction("tool_loaded", {
+                viewport_width: window.innerWidth,
+                viewport_height: window.innerHeight,
+                referrer: document.referrer || ""
+            });
+
+            document.addEventListener("click", function (event) {
+                const target = event.target.closest("button, a, summary");
+                if (!target) return;
+                const label = (target.getAttribute("aria-label") || target.textContent || target.id || target.tagName).trim().slice(0, 120);
+                window.trackToolInteraction("tool_click", {
+                    element_type: target.tagName.toLowerCase(),
+                    element_id: target.id || "",
+                    element_label: label,
+                    destination: target.href || ""
+                });
+            });
+
+            document.addEventListener("change", function (event) {
+                const target = event.target;
+                if (!target || !["SELECT", "INPUT", "TEXTAREA"].includes(target.tagName)) return;
+                window.trackToolInteraction("tool_control_change", {
+                    element_type: target.tagName.toLowerCase(),
+                    element_id: target.id || "",
+                    input_type: target.type || "",
+                    selected_value: target.tagName === "SELECT" ? target.value : undefined,
+                    checked: target.type === "checkbox" ? target.checked : undefined,
+                    value_length: target.tagName === "TEXTAREA" ? target.value.length : undefined
+                });
+            });
+        });
+    </script>
     <!-- Inline CSS -->
     <style>
         /* Visually hidden (screen reader only) */
@@ -842,146 +960,63 @@
         // --- Event Payload Inspector GA4 Enhanced Tracking ---
 
         // Tool loaded/session started (fires once at load)
-        gtag('event', 'tool_loaded', {
-            tool_name: 'Event Payload Inspector',
-            tool_version: '1.0.1',
+        window.trackToolInteraction('tool_loaded_legacy_script', {
+            source: 'payload_inspector_runtime',
             page_location: window.location.href
-        });
-        posthog.capture('tool_loaded', {
-            tool_name: 'Event Payload Inspector',
-            tool_version: '1.0.1'
         });
 
         // Heartbeat for active engagement (fires every 30 seconds)
         setInterval(() => {
-            gtag('event', 'tool_heartbeat', {
-                tool_name: 'Event Payload Inspector',
-                timestamp: new Date().toISOString()
-            });
-            posthog.capture('tool_heartbeat', {
-                tool_name: 'Event Payload Inspector'
+            window.trackToolInteraction('tool_heartbeat', {
+                source: 'payload_inspector_runtime'
             });
         }, 30000);
 
         // Tracking functions
         function trackFlattenedPayloadsParsed(payloads, columnCount) {
-            gtag('event', 'flattened_payloads_parsed', {
+            window.trackToolInteraction('flattened_payloads_parsed', {
                 payload_count: payloads.length,
                 column_count: columnCount,
-                event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(','),
-                tool_name: 'Event Payload Inspector'
-            });
-            window.clarity('event', 'flattened_payloads_parsed');
-            window.dataLayer.push({
-                event: 'ppms.cm:flattened_payloads_parsed',
-                payload_count: payloads.length,
-                column_count: columnCount,
-                tool_name: 'Event Payload Inspector'
-            });
-            posthog.capture('flattened_payloads_parsed', {
-                payload_count: payloads.length,
-                column_count: columnCount,
-                event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(','),
-                tool_name: 'Event Payload Inspector'
+                event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(',')
             });
         }
 
         function trackJsonDownload(payloads) {
-            gtag('event', 'json_download', {
+            window.trackToolInteraction('json_download', {
                 payload_count: payloads.length,
-                event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(','),
-                tool_name: 'Event Payload Inspector'
-            });
-            window.clarity('event', 'json_download');
-            window.dataLayer.push({
-                event: 'ppms.cm:json_download',
-                payload_count: payloads.length,
-                tool_name: 'Event Payload Inspector'
-            });
-            posthog.capture('json_download', {
-                payload_count: payloads.length,
-                tool_name: 'Event Payload Inspector'
+                event_types: Array.from(new Set(payloads.map(e => e['xdm.eventType'] || 'unknown'))).join(',')
             });
         }
 
         function trackScriptCopied() {
-            gtag('event', 'script_copied', {
-                tool_name: 'Event Payload Inspector'
-            });
-            window.clarity('event', 'copy_script_success');
-            window.dataLayer.push({
-                event: 'ppms.cm:copy_script',
-                status: 'success',
-                tool_name: 'Event Payload Inspector'
-            });
-            posthog.capture('script_copied', {
-                tool_name: 'Event Payload Inspector'
+            window.trackToolInteraction('script_copied', {
+                status: 'success'
             });
         }
 
         function trackFilterUsed(filter) {
-            gtag('event', 'filter_used', {
-                filter_value: filter,
-                tool_name: 'Event Payload Inspector'
-            });
-            window.clarity('event', 'filter_table');
-            window.dataLayer.push({
-                event: 'ppms.cm:filter_table',
-                filter_value: filter,
-                tool_name: 'Event Payload Inspector'
-            });
-            posthog.capture('filter_used', {
-                filter_value: filter,
-                tool_name: 'Event Payload Inspector'
+            window.trackToolInteraction('filter_used', {
+                filter_length: String(filter || '').length
             });
         }
 
         function trackNavigation(section) {
-            gtag('event', 'navigation_click', {
-                section,
-                tool_name: 'Event Payload Inspector'
-            });
-            posthog.capture('navigation_click', {
-                section,
-                tool_name: 'Event Payload Inspector'
+            window.trackToolInteraction('navigation_click', {
+                section
             });
         }
 
         function trackScroll(direction) {
-            gtag('event', 'table_scroll', {
-                direction,
-                tool_name: 'Event Payload Inspector'
-            });
-            window.clarity('event', `table_scroll_${direction}`);
-            window.dataLayer.push({
-                event: 'ppms.cm:table_scroll',
-                direction,
-                tool_name: 'Event Payload Inspector'
-            });
-            posthog.capture('table_scroll', {
-                direction,
-                tool_name: 'Event Payload Inspector'
+            window.trackToolInteraction('table_scroll', {
+                direction
             });
         }
 
         function trackCopyCSV(rowCount, columnCount) {
-            gtag('event', 'copy_csv', {
+            window.trackToolInteraction('copy_csv', {
                 row_count: rowCount,
                 column_count: columnCount,
-                tool_name: 'Event Payload Inspector'
-            });
-            window.clarity('event', 'copy_csv_success');
-            window.dataLayer.push({
-                event: 'ppms.cm:copy_csv',
-                row_count: rowCount,
-                column_count: columnCount,
-                status: 'success',
-                tool_name: 'Event Payload Inspector'
-            });
-            posthog.capture('copy_csv', {
-                row_count: rowCount,
-                column_count: columnCount,
-                tool_name: 'Event Payload Inspector'
+                status: 'success'
             });
         }
 
@@ -1217,6 +1252,11 @@
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(text).then(() => {
                     showAACopyStatus(successText);
+                    window.trackToolInteraction('appmeasurement_export_copied', {
+                        export_type: errorType,
+                        row_count: currentAppMeasurementRows.length,
+                        status: 'success'
+                    });
                 }).catch(err => {
                     fallbackCopyText(text, err, errorType);
                 });
@@ -1229,6 +1269,10 @@
             const rows = ensureAppMeasurementRows();
             if (!rows.length) {
                 showAACopyStatus('No AppMeasurement request rows to copy. Paste URLs, parse them, or load captured storage first.', true);
+                window.trackToolInteraction('appmeasurement_export_empty', {
+                    export_type: 'table',
+                    status: 'empty'
+                });
                 return;
             }
             copyAppMeasurementText(aaRowsToDelimited(rows, '\t'), 'AppMeasurement table copied for spreadsheet paste.', 'aa_table');
@@ -1238,6 +1282,10 @@
             const rows = ensureAppMeasurementRows();
             if (!rows.length) {
                 showAACopyStatus('No AppMeasurement request rows to copy. Paste URLs, parse them, or load captured storage first.', true);
+                window.trackToolInteraction('appmeasurement_export_empty', {
+                    export_type: 'csv',
+                    status: 'empty'
+                });
                 return;
             }
             copyAppMeasurementText(aaRowsToDelimited(rows, ','), 'AppMeasurement CSV copied to clipboard.', 'aa_csv');
@@ -1247,6 +1295,10 @@
             const rows = ensureAppMeasurementRows();
             if (!rows.length) {
                 showAACopyStatus('No AppMeasurement request rows to download. Paste URLs, parse them, or load captured storage first.', true);
+                window.trackToolInteraction('appmeasurement_export_empty', {
+                    export_type: 'download_csv',
+                    status: 'empty'
+                });
                 return;
             }
             const blob = new Blob([aaRowsToDelimited(rows, ',')], { type: 'text/csv;charset=utf-8' });
@@ -1257,6 +1309,11 @@
             a.click();
             URL.revokeObjectURL(url);
             showAACopyStatus('AppMeasurement CSV downloaded.');
+            window.trackToolInteraction('appmeasurement_export_downloaded', {
+                export_type: 'csv',
+                row_count: rows.length,
+                status: 'success'
+            });
         }
 
         function flatCapturedRowToTableRow(row, index) {
@@ -1299,6 +1356,10 @@
             summary.innerHTML = currentAppMeasurementRows.length
                 ? `<b>Loaded ${currentAppMeasurementRows.length} captured AppMeasurement request${currentAppMeasurementRows.length === 1 ? '' : 's'} from sessionStorage.</b>`
                 : 'No captured AppMeasurement rows found in this browser tab. Run the generated /b/ss listener, interact with the page, then try again.';
+            window.trackToolInteraction('appmeasurement_storage_loaded', {
+                row_count: currentAppMeasurementRows.length,
+                status: currentAppMeasurementRows.length ? 'success' : 'empty'
+            });
         }
 
         function renderAAParsedEndpoint(endpoint, index) {
@@ -1392,25 +1453,20 @@
             const reportSuites = Array.from(new Set(endpoints.map(endpoint => endpoint.reportSuite).filter(Boolean)));
             summary.classList.remove('hidden');
             summary.innerHTML = `<b>Parsed ${endpoints.length} request${endpoints.length === 1 ? '' : 's'} into a request inventory table.</b> ${totalParams} total parameters detected.${reportSuites.length ? ` Report suite(s): ${reportSuites.join(', ')}.` : ''}`;
-            gtag('event', 'appmeasurement_endpoint_parsed', {
+            window.trackToolInteraction('appmeasurement_endpoint_parsed', {
                 endpoint_count: endpoints.length,
                 parameter_count: totalParams,
                 report_suites: reportSuites.join(','),
-                tool_name: 'Event Payload Inspector'
+                table_row_count: currentAppMeasurementRows.length
             });
-            if (window.posthog) {
-                posthog.capture('appmeasurement_endpoint_parsed', {
-                    endpoint_count: endpoints.length,
-                    parameter_count: totalParams,
-                    report_suites: reportSuites,
-                    tool_name: 'Event Payload Inspector'
-                });
-            }
             return endpoints;
         }
 
         function loadAppMeasurementSample() {
             document.getElementById('aaEndpointInput').value = 'https://example.sc.omtrdc.net/b/ss/exampleprod/1/JS-2.25.0/s123456789?AQB=1&pageName=Pricing%20Page&g=https%3A%2F%2Fwww.example.com%2Fpricing&r=https%3A%2F%2Fwww.google.com%2F&channel=Marketing&c1=anonymous&c2=pricing-hero&v1=trial-user&v2=saas-self-serve&events=event1,event12,prodView&products=%3BPro%20Plan%3B1%3B99.00&campaign=paid-search-saas&mid=12345678901234567890123456789012345678&pe=lnk_o&pev2=Start%20Trial&s.account_tier=mid-market&s.product_interest=pro-plan&AQE=1';
+            window.trackToolInteraction('appmeasurement_sample_loaded', {
+                sample_type: 'saas_appmeasurement_endpoint'
+            });
             parseAppMeasurementEndpoints();
         }
 
@@ -1421,25 +1477,13 @@
             document.getElementById('aaParserResults').innerHTML = '';
             currentAppMeasurementRows = [];
             renderAppMeasurementRequestTable([]);
+            window.trackToolInteraction('appmeasurement_parser_cleared');
         }
 
         function trackToolError(e) {
-            gtag('event', 'tool_error', {
+            window.trackToolInteraction('tool_error', {
                 error_type: e.name || 'Error',
-                error_message: e.message || 'Unknown',
-                tool_name: 'Event Payload Inspector'
-            });
-            window.clarity('event', 'tool_error');
-            window.dataLayer.push({
-                event: 'ppms.cm:tool_error',
-                error_type: e.name || 'Error',
-                error_message: e.message || 'Unknown',
-                tool_name: 'Event Payload Inspector'
-            });
-            posthog.capture('tool_error', {
-                error_type: e.name || 'Error',
-                error_message: e.message || 'Unknown',
-                tool_name: 'Event Payload Inspector'
+                error_message: e.message || 'Unknown'
             });
         }
 
@@ -1467,22 +1511,13 @@
             if (!input) {
                 errorMessage.textContent = 'Error: Input is empty. Please paste a valid JSON array of flattened events.';
                 errorMessage.classList.remove('hidden');
-                gtag('event', 'parse_flattened_payloads', {
-                    status: 'failure',
-                    error: 'empty_input'
-                });
-                window.clarity('event', 'parse_flattened_payloads_failure');
-                window.dataLayer.push({
-                    event: 'ppms.cm:parse_flattened_payloads',
+                window.trackToolInteraction('parse_flattened_payloads', {
                     status: 'failure',
                     error: 'empty_input'
                 });
                 trackToolError({
                     name: 'Error',
                     message: 'Empty input'
-                });
-                posthog.capture('parse_flattened_payloads_failure', {
-                    error: 'empty_input'
                 });
                 loadingIndicator.classList.add('hidden');
                 return null;
@@ -1518,7 +1553,6 @@
                 successMessage.classList.remove('hidden');
 
                 // --- Enhanced input_parsed tracking ---
-                const inputSample = input.substring(0, 200);
                 const inputLength = input.length;
                 let parsedKeys = [];
                 let itemCount = 0;
@@ -1540,44 +1574,12 @@
                     // fail silently for now
                 }
 
-                // GA4
-                gtag('event', 'input_parsed', {
-                    event_category: 'interaction',
-                    event_label: 'Payload Input Parsed',
-                    tool_name: 'Event Payload Inspector',
+                window.trackToolInteraction('input_parsed', {
                     input_length: inputLength,
-                    input_sample: inputSample,
+                    item_count: itemCount,
+                    parsed_key_count: parsedKeys.length,
                     parsed_keys: parsedKeys.join(','),
-                    item_count: itemCount
-                });
-
-                // Microsoft Clarity
-                window.clarity('event', 'input_parsed', {
-                    input_length: inputLength,
-                    input_sample: inputSample,
-                    parsed_keys: parsedKeys,
-                    item_count: itemCount,
-                    tool_name: 'Event Payload Inspector'
-                });
-                // PostHog
-                posthog.capture('input_parsed', {
-                    tool_name: 'Event Payload Inspector',
-                    input_length: inputLength,
-                    input_sample: inputSample,
-                    parsed_keys: parsedKeys,
-                    item_count: itemCount,
                     key_frequency: keyFrequency
-                });
-
-                // Piwik PRO
-                window.dataLayer.push({
-                    event: 'ppms.cm:input_parsed',
-                    input_length: inputLength,
-                    input_sample: inputSample,
-                    parsed_keys: parsedKeys,
-                    item_count: itemCount,
-                    key_frequency: keyFrequency,
-                    tool_name: 'Event Payload Inspector'
                 });
 
                 //
@@ -1591,17 +1593,8 @@
                     `Error: ${e.message}. Ensure the input is a valid JSON array or object of flattened events.`;
                 errorMessage.classList.remove('hidden');
                 trackToolError(e);
-                gtag('event', 'parse_flattened_payloads', {
+                window.trackToolInteraction('parse_flattened_payloads', {
                     status: 'failure',
-                    error: e.name === 'SyntaxError' ? 'syntax_error' : e.message
-                });
-                window.clarity('event', 'parse_flattened_payloads_failure');
-                window.dataLayer.push({
-                    event: 'ppms.cm:parse_flattened_payloads',
-                    status: 'failure',
-                    error: e.name === 'SyntaxError' ? 'syntax_error' : e.message
-                });
-                posthog.capture('parse_flattened_payloads_failure', {
                     error: e.name === 'SyntaxError' ? 'syntax_error' : e.message
                 });
                 payloadInput.value = input; // Retain input on error
@@ -1612,7 +1605,8 @@
         }
 
         // Refresh payloads from sessionStorage
-        function refreshPayloads() {
+        function refreshPayloads(options = {}) {
+            const silent = Boolean(options.silent);
             const key = 'flattenedAlloyEvents';
             const stored = sessionStorage.getItem(key);
             const payloadInput = document.getElementById('payloadInput');
@@ -1621,46 +1615,25 @@
             const loadingIndicator = document.getElementById('loadingIndicator');
             errorMessage.classList.add('hidden');
             successMessage.classList.add('hidden');
-            loadingIndicator.classList.remove('hidden');
+            if (!silent) loadingIndicator.classList.remove('hidden');
 
             if (!stored) {
-                errorMessage.textContent = 'No flattened payloads found in sessionStorage. Ensure the Alloy flattening script is running.';
-                errorMessage.classList.remove('hidden');
-                gtag('event', 'refresh_flattened_payloads', {
-                    status: 'failure',
-                    error: 'no_payloads'
+                window.trackToolInteraction('refresh_flattened_payloads', {
+                    status: 'empty',
+                    source: silent ? 'initial_load' : 'manual_refresh'
                 });
-                window.clarity('event', 'refresh_flattened_payloads_failure');
-                window.dataLayer.push({
-                    event: 'ppms.cm:refresh_flattened_payloads',
-                    status: 'failure',
-                    error: 'no_payloads'
-                });
-                trackToolError({
-                    name: 'Error',
-                    message: 'No payloads in sessionStorage'
-                });
-                posthog.capture('refresh_flattened_payloads_failure', {
-                    error: 'no_payloads'
-                });
+                if (!silent) {
+                    errorMessage.textContent = 'No flattened payloads found in sessionStorage. Ensure the Alloy flattening script is running.';
+                    errorMessage.classList.remove('hidden');
+                }
                 loadingIndicator.classList.add('hidden');
                 return;
             }
 
             payloadInput.value = stored;
             parsePayloads();
-            gtag('event', 'refresh_flattened_payloads', {
-                status: 'success',
-                tool_name: 'Event Payload Inspector'
-            });
-            window.clarity('event', 'refresh_flattened_payloads_success');
-            window.dataLayer.push({
-                event: 'ppms.cm:refresh_flattened_payloads',
-                status: 'success',
-                tool_name: 'Event Payload Inspector'
-            });
-            posthog.capture('refresh_flattened_payloads_success', {
-                tool_name: 'Event Payload Inspector'
+            window.trackToolInteraction('refresh_flattened_payloads', {
+                status: 'success'
             });
             loadingIndicator.classList.add('hidden');
         }
@@ -1799,25 +1772,11 @@
 
             // ---- ENHANCED TRACKING: analyze_rows ----
             try {
-                gtag('event', 'analyze_rows', {
-                    event_category: 'interaction',
-                    event_label: 'Analyze Rows',
-                    tool_name: 'Event Payload Inspector',
-                    total_rows: summary.total
-                });
-                window.clarity('event', 'analyze_rows');
-                posthog.capture('analyze_rows', {
+                window.trackToolInteraction('analyze_rows', {
                     total_rows: summary.total,
-                    field_presence: summary.fieldPresence,
-                    types: summaryToLog.types,
-                    tool_name: 'Event Payload Inspector'
-                });
-                window.dataLayer.push({
-                    event: 'ppms.cm:analyze_rows',
-                    total_rows: summary.total,
-                    field_keys: Object.keys(summary.fieldPresence),
-                    type_summary: summaryToLog.types,
-                    tool_name: 'Event Payload Inspector'
+                    field_count: Object.keys(summary.fieldPresence).length,
+                    field_keys: Object.keys(summary.fieldPresence).join(','),
+                    type_summary: summaryToLog.types
                 });
             } catch (err) {
                 // fail silently for analytics
@@ -1964,6 +1923,13 @@
                     const headers = Array.from(document.querySelectorAll('#payloadTable thead tr th')).map(th => th.textContent);
                     const rows = Array.from(document.querySelectorAll('#payloadTable tbody tr'));
                     trackCopyCSV(rows.length, headers.length);
+                } else if (type === 'aa_table' || type === 'aa_csv') {
+                    window.trackToolInteraction('appmeasurement_export_copied', {
+                        export_type: type,
+                        row_count: currentAppMeasurementRows.length,
+                        status: 'success',
+                        copy_method: 'fallback'
+                    });
                 } else {
                     trackScriptCopied();
                     // --- ENHANCED ANALYTICS: script copy context for fallback ---
@@ -1986,17 +1952,8 @@
                 console.error('Copy failed:', originalError, err);
                 const combinedError = new Error(`${originalError.message || 'Clipboard API error'}; Fallback error: ${err.message || 'Unknown'}`);
                 trackToolError(combinedError);
-                gtag('event', `copy_${type}`, {
+                window.trackToolInteraction(`copy_${type}`, {
                     status: 'failure',
-                    error: combinedError.message
-                });
-                window.clarity('event', `copy_${type}_failure`);
-                window.dataLayer.push({
-                    event: `ppms.cm:copy_${type}`,
-                    status: 'failure',
-                    error: combinedError.message
-                });
-                posthog.capture(`copy_${type}_failure`, {
                     error: combinedError.message
                 });
             }
@@ -2024,7 +1981,7 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            refreshPayloads();
+            refreshPayloads({ silent: true });
             document.getElementById('filterInput').addEventListener('input', filterTable);
             document.getElementById('toggleNulls').addEventListener('change', (e) => {
                 showNullValues = e.target.checked;
@@ -2397,71 +2354,22 @@ const SNIPPET_BLOCKS = {
 
 // --- Analytics Event Helper ---
 function trackSnippetGenerated(type, includeConsole, includeSessionStorage) {
-  const label = `type:${type}|console:${includeConsole}|sessionStorage:${includeSessionStorage}`;
-  try {
-    if (typeof gtag === 'function') {
-      gtag('event', 'snippet_generated', {
-        tool_name: 'Dynamic Flattening Script Builder',
-        script_type: type,
-        include_console: includeConsole,
-        include_sessionStorage: includeSessionStorage,
-        event_label: label
-      });
-    }
-    if (window.clarity) {
-      clarity('event', 'snippet_generated', { script_type: type, include_console: includeConsole, include_sessionStorage: includeSessionStorage });
-    }
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: 'ppms.cm:snippet_generated',
-        script_type: type,
-        include_console: includeConsole,
-        include_sessionStorage: includeSessionStorage
-      });
-    }
-    if (window.posthog) {
-      posthog.capture('snippet_generated', {
-        tool_name: 'Dynamic Flattening Script Builder',
-        script_type: type,
-        include_console: includeConsole,
-        include_sessionStorage: includeSessionStorage
-      });
-    }
-  } catch (e) {}
+  window.trackToolInteraction('snippet_generated', {
+    builder_name: 'Dynamic Flattening Script Builder',
+    script_type: type,
+    include_console: includeConsole,
+    include_sessionStorage: includeSessionStorage
+  });
 }
 
 function trackSnippetCopied(type, includeConsole, includeSessionStorage) {
-  const label = `type:${type}|console:${includeConsole}|sessionStorage:${includeSessionStorage}`;
-  try {
-    if (typeof gtag === 'function') {
-      gtag('event', 'snippet_copied', {
-        tool_name: 'Dynamic Flattening Script Builder',
-        script_type: type,
-        include_console: includeConsole,
-        include_sessionStorage: includeSessionStorage,
-        event_label: label
-      });
-    }
-    if (window.clarity) {
-      clarity('event', 'snippet_copied', { script_type: type, include_console: includeConsole, include_sessionStorage: includeSessionStorage });
-    }
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: 'ppms.cm:snippet_copied',
-        script_type: type,
-        include_console: includeConsole,
-        include_sessionStorage: includeSessionStorage
-      });
-    }
-    if (window.posthog) {
-      posthog.capture('snippet_copied', {
-        tool_name: 'Dynamic Flattening Script Builder',
-        script_type: type,
-        include_console: includeConsole,
-        include_sessionStorage: includeSessionStorage
-      });
-    }
-  } catch (e) {}
+  window.trackToolInteraction('snippet_copied', {
+    builder_name: 'Dynamic Flattening Script Builder',
+    script_type: type,
+    include_console: includeConsole,
+    include_sessionStorage: includeSessionStorage,
+    status: 'success'
+  });
 }
 
 function getSnippetOptions() {

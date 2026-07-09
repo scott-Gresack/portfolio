@@ -105,6 +105,27 @@
                 window.clarity("set", "portfolio_section", event.siteSection);
             }
         };
+
+        document.addEventListener("DOMContentLoaded", function() {
+            window.trackPortfolioEvent("portfolio_page_loaded", {
+                pageLocation: window.location.href,
+                referrer: document.referrer || "",
+                viewportWidth: window.innerWidth,
+                viewportHeight: window.innerHeight
+            });
+
+            document.addEventListener("click", function(event) {
+                const target = event.target.closest("a, button, summary, [role='button']");
+                if (!target) return;
+                const label = (target.getAttribute("aria-label") || target.textContent || target.id || target.tagName).trim().replace(/\s+/g, " ").slice(0, 120);
+                window.trackPortfolioEvent("portfolio_element_click", {
+                    elementType: target.tagName.toLowerCase(),
+                    elementId: target.id || "",
+                    elementLabel: label,
+                    destination: target.href || ""
+                });
+            });
+        });
     </script>
     
     <style>
