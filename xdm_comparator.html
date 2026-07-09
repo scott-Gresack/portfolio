@@ -2,240 +2,924 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Compare Adobe Web SDK u.map objects across environments to align XDM mappings." />
-  <meta name="keywords" content="Martech, Adobe Experience Platform, AEP, Tealium iQ, GTM, Data Governance, Tag Management, GA4, Analytics, Attribution" />
-  <meta name="author" content="Scott Gresack" />
-  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <meta name="robots" content="index, follow" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Adobe Web SDK u.map Comparator | Scott Gresack" />
-  <meta property="og:description" content="Compare u.map objects from Adobe Web SDK implementations across environments. Built for Tealium and AEP validation workflows." />
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/xdm_comparator" />
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Adobe Web SDK u.map Comparator | Scott Gresack" />
-  <meta name="twitter:description" content="Compare Adobe Web SDK objects and debug XDM mappings with this interactive tool." />
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
-  <title>Adobe Web SDK Object Comparator</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tealium to Web SDK Migration Comparator | Scott Gresack</title>
+  <meta name="description" content="Compare legacy Tealium iQ tags, AppMeasurement variables, and Adobe Web SDK XDM mappings to plan analytics migration parity." />
+  <meta name="keywords" content="Tealium iQ migration, Adobe Web SDK, AppMeasurement, Adobe Analytics, XDM comparator, eVars, props, events, tag migration, analytics QA" />
+  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/xdm_comparator.html" />
 
-  gtag('config', 'GT-MQBSZT8H');
-</script>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'GT-MQBSZT8H');
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-Y8617TLMYK', { anonymize_ip: true });
+  </script>
+
+  <!-- PostHog -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture identify register register_once unregister reset get_distinct_id get_session_id get_session_replay_url set_config opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init("phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U", {
+      api_host: "https://us.i.posthog.com",
+      person_profiles: "always",
+      capture_pageview: true
+    });
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "pmp4efispy");
+  </script>
+
+  <!-- Adobe Launch / Web SDK container -->
+  <script async src="https://assets.adobedtm.com/0ded84b93882/71f267854b6d/launch-b015179db04d-development.min.js"></script>
+
   <style>
+    :root {
+      --ink: #111827;
+      --muted: #5f6673;
+      --line: rgba(15, 23, 42, 0.12);
+      --panel: rgba(255, 255, 255, 0.84);
+      --blue: #0a84ff;
+      --green: #16a34a;
+      --orange: #ea580c;
+      --red: #dc2626;
+      --shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Inter', sans-serif;
+      margin: 0;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(10, 132, 255, 0.14), transparent 30rem),
+        radial-gradient(circle at 84% 8%, rgba(234, 88, 12, 0.11), transparent 30rem),
+        linear-gradient(180deg, #fbfdff 0%, #ffffff 46%, #f6f8fb 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(18px);
+    }
+
+    nav {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #111827, #0a84ff);
+      color: white;
+      font-size: 13px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+
+    .nav-links a:hover { color: #075fbd; background: rgba(10, 132, 255, 0.08); }
+
+    main {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px 20px 72px;
+    }
+
+    .hero {
+      border-radius: 28px;
+      padding: clamp(28px, 5vw, 56px);
+      background:
+        linear-gradient(135deg, rgba(12, 18, 32, 0.96), rgba(8, 47, 105, 0.90)),
+        radial-gradient(circle at 88% 8%, rgba(10, 132, 255, 0.44), transparent 24rem);
+      color: white;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      margin-bottom: 14px;
+      color: #bfdbfe;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 920px;
+      font-size: clamp(34px, 6vw, 66px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+    }
+
+    .hero p {
+      max-width: 860px;
+      margin: 20px 0 0;
+      color: #dbeafe;
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      border: 0;
+      border-radius: 12px;
+      min-height: 44px;
+      padding: 11px 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 850;
+      text-decoration: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+    .button.primary { background: var(--blue); color: white; box-shadow: 0 14px 32px rgba(10, 132, 255, 0.30); }
+    .button.secondary { background: rgba(255, 255, 255, 0.12); color: white; border: 1px solid rgba(255, 255, 255, 0.22); }
+    .button.light { background: white; color: var(--ink); border: 1px solid var(--line); }
+    .button.green { background: var(--green); color: white; }
+    .button.orange { background: var(--orange); color: white; }
+    .button.red { background: var(--red); color: white; }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .metric {
+      border: 1px solid rgba(255, 255, 255, 0.74);
+      border-radius: 18px;
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      padding: 16px;
+      box-shadow: 0 18px 54px rgba(15, 23, 42, 0.08);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 26px;
+      letter-spacing: -0.05em;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .panel {
+      margin-top: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.74);
+      border-radius: 22px;
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 54px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .panel-header h2 {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+    }
+
+    .panel-header p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      max-width: 720px;
+    }
+
+    .panel-body { padding: 18px; }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #334155;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.88);
+      min-height: 44px;
+      padding: 10px 12px;
+      font: inherit;
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+    }
+
+    textarea {
+      min-height: 250px;
+      resize: vertical;
+      line-height: 1.45;
+      font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+      font-size: 12.5px;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: rgba(10, 132, 255, 0.72);
+      box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.12);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #475569;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .status.migrated { background: #dcfce7; color: #166534; }
+    .status.changed { background: #fef3c7; color: #92400e; }
+    .status.missing { background: #fee2e2; color: #991b1b; }
+    .status.new { background: #dbeafe; color: #1d4ed8; }
+
+    pre {
+      margin: 0;
+      padding: 18px;
+      overflow-x: auto;
+      background: #0f172a;
+      color: #dbeafe;
+      font-size: 12.5px;
+      line-height: 1.55;
+      min-height: 120px;
+    }
+
+    .output-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 40;
+      background: #111827;
+      color: white;
+      border-radius: 14px;
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 960px) {
+      .metric-grid,
+      .compare-grid,
+      .output-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+      main { padding: 18px 14px 54px; }
+      .button { width: 100%; }
+      table { min-width: 880px; }
+      .panel-header { flex-direction: column; }
     }
   </style>
 </head>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Adobe Web SDK u.map Comparator",
-    "url": "https://scott-gresack.github.io/portfolio/xdm_comparator",
-    "description": "Compare and debug Adobe Web SDK u.map object mappings with a visual comparator tool.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "All",
-    "creator": {
-      "@type": "Person",
-      "name": "Scott Gresack",
-      "url": "https://scott-gresack.github.io/portfolio/"
-    }
-  }
-  </script>
-<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 font-sans antialiased leading-relaxed tracking-wide">
-  <header class="bg-white shadow border-b sticky top-0 z-50">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-sm font-medium text-gray-800">
-      <a href="https://scott-gresack.github.io/portfolio/?utm_medium=internal&utm_source=xdm_comparator&cid=home&utm_term=portfolio" class="font-semibold tracking-wide text-lg hover:text-blue-600 transition">🔍 u.map Comparator</a>
-      <div x-data="{ open: false }" class="relative">
-        <button @click="open = !open" class="hover:text-blue-600 transition font-medium focus:outline-none">Tools ▾</button>
-        <div x-show="open" x-transition @click.away="open = false" class="absolute bg-white shadow-lg rounded-md mt-2 z-50 min-w-[220px] border border-gray-200">
-          <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_medium=internal&utm_source=xdm_comparator&cid=tool2&utm_term=alloy_inspector" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Alloy Inspector</a>
-          <a href="https://scott-gresack.github.io/portfolio/tag_generator?utm_medium=internal&utm_source=xdm_comparator&cid=tag_generator&utm_term=tag_spec" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Tag Generator</a>
-          <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_medium=internal&utm_source=xdm_comparator&cid=mobile_updates&utm_term=mobile_sdk" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">Mobile Updates</a>
-          <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_medium=internal&utm_source=xdm_comparator&cid=xdm_comparator&utm_term=xdm" class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50">XDM Comparator</a>
-        </div>
+
+<body>
+  <header>
+    <nav>
+      <a class="brand" href="/portfolio/">
+        <span class="brand-mark">XM</span>
+        <span>Migration Comparator</span>
+      </a>
+      <div class="nav-links">
+        <a href="/portfolio/">Portfolio</a>
+        <a href="/portfolio/tag_generator">Tag Spec Workbench</a>
+        <a href="/portfolio/tool2.html">Payload Inspector</a>
       </div>
     </nav>
   </header>
 
-  <main id="app" class="max-w-4xl mx-auto px-6 py-12">
-    <section class="bg-white/90 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg p-6 mb-10">
-      <h1 class="text-2xl font-semibold text-blue-700 mb-4">🧪 Adobe Web SDK u.map Comparator</h1>
-      <p class="text-xs text-gray-500 mt-1">
-        🧠 <strong>Why use this tool?</strong> Designed for engineers validating <code>u.map</code> schemas in Adobe Web SDK. Especially useful when QA'ing Tealium iQ tag templates or ensuring XDM consistency across environments.
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Tealium iQ / AppMeasurement to Adobe Web SDK</div>
+      <h1>Compare legacy tags against the Web SDK future state.</h1>
+      <p>
+        This tool helps migration teams compare individual Tealium iQ tags, AppMeasurement variables, and Adobe Analytics mappings against proposed Web SDK/XDM fields. It turns migration uncertainty into a concrete parity table, gap list, and engineering backlog.
       </p>
-      <p class="text-sm mb-2">Compare Adobe Web SDK <code>u.map</code> objects across environments like Prod vs. Stage.</p>
-      <p class="text-blue-700 text-sm">🆘 Paste your JSON objects below and click Compare.</p>
+      <div class="hero-actions">
+        <button class="button primary" id="loadExampleHero">Load migration example</button>
+        <a class="button secondary" href="#compare">Compare mappings</a>
+        <a class="button secondary" href="#results">Review backlog</a>
+      </div>
     </section>
 
-    <section class="bg-white/90 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg p-6 mb-10">
-      <p><strong>Welcome!</strong> This tool helps you compare <code>u.map</code> objects from Adobe Web SDK implementations. Whether you're debugging, validating, or aligning configurations across environments (e.g., Prod vs. Stage), this comparator highlights differences and matches to ensure accurate XDM mappings.</p>
-      <p><a href="https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/xdm.html" target="_blank" class="text-blue-600 underline">Learn More about XDM and AEP</a></p>
+    <section class="metric-grid" aria-label="Comparator summary">
+      <div class="metric">
+        <strong id="legacyCount">0</strong>
+        <span>Legacy Tealium/AppMeasurement mappings detected.</span>
+      </div>
+      <div class="metric">
+        <strong id="targetCount">0</strong>
+        <span>Target Web SDK/XDM mappings detected.</span>
+      </div>
+      <div class="metric">
+        <strong id="gapCount">0</strong>
+        <span>Migration gaps that need engineering decisions.</span>
+      </div>
+      <div class="metric">
+        <strong id="parityScore">0%</strong>
+        <span>Estimated mapping parity between legacy and target state.</span>
+      </div>
     </section>
 
-    <section class="bg-white/90 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg p-6 mb-10">
-      <h2 class="text-xl font-semibold mb-4">🛠 How to Use This Tool</h2>
-      <ol class="list-decimal list-inside space-y-1 text-sm">
-        <li><strong>Describe Your Comparison:</strong> Label your analysis (e.g., "Prod vs Stage").</li>
-        <li><strong>Paste Object A:</strong> Input the first <code>u.map</code> object.</li>
-        <li><strong>Paste Object B:</strong> Input the second <code>u.map</code> object.</li>
-        <li><strong>Compare:</strong> Click to analyze.</li>
-        <li><strong>Review Results:</strong> See summary and detailed table.</li>
-      </ol>
-      <p class="text-sm mt-4 text-blue-700">
-        ✅ Use this to validate whether <code>utag.view()</code>/<code>utag.link()</code> tags match expected XDM structure, helping you debug personalization issues, analytics misfires, or journey orchestration inconsistencies.
-      </p>
-    </section>
-
-    <section class="bg-white/90 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg p-6 mb-10">
-      <h2 class="text-xl font-semibold mb-4">📝 Paste Objects for Comparison</h2>
-      <div class="space-y-6">
+    <section class="panel" id="compare">
+      <div class="panel-header">
         <div>
-          <label class="block font-semibold mb-1">1. Describe the comparison:</label>
-          <input type="text" v-model="comparisonLabel" placeholder="e.g., Comparing Prod vs Stage" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <h2>1. Paste or load mappings</h2>
+          <p>Use JSON arrays, CSV rows, or simple key/value lines. The comparator understands fields such as tag, variable, source, destination, xdmPath, dataPath, event, eVar, prop, and notes.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label class="block font-semibold mb-1">2. Paste Object A (JSON):</label>
-            <textarea v-model="objectAInput" rows="10" placeholder="Paste full u.map = { ... };" class="w-full p-4 border border-gray-300 rounded-lg resize-y focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-          </div>
-          <div>
-            <label class="block font-semibold mb-1">3. Paste Object B (JSON):</label>
-            <textarea v-model="objectBInput" rows="10" placeholder="Paste full u.map = { ... };" class="w-full p-4 border border-gray-300 rounded-lg resize-y focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-          </div>
-        </div>
-        <button @click="compare" class="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Run Comparison">Compare</button>
+        <button class="button light" id="loadExample">Load example</button>
       </div>
+      <div class="panel-body">
+        <div style="display: grid; gap: 14px; margin-bottom: 16px;">
+          <div>
+            <label for="comparisonLabel">Comparison label</label>
+            <input id="comparisonLabel" value="Tealium iQ pricing CTA migration to Adobe Web SDK" />
+          </div>
+        </div>
 
-      <div v-if="errorMessage" class="mt-6 p-4 bg-red-50 border border-red-300 text-red-700 rounded">
-        <strong>Error:</strong> {{ errorMessage }}
+        <div class="compare-grid">
+          <div>
+            <label for="legacyInput">Legacy side: Tealium iQ tag / AppMeasurement mapping</label>
+            <textarea id="legacyInput" spellcheck="false" placeholder='Example JSON:
+[
+  {"tag":"Pricing CTA","variable":"eVar12","source":"utag_data.cta_name","value":"start_free_trial","event":"event12"},
+  {"tag":"Pricing CTA","variable":"prop7","source":"utag_data.component_type","value":"primary_button"}
+]'></textarea>
+          </div>
+          <div>
+            <label for="targetInput">Target side: Web SDK / XDM mapping</label>
+            <textarea id="targetInput" spellcheck="false" placeholder='Example JSON:
+[
+  {"tag":"Pricing CTA","variable":"eVar12","xdmPath":"web.webInteraction.name","dataPath":"data.__adobe.analytics.eVar12"},
+  {"tag":"Pricing CTA","variable":"event12","xdmPath":"_experience.analytics.event1to100.event12.value"}
+]'></textarea>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <button class="button primary" id="compareButton">Compare mappings</button>
+          <button class="button light" id="copyReport">Copy report</button>
+          <button class="button light" id="downloadCsv">Download CSV</button>
+          <button class="button light" id="clearButton">Clear</button>
+        </div>
       </div>
     </section>
 
-    <section v-if="compared" class="results-section">
-      <div class="rounded-xl border border-gray-200 bg-white shadow-sm p-4">
-        <h2 class="text-xl font-semibold text-blue-800 mb-2">📊 Comparison Results</h2>
-        <div class="p-4 bg-green-50 border border-green-300 rounded mb-6">
-          <h2 class="font-semibold text-green-800 mb-1">🎉 Quick Comparison Snapshot</h2>
-          <p class="text-sm"><strong>Total Differences:</strong> {{ totalDifferences }}</p>
-          <p class="text-sm"><strong>Similarities:</strong> {{ matchingValues.length }}</p>
-          <p class="text-sm text-gray-700">{{ summaryMessage }}</p>
+    <section class="panel" id="results">
+      <div class="panel-header">
+        <div>
+          <h2>2. Migration parity results</h2>
+          <p>Each row shows whether a legacy variable has a Web SDK/XDM destination, whether the destination changed, or whether a new Web SDK-only mapping was introduced.</p>
         </div>
-        <table class="min-w-full border border-gray-300 rounded overflow-hidden">
-          <thead class="bg-blue-600 text-white">
-            <tr>
-              <th class="px-4 py-2 text-left">Key</th>
-              <th class="px-4 py-2 text-left">Value in A</th>
-              <th class="px-4 py-2 text-left">Value in B</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="key in allKeys" :key="key" :class="[
-              'odd:bg-white even:bg-gray-50',
-              differingValues.includes(key) ? 'bg-red-50 border-l-4 border-red-500' : ''
-            ]">
-              <td class="px-4 py-2 border-t border-gray-200">{{ key }}</td>
-              <td class="px-4 py-2 border-t border-gray-200">{{ objectA[key] ?? '—' }}</td>
-              <td class="px-4 py-2 border-t border-gray-200">{{ objectB[key] ?? '—' }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <button @click="exportAsJSON" class="mt-4 px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">⬇ Export Results</button>
+      </div>
+      <div class="panel-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Legacy Tag</th>
+                <th>Variable</th>
+                <th>Legacy Source</th>
+                <th>Legacy Value</th>
+                <th>Target XDM / Data Path</th>
+                <th>Migration Note</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <footer class="text-center text-xs text-gray-400 mt-12 mb-8">
-      Built with ❤️ by Scott Gresack · <a href="https://scott-gresack.github.io/portfolio/" class="text-blue-600 hover:underline">View Portfolio</a>
-    </footer>
+    <section class="output-grid">
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Migration backlog</h2>
+            <p>Use these as Jira tasks or story acceptance criteria for the migration team.</p>
+          </div>
+          <button class="button primary" data-copy="backlogOutput">Copy backlog</button>
+        </div>
+        <pre id="backlogOutput"></pre>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Executive summary</h2>
+            <p>Plain-English summary for analytics owners, engineering leads, and project stakeholders.</p>
+          </div>
+          <button class="button primary" data-copy="summaryOutput">Copy summary</button>
+        </div>
+        <pre id="summaryOutput"></pre>
+      </div>
+    </section>
   </main>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
-<script>
-const { createApp } = Vue;
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
 
-createApp({
-  data() {
-    return {
-      comparisonLabel: '',
-      objectAInput: '',
-      objectBInput: '',
-      errorMessage: '',
-      compared: false,
-      objectA: {},
-      objectB: {},
-      onlyInA: [],
-      onlyInB: [],
-      differingValues: [],
-      matchingValues: [],
-      allKeys: []
+  <script>
+    window.digitalData = window.digitalData || {
+      page: {
+        pageName: "Tealium to Web SDK Migration Comparator",
+        siteSection: "Portfolio Tools",
+        pageType: "tool",
+        language: "en-US"
+      },
+      user: { authenticationStatus: "anonymous" },
+      eventData: {},
+      events: []
     };
-  },
-  computed: {
-    totalDifferences() {
-      return this.onlyInA.length + this.onlyInB.length + this.differingValues.length;
-    },
-    summaryMessage() {
-      if (!this.compared) return '';
-      if (this.totalDifferences === 0) return "🎉 Perfect match! Both u.map objects are identical.";
-      return "⚠️ Differences detected. Review the details to resolve mismatches.";
-    }
-  },
-  methods: {
-    cleanAndParse(input, type) {
-      if (!input.trim()) throw new Error(`${type} is empty. Please provide valid JSON.`);
-      const match = input.match(/\{[\s\S]*\}/);
-      if (!match) throw new Error(`Invalid JSON format for ${type}. Ensure it contains a valid object.`);
-      try {
-        return JSON.parse(match[0]);
-      } catch {
-        throw new Error(`Failed to parse JSON for ${type}. Please check the syntax.`);
-      }
-    },
-    compare() {
-      try {
-        this.errorMessage = '';
-        this.compared = false;
-        this.objectA = this.cleanAndParse(this.objectAInput, 'Object A');
-        this.objectB = this.cleanAndParse(this.objectBInput, 'Object B');
-        this.allKeys = [...new Set([...Object.keys(this.objectA), ...Object.keys(this.objectB)])];
-        this.onlyInA = this.allKeys.filter(key => !(key in this.objectB));
-        this.onlyInB = this.allKeys.filter(key => !(key in this.objectA));
-        this.differingValues = this.allKeys.filter(key => this.objectA[key] !== this.objectB[key] && key in this.objectA && key in this.objectB);
-        this.matchingValues = this.allKeys.filter(key => this.objectA[key] === this.objectB[key]);
-        this.compared = true;
-      } catch (err) {
-        this.errorMessage = err.message;
-      }
-    },
-    exportAsJSON() {
-      const data = {
-        label: this.comparisonLabel,
-        differences: this.differingValues.map(k => ({ key: k, a: this.objectA[k], b: this.objectB[k] })),
-        matches: this.matchingValues,
-        onlyInA: this.onlyInA,
-        onlyInB: this.onlyInB
-      };
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${this.comparisonLabel || 'comparison'}.json`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  }
-}).mount('#app');
-</script>
 
+    function trackComparator(action, detail = {}) {
+      const event = {
+        action,
+        tool_name: "Tealium to Web SDK Migration Comparator",
+        tool_version: "2.0.0",
+        page_name: window.digitalData.page.pageName,
+        site_section: window.digitalData.page.siteSection,
+        page_type: window.digitalData.page.pageType,
+        timestamp: new Date().toISOString(),
+        ...detail
+      };
+      window.digitalData.eventData = event;
+      window.digitalData.events.push(event);
+      try {
+        if (window.dataLayer) window.dataLayer.push({ event: "ppms.cm:" + action, ...event });
+        if (typeof window.gtag === "function") window.gtag("event", action, event);
+        if (window.posthog && typeof window.posthog.capture === "function") window.posthog.capture(action, event);
+        if (typeof window.clarity === "function") {
+          window.clarity("event", action);
+          window.clarity("set", "tool_name", event.tool_name);
+        }
+        if (window._satellite && typeof window._satellite.track === "function") window._satellite.track("tool_interaction", event);
+        if (typeof window.alloy === "function") {
+          window.alloy("sendEvent", {
+            xdm: {
+              eventType: "web.webinteraction.linkClicks",
+              web: {
+                webPageDetails: { name: event.page_name, siteSection: event.site_section },
+                webInteraction: { name: action, type: "other" }
+              }
+            },
+            data: { tool: event }
+          });
+        }
+      } catch (error) {
+        console.warn("Tracking failed", error);
+      }
+    }
+
+    const els = {
+      label: document.getElementById("comparisonLabel"),
+      legacy: document.getElementById("legacyInput"),
+      target: document.getElementById("targetInput"),
+      results: document.getElementById("resultsBody"),
+      legacyCount: document.getElementById("legacyCount"),
+      targetCount: document.getElementById("targetCount"),
+      gapCount: document.getElementById("gapCount"),
+      parityScore: document.getElementById("parityScore"),
+      backlog: document.getElementById("backlogOutput"),
+      summary: document.getElementById("summaryOutput")
+    };
+
+    let currentRows = [];
+
+    function normalizeKey(value) {
+      return String(value || "").trim().toLowerCase();
+    }
+
+    function normalizeVariable(row) {
+      return row.variable || row.aa || row.analyticsVariable || row.destination || row.key || "";
+    }
+
+    function normalizeRow(row, side) {
+      const variable = normalizeVariable(row);
+      return {
+        side,
+        tag: row.tag || row.rule || row.name || row.event || "",
+        variable,
+        source: row.source || row.utag || row.legacySource || row.dataLayer || "",
+        value: row.value || row.sampleValue || row.example || "",
+        xdmPath: row.xdmPath || row.xdm || row.target || "",
+        dataPath: row.dataPath || row.data || row.webSdkData || "",
+        event: row.event || "",
+        notes: row.notes || row.note || ""
+      };
+    }
+
+    function parseInput(text, side) {
+      const raw = String(text || "").trim();
+      if (!raw) return [];
+
+      try {
+        const match = raw.match(/(\[[\s\S]*\]|\{[\s\S]*\})/);
+        const parsed = JSON.parse(match ? match[0] : raw);
+        const rows = Array.isArray(parsed) ? parsed : Object.entries(parsed).map(([key, value]) => {
+          if (value && typeof value === "object") return { key, ...value };
+          return { key, value };
+        });
+        return rows.map(row => normalizeRow(row, side));
+      } catch (error) {
+        return raw.split(/\n+/).map(line => line.trim()).filter(Boolean).map(line => {
+          const parts = line.split(/,|\t|\|/).map(part => part.trim());
+          return normalizeRow({
+            tag: parts[0],
+            variable: parts[1],
+            source: parts[2],
+            value: parts[3],
+            xdmPath: parts[4],
+            notes: parts.slice(5).join(" | ")
+          }, side);
+        });
+      }
+    }
+
+    function compareMappings() {
+      const legacyRows = parseInput(els.legacy.value, "legacy");
+      const targetRows = parseInput(els.target.value, "target");
+      const targetByVariable = new Map(targetRows.map(row => [normalizeKey(row.variable), row]));
+      const legacyByVariable = new Map(legacyRows.map(row => [normalizeKey(row.variable), row]));
+
+      const rows = legacyRows.map(legacy => {
+        const target = targetByVariable.get(normalizeKey(legacy.variable));
+        if (!target) {
+          return {
+            status: "missing",
+            legacy,
+            target: null,
+            note: "Legacy variable is not mapped in the Web SDK/XDM target state. Decide whether to migrate, retire, or replace it."
+          };
+        }
+        const targetPath = target.xdmPath || target.dataPath;
+        const hasPath = Boolean(targetPath);
+        return {
+          status: hasPath ? "migrated" : "changed",
+          legacy,
+          target,
+          note: hasPath
+            ? "Mapped to target state. Validate value population and event timing in Network tab."
+            : "Target variable exists but no XDM/data path is documented. Add implementation detail before build."
+        };
+      });
+
+      targetRows.forEach(target => {
+        if (!legacyByVariable.has(normalizeKey(target.variable))) {
+          rows.push({
+            status: "new",
+            legacy: null,
+            target,
+            note: "New Web SDK/XDM mapping not present in legacy Tealium/AppMeasurement. Confirm this is intentional."
+          });
+        }
+      });
+
+      currentRows = rows;
+      renderResults(legacyRows, targetRows, rows);
+      trackComparator("migration_comparison_run", {
+        legacy_count: legacyRows.length,
+        target_count: targetRows.length,
+        gap_count: rows.filter(row => row.status === "missing" || row.status === "changed").length,
+        parity_score: calculateParity(rows)
+      });
+    }
+
+    function calculateParity(rows) {
+      if (!rows.length) return 0;
+      return Math.round((rows.filter(row => row.status === "migrated").length / rows.length) * 100);
+    }
+
+    function renderResults(legacyRows, targetRows, rows) {
+      const gaps = rows.filter(row => row.status === "missing" || row.status === "changed");
+      els.legacyCount.textContent = legacyRows.length;
+      els.targetCount.textContent = targetRows.length;
+      els.gapCount.textContent = gaps.length;
+      els.parityScore.textContent = calculateParity(rows) + "%";
+
+      els.results.innerHTML = rows.map(row => {
+        const legacy = row.legacy || {};
+        const target = row.target || {};
+        const targetPath = target.xdmPath || target.dataPath || "";
+        return `
+          <tr>
+            <td><span class="status ${row.status}">${statusLabel(row.status)}</span></td>
+            <td>${escapeHtml((legacy.tag || target.tag || "") || "-")}</td>
+            <td><strong>${escapeHtml((legacy.variable || target.variable || "") || "-")}</strong></td>
+            <td>${escapeHtml(legacy.source || "-")}</td>
+            <td>${escapeHtml(legacy.value || "-")}</td>
+            <td>${escapeHtml(targetPath || "-")}</td>
+            <td>${escapeHtml(row.note)}</td>
+          </tr>
+        `;
+      }).join("");
+
+      els.backlog.textContent = backlogText(rows);
+      els.summary.textContent = summaryText(legacyRows, targetRows, rows);
+    }
+
+    function statusLabel(status) {
+      return {
+        migrated: "Mapped",
+        changed: "Needs detail",
+        missing: "Missing",
+        new: "New"
+      }[status] || status;
+    }
+
+    function backlogText(rows) {
+      const gaps = rows.filter(row => row.status === "missing" || row.status === "changed");
+      if (!gaps.length) return "No migration gaps detected. Validate in browser requests before release.";
+      return gaps.map((row, index) => {
+        const variable = row.legacy?.variable || row.target?.variable || "unknown";
+        const tag = row.legacy?.tag || row.target?.tag || "unknown tag";
+        return `${index + 1}. ${variable} on ${tag}
+   Status: ${statusLabel(row.status)}
+   Action: ${row.note}
+   Owner: Analytics architect + front-end engineer
+   Acceptance: Web SDK request shows the expected XDM/data path and Adobe Analytics parity is confirmed.`;
+      }).join("\n\n");
+    }
+
+    function summaryText(legacyRows, targetRows, rows) {
+      const migrated = rows.filter(row => row.status === "migrated").length;
+      const missing = rows.filter(row => row.status === "missing").length;
+      const changed = rows.filter(row => row.status === "changed").length;
+      const added = rows.filter(row => row.status === "new").length;
+      return `${els.label.value}
+
+Legacy mappings reviewed: ${legacyRows.length}
+Target Web SDK/XDM mappings reviewed: ${targetRows.length}
+Mapped with parity: ${migrated}
+Missing from target: ${missing}
+Needs implementation detail: ${changed}
+New target-only mappings: ${added}
+Estimated parity score: ${calculateParity(rows)}%
+
+Recommendation:
+Prioritize missing and needs-detail rows before migration release. Do not assume an eVar, prop, or event has been migrated until the Web SDK request shows the expected XDM/data path and the downstream Adobe Analytics/CJA reporting behavior has been validated.`;
+    }
+
+    function rowsToCsv(rows) {
+      const header = ["Status", "Legacy Tag", "Variable", "Legacy Source", "Legacy Value", "Target XDM/Data Path", "Migration Note"];
+      const body = rows.map(row => [
+        statusLabel(row.status),
+        row.legacy?.tag || row.target?.tag || "",
+        row.legacy?.variable || row.target?.variable || "",
+        row.legacy?.source || "",
+        row.legacy?.value || "",
+        row.target?.xdmPath || row.target?.dataPath || "",
+        row.note
+      ]);
+      return [header, ...body].map(row => row.map(csvEscape).join(",")).join("\n");
+    }
+
+    function csvEscape(value) {
+      const text = String(value ?? "");
+      return /[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function loadExample() {
+      els.label.value = "Pricing CTA Tealium/AppMeasurement to Adobe Web SDK";
+      els.legacy.value = JSON.stringify([
+        { tag: "Pricing CTA", variable: "eVar12", source: "utag_data.cta_name", value: "start_free_trial", event: "event12" },
+        { tag: "Pricing CTA", variable: "eVar13", source: "utag_data.cta_location", value: "pricing_hero" },
+        { tag: "Pricing CTA", variable: "prop7", source: "utag_data.component_type", value: "primary_button" },
+        { tag: "Pricing CTA", variable: "event12", source: "utag.link pricing_cta", value: "1" },
+        { tag: "Legacy Form CTA", variable: "eVar99", source: "utag_data.legacy_offer", value: "old_offer_code" }
+      ], null, 2);
+      els.target.value = JSON.stringify([
+        { tag: "Pricing CTA", variable: "eVar12", xdmPath: "web.webInteraction.name", dataPath: "data.__adobe.analytics.eVar12" },
+        { tag: "Pricing CTA", variable: "eVar13", xdmPath: "_experience.analytics.customDimensions.eVars.eVar13", dataPath: "data.__adobe.analytics.eVar13" },
+        { tag: "Pricing CTA", variable: "prop7", xdmPath: "_experience.analytics.customDimensions.props.prop7", dataPath: "data.__adobe.analytics.prop7" },
+        { tag: "Pricing CTA", variable: "event12", xdmPath: "_experience.analytics.event1to100.event12.value", dataPath: "data.__adobe.analytics.events" },
+        { tag: "Pricing CTA", variable: "eVar14", xdmPath: "_experience.analytics.customDimensions.eVars.eVar14", dataPath: "data.__adobe.analytics.eVar14", notes: "New plan tier mapping" }
+      ], null, 2);
+      compareMappings();
+      trackComparator("migration_example_loaded");
+    }
+
+    function copyText(text, label) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => showToast(label + " copied"));
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        showToast(label + " copied");
+      }
+      trackComparator("migration_output_copied", { output_type: label });
+    }
+
+    function downloadCsv() {
+      const csv = rowsToCsv(currentRows);
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "tealium-to-websdk-migration-comparison.csv";
+      link.click();
+      URL.revokeObjectURL(url);
+      trackComparator("migration_csv_downloaded", { row_count: currentRows.length });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    document.getElementById("loadExample").addEventListener("click", loadExample);
+    document.getElementById("loadExampleHero").addEventListener("click", loadExample);
+    document.getElementById("compareButton").addEventListener("click", compareMappings);
+    document.getElementById("copyReport").addEventListener("click", () => copyText(summaryText(parseInput(els.legacy.value, "legacy"), parseInput(els.target.value, "target"), currentRows), "Report"));
+    document.getElementById("downloadCsv").addEventListener("click", downloadCsv);
+    document.getElementById("clearButton").addEventListener("click", () => {
+      els.legacy.value = "";
+      els.target.value = "";
+      currentRows = [];
+      renderResults([], [], []);
+      trackComparator("migration_inputs_cleared");
+    });
+    document.querySelectorAll("[data-copy]").forEach(button => {
+      button.addEventListener("click", () => copyText(document.getElementById(button.dataset.copy).textContent, button.dataset.copy));
+    });
+    document.addEventListener("click", event => {
+      const target = event.target.closest("button, a");
+      if (!target) return;
+      trackComparator("migration_element_click", {
+        element_label: (target.textContent || target.getAttribute("aria-label") || target.tagName).trim().replace(/\s+/g, " ").slice(0, 120),
+        element_type: target.tagName.toLowerCase(),
+        destination: target.href || ""
+      });
+    });
+
+    renderResults([], [], []);
+    trackComparator("migration_comparator_loaded");
+  </script>
 </body>
 </html>
