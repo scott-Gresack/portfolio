@@ -741,8 +741,32 @@
                         class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full sm:w-auto"
                         aria-label="Clear Adobe Analytics parser"
                         title="Clear the parser input and output.">Clear</button>
+                    <button onclick="loadCapturedAppMeasurementRows()"
+                        class="bg-white text-orange-700 border border-orange-300 py-2 px-4 rounded hover:bg-orange-100 w-full sm:w-auto"
+                        aria-label="Load captured Adobe Analytics rows from storage"
+                        title="Load AppMeasurement rows captured by the generated /b/ss listener from sessionStorage.">Load Captured Storage</button>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4 space-y-2 sm:space-y-0">
+                    <button onclick="copyAppMeasurementTable()"
+                        class="bg-orange-700 text-white py-2 px-4 rounded hover:bg-orange-800 w-full sm:w-auto"
+                        aria-label="Copy Adobe Analytics request table"
+                        title="Copy the parsed Adobe Analytics request inventory as a tab-delimited table for spreadsheets.">Copy Table</button>
+                    <button onclick="copyAppMeasurementCSV()"
+                        class="bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700 w-full sm:w-auto"
+                        aria-label="Copy Adobe Analytics request CSV"
+                        title="Copy the parsed Adobe Analytics request inventory as CSV.">Copy CSV</button>
+                    <button onclick="downloadAppMeasurementCSV()"
+                        class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 w-full sm:w-auto"
+                        aria-label="Download Adobe Analytics request CSV"
+                        title="Download the parsed Adobe Analytics request inventory as a CSV file.">Download CSV</button>
                 </div>
                 <div id="aaParserSummary" class="hidden mb-4 p-3 bg-white border border-orange-200 rounded text-sm text-gray-800"></div>
+                <div id="aaParserTableWrapper" class="hidden mb-4 overflow-x-auto rounded border border-orange-200 bg-white">
+                    <table id="aaParserTable" class="w-full border-collapse text-sm">
+                        <thead></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
                 <div id="aaParserResults" class="space-y-4"></div>
             </div>
             <!-- Toggle for showing rows with only null/empty values -->
@@ -989,6 +1013,30 @@
             AQE: 'Adobe query end marker'
         };
 
+        const AA_TABLE_COLUMNS = [
+            { key: 'requestIndex', label: '#' },
+            { key: 'reportSuite', label: 'Report Suite' },
+            { key: 'endpointHost', label: 'Endpoint Host' },
+            { key: 'pageName', label: 'Page Name' },
+            { key: 'pageUrl', label: 'Page URL' },
+            { key: 'linkType', label: 'Link Type' },
+            { key: 'linkName', label: 'Link Name' },
+            { key: 'events', label: 'Events' },
+            { key: 'eventCount', label: 'Event Count' },
+            { key: 'props', label: 'Props' },
+            { key: 'eVars', label: 'eVars' },
+            { key: 'products', label: 'Products' },
+            { key: 'campaign', label: 'Campaign' },
+            { key: 'mid', label: 'MID' },
+            { key: 'activityMapRegion', label: 'Activity Map Region' },
+            { key: 'activityMapLink', label: 'Activity Map Link' },
+            { key: 'contextData', label: 'Context Data' },
+            { key: 'paramCount', label: 'Param Count' },
+            { key: 'raw', label: 'Raw Request' }
+        ];
+
+        let currentAppMeasurementRows = [];
+
         function decodeAAValue(value) {
             try {
                 return decodeURIComponent(String(value || '').replace(/\+/g, ' '));
@@ -1007,6 +1055,58 @@
             if (/^contextData\./i.test(key)) return `Context data: ${key.replace(/^contextData\./i, '')}`;
             if (/^\.a\./i.test(key)) return `Context data marker: ${key}`;
             return key;
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function getAAParamValue(endpoint, key) {
+            return endpoint.params.find(param => param.key === key)?.value || '';
+        }
+
+        function listAAParams(endpoint, pattern, labelPrefix) {
+            return endpoint.params
+                .filter(param => pattern.test(param.key))
+                .map(param => `${labelPrefix}${param.key.replace(/^\D+/i, '') || param.key}: ${param.value}`)
+                .join(' | ');
+        }
+
+        function listAAContextData(endpoint) {
+            return endpoint.params
+                .filter(param => /^s\.|^contextData\./i.test(param.key))
+                .map(param => `${param.key}: ${param.value}`)
+                .join(' | ');
+        }
+
+        function endpointToAATableRow(endpoint, index) {
+            const events = getAAParamValue(endpoint, 'events');
+            return {
+                requestIndex: index + 1,
+                reportSuite: endpoint.reportSuite || '',
+                endpointHost: endpoint.endpointHost || '',
+                pageName: getAAParamValue(endpoint, 'pageName') || getAAParamValue(endpoint, 'pid'),
+                pageUrl: getAAParamValue(endpoint, 'g'),
+                linkType: getAAParamValue(endpoint, 'pe'),
+                linkName: getAAParamValue(endpoint, 'pev2') || getAAParamValue(endpoint, 'pev3'),
+                events,
+                eventCount: events ? events.split(',').filter(Boolean).length : 0,
+                props: listAAParams(endpoint, /^c\d+$/i, 'prop'),
+                eVars: listAAParams(endpoint, /^v\d+$/i, 'eVar'),
+                products: getAAParamValue(endpoint, 'products'),
+                campaign: getAAParamValue(endpoint, 'campaign'),
+                mid: getAAParamValue(endpoint, 'mid'),
+                activityMapRegion: getAAParamValue(endpoint, 'region'),
+                activityMapLink: getAAParamValue(endpoint, 'link'),
+                contextData: listAAContextData(endpoint),
+                paramCount: endpoint.params.length,
+                raw: endpoint.raw
+            };
         }
 
         function categoryForAAParam(key) {
@@ -1059,6 +1159,146 @@
             }, {});
 
             return { raw: trimmed, endpointHost, reportSuite, params, grouped };
+        }
+
+        function renderAppMeasurementRequestTable(rows) {
+            const wrapper = document.getElementById('aaParserTableWrapper');
+            const table = document.getElementById('aaParserTable');
+            if (!rows.length) {
+                wrapper.classList.add('hidden');
+                table.querySelector('thead').innerHTML = '';
+                table.querySelector('tbody').innerHTML = '';
+                return;
+            }
+
+            wrapper.classList.remove('hidden');
+            table.querySelector('thead').innerHTML = `
+                <tr class="bg-orange-100 text-left">
+                    ${AA_TABLE_COLUMNS.map(column => `<th class="border border-orange-200 px-2 py-2 font-semibold text-orange-950 whitespace-nowrap">${escapeHtml(column.label)}</th>`).join('')}
+                </tr>
+            `;
+            table.querySelector('tbody').innerHTML = rows.map(row => `
+                <tr class="align-top hover:bg-orange-50">
+                    ${AA_TABLE_COLUMNS.map(column => `<td class="border border-orange-100 px-2 py-2 text-gray-800 ${column.key === 'raw' || column.key === 'pageUrl' ? 'break-all font-mono text-xs' : ''}">${escapeHtml(row[column.key]) || '<span class="text-gray-400">(empty)</span>'}</td>`).join('')}
+                </tr>
+            `).join('');
+        }
+
+        function aaRowsToDelimited(rows, delimiter) {
+            const escapeValue = (value) => {
+                const str = String(value ?? '');
+                if (delimiter === ',') {
+                    return /[",\n\r]/.test(str) ? `"${str.replace(/"/g, '""')}"` : str;
+                }
+                return str.replace(/\t/g, ' ').replace(/\r?\n/g, ' ');
+            };
+            return [
+                AA_TABLE_COLUMNS.map(column => escapeValue(column.label)).join(delimiter),
+                ...rows.map(row => AA_TABLE_COLUMNS.map(column => escapeValue(row[column.key])).join(delimiter))
+            ].join('\n');
+        }
+
+        function showAACopyStatus(message, isError = false) {
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const target = isError ? errorMessage : successMessage;
+            target.textContent = message;
+            target.classList.remove('hidden');
+            setTimeout(() => target.classList.add('hidden'), 3000);
+        }
+
+        function ensureAppMeasurementRows() {
+            if (currentAppMeasurementRows.length) return currentAppMeasurementRows;
+            const parsed = parseAppMeasurementEndpoints();
+            return parsed.length ? currentAppMeasurementRows : [];
+        }
+
+        function copyAppMeasurementText(text, successText, errorType) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showAACopyStatus(successText);
+                }).catch(err => {
+                    fallbackCopyText(text, err, errorType);
+                });
+            } else {
+                fallbackCopyText(text, new Error('Clipboard API unavailable'), errorType);
+            }
+        }
+
+        function copyAppMeasurementTable() {
+            const rows = ensureAppMeasurementRows();
+            if (!rows.length) {
+                showAACopyStatus('No AppMeasurement request rows to copy. Paste URLs, parse them, or load captured storage first.', true);
+                return;
+            }
+            copyAppMeasurementText(aaRowsToDelimited(rows, '\t'), 'AppMeasurement table copied for spreadsheet paste.', 'aa_table');
+        }
+
+        function copyAppMeasurementCSV() {
+            const rows = ensureAppMeasurementRows();
+            if (!rows.length) {
+                showAACopyStatus('No AppMeasurement request rows to copy. Paste URLs, parse them, or load captured storage first.', true);
+                return;
+            }
+            copyAppMeasurementText(aaRowsToDelimited(rows, ','), 'AppMeasurement CSV copied to clipboard.', 'aa_csv');
+        }
+
+        function downloadAppMeasurementCSV() {
+            const rows = ensureAppMeasurementRows();
+            if (!rows.length) {
+                showAACopyStatus('No AppMeasurement request rows to download. Paste URLs, parse them, or load captured storage first.', true);
+                return;
+            }
+            const blob = new Blob([aaRowsToDelimited(rows, ',')], { type: 'text/csv;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `appmeasurement_b_ss_inventory_${new Date().toISOString().slice(0, 10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showAACopyStatus('AppMeasurement CSV downloaded.');
+        }
+
+        function flatCapturedRowToTableRow(row, index) {
+            return {
+                requestIndex: index + 1,
+                reportSuite: row['aa.reportSuite'] || '',
+                endpointHost: row['aa.endpointHost'] || '',
+                pageName: row['aa.pageName'] || '',
+                pageUrl: row['aa.pageUrl'] || '',
+                linkType: row['aa.link.type'] || '',
+                linkName: row['aa.link.name'] || '',
+                events: row['aa.events'] || '',
+                eventCount: row['aa.eventCount'] || 0,
+                props: Object.keys(row).filter(key => key.startsWith('aa.props.')).map(key => `${key.replace('aa.props.', '')}: ${row[key]}`).join(' | '),
+                eVars: Object.keys(row).filter(key => key.startsWith('aa.eVars.')).map(key => `${key.replace('aa.eVars.', '')}: ${row[key]}`).join(' | '),
+                products: row['aa.products'] || '',
+                campaign: row['aa.campaign'] || '',
+                mid: row['aa.identity.mid'] || '',
+                activityMapRegion: row['aa.activityMap.region'] || '',
+                activityMapLink: row['aa.activityMap.link'] || '',
+                contextData: Object.keys(row).filter(key => key.startsWith('aa.contextData.')).map(key => `${key.replace('aa.contextData.', '')}: ${row[key]}`).join(' | '),
+                paramCount: Object.keys(row).filter(key => key.startsWith('aa.params.')).length,
+                raw: row['aa.rawUrl'] || ''
+            };
+        }
+
+        function loadCapturedAppMeasurementRows() {
+            const summary = document.getElementById('aaParserSummary');
+            const results = document.getElementById('aaParserResults');
+            const storedPrimary = sessionStorage.getItem('appMeasurementEndpointEvents');
+            const storedFallback = sessionStorage.getItem('flattenedAlloyEvents');
+            const primaryRows = storedPrimary ? JSON.parse(storedPrimary) : [];
+            const fallbackRows = storedFallback ? JSON.parse(storedFallback).filter(row => row && row.source === 'appmeasurement') : [];
+            const capturedRows = primaryRows.length ? primaryRows : fallbackRows;
+
+            currentAppMeasurementRows = capturedRows.map(flatCapturedRowToTableRow);
+            renderAppMeasurementRequestTable(currentAppMeasurementRows);
+            results.innerHTML = '';
+            summary.classList.remove('hidden');
+            summary.innerHTML = currentAppMeasurementRows.length
+                ? `<b>Loaded ${currentAppMeasurementRows.length} captured AppMeasurement request${currentAppMeasurementRows.length === 1 ? '' : 's'} from sessionStorage.</b>`
+                : 'No captured AppMeasurement rows found in this browser tab. Run the generated /b/ss listener, interact with the page, then try again.';
         }
 
         function renderAAParsedEndpoint(endpoint, index) {
@@ -1135,6 +1375,8 @@
                 summary.classList.remove('hidden');
                 summary.textContent = 'Paste at least one Adobe Analytics endpoint URL or query string to parse.';
                 results.innerHTML = '';
+                currentAppMeasurementRows = [];
+                renderAppMeasurementRequestTable([]);
                 return [];
             }
             const endpoints = input
@@ -1143,11 +1385,13 @@
                 .filter(Boolean)
                 .map(parseAppMeasurementLine);
 
+            currentAppMeasurementRows = endpoints.map(endpointToAATableRow);
+            renderAppMeasurementRequestTable(currentAppMeasurementRows);
             results.innerHTML = endpoints.map(renderAAParsedEndpoint).join('');
             const totalParams = endpoints.reduce((sum, endpoint) => sum + endpoint.params.length, 0);
             const reportSuites = Array.from(new Set(endpoints.map(endpoint => endpoint.reportSuite).filter(Boolean)));
             summary.classList.remove('hidden');
-            summary.innerHTML = `<b>Parsed ${endpoints.length} request${endpoints.length === 1 ? '' : 's'}.</b> ${totalParams} total parameters detected.${reportSuites.length ? ` Report suite(s): ${reportSuites.join(', ')}.` : ''}`;
+            summary.innerHTML = `<b>Parsed ${endpoints.length} request${endpoints.length === 1 ? '' : 's'} into a request inventory table.</b> ${totalParams} total parameters detected.${reportSuites.length ? ` Report suite(s): ${reportSuites.join(', ')}.` : ''}`;
             gtag('event', 'appmeasurement_endpoint_parsed', {
                 endpoint_count: endpoints.length,
                 parameter_count: totalParams,
@@ -1175,6 +1419,8 @@
             document.getElementById('aaParserSummary').classList.add('hidden');
             document.getElementById('aaParserSummary').textContent = '';
             document.getElementById('aaParserResults').innerHTML = '';
+            currentAppMeasurementRows = [];
+            renderAppMeasurementRequestTable([]);
         }
 
         function trackToolError(e) {
@@ -1706,7 +1952,12 @@
                 document.execCommand('copy');
                 document.body.removeChild(textarea);
 
-                successMessage.textContent = type === 'csv' ? 'Table copied as CSV using fallback method!' : 'Script copied to clipboard using fallback method!';
+                const fallbackSuccessMessages = {
+                    csv: 'Table copied as CSV using fallback method!',
+                    aa_table: 'AppMeasurement table copied using fallback method!',
+                    aa_csv: 'AppMeasurement CSV copied using fallback method!'
+                };
+                successMessage.textContent = fallbackSuccessMessages[type] || 'Script copied to clipboard using fallback method!';
                 successMessage.classList.remove('hidden');
                 setTimeout(() => successMessage.classList.add('hidden'), 3000);
                 if (type === 'csv') {
@@ -1724,7 +1975,12 @@
                     } catch (err) { }
                 }
             } catch (err) {
-                const errorMsg = type === 'csv' ? 'Failed to copy CSV. Please select the table manually and copy it.' : 'Failed to copy script. Please select the script text manually and copy it.';
+                const fallbackErrorMessages = {
+                    csv: 'Failed to copy CSV. Please select the table manually and copy it.',
+                    aa_table: 'Failed to copy AppMeasurement table. Please select the table manually and copy it.',
+                    aa_csv: 'Failed to copy AppMeasurement CSV. Please select the table manually and copy it.'
+                };
+                const errorMsg = fallbackErrorMessages[type] || 'Failed to copy script. Please select the script text manually and copy it.';
                 errorMessage.textContent = errorMsg;
                 errorMessage.classList.remove('hidden');
                 console.error('Copy failed:', originalError, err);
@@ -2004,6 +2260,71 @@ const SNIPPET_BLOCKS = {
     sessionStorage.setItem(key, JSON.stringify(prev));
   }
 
+  function readCapturedRows() {
+    const stored = sessionStorage.getItem(SECONDARY_STORAGE_KEY) || sessionStorage.getItem(STORAGE_KEY);
+    const rows = stored ? JSON.parse(stored) : [];
+    return rows.filter(function (row) { return row && row.source === 'appmeasurement'; });
+  }
+
+  function rowsToCsv(rows) {
+    const columns = Array.from(rows.reduce(function (set, row) {
+      Object.keys(row).forEach(function (key) { set.add(key); });
+      return set;
+    }, new Set()));
+    const escapeCsv = function (value) {
+      const str = String(value == null ? '' : value);
+      return /[",\\n\\r]/.test(str) ? '"' + str.replace(/"/g, '""') + '"' : str;
+    };
+    return [
+      columns.map(escapeCsv).join(','),
+      ...rows.map(function (row) {
+        return columns.map(function (column) { return escapeCsv(row[column]); }).join(',');
+      })
+    ].join('\\n');
+  }
+
+  function copyCapturedRowsAsCsv() {
+    const rows = readCapturedRows();
+    const csv = rowsToCsv(rows);
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(csv).then(function () {
+        ${opts.includeConsole ? `console.info('[AppMeasurementMonitor] Copied ' + rows.length + ' captured /b/ss rows as CSV.');` : ''}
+        return rows.length;
+      });
+    }
+    const textarea = document.createElement('textarea');
+    textarea.value = csv;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    ${opts.includeConsole ? `console.info('[AppMeasurementMonitor] Copied ' + rows.length + ' captured /b/ss rows as CSV using fallback copy.');` : ''}
+    return Promise.resolve(rows.length);
+  }
+
+  function downloadCapturedRowsAsCsv() {
+    const rows = readCapturedRows();
+    const blob = new Blob([rowsToCsv(rows)], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = 'appmeasurement_b_ss_inventory_' + new Date().toISOString().slice(0, 10) + '.csv';
+    anchor.click();
+    URL.revokeObjectURL(url);
+    ${opts.includeConsole ? `console.info('[AppMeasurementMonitor] Downloaded ' + rows.length + ' captured /b/ss rows as CSV.');` : ''}
+    return rows.length;
+  }
+
+  window.appMeasurementMonitor = {
+    getRows: readCapturedRows,
+    table: function () { console.table(readCapturedRows()); },
+    copyCsv: copyCapturedRowsAsCsv,
+    downloadCsv: downloadCapturedRowsAsCsv
+  };
+
   function capture(rawUrl, transport) {
     try {
       const flat = parseAppMeasurementUrl(rawUrl, transport);
@@ -2064,7 +2385,7 @@ const SNIPPET_BLOCKS = {
     imagePrototype.__aaMonitorImageWrapped = true;
   }
 
-  ${opts.includeConsole ? `console.info('%c[AppMeasurementMonitor] Active. Listening for Adobe Analytics /b/ss requests. Refresh Payloads will read rows from sessionStorage.', 'color:#ea580c;font-weight:bold;');` : ''}
+  ${opts.includeConsole ? `console.info('%c[AppMeasurementMonitor] Active. Listening for Adobe Analytics /b/ss requests. Use appMeasurementMonitor.table(), appMeasurementMonitor.copyCsv(), or appMeasurementMonitor.downloadCsv().', 'color:#ea580c;font-weight:bold;');` : ''}
 })();`,
   all: (opts) => [
     SNIPPET_BLOCKS.alloy(opts),
