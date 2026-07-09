@@ -731,40 +731,87 @@
     <!-- Main content -->
     <main class="mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full max-w-7xl">
         <section class="bg-white rounded-lg shadow-md p-4 sm:p-6">
-            <h1 class="text-xl sm:text-2xl font-semibold mb-4">Event Payload Inspector + AppMeasurement Parser</h1>
-            <!-- Business Value -->
-            <div class="bg-blue-100 border-l-4 border-blue-600 p-4 mb-6 rounded shadow-sm">
-                <h2 class="text-lg font-semibold mb-3 text-blue-800">🚀 Business Value</h2>
-                <p class="mb-2">The Event Payload Inspector enhances event-level data validation and debugging by providing a
-                    user-friendly interface to inspect, filter, export flattened event payloads, and decode Adobe Analytics AppMeasurement endpoint calls. It streamlines
-                    Martech
-                    workflows by:</p>
-                <ul class="list-disc pl-5">
-                    <li><strong>Simplifying Debugging</strong>: Quickly identify issues in flattened data layers with a
-                        dynamic
-                        table view.</li>
-                    <li><strong>Ensuring Data Accuracy</strong>: Validate flattened XDM fields for compliance with
-                        comprehensive
-                        column coverage.</li>
-                    <li><strong>Facilitating Collaboration</strong>: Export flattened payloads as JSON or CSV to share
-                        with teams,
-                        improving communication.</li>
-                    <li><strong>Real-Time Analysis</strong>: Automatically capture flattened payloads from
-                        sessionStorage for
-                        immediate inspection during AEP testing.</li>
-                    <li><strong>Adobe Analytics Parity</strong>: Parse legacy <code>/b/ss</code> AppMeasurement requests to compare props, eVars, events, products, and context data against Web SDK migrations.</li>
-                </ul>
+            <div class="rounded-2xl bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white p-5 sm:p-8 mb-6 shadow-lg">
+                <div class="max-w-4xl">
+                    <p class="text-xs sm:text-sm uppercase tracking-[0.18em] text-blue-200 mb-3">Adobe data collection QA workbench</p>
+                    <h1 class="text-2xl sm:text-4xl font-semibold leading-tight mb-4">Event Payload Inspector + AppMeasurement Parser</h1>
+                    <p class="text-base sm:text-lg text-blue-50 leading-relaxed">
+                        This tool helps implementation, analytics, and QA teams see exactly what a site is sending before the data reaches Adobe Analytics, AEP, RTCDP, CJA, or downstream dashboards. It turns hard-to-read browser requests and nested payloads into exportable tables that teams can inspect together.
+                    </p>
+                </div>
+                <div class="grid gap-3 sm:grid-cols-3 mt-6">
+                    <div class="rounded-xl border border-white/15 bg-white/10 p-4">
+                        <div class="text-2xl font-semibold">Minutes</div>
+                        <div class="text-sm text-blue-100">to inventory props, eVars, events, products, and context data from raw requests.</div>
+                    </div>
+                    <div class="rounded-xl border border-white/15 bg-white/10 p-4">
+                        <div class="text-2xl font-semibold">One table</div>
+                        <div class="text-sm text-blue-100">for QA handoff, migration parity checks, spreadsheet review, or Jira evidence.</div>
+                    </div>
+                    <div class="rounded-xl border border-white/15 bg-white/10 p-4">
+                        <div class="text-2xl font-semibold">Local first</div>
+                        <div class="text-sm text-blue-100">parsing happens in the browser; avoid sharing raw customer or request data unless reviewed.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid gap-4 lg:grid-cols-3 mb-6">
+                <div class="rounded-xl border border-blue-100 bg-blue-50 p-4">
+                    <h2 class="text-lg font-semibold text-blue-950 mb-2">What it does</h2>
+                    <p class="text-sm text-gray-700 mb-3">The tool converts tracking data into readable rows. Use it to inspect Web SDK XDM/data payloads, Tealium events, digitalData objects, and legacy Adobe Analytics <code>/b/ss</code> requests.</p>
+                    <ul class="text-sm text-gray-700 list-disc pl-5 space-y-1">
+                        <li>Flatten nested JSON into columns.</li>
+                        <li>Decode AppMeasurement query strings.</li>
+                        <li>Compare legacy AA tagging to Web SDK requirements.</li>
+                    </ul>
+                </div>
+                <div class="rounded-xl border border-emerald-100 bg-emerald-50 p-4">
+                    <h2 class="text-lg font-semibold text-emerald-950 mb-2">How it saves time</h2>
+                    <p class="text-sm text-gray-700 mb-3">Instead of manually copying network calls into spreadsheets and decoding parameters one by one, teams can capture, flatten, export, and review the data in a repeatable format.</p>
+                    <ul class="text-sm text-gray-700 list-disc pl-5 space-y-1">
+                        <li>Less manual request decoding.</li>
+                        <li>Faster QA evidence collection.</li>
+                        <li>Cleaner migration mapping for AA to AEP/CJA.</li>
+                    </ul>
+                </div>
+                <div class="rounded-xl border border-orange-100 bg-orange-50 p-4">
+                    <h2 class="text-lg font-semibold text-orange-950 mb-2">Best use cases</h2>
+                    <p class="text-sm text-gray-700 mb-3">Use it during tag audits, Web SDK migrations, Launch rule reviews, SDR cleanup, and CJA parity testing.</p>
+                    <ul class="text-sm text-gray-700 list-disc pl-5 space-y-1">
+                        <li>Validate page views and link clicks.</li>
+                        <li>Inventory active eVars, props, and events.</li>
+                        <li>Share CSV evidence with analytics, dev, and business teams.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 mb-6">
+                <h2 class="text-lg font-semibold text-slate-950 mb-3">Choose the workflow that matches your task</h2>
+                <div class="grid gap-3 md:grid-cols-3">
+                    <a href="#snippet-instructions" class="block rounded-lg border border-slate-200 bg-white p-4 hover:border-blue-300 hover:shadow-sm">
+                        <div class="text-sm font-semibold text-blue-700 mb-1">1. Generate a listener</div>
+                        <p class="text-sm text-gray-700">Create a script that captures Alloy, digitalData, Tealium, or AppMeasurement traffic while you use a site.</p>
+                    </a>
+                    <a href="#appmeasurement-parser" class="block rounded-lg border border-slate-200 bg-white p-4 hover:border-orange-300 hover:shadow-sm">
+                        <div class="text-sm font-semibold text-orange-700 mb-1">2. Decode AA requests</div>
+                        <p class="text-sm text-gray-700">Paste one or many <code>/b/ss</code> calls and get a row-by-row inventory of report suites, props, eVars, events, and Activity Map data.</p>
+                    </a>
+                    <a href="#flattened-payload-table" class="block rounded-lg border border-slate-200 bg-white p-4 hover:border-emerald-300 hover:shadow-sm">
+                        <div class="text-sm font-semibold text-emerald-700 mb-1">3. Analyze captured payloads</div>
+                        <p class="text-sm text-gray-700">Load stored flattened events, inspect fields, filter values, and export JSON or CSV for review.</p>
+                    </a>
+                </div>
             </div>
             <!-- Instructions & Dynamic Snippet Builder -->
             <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6 rounded" id="snippet-instructions">
                 <h2 class="text-lg font-medium mb-3">
-                    Dynamic Flattening Script Builder
+                    Step 1: Generate a capture script
                     <span class="ml-2 text-gray-400" tabindex="0" aria-label="Help for snippet builder" title="This section helps you generate customized monitoring scripts for Alloy, Tealium, digitalData, or Adobe Analytics AppMeasurement endpoints.">🛈</span>
                 </h2>
                 <p class="mb-2">
-                    Instantly generate a payload-flattening script for <b>Adobe Alloy (AEP Web SDK)</b>, <b>Tealium utag.view/link</b>, <b>digitalData</b> data layers, or <b>Adobe Analytics AppMeasurement /b/ss requests</b>.
+                    Generate a temporary browser-console script for <b>Adobe Alloy (AEP Web SDK)</b>, <b>Tealium utag.view/link</b>, <b>digitalData</b> data layers, or <b>Adobe Analytics AppMeasurement /b/ss requests</b>.
                     <br>
-                    <span class="text-gray-600">Choose your integration, toggle output options, and copy the ready-to-use script. Paste it in your browser’s console to capture and debug flattened event payloads.</span>
+                    <span class="text-gray-600">Choose the source you need, copy the script, paste it into DevTools, interact with the site, then bring the captured rows back here for review.</span>
                 </p>
                 <ul class="list-disc pl-5 mb-3 text-sm text-gray-700">
                     <li>Works for <b>Alloy</b>, <b>Tealium</b>, <b>digitalData</b>, <b>AppMeasurement /b/ss endpoints</b>, or <b>all at once</b>.</li>
@@ -833,13 +880,14 @@
             <div id="successMessage" class="hidden success-message mb-4" aria-live="assertive" role="alert"></div>
             <div id="loadingIndicator" class="hidden text-blue-600 font-semibold mb-4">Processing...</div>
             <div class="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6 rounded" id="appmeasurement-parser">
-                <h2 class="text-lg font-medium mb-3 text-orange-900">Adobe Analytics AppMeasurement Endpoint Parser</h2>
+                <h2 class="text-lg font-medium mb-3 text-orange-900">Step 2: Decode Adobe Analytics AppMeasurement requests</h2>
                 <p class="mb-2 text-sm text-gray-700">
-                    Paste one or more Adobe Analytics collection requests, such as <code>/b/ss/</code> URLs from the Network tab, image beacon URLs, or raw query strings. The parser decodes the request into a readable QA summary so teams can see what legacy AppMeasurement is actually sending before migrating or validating Web SDK parity.
+                    Paste one or more Adobe Analytics collection requests, such as <code>/b/ss/</code> URLs from the Network tab, image beacon URLs, or raw query strings. The parser creates a request inventory table so teams can see what legacy AppMeasurement is actually sending before migrating or validating Web SDK parity.
                 </p>
                 <ul class="list-disc pl-5 mb-3 text-sm text-gray-700">
                     <li><b>Expected use:</b> validate report suite, page name, link tracking, props, eVars, events, products, campaign, visitor IDs, and context data.</li>
                     <li><b>Migration value:</b> compare legacy <code>s.t()</code> / <code>s.tl()</code> calls against Web SDK <code>sendEvent</code> payloads and CJA requirements.</li>
+                    <li><b>Output:</b> copy as a spreadsheet table, copy as CSV, or download a CSV for SDR mapping and QA evidence.</li>
                     <li><b>Privacy note:</b> parsing happens locally in your browser. Review pasted URLs for personal data before sharing exports.</li>
                 </ul>
                 <label for="aaEndpointInput" class="sr-only">Adobe Analytics endpoint input</label>
@@ -886,6 +934,12 @@
                     </table>
                 </div>
                 <div id="aaParserResults" class="space-y-4"></div>
+            </div>
+            <div id="flattened-payload-table" class="rounded-xl border border-emerald-200 bg-emerald-50 p-4 mb-4">
+                <h2 class="text-lg font-medium mb-2 text-emerald-950">Step 3: Review flattened Web SDK / data layer payloads</h2>
+                <p class="text-sm text-gray-700">
+                    Use this area after a generated listener stores rows in <code>sessionStorage</code>, or paste a JSON array manually. The table helps you quickly find missing fields, unexpected nulls, naming drift, and XDM mapping issues before they reach CJA dashboards or RTCDP audiences.
+                </p>
             </div>
             <!-- Toggle for showing rows with only null/empty values -->
             <label class="flex items-center gap-2 mb-4"
