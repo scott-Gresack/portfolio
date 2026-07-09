@@ -49,13 +49,15 @@
   <style>
     :root {
       --ink: #111827;
-      --muted: #5f6673;
+      --muted: #4b5563;
       --line: rgba(15, 23, 42, 0.12);
       --panel: rgba(255, 255, 255, 0.84);
       --blue: #0a84ff;
+      --blue-dark: #075fbd;
       --green: #16a34a;
       --orange: #ea580c;
       --red: #dc2626;
+      --slate: #0f172a;
       --shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
       color-scheme: light;
     }
@@ -72,6 +74,27 @@
         radial-gradient(circle at 84% 8%, rgba(234, 88, 12, 0.11), transparent 30rem),
         linear-gradient(180deg, #fbfdff 0%, #ffffff 46%, #f6f8fb 100%);
       -webkit-font-smoothing: antialiased;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 12px;
+      z-index: 100;
+      transform: translateY(-160%);
+      background: var(--slate);
+      color: white;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+      outline: 3px solid #93c5fd;
+      outline-offset: 3px;
     }
 
     header {
@@ -132,6 +155,15 @@
 
     .nav-links a:hover { color: #075fbd; background: rgba(10, 132, 255, 0.08); }
 
+    .nav-links a:focus-visible,
+    .brand:focus-visible,
+    .button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid rgba(10, 132, 255, 0.45);
+      outline-offset: 3px;
+    }
+
     main {
       max-width: 1240px;
       margin: 0 auto;
@@ -147,6 +179,24 @@
       color: white;
       box-shadow: var(--shadow);
       overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -10%;
+      bottom: -42%;
+      width: min(520px, 70vw);
+      height: 320px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      transform: rotate(-10deg);
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
     }
 
     .eyebrow {
@@ -172,6 +222,35 @@
       color: #dbeafe;
       font-size: clamp(16px, 2vw, 20px);
       line-height: 1.55;
+    }
+
+    .hero-subgrid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+      max-width: 920px;
+    }
+
+    .hero-mini {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.10);
+      padding: 14px;
+    }
+
+    .hero-mini strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .hero-mini span {
+      display: block;
+      color: #dbeafe;
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 650;
     }
 
     .hero-actions {
@@ -210,6 +289,100 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
       margin: 18px 0;
+    }
+
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .purpose-card {
+      border: 1px solid rgba(255, 255, 255, 0.74);
+      border-radius: 22px;
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 54px rgba(15, 23, 42, 0.08);
+      padding: 18px;
+    }
+
+    .purpose-card h2,
+    .purpose-card h3 {
+      margin: 0;
+      letter-spacing: -0.03em;
+    }
+
+    .purpose-card p {
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 10px 0 0;
+      font-size: 14px;
+    }
+
+    .workflow {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .workflow-step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(248, 250, 252, 0.82);
+    }
+
+    .step-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: var(--slate);
+      color: white;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .workflow-step strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .workflow-step span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .definition-list {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0 0;
+    }
+
+    .definition-list div {
+      border-left: 4px solid rgba(10, 132, 255, 0.36);
+      padding-left: 12px;
+    }
+
+    .definition-list dt {
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .definition-list dd {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
     }
 
     .metric {
@@ -269,6 +442,15 @@
       max-width: 720px;
     }
 
+    .panel-kicker {
+      margin: 0 0 6px;
+      color: var(--blue-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 11px;
+      font-weight: 950;
+    }
+
     .panel-body { padding: 18px; }
 
     .compare-grid {
@@ -284,6 +466,14 @@
       font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.02em;
+    }
+
+    .field-help {
+      margin: -2px 0 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 650;
     }
 
     input,
@@ -328,10 +518,35 @@
       -webkit-overflow-scrolling: touch;
     }
 
+    .results-summary {
+      margin-bottom: 14px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .result-chip {
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 850;
+      border: 1px solid var(--line);
+      background: white;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 13px;
+    }
+
+    caption {
+      text-align: left;
+      color: var(--muted);
+      padding: 0 0 12px;
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 700;
     }
 
     th,
@@ -384,6 +599,18 @@
       gap: 18px;
     }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     .toast {
       position: fixed;
       right: 20px;
@@ -407,6 +634,9 @@
     @media (max-width: 960px) {
       .metric-grid,
       .compare-grid,
+      .purpose-grid,
+      .hero-subgrid,
+      .results-summary,
       .output-grid { grid-template-columns: 1fr; }
     }
 
@@ -418,13 +648,23 @@
       table { min-width: 880px; }
       .panel-header { flex-direction: column; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <a class="skip-link" href="#compare">Skip to comparator inputs</a>
   <header>
-    <nav>
-      <a class="brand" href="/portfolio/">
+    <nav aria-label="Primary navigation">
+      <a class="brand" href="/portfolio/" aria-label="Back to Scott Gresack portfolio">
         <span class="brand-mark">XM</span>
         <span>Migration Comparator</span>
       </a>
@@ -436,13 +676,27 @@
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
+  <main id="main">
+    <section class="hero" aria-labelledby="page-title">
       <div class="eyebrow">Tealium iQ / AppMeasurement to Adobe Web SDK</div>
-      <h1>Compare legacy tags against the Web SDK future state.</h1>
+      <h1 id="page-title">Compare legacy tags against the Web SDK future state.</h1>
       <p>
-        This tool helps migration teams compare individual Tealium iQ tags, AppMeasurement variables, and Adobe Analytics mappings against proposed Web SDK/XDM fields. It turns migration uncertainty into a concrete parity table, gap list, and engineering backlog.
+        This tool helps migration teams compare individual Tealium iQ tags, AppMeasurement variables, and Adobe Analytics mappings against proposed Web SDK/XDM fields. It turns migration uncertainty into a concrete parity table, gap list, and engineering backlog that a real implementation team can act on.
       </p>
+      <div class="hero-subgrid" aria-label="Primary outcomes">
+        <div class="hero-mini">
+          <strong>What goes in</strong>
+          <span>Legacy tag mappings and target Web SDK/XDM mappings.</span>
+        </div>
+        <div class="hero-mini">
+          <strong>What comes out</strong>
+          <span>Parity score, missing mappings, target-only fields, and a migration backlog.</span>
+        </div>
+        <div class="hero-mini">
+          <strong>Why it matters</strong>
+          <span>Teams can avoid silent reporting breaks when moving from Tealium/AppMeasurement to Web SDK.</span>
+        </div>
+      </div>
       <div class="hero-actions">
         <button class="button primary" id="loadExampleHero">Load migration example</button>
         <a class="button secondary" href="#compare">Compare mappings</a>
@@ -450,7 +704,51 @@
       </div>
     </section>
 
-    <section class="metric-grid" aria-label="Comparator summary">
+    <section class="purpose-grid" aria-labelledby="purpose-title">
+      <div class="purpose-card">
+        <h2 id="purpose-title">What this tool does</h2>
+        <p>
+          During a Web SDK migration, teams often know what the legacy tag used to send, but not whether the same measurement intent exists in the new implementation. This comparator checks whether each legacy eVar, prop, event, tag, or data layer value has a target Web SDK/XDM destination.
+        </p>
+        <div class="workflow" aria-label="How the comparator workflow works">
+          <div class="workflow-step">
+            <span class="step-number">1</span>
+            <div><strong>Paste legacy mapping</strong><span>Tealium iQ tags, AppMeasurement variables, SDR rows, or simple CSV/key-value lines.</span></div>
+          </div>
+          <div class="workflow-step">
+            <span class="step-number">2</span>
+            <div><strong>Paste target mapping</strong><span>Web SDK, XDM, data.__adobe.analytics, or CJA-ready target paths.</span></div>
+          </div>
+          <div class="workflow-step">
+            <span class="step-number">3</span>
+            <div><strong>Review parity</strong><span>Mapped, missing, needs-detail, and new mappings become a backlog the team can execute.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="purpose-card">
+        <h3>How to read the results</h3>
+        <dl class="definition-list">
+          <div>
+            <dt>Mapped</dt>
+            <dd>The legacy variable exists in the target and has a documented XDM or data path.</dd>
+          </div>
+          <div>
+            <dt>Needs detail</dt>
+            <dd>The target variable exists, but the implementation path is unclear. Engineering needs a destination path before build.</dd>
+          </div>
+          <div>
+            <dt>Missing</dt>
+            <dd>A legacy variable has no target mapping. Decide whether to migrate, retire, or replace it.</dd>
+          </div>
+          <div>
+            <dt>New</dt>
+            <dd>A Web SDK/XDM mapping exists that did not exist in legacy. Confirm it is intentional and governed.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="metric-grid" aria-label="Comparator summary" aria-live="polite">
       <div class="metric">
         <strong id="legacyCount">0</strong>
         <span>Legacy Tealium/AppMeasurement mappings detected.</span>
@@ -469,10 +767,11 @@
       </div>
     </section>
 
-    <section class="panel" id="compare">
+    <section class="panel" id="compare" aria-labelledby="compare-title">
       <div class="panel-header">
         <div>
-          <h2>1. Paste or load mappings</h2>
+          <div class="panel-kicker">Step 1</div>
+          <h2 id="compare-title">Paste or load mappings</h2>
           <p>Use JSON arrays, CSV rows, or simple key/value lines. The comparator understands fields such as tag, variable, source, destination, xdmPath, dataPath, event, eVar, prop, and notes.</p>
         </div>
         <button class="button light" id="loadExample">Load example</button>
@@ -481,14 +780,16 @@
         <div style="display: grid; gap: 14px; margin-bottom: 16px;">
           <div>
             <label for="comparisonLabel">Comparison label</label>
-            <input id="comparisonLabel" value="Tealium iQ pricing CTA migration to Adobe Web SDK" />
+            <p class="field-help" id="comparisonHelp">Give the comparison a business-readable name so the exported report is easy to share.</p>
+            <input id="comparisonLabel" aria-describedby="comparisonHelp" value="Tealium iQ pricing CTA migration to Adobe Web SDK" />
           </div>
         </div>
 
         <div class="compare-grid">
           <div>
             <label for="legacyInput">Legacy side: Tealium iQ tag / AppMeasurement mapping</label>
-            <textarea id="legacyInput" spellcheck="false" placeholder='Example JSON:
+            <p class="field-help" id="legacyHelp">Paste the current-state mapping. Use this for Tealium tag variables, AppMeasurement eVars/props/events, or SDR export rows.</p>
+            <textarea id="legacyInput" aria-describedby="legacyHelp" spellcheck="false" placeholder='Example JSON:
 [
   {"tag":"Pricing CTA","variable":"eVar12","source":"utag_data.cta_name","value":"start_free_trial","event":"event12"},
   {"tag":"Pricing CTA","variable":"prop7","source":"utag_data.component_type","value":"primary_button"}
@@ -496,7 +797,8 @@
           </div>
           <div>
             <label for="targetInput">Target side: Web SDK / XDM mapping</label>
-            <textarea id="targetInput" spellcheck="false" placeholder='Example JSON:
+            <p class="field-help" id="targetHelp">Paste the future-state mapping. Use this for XDM paths, data.__adobe.analytics paths, or Web SDK implementation specs.</p>
+            <textarea id="targetInput" aria-describedby="targetHelp" spellcheck="false" placeholder='Example JSON:
 [
   {"tag":"Pricing CTA","variable":"eVar12","xdmPath":"web.webInteraction.name","dataPath":"data.__adobe.analytics.eVar12"},
   {"tag":"Pricing CTA","variable":"event12","xdmPath":"_experience.analytics.event1to100.event12.value"}
@@ -513,16 +815,24 @@
       </div>
     </section>
 
-    <section class="panel" id="results">
+    <section class="panel" id="results" aria-labelledby="results-title">
       <div class="panel-header">
         <div>
-          <h2>2. Migration parity results</h2>
+          <div class="panel-kicker">Step 2</div>
+          <h2 id="results-title">Migration parity results</h2>
           <p>Each row shows whether a legacy variable has a Web SDK/XDM destination, whether the destination changed, or whether a new Web SDK-only mapping was introduced.</p>
         </div>
       </div>
       <div class="panel-body">
+        <div class="results-summary" aria-label="Result status meanings">
+          <div class="result-chip"><span class="status migrated">Mapped</span> Ready for QA validation.</div>
+          <div class="result-chip"><span class="status changed">Needs detail</span> Add missing path details.</div>
+          <div class="result-chip"><span class="status missing">Missing</span> Decide migrate, retire, or replace.</div>
+          <div class="result-chip"><span class="status new">New</span> Confirm this target-only field is intended.</div>
+        </div>
         <div class="table-wrap">
-          <table>
+          <table aria-describedby="results-title">
+            <caption>Comparison output for legacy Tealium/AppMeasurement mappings against target Web SDK/XDM mappings.</caption>
             <thead>
               <tr>
                 <th>Status</th>
@@ -541,26 +851,28 @@
     </section>
 
     <section class="output-grid">
-      <div class="panel">
+      <div class="panel" aria-labelledby="backlog-title">
         <div class="panel-header">
           <div>
-            <h2>Migration backlog</h2>
+            <div class="panel-kicker">Step 3</div>
+            <h2 id="backlog-title">Migration backlog</h2>
             <p>Use these as Jira tasks or story acceptance criteria for the migration team.</p>
           </div>
           <button class="button primary" data-copy="backlogOutput">Copy backlog</button>
         </div>
-        <pre id="backlogOutput"></pre>
+        <pre id="backlogOutput" tabindex="0" aria-label="Migration backlog text output"></pre>
       </div>
 
-      <div class="panel">
+      <div class="panel" aria-labelledby="summary-title">
         <div class="panel-header">
           <div>
-            <h2>Executive summary</h2>
+            <div class="panel-kicker">Shareable summary</div>
+            <h2 id="summary-title">Executive summary</h2>
             <p>Plain-English summary for analytics owners, engineering leads, and project stakeholders.</p>
           </div>
           <button class="button primary" data-copy="summaryOutput">Copy summary</button>
         </div>
-        <pre id="summaryOutput"></pre>
+        <pre id="summaryOutput" tabindex="0" aria-label="Executive summary text output"></pre>
       </div>
     </section>
   </main>
