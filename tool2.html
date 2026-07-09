@@ -1,10 +1,10 @@
 
 <!--
-  Alloy Flattened Payload Analyzer v1.0.1
+  Alloy and AppMeasurement Payload Analyzer v1.1.0
   Author: Scott Gresack
 
   Description:
-  This tool provides an interactive interface to inspect flattened Adobe Alloy (AEP Web SDK) event payloads.
+  This tool provides an interactive interface to inspect flattened Adobe Alloy (AEP Web SDK) event payloads and parse Adobe Analytics AppMeasurement collection endpoints.
   It helps identify data quality issues, debug schema mismatches, and export normalized data for analysis.
 
   Key Features:
@@ -13,13 +13,14 @@
   - Real-time sessionStorage integration
   - JSON/CSV export for collaboration
   - Row filtering and event type summary
+  - Adobe Analytics AppMeasurement /b/ss endpoint parser
   - Extensible with tracking (GA4, PostHog, Clarity, Piwik PRO)
 
   Use Case:
   Ideal for Martech engineers, QA testers, analysts, or developers debugging Adobe Experience Platform integrations.
 
-  Version: 1.0.1
-  Last updated: 2025-05-26
+  Version: 1.1.0
+  Last updated: 2026-07-09
 -->
 
 
@@ -33,16 +34,16 @@
     <!-- Ensure responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Tool-specific title and metadata -->
-    <meta name="ppms.tool_name" content="Dynamic Flattening Script Builder" />
-    <meta name="ppms.tool_version" content="1.0.1" />
+    <meta name="ppms.tool_name" content="Alloy and AppMeasurement Payload Analyzer" />
+    <meta name="ppms.tool_version" content="1.1.0" />
     <meta name="ppms.tool_author" content="Scott Gresack" />
-    <title>Dynamic Flattening Script Builder | Alloy, Tealium, digitalData</title>
+    <title>Alloy and AppMeasurement Payload Analyzer | Adobe Analytics, Web SDK, Tealium</title>
     <!-- SEO description for the tool -->
     <meta name="description"
-        content="Build dynamic flattening scripts for Alloy, Tealium, and digitalData. Instantly generate, customize, and copy scripts for event payload debugging and sessionStorage capture. By Scott Gresack." />
+        content="Inspect Adobe Web SDK, Tealium, digitalData, and Adobe Analytics AppMeasurement endpoint payloads. Generate flattening scripts, parse /b/ss requests, and validate analytics data before reporting or activation. By Scott Gresack." />
     <!-- Relevant keywords -->
     <meta name="keywords"
-        content="flattening script builder, Alloy, Tealium, digitalData, AEP Web SDK, sessionStorage, console logging, dynamic script, event debugging, payload analyzer, Martech, Scott Gresack, Adobe, Tag Management, analytics, CDP, JavaScript snippet, open source, script generator, payload flattener, digital analytics, debugging, XDM, JSON, data layer, script copy, accessibility, SEO" />
+        content="AppMeasurement parser, Adobe Analytics endpoint parser, b/ss parser, flattening script builder, Alloy, Tealium, digitalData, AEP Web SDK, sessionStorage, console logging, dynamic script, event debugging, payload analyzer, Martech, Scott Gresack, Adobe, Tag Management, analytics, CDP, JavaScript snippet, XDM, JSON, data layer" />
     <!-- Author -->
     <meta name="author" content="Scott Gresack" />
     <!-- Allow indexing -->
@@ -55,16 +56,16 @@
     <!-- Open Graph tags -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tool2.html" />
-    <meta property="og:title" content="Dynamic Flattening Script Builder | Alloy, Tealium, digitalData" />
+    <meta property="og:title" content="Alloy and AppMeasurement Payload Analyzer | Adobe Analytics, Web SDK, Tealium" />
     <meta property="og:description"
-        content="Generate flattening scripts for Alloy, Tealium, and digitalData with console and sessionStorage options. Instantly copy and use for payload debugging. By Scott Gresack." />
+        content="Generate flattening scripts for Alloy, Tealium, and digitalData, then parse Adobe Analytics AppMeasurement /b/ss endpoints for migration and QA. By Scott Gresack." />
     <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
 
     <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Dynamic Flattening Script Builder | Alloy, Tealium, digitalData" />
+    <meta name="twitter:title" content="Alloy and AppMeasurement Payload Analyzer | Adobe Analytics, Web SDK, Tealium" />
     <meta name="twitter:description"
-        content="Build flattening scripts for Alloy, Tealium, and digitalData. Copy, customize, and debug event payloads with ease. By Scott Gresack." />
+        content="Debug Web SDK, Tealium, digitalData, and Adobe Analytics AppMeasurement endpoint payloads in one browser-based QA tool. By Scott Gresack." />
     <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
@@ -612,12 +613,12 @@
     <!-- Main content -->
     <main class="mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full max-w-7xl">
         <section class="bg-white rounded-lg shadow-md p-4 sm:p-6">
-            <h1 class="text-xl sm:text-2xl font-semibold mb-4">Event Payload Inspector</h1>
+            <h1 class="text-xl sm:text-2xl font-semibold mb-4">Event Payload Inspector + AppMeasurement Parser</h1>
             <!-- Business Value -->
             <div class="bg-blue-100 border-l-4 border-blue-600 p-4 mb-6 rounded shadow-sm">
                 <h2 class="text-lg font-semibold mb-3 text-blue-800">🚀 Business Value</h2>
                 <p class="mb-2">The Event Payload Inspector enhances event-level data validation and debugging by providing a
-                    user-friendly interface to inspect, filter, and export flattened event payloads. It streamlines
+                    user-friendly interface to inspect, filter, export flattened event payloads, and decode Adobe Analytics AppMeasurement endpoint calls. It streamlines
                     Martech
                     workflows by:</p>
                 <ul class="list-disc pl-5">
@@ -633,6 +634,7 @@
                     <li><strong>Real-Time Analysis</strong>: Automatically capture flattened payloads from
                         sessionStorage for
                         immediate inspection during AEP testing.</li>
+                    <li><strong>Adobe Analytics Parity</strong>: Parse legacy <code>/b/ss</code> AppMeasurement requests to compare props, eVars, events, products, and context data against Web SDK migrations.</li>
                 </ul>
             </div>
             <!-- Instructions & Dynamic Snippet Builder -->
@@ -710,6 +712,37 @@
             <div id="errorMessage" class="hidden error-message mb-4" aria-live="assertive" role="alert"></div>
             <div id="successMessage" class="hidden success-message mb-4" aria-live="assertive" role="alert"></div>
             <div id="loadingIndicator" class="hidden text-blue-600 font-semibold mb-4">Processing...</div>
+            <div class="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6 rounded" id="appmeasurement-parser">
+                <h2 class="text-lg font-medium mb-3 text-orange-900">Adobe Analytics AppMeasurement Endpoint Parser</h2>
+                <p class="mb-2 text-sm text-gray-700">
+                    Paste one or more Adobe Analytics collection requests, such as <code>/b/ss/</code> URLs from the Network tab, image beacon URLs, or raw query strings. The parser decodes the request into a readable QA summary so teams can see what legacy AppMeasurement is actually sending before migrating or validating Web SDK parity.
+                </p>
+                <ul class="list-disc pl-5 mb-3 text-sm text-gray-700">
+                    <li><b>Expected use:</b> validate report suite, page name, link tracking, props, eVars, events, products, campaign, visitor IDs, and context data.</li>
+                    <li><b>Migration value:</b> compare legacy <code>s.t()</code> / <code>s.tl()</code> calls against Web SDK <code>sendEvent</code> payloads and CJA requirements.</li>
+                    <li><b>Privacy note:</b> parsing happens locally in your browser. Review pasted URLs for personal data before sharing exports.</li>
+                </ul>
+                <label for="aaEndpointInput" class="sr-only">Adobe Analytics endpoint input</label>
+                <textarea id="aaEndpointInput" class="w-full min-h-[130px] border border-orange-200 rounded p-3 mb-4"
+                    placeholder="Paste Adobe Analytics endpoint URLs or query strings here. Example: https://example.sc.omtrdc.net/b/ss/rsid/1/JS-2.25.0/s123456789?AQB=1&pageName=Home&v1=logged-in&events=event1,event2&c1=hero&AQE=1"
+                    aria-label="Adobe Analytics endpoint input"></textarea>
+                <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4 space-y-2 sm:space-y-0">
+                    <button onclick="parseAppMeasurementEndpoints()"
+                        class="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700 w-full sm:w-auto"
+                        aria-label="Parse Adobe Analytics endpoints"
+                        title="Parse Adobe Analytics AppMeasurement endpoint URLs into readable fields.">Parse AA Endpoints</button>
+                    <button onclick="loadAppMeasurementSample()"
+                        class="bg-white text-orange-700 border border-orange-300 py-2 px-4 rounded hover:bg-orange-100 w-full sm:w-auto"
+                        aria-label="Load Adobe Analytics sample"
+                        title="Load a realistic Adobe Analytics endpoint sample.">Load Sample</button>
+                    <button onclick="clearAppMeasurementParser()"
+                        class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full sm:w-auto"
+                        aria-label="Clear Adobe Analytics parser"
+                        title="Clear the parser input and output.">Clear</button>
+                </div>
+                <div id="aaParserSummary" class="hidden mb-4 p-3 bg-white border border-orange-200 rounded text-sm text-gray-800"></div>
+                <div id="aaParserResults" class="space-y-4"></div>
+            </div>
             <!-- Toggle for showing rows with only null/empty values -->
             <label class="flex items-center gap-2 mb-4"
                 title="Toggle to include or exclude rows that contain only null, undefined, or empty values.">
@@ -924,6 +957,222 @@
                 column_count: columnCount,
                 tool_name: 'Event Payload Inspector'
             });
+        }
+
+        const AA_PARAM_LABELS = {
+            pageName: 'Page name',
+            g: 'Current page URL',
+            r: 'Referrer',
+            pe: 'Link tracking type',
+            pev1: 'Link URL / custom link URL',
+            pev2: 'Custom link name',
+            pev3: 'Download / exit link name',
+            events: 'Events',
+            products: 'Products',
+            campaign: 'Campaign tracking code',
+            purchaseID: 'Purchase ID',
+            transactionID: 'Transaction ID',
+            state: 'State',
+            zip: 'ZIP code',
+            server: 'Server',
+            channel: 'Site section / channel',
+            pageType: 'Page type',
+            vid: 'Visitor ID',
+            aid: 'Analytics visitor ID',
+            mid: 'Experience Cloud ID',
+            mcorgid: 'Experience Cloud org ID',
+            t: 'Timestamp',
+            ts: 'Timestamp seconds',
+            AQB: 'Adobe query begin marker',
+            AQE: 'Adobe query end marker'
+        };
+
+        function decodeAAValue(value) {
+            try {
+                return decodeURIComponent(String(value || '').replace(/\+/g, ' '));
+            } catch (error) {
+                return String(value || '');
+            }
+        }
+
+        function describeAAParam(key) {
+            if (AA_PARAM_LABELS[key]) return AA_PARAM_LABELS[key];
+            if (/^c\d+$/i.test(key)) return `prop${key.slice(1)}`;
+            if (/^v\d+$/i.test(key)) return `eVar${key.slice(1)}`;
+            if (/^h\d+$/i.test(key)) return `hierarchy${key.slice(1)}`;
+            if (/^l\d+$/i.test(key)) return `list${key.slice(1)}`;
+            if (/^s\./i.test(key)) return `Context data: ${key}`;
+            if (/^contextData\./i.test(key)) return `Context data: ${key.replace(/^contextData\./i, '')}`;
+            if (/^\.a\./i.test(key)) return `Context data marker: ${key}`;
+            return key;
+        }
+
+        function categoryForAAParam(key) {
+            if (['pageName', 'g', 'r', 'server', 'channel', 'pageType'].includes(key)) return 'Page and traffic';
+            if (['pe', 'pev1', 'pev2', 'pev3'].includes(key)) return 'Link tracking';
+            if (/^c\d+$/i.test(key)) return 'Props';
+            if (/^v\d+$/i.test(key)) return 'eVars';
+            if (['events', 'products', 'campaign', 'purchaseID', 'transactionID'].includes(key)) return 'Conversion and commerce';
+            if (['vid', 'aid', 'mid', 'mcorgid'].includes(key)) return 'Identity';
+            if (/^s\.|^contextData\.|^\.a\./i.test(key)) return 'Context data';
+            if (['AQB', 'AQE', 't', 'ts'].includes(key)) return 'Transport and diagnostics';
+            return 'Other parameters';
+        }
+
+        function parseAppMeasurementLine(line) {
+            const trimmed = line.trim();
+            let reportSuite = '';
+            let endpointHost = '';
+            let query = trimmed;
+            try {
+                const url = new URL(trimmed);
+                endpointHost = url.host;
+                query = url.search ? url.search.slice(1) : '';
+                const pathParts = url.pathname.split('/').filter(Boolean);
+                const ssIndex = pathParts.indexOf('ss');
+                if (ssIndex >= 0 && pathParts[ssIndex + 1]) {
+                    reportSuite = decodeAAValue(pathParts[ssIndex + 1]);
+                }
+            } catch (error) {
+                query = trimmed.replace(/^\?/, '');
+                const pathMatch = trimmed.match(/\/b\/ss\/([^/?#]+)/i);
+                if (pathMatch) reportSuite = decodeAAValue(pathMatch[1]);
+            }
+
+            const params = [];
+            const searchParams = new URLSearchParams(query);
+            searchParams.forEach((value, key) => {
+                params.push({
+                    key,
+                    label: describeAAParam(key),
+                    category: categoryForAAParam(key),
+                    value: decodeAAValue(value)
+                });
+            });
+
+            const grouped = params.reduce((acc, param) => {
+                acc[param.category] = acc[param.category] || [];
+                acc[param.category].push(param);
+                return acc;
+            }, {});
+
+            return { raw: trimmed, endpointHost, reportSuite, params, grouped };
+        }
+
+        function renderAAParsedEndpoint(endpoint, index) {
+            const orderedCategories = [
+                'Page and traffic',
+                'Link tracking',
+                'Props',
+                'eVars',
+                'Conversion and commerce',
+                'Identity',
+                'Context data',
+                'Transport and diagnostics',
+                'Other parameters'
+            ];
+            const categoryHtml = orderedCategories
+                .filter(category => endpoint.grouped[category]?.length)
+                .map(category => {
+                    const rows = endpoint.grouped[category].map(param => `
+                        <tr>
+                            <td class="border border-orange-100 px-2 py-1 font-mono text-xs text-gray-700">${param.key}</td>
+                            <td class="border border-orange-100 px-2 py-1 text-gray-800">${param.label}</td>
+                            <td class="border border-orange-100 px-2 py-1 break-all text-gray-700">${param.value || '<span class="text-gray-400">(empty)</span>'}</td>
+                        </tr>
+                    `).join('');
+                    return `
+                        <div class="mb-4">
+                            <h4 class="mb-2 font-semibold text-orange-900">${category}</h4>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse bg-white text-sm">
+                                    <thead>
+                                        <tr class="bg-orange-100 text-left">
+                                            <th class="border border-orange-200 px-2 py-1">Param</th>
+                                            <th class="border border-orange-200 px-2 py-1">Meaning</th>
+                                            <th class="border border-orange-200 px-2 py-1">Decoded value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>${rows}</tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+            const eventsValue = endpoint.params.find(param => param.key === 'events')?.value || '';
+            const eventCount = eventsValue.split(',').filter(Boolean).length;
+            const props = endpoint.params.filter(param => /^c\d+$/i.test(param.key)).length;
+            const evars = endpoint.params.filter(param => /^v\d+$/i.test(param.key)).length;
+
+            return `
+                <div class="p-4 bg-white border border-orange-200 rounded shadow-sm">
+                    <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                            <h3 class="font-semibold text-orange-900">Parsed Adobe Analytics Request ${index + 1}</h3>
+                            <p class="text-sm text-gray-600">Report suite: <b>${endpoint.reportSuite || 'Not detected'}</b>${endpoint.endpointHost ? ` · Host: <b>${endpoint.endpointHost}</b>` : ''}</p>
+                        </div>
+                        <div class="text-xs text-gray-600">
+                            ${endpoint.params.length} params · ${props} props · ${evars} eVars · ${eventCount} events
+                        </div>
+                    </div>
+                    <details class="mt-3 mb-4">
+                        <summary class="cursor-pointer text-sm font-semibold text-gray-700">Raw request</summary>
+                        <pre class="mt-2 whitespace-pre-wrap break-all rounded bg-gray-100 p-3 text-xs">${endpoint.raw}</pre>
+                    </details>
+                    ${categoryHtml || '<p class="text-sm text-gray-600">No query parameters found.</p>'}
+                </div>
+            `;
+        }
+
+        function parseAppMeasurementEndpoints() {
+            const input = document.getElementById('aaEndpointInput').value.trim();
+            const summary = document.getElementById('aaParserSummary');
+            const results = document.getElementById('aaParserResults');
+            if (!input) {
+                summary.classList.remove('hidden');
+                summary.textContent = 'Paste at least one Adobe Analytics endpoint URL or query string to parse.';
+                results.innerHTML = '';
+                return [];
+            }
+            const endpoints = input
+                .split(/\n+/)
+                .map(line => line.trim())
+                .filter(Boolean)
+                .map(parseAppMeasurementLine);
+
+            results.innerHTML = endpoints.map(renderAAParsedEndpoint).join('');
+            const totalParams = endpoints.reduce((sum, endpoint) => sum + endpoint.params.length, 0);
+            const reportSuites = Array.from(new Set(endpoints.map(endpoint => endpoint.reportSuite).filter(Boolean)));
+            summary.classList.remove('hidden');
+            summary.innerHTML = `<b>Parsed ${endpoints.length} request${endpoints.length === 1 ? '' : 's'}.</b> ${totalParams} total parameters detected.${reportSuites.length ? ` Report suite(s): ${reportSuites.join(', ')}.` : ''}`;
+            gtag('event', 'appmeasurement_endpoint_parsed', {
+                endpoint_count: endpoints.length,
+                parameter_count: totalParams,
+                report_suites: reportSuites.join(','),
+                tool_name: 'Event Payload Inspector'
+            });
+            if (window.posthog) {
+                posthog.capture('appmeasurement_endpoint_parsed', {
+                    endpoint_count: endpoints.length,
+                    parameter_count: totalParams,
+                    report_suites: reportSuites,
+                    tool_name: 'Event Payload Inspector'
+                });
+            }
+            return endpoints;
+        }
+
+        function loadAppMeasurementSample() {
+            document.getElementById('aaEndpointInput').value = 'https://example.sc.omtrdc.net/b/ss/exampleprod/1/JS-2.25.0/s123456789?AQB=1&pageName=Pricing%20Page&g=https%3A%2F%2Fwww.example.com%2Fpricing&r=https%3A%2F%2Fwww.google.com%2F&channel=Marketing&c1=anonymous&c2=pricing-hero&v1=trial-user&v2=saas-self-serve&events=event1,event12,prodView&products=%3BPro%20Plan%3B1%3B99.00&campaign=paid-search-saas&mid=12345678901234567890123456789012345678&pe=lnk_o&pev2=Start%20Trial&s.account_tier=mid-market&s.product_interest=pro-plan&AQE=1';
+            parseAppMeasurementEndpoints();
+        }
+
+        function clearAppMeasurementParser() {
+            document.getElementById('aaEndpointInput').value = '';
+            document.getElementById('aaParserSummary').classList.add('hidden');
+            document.getElementById('aaParserSummary').textContent = '';
+            document.getElementById('aaParserResults').innerHTML = '';
         }
 
         function trackToolError(e) {
