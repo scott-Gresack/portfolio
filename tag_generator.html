@@ -1,868 +1,1313 @@
 <!DOCTYPE html>
-<!--
-  Web Tag Spec Generator v1.0.1
-  Author: Scott Gresack
-  Description: Interactive tool to generate and preview utag.view() and utag.link() payloads for Adobe Analytics, including XDM and data.__adobe.analytics mappings. Integrated tracking includes GA4, PostHog, Microsoft Clarity, and Piwik PRO for comprehensive analytics.
-  Last updated: 2025-05-27
-
-  Enhanced Features:
-  - Generates detailed utag.view() / utag.link() payloads
-  - Maps payloads to XDM schemas and Adobe Analytics structures
-  - Supports identityMap and datastream overrides
-  - Comprehensive integration with GA4, PostHog, Microsoft Clarity, and Piwik PRO
-  - Ideal for front-end analytics QA, validation, and technical documentation
--->
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tag Spec Workbench | Scott Gresack</title>
+  <meta name="description" content="A practical engineering workbench for creating analytics tag specifications, data layer contracts, Adobe Web SDK calls, Tealium calls, Launch custom code, and QA checklists." />
+  <meta name="keywords" content="tag spec generator, Adobe Web SDK, Adobe Analytics, Tealium, data layer, XDM, Launch rules, analytics implementation, QA checklist, martech engineering" />
+  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/tag_generator.html" />
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'GT-MQBSZT8H');
   </script>
-  <!-- Tool metadata -->
-  <meta name="ppms.tool_name" content="Web Tag Spec Generator">
-  <meta name="ppms.tool_version" content="1.0.1">
-  <meta name="ppms.tool_author" content="Scott Gresack">
-  <meta name="author" content="Scott Gresack">
-  <meta name="robots" content="index, follow">
-  <!-- SEO meta tags -->
-  <title>Free Web Tag Spec Generator for Adobe Analytics, XDM, and Tealium | Scott Gresack</title>
-  <meta name="description" content="Instantly generate utag.view() and utag.link() payloads for Adobe Analytics, Tealium, and XDM mapping. Built for Martech engineers, QA, and digital analysts seeking hands-on tag validation and implementation tooling.">
-  <meta name="keywords" content="Adobe Analytics, Web SDK, XDM, Tealium, utag.view, utag.link, tag spec generator, data layer validation, tag management, QA tracking, analytics tool, user interaction analytics, digital analytics, event tracking, data governance, martech tool">
-  <meta name="audience" content="Martech engineers, digital analysts, QA testers, tag managers, analytics developers, implementation specialists">
-  <meta name="topic" content="Tag spec generator, analytics implementation, data layer validation, XDM mapping, Adobe Analytics tooling, Tealium tag management">
-  <meta name="coverage" content="Worldwide">
-  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/tag-spec-generator.html">
-  <meta name="google-site-verification" content="tag-spec-generator-martech-scott-gresack">
-  <!-- Open Graph & Twitter meta -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tag-spec-generator.html">
-  <meta property="og:title" content="Web Tag Spec Generator – Free Tool for Adobe Analytics, XDM, Tealium | Scott Gresack">
-  <meta property="og:description" content="A free, interactive tool to create, test, and preview utag.view() and utag.link() payloads for Adobe Analytics and XDM. Perfect for QA, engineers, and digital analytics teams.">
-  <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Web Tag Spec Generator – Free Tool for Adobe Analytics, XDM, Tealium | Scott Gresack">
-  <meta name="twitter:description" content="A free, interactive tool to create, test, and preview utag.view() and utag.link() payloads for Adobe Analytics and XDM. Perfect for QA, engineers, and digital analytics teams.">
-  <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png">
-  <!-- Enhanced Analytics Integrations: GA4, PostHog, Clarity, Piwik PRO -->
-  <!-- Google Analytics (GA4) Enhanced -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-Y8617TLMYK', { anonymize_ip: true });
+  </script>
 
-    // Wait for DOM to be ready before firing GA4 events to ensure title/referrer are accurate
-    document.addEventListener("DOMContentLoaded", function() {
-      const toolMeta = {
-        tool_version: '1.0.1',
-        tool_name: 'Web Tag Spec Generator',
-        page_title: document.title,
-        page_location: window.location.href,
-        page_path: window.location.pathname,
-        referrer: document.referrer
-      };
-      gtag('js', new Date());
-      gtag('config', 'G-Y8617TLMYK', {
-        anonymize_ip: true,
-        send_page_view: false,
-        ...toolMeta
-      });
-      console.log('[GA4] Config fired', toolMeta);
-
-      // Custom page_view event with enhanced metadata
-      gtag('event', 'page_view_custom', toolMeta);
-      console.log('[GA4] Custom page_view_custom event fired', toolMeta);
-
-      // Safe wrapper for custom events (now global and safe)
-      window.trackGA4Event = function(eventName, props) {
-        if (typeof gtag !== "function") {
-          console.warn('[GA4] gtag not available for event:', eventName, props);
-          return;
-        }
-        try {
-          const mergedProps = { ...toolMeta, ...props };
-          gtag('event', eventName, mergedProps);
-          console.log('[GA4] Event utag.view({});fired:', eventName, mergedProps);
-        } catch (e) {
-          console.warn('[GA4] Event error:', eventName, e);
-        }
-      }
+  <!-- PostHog -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture identify register register_once unregister reset get_distinct_id get_session_id get_session_replay_url set_config opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init("phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U", {
+      api_host: "https://us.i.posthog.com",
+      person_profiles: "always",
+      capture_pageview: true
     });
   </script>
-  <!-- PostHog Enhanced -->
+
+  <!-- Microsoft Clarity -->
   <script>
-    try {
-      console.log('[PostHog] Loading PostHog...');
-      !function(t,e){
-        var o,n,p,r;
-        e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){
-          function g(t,e){
-            var o=e.split(".");
-            2==o.length&&(t=t[o[0]],e=o[1]),
-            t[e]=function(){
-              t.push([e].concat(Array.prototype.slice.call(arguments,0)))
-            }
-          }
-          (p=t.createElement("script")).type="text/javascript";
-          p.async=!0;
-          p.src=s.api_host+"/static/array.js";
-          (r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);
-          var u=e;
-          void 0!==a?u=e[a]=[]:a="posthog",
-          u.people=u.people||[],
-          u.toString=function(t){
-            var e="posthog";
-            return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e
-          },
-          u.people.toString=function(){
-            return u.toString(1)+".people (stub)"
-          };
-          o="init capture identify alias people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-          for(n=0;n<o.length;n++)g(u,o[n]);
-          e._i.push([i,s,a])
-        },e.__SV=1)
-      }(document,window.posthog||[]);
-      console.log('[PostHog] Initializing...');
-      posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
-        api_host: 'https://us.i.posthog.com',
-        person_profiles: 'always'
-      });
-      // Consistent metadata
-      const posthogMeta = {
-        tool_version: '1.0.1',
-        tool_name: 'Web Tag Spec Generator',
-        page_title: document.title,
-        page_url: window.location.href,
-        referrer: document.referrer
-      };
-      console.log('[PostHog] posthogMeta:', posthogMeta);
-      posthog.capture('page_loaded', posthogMeta);
-      // Safe wrapper for custom events
-      window.trackPostHogEvent = function(event, props) {
-        try {
-          posthog.capture(event, { ...posthogMeta, ...props });
-          console.log('[PostHog] Event:', event, props);
-        } catch (e) {
-          console.warn('[PostHog] Error sending event:', e);
-        }
-      };
-    } catch (err) {
-      console.error('[PostHog] Critical error:', err);
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "pmp4efispy");
+  </script>
+
+  <!-- Adobe Launch / Web SDK container -->
+  <script async src="https://assets.adobedtm.com/0ded84b93882/71f267854b6d/launch-b015179db04d-development.min.js"></script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #111827;
+      --muted: #5f6673;
+      --soft: #f5f7fb;
+      --panel: rgba(255, 255, 255, 0.82);
+      --line: rgba(17, 24, 39, 0.12);
+      --blue: #0a84ff;
+      --blue-dark: #075fbd;
+      --green: #16a34a;
+      --orange: #ea580c;
+      --purple: #7c3aed;
+      --shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
+      --radius: 18px;
     }
-  </script>
-  <!-- Microsoft Clarity Enhanced -->
-  <script>
-    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pmp4efispy");
-    // Safe wrapper for Clarity custom events
-    window.trackClarityEvent = function(event, props) {
-      try {
-        if(window.clarity && typeof window.clarity === "function") {
-          window.clarity('event', event, props || {});
-        }
-      } catch (e) { /* fail silently */ }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 16% 0%, rgba(10, 132, 255, 0.14), transparent 30rem),
+        radial-gradient(circle at 82% 10%, rgba(22, 163, 74, 0.10), transparent 28rem),
+        linear-gradient(180deg, #fbfdff 0%, #ffffff 46%, #f6f8fb 100%);
+      -webkit-font-smoothing: antialiased;
     }
-  </script>
-  <!-- Piwik PRO Enhanced -->
-  <script>
-    (function(window,document,dataLayerName,id){
-      window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
-      var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
-      var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName);
-      var qPString=qP.length>0?("?"+qP.join("&")):"";
-      tags.async=!0;tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js"+qPString;
-      scripts.parentNode.insertBefore(tags,scripts);
-      !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
-      // Consistent metadata
-      var piwikMeta = {
-        event: "custom_page_view",
-        tool_version: "1.0.1",
-        tool_name: "Web Tag Spec Generator",
-        page_title: document.title,
-        page_url: window.location.href,
-        referrer: document.referrer
-      };
-      window[dataLayerName].push(piwikMeta);
-      // Safe wrapper for custom events
-      window.trackPiwikEvent = function(event, props) {
-        try {
-          var evt = Object.assign({}, piwikMeta, {event}, props||{});
-          window[dataLayerName].push(evt);
-        } catch (e) { /* fail silently */ }
-      }
-    })(window,document,'dataLayer','40c8a729-ebc6-4dfe-98be-6617064e43a9');
-  </script>
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Scott Gresack",
-      "url": "/portfolio/",
-      "sameAs": ["https://www.linkedin.com/in/scottgresack/"],
-      "jobTitle": "Martech Engineer | AEP + CDP Expert",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "CVS Health"
-      },
-      "knowsAbout": [
-        "Adobe Web SDK",
-        "Tealium iQ",
-        "Adobe Experience Platform",
-        "Customer Data Platform",
-        "Martech Architecture",
-        "Tag Management",
-        "Digital Analytics",
-        "Identity Resolution",
-        "Real-Time Personalization",
-        "XDM Schema Design"
-      ]
+
+    a { color: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.78);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
     }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Web Tag Spec Generator",
-    "author": {
-      "@type": "Person",
-      "name": "Scott Gresack"
-    },
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "url": "https://scott-gresack.github.io/portfolio/tag-spec-generator.html",
-    "description": "Generate Adobe Analytics utag.view() and utag.link() payloads with XDM mapping."
-  }
-  </script>
-  <!-- UI Fonts and Frameworks -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+
+    nav {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #111827, #1f5eff);
+      color: white;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+
+    .nav-links a:hover { background: rgba(10, 132, 255, 0.08); color: var(--blue-dark); }
+
+    main {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px 20px 72px;
+    }
+
+    .hero {
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 28px;
+      padding: clamp(28px, 5vw, 56px);
+      background:
+        linear-gradient(135deg, rgba(12, 18, 32, 0.94), rgba(8, 47, 105, 0.90)),
+        radial-gradient(circle at 90% 10%, rgba(10, 132, 255, 0.48), transparent 24rem);
+      color: white;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -42% 40%;
+      height: 300px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      filter: blur(6px);
+      transform: rotate(-8deg);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 880px;
+    }
+
+    .eyebrow {
+      color: #bfdbfe;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 6vw, 68px);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      max-width: 860px;
+    }
+
+    .hero p {
+      margin: 20px 0 0;
+      color: #dbeafe;
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.55;
+      max-width: 820px;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      border: 0;
+      border-radius: 12px;
+      min-height: 44px;
+      padding: 11px 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+    .button.primary { background: var(--blue); color: white; box-shadow: 0 14px 32px rgba(10, 132, 255, 0.34); }
+    .button.secondary { background: rgba(255, 255, 255, 0.12); color: white; border: 1px solid rgba(255, 255, 255, 0.22); }
+    .button.light { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+    .button.green { background: var(--green); color: white; }
+    .button.orange { background: var(--orange); color: white; }
+    .button.purple { background: var(--purple); color: white; }
+    .button.ghost { background: #f8fafc; color: #334155; border: 1px solid var(--line); }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0 28px;
+    }
+
+    .summary-card {
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 18px 54px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .summary-card strong {
+      display: block;
+      font-size: 22px;
+      letter-spacing: -0.04em;
+      margin-bottom: 4px;
+    }
+
+    .summary-card span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 22px;
+      box-shadow: 0 18px 54px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .panel-header h2,
+    .output-title h2 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .panel-header p,
+    .output-title p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .panel-body { padding: 18px; }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 850;
+      color: #334155;
+      margin-bottom: 7px;
+      letter-spacing: 0.01em;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      border-radius: 12px;
+      min-height: 44px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--ink);
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 86px;
+      line-height: 1.45;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(10, 132, 255, 0.7);
+      box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.12);
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      background: #eef2f7;
+      border: 1px solid var(--line);
+      padding: 5px;
+      border-radius: 14px;
+    }
+
+    .segmented button {
+      min-height: 38px;
+      border-radius: 10px;
+      border: 0;
+      background: transparent;
+      font-weight: 850;
+      cursor: pointer;
+      color: #475569;
+    }
+
+    .segmented button.active {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.10);
+    }
+
+    .field-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .field-table th,
+    .field-table td {
+      border-bottom: 1px solid var(--line);
+      padding: 8px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .field-table th {
+      color: #475569;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(248, 250, 252, 0.85);
+    }
+
+    .field-table input,
+    .field-table select {
+      min-height: 38px;
+      padding: 8px 9px;
+      font-size: 13px;
+      border-radius: 10px;
+    }
+
+    .field-table .delete-button {
+      width: 38px;
+      min-height: 38px;
+      border: 1px solid rgba(220, 38, 38, 0.22);
+      background: #fff1f2;
+      color: #be123c;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .output-area {
+      display: grid;
+      gap: 18px;
+    }
+
+    .output-card {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 22px;
+      box-shadow: 0 18px 54px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+    }
+
+    .output-title {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    pre {
+      margin: 0;
+      padding: 18px;
+      overflow-x: auto;
+      background: #0f172a;
+      color: #dbeafe;
+      font-size: 12.5px;
+      line-height: 1.55;
+      min-height: 120px;
+    }
+
+    .checklist {
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .check-item {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: #334155;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .check-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #e0f2fe;
+      color: #0369a1;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .notice {
+      border: 1px solid rgba(234, 88, 12, 0.22);
+      background: #fff7ed;
+      border-radius: 16px;
+      padding: 14px;
+      color: #7c2d12;
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 40;
+      background: #111827;
+      color: white;
+      border-radius: 14px;
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      font-weight: 750;
+      font-size: 14px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+      main { padding: 18px 14px 54px; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .segmented { grid-template-columns: 1fr; }
+      .field-table { min-width: 760px; }
+      .field-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .output-title { flex-direction: column; }
+      .button { width: 100%; }
+      .toolbar .button { width: auto; flex: 1 1 160px; }
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 font-sans antialiased leading-relaxed tracking-wide">
-  <header class="bg-white shadow border-b sticky top-0 z-50">
-    <nav role="navigation" aria-label="Main navigation" class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-sm font-medium text-gray-800">
-      <div class="font-semibold tracking-wide text-lg">🧪 Web Tag Spec Generator</div>
-      <div class="space-x-6">
-        <a href="/portfolio/" class="hover:text-blue-600 transition">Home</a>
-        <a href="/portfolio/tag-spec-generator.html" class="hover:text-blue-600 transition">Tag Spec Generator</a>
-        <a href="/portfolio/xdm_comparator.html" class="hover:text-blue-600 transition">XDM Comparator</a>
+
+<body>
+  <header>
+    <nav>
+      <a class="brand" href="/portfolio/" aria-label="Back to Scott Gresack portfolio">
+        <span class="brand-mark">SG</span>
+        <span>Tag Spec Workbench</span>
+      </a>
+      <div class="nav-links">
+        <a href="/portfolio/">Portfolio</a>
+        <a href="/portfolio/tool2.html">Payload Inspector</a>
+        <a href="#outputs">Outputs</a>
       </div>
     </nav>
   </header>
-  <article class="max-w-4xl mx-auto mt-8 mb-4 px-6 py-6 bg-white/90 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg text-sm text-gray-700">
-    <h2 class="text-xl font-semibold mb-2">🎯 What This Tool Does</h2>
-    <p>
-      Create and visualize Adobe Web SDK events from Tealium tagging specs. Useful for <strong>QA validation, schema testing, front-end handoffs, and documentation</strong>.
-    </p>
-    <p class="mt-2">
-      Outputs include <code>utag.view()</code>/<code>utag.link()</code>, XDM payload, and <code>data.__adobe.analytics</code> model.
-    </p>
-    <p class="mt-2 text-blue-700">
-      🆘 Hover any <strong>❓</strong> icon for tooltips.
-    </p>
-  </article>
-  <div id="app" class="min-h-screen flex flex-col items-center pt-12 pb-24 px-4">
-    <div class="text-center text-xs text-gray-400 mb-4">
-      v1.0.1 · Updated May 26, 2025 · Scott Gresack<br>
-      For front-end engineers generating <code>utag.link()</code> or <code>utag.view()</code> events for Tealium → Adobe Web SDK.
-    </div>
-    <div class="w-full max-w-4xl bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-gray-200 ring-1 ring-slate-100">
-      <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 text-white p-8 rounded-t-3xl">
-        <h1 class="text-4xl font-extrabold tracking-tight drop-shadow-lg">✨ Web Tag Spec Generator ✨</h1>
-        <p class="mt-2 text-blue-100">
-          Generate <code class="bg-white/20 px-1 rounded">utag.view()</code> and 
-          <code class="bg-white/20 px-1 rounded">utag.link()</code> payloads with XDM mapping.
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Engineering-ready analytics implementation specs</div>
+        <h1>Turn tracking requirements into code engineers can ship.</h1>
+        <p>
+          This workbench helps analytics and martech teams create clean tag specifications, Adobe Web SDK calls, Tealium calls, Launch custom code, and QA checklists from one governed data contract. The goal is fewer ambiguous Jira tickets, fewer broken tags, and faster QA.
         </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#builder">Build a spec</a>
+          <button class="button secondary" type="button" id="loadExampleHero">Load SaaS example</button>
+          <a class="button secondary" href="#outputs">Review generated code</a>
+        </div>
       </div>
-      <!-- Instructions -->
-      <div class="p-8 border-b">
-        <button @click="toggleInstructions" class="flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border hover:bg-gray-50 transition rounded-lg font-medium shadow-sm" aria-label="Toggle instructions">
-          <span>{{ showInstructions ? '🔽' : '🔼' }}</span>
-          <span>Instructions</span>
-        </button>
-        <transition name="fade">
-          <div v-if="showInstructions" class="mt-4 bg-white/70 backdrop-blur-md p-4 rounded-lg space-y-4 text-sm border border-gray-100 shadow">
+    </section>
+
+    <section class="summary-grid" aria-label="Tool value summary">
+      <div class="summary-card">
+        <strong>One source</strong>
+        <span>Define the event once, then generate the spec, data layer object, Web SDK code, and QA checklist.</span>
+      </div>
+      <div class="summary-card">
+        <strong>Less rework</strong>
+        <span>Engineers get field names, owners, mappings, required flags, and code instead of vague tracking asks.</span>
+      </div>
+      <div class="summary-card">
+        <strong>Migration ready</strong>
+        <span>Supports Adobe Analytics variables while producing Web SDK and XDM-oriented implementation code.</span>
+      </div>
+      <div class="summary-card">
+        <strong>QA friendly</strong>
+        <span>Outputs a checklist and CSV mapping table for Launch review, SDR review, and acceptance criteria.</span>
+      </div>
+    </section>
+
+    <section class="layout" id="builder">
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>1. Define the event contract</h2>
+            <p>Start with the business action, then attach the technical fields engineering needs to implement.</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="form-grid">
             <div>
-              <h2 class="font-semibold text-gray-700">🚀 Purpose</h2>
-              <p>
-                Build <code class="bg-gray-200 px-1 rounded">utag.view()</code> or 
-                <code class="bg-gray-200 px-1 rounded">utag.link()</code> events with Adobe Web SDK mappings, XDM, and advanced override support.
-              </p>
+              <label>Implementation pattern</label>
+              <div class="segmented" role="tablist" aria-label="Implementation pattern">
+                <button type="button" class="active" data-pattern="websdk">Web SDK</button>
+                <button type="button" data-pattern="tealium">Tealium</button>
+                <button type="button" data-pattern="hybrid">Hybrid</button>
+              </div>
             </div>
+
+            <div class="two-col">
+              <div>
+                <label for="eventName">Event name</label>
+                <input id="eventName" value="cta_click" />
+              </div>
+              <div>
+                <label for="triggerType">Trigger type</label>
+                <select id="triggerType">
+                  <option value="click">Click interaction</option>
+                  <option value="page_view">Page view</option>
+                  <option value="form_submit">Form submit</option>
+                  <option value="video">Video interaction</option>
+                  <option value="commerce">Commerce event</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="two-col">
+              <div>
+                <label for="owner">Business owner</label>
+                <input id="owner" value="Growth Marketing" />
+              </div>
+              <div>
+                <label for="priority">Priority</label>
+                <select id="priority">
+                  <option>High</option>
+                  <option>Medium</option>
+                  <option>Low</option>
+                </select>
+              </div>
+            </div>
+
             <div>
-              <h2 class="font-semibold text-gray-700">🛠 Instructions</h2>
-              <ol class="list-decimal list-inside space-y-1">
-                <li>Select event type: <code>utag.view()</code> or <code>utag.link()</code>.</li>
-                <li>Use <strong>Output Controls</strong> to toggle which variables/overrides are included: <code>eVars</code>, <code>props</code>, <code>events</code>, <code>identityMap</code>, and <code>datastreamId/edgeConfigOverrides</code>.</li>
-                <li>Add key/value pairs for your tag spec (no quotes around values).</li>
-                <li>Map to Adobe Analytics variables (eVar, prop, event) if desired.</li>
-                <li>Use <code>|</code> for nested keys (e.g., <code>listVars|list1</code> or <code>identityMap|email</code>).</li>
-                <li>
-                  To include <strong>identityMap</strong>, use the controls or add a key like <code>identityMap|email</code> with its value.
-                </li>
-                <li>
-                  To override <strong>datastreamId</strong> or supply advanced edge settings, enable the datastream controls.<br>
-                  For <b>advanced edgeConfigOverrides</b>, enable Advanced and provide full JSON (see Adobe docs for full schema).
-                </li>
-                <li>
-                  Copy the Tag Spec, XDM, or <code>data.__adobe.analytics</code> output as needed for documentation, QA, or engineering handoff.
-                </li>
-              </ol>
+              <label for="businessPurpose">Business purpose</label>
+              <textarea id="businessPurpose">Measure CTA engagement so product, analytics, and growth teams can compare which offer and placement drive qualified conversion intent.</textarea>
             </div>
-            <div>
-              <h2 class="font-semibold text-gray-700">📚 References</h2>
-              <ul class="list-disc list-inside text-blue-800 space-y-1 text-sm mt-2">
-                <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/data-var-mapping" target="_blank" rel="noopener noreferrer" class="hover:underline">Map Data Variables to Adobe Analytics</a></li>
-                <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/xdm-var-mapping" target="_blank" rel="noopener noreferrer" class="hover:underline">Map XDM Schema to Adobe Analytics</a></li>
-                <li><a href="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/datastream-overrides" target="_blank" rel="noopener noreferrer" class="hover:underline">Datastream Overrides &amp; edgeConfigOverrides (Adobe Web SDK)</a></li>
-              </ul>
+
+            <div class="two-col">
+              <div>
+                <label for="pageName">Page name</label>
+                <input id="pageName" value="pricing" />
+              </div>
+              <div>
+                <label for="siteSection">Site section</label>
+                <input id="siteSection" value="marketing" />
+              </div>
+            </div>
+
+            <div class="two-col">
+              <div>
+                <label for="xdmEventType">XDM eventType</label>
+                <input id="xdmEventType" value="web.webinteraction.linkClicks" />
+              </div>
+              <div>
+                <label for="datastreamId">Datastream ID</label>
+                <input id="datastreamId" value="prod-web-datastream" />
+              </div>
+            </div>
+
+            <div class="notice">
+              Practical use: paste the generated spec into Jira or Confluence, hand the generated code to the front-end engineer, and use the QA checklist as acceptance criteria before publishing the Launch rule.
             </div>
           </div>
-        </transition>
-      </div>
-      <!-- Event Selection -->
-      <div class="flex space-x-4 p-6 border-b">
-        <div class="flex-1 relative group">
-          <button @click="setEventType('utag.view()')" :class="eventType==='utag.view()' ? 'bg-blue-600 text-white ring-2 ring-blue-500' : 'bg-white hover:bg-blue-50 text-gray-700'" class="w-full h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium" aria-label="Select utag.view() for page load events">
-            📊 utag.view()
-          </button>
-          <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-48 mt-2 text-center left-1/2 transform -translate-x-1/2">
-            For page load events.
-          </div>
-        </div>
-        <div class="flex-1 relative group">
-          <button @click="setEventType('utag.link()')" :class="eventType==='utag.link()' ? 'bg-blue-600 text-white ring-2 ring-blue-500' : 'bg-white hover:bg-blue-50 text-gray-700'" class="w-full h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium" aria-label="Select utag.link() for user interactions">
-            🔗 utag.link()
-          </button>
-          <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-48 mt-2 text-center left-1/2 transform -translate-x-1/2">
-            For user interactions (clicks, etc.).
-          </div>
         </div>
       </div>
-      <!-- Output Controls (moved above Key-Value Inputs) -->
-      <div class="p-6 border-b">
-        <h3 class="font-semibold text-gray-700 mb-2">⚙️ Output Controls</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-sm mb-4">
-          <label for="toggle-evars" class="flex items-center gap-2">
-            <input id="toggle-evars" type="checkbox" v-model="showExtras.eVars" aria-label="Toggle eVars" autocomplete="off">
-            <span>Include eVars
-              <span class="ml-1 relative group">
-                <span class="text-blue-600 cursor-help" aria-label="Help for eVars">❓</span>
-                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-56 mt-2 left-1/2 transform -translate-x-1/2">
-                  Toggle inclusion of eVars in output.
-                </div>
-              </span>
-            </span>
-          </label>
-          <label for="toggle-props" class="flex items-center gap-2">
-            <input id="toggle-props" type="checkbox" v-model="showExtras.props" aria-label="Toggle props" autocomplete="off">
-            <span>Include props
-              <span class="ml-1 relative group">
-                <span class="text-blue-600 cursor-help" aria-label="Help for props">❓</span>
-                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-56 mt-2 left-1/2 transform -translate-x-1/2">
-                  Toggle inclusion of props in output.
-                </div>
-              </span>
-            </span>
-          </label>
-          <label for="toggle-events" class="flex items-center gap-2">
-            <input id="toggle-events" type="checkbox" v-model="showExtras.events" aria-label="Toggle events" autocomplete="off">
-            <span>Include events
-              <span class="ml-1 relative group">
-                <span class="text-blue-600 cursor-help" aria-label="Help for events">❓</span>
-                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-56 mt-2 left-1/2 transform -translate-x-1/2">
-                  Toggle inclusion of Analytics events in output.
-                </div>
-              </span>
-            </span>
-          </label>
-          <label for="toggle-identitymap" class="flex items-center gap-2">
-            <input id="toggle-identitymap" type="checkbox" v-model="showExtras.identityMap" aria-label="Toggle identityMap" autocomplete="off">
-            <span>Include identityMap
-              <span class="ml-1 relative group">
-                <span class="text-blue-600 cursor-help" aria-label="Help for identityMap">❓</span>
-                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-56 mt-2 left-1/2 transform -translate-x-1/2">
-                  Include identifiers for Adobe Experience Platform's identity stitching.
-                </div>
-              </span>
-            </span>
-          </label>
-          <label for="toggle-datastream" class="flex items-center gap-2">
-            <input id="toggle-datastream" type="checkbox" v-model="showExtras.datastream" aria-label="Toggle datastreamId" autocomplete="off">
-            <span>Include datastreamId
-              <span class="ml-1 relative group">
-                <span class="text-blue-600 cursor-help" aria-label="Help for datastreamId">❓</span>
-                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-56 mt-2 left-1/2 transform -translate-x-1/2">
-                  Toggle inclusion of datastreamId or edgeConfigOverrides in output.
-                </div>
-              </span>
-            </span>
-          </label>
-        </div>
-        <div v-if="showExtras.identityMap" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="flex flex-col space-y-2">
-            <label for="identity-namespace" class="font-medium text-sm text-gray-700" :aria-label="'identityMap namespace input'">
-              identityMap Namespace
-              <span class="ml-1 relative group">
-                <span class="text-blue-600 cursor-help" aria-label="Help for identityMap namespace">❓</span>
-                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-64 mt-2 left-1/2 transform -translate-x-1/2">
-                  Enter the Adobe identity namespace, e.g. <code>email</code>, <code>ECID</code>, etc.
-                </div>
-              </span>
-            </label>
-            <input
-              id="identity-namespace"
-              v-model="identityNamespace"
-              placeholder="Namespace (e.g. email)"
-              class="border p-2 rounded text-sm"
-              autocomplete="off"
-              aria-label="identityMap namespace"
-              aria-describedby="identity-namespace-desc"
-              :aria-required="showExtras.identityMap ? 'true' : 'false'"
-              spellcheck="false"
-            >
-          </div>
-          <div class="flex flex-col space-y-2">
-            <label for="identity-id" class="font-medium text-sm text-gray-700" :aria-label="'identityMap ID input'">
-              identityMap ID
-              <span class="ml-1 relative group">
-                <span class="text-blue-600 cursor-help" aria-label="Help for identityMap ID">❓</span>
-                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-64 mt-2 left-1/2 transform -translate-x-1/2">
-                  Enter the identifier value, e.g. user email or ECID.<br>
-                  <strong>Note:</strong> This will be sent as <code>id</code> in <code>identityMap</code>.
-                </div>
-              </span>
-            </label>
-            <input
-              id="identity-id"
-              v-model="identityId"
-              placeholder="ID (e.g. user@example.com)"
-              class="border p-2 rounded text-sm"
-              autocomplete="off"
-              aria-label="identityMap ID"
-              aria-describedby="identity-id-desc"
-              :aria-required="showExtras.identityMap ? 'true' : 'false'"
-              spellcheck="false"
-            >
+
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>2. Define the data layer and mappings</h2>
+            <p>Each row becomes part of the engineer-facing contract and the generated implementation code.</p>
           </div>
         </div>
-        <div v-if="showExtras.datastream" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="flex flex-col space-y-2">
-            <label for="datastream-override" class="font-medium text-sm text-gray-700" aria-label="Datastream ID input">
-              Datastream ID
-              <span class="ml-1 relative group">
-                <span class="text-blue-600 cursor-help" aria-label="Help for datastreamId">❓</span>
-                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2 left-1/2 transform -translate-x-1/2">
-                  Optionally override the datastreamId for Adobe Web SDK.<br>
-                  <strong>Tip:</strong> Use advanced mode for full <code>edgeConfigOverrides</code>.
-                </div>
-              </span>
-            </label>
-            <input
-              id="datastream-override"
-              v-model="datastreamOverride"
-              placeholder="Datastream ID (optional)"
-              class="border p-2 rounded text-sm"
-              autocomplete="off"
-              aria-label="Datastream ID"
-              :disabled="advancedEdgeOverride"
-              spellcheck="false"
-            >
+        <div class="panel-body">
+          <div class="field-table-wrap">
+            <table class="field-table" aria-label="Tag specification mapping table">
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Sample value</th>
+                  <th>XDM path</th>
+                  <th>AA variable</th>
+                  <th>Required</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="fieldRows"></tbody>
+            </table>
           </div>
-        </div>
-        <div v-if="showExtras.datastream" class="mt-4 grid grid-cols-1 gap-4">
-          <div class="flex items-center space-x-2">
-            <input id="advanced-edge-override" type="checkbox" v-model="advancedEdgeOverride" aria-label="Enable advanced edgeConfigOverrides" autocomplete="off">
-            <label for="advanced-edge-override" class="font-medium text-sm text-gray-700 flex items-center">
-              Advanced edgeConfigOverrides
-              <span class="ml-1 relative group">
-                <span class="text-blue-600 cursor-help" aria-label="Advanced edgeConfigOverrides help">❓</span>
-                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-96 mt-2 left-1/2 transform -translate-x-1/2">
-                  Enable to specify full <code>edgeConfigOverrides</code> JSON (e.g. <code>datastreamId</code>, <code>propertyToken</code>, <code>reportSuites</code>, etc).<br>
-                  <a href="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/datastream-overrides" target="_blank" class="text-blue-700 underline">Adobe docs</a> for structure and options.
-                </div>
-              </span>
-              <a href="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/datastream-overrides" target="_blank" class="ml-2 text-blue-600 hover:underline text-xs">Adobe docs</a>
-            </label>
-          </div>
-          <div v-if="advancedEdgeOverride" class="flex flex-col space-y-2 mt-2">
-            <label for="edge-override-json" class="font-medium text-sm text-gray-700 flex items-center" aria-label="Advanced edgeConfigOverrides JSON input">
-              edgeConfigOverrides JSON
-              <span class="ml-1 relative group">
-                <span class="text-blue-600 cursor-help" aria-label="edgeConfigOverrides JSON help">❓</span>
-                <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-96 mt-2 left-1/2 transform -translate-x-1/2">
-                  Paste or edit JSON for edgeConfigOverrides.<br>
-                  <a href="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/datastream-overrides" target="_blank" class="text-blue-700 underline">Adobe docs</a> for structure.<br>
-                  Including <code>datastreamId</code> here will override the basic field.
-                </div>
-              </span>
-            </label>
-            <textarea
-              id="edge-override-json"
-              v-model="edgeOverrideJson"
-              class="border p-2 rounded text-sm font-mono bg-gray-50"
-              rows="6"
-              spellcheck="false"
-              aria-label="edgeConfigOverrides JSON"
-              aria-describedby="edge-override-json-desc"
-              autocomplete="off"
-              placeholder='{
-  "datastreamId": "12345:prod",
-  "propertyToken": "PT-XXXXX",
-  "reportSuites": ["mySuite1", "mySuite2"],
-  "someOtherOverride": "value"
-}'
-              :aria-invalid="edgeOverrideError ? 'true' : 'false'"
-            ></textarea>
-            <div v-if="edgeOverrideError" class="text-red-600 text-xs mt-1" id="edge-override-json-desc">{{ edgeOverrideError }}</div>
-            <div v-else class="text-gray-500 text-xs mt-1" id="edge-override-json-desc">Sample: {"datastreamId":"12345:prod","propertyToken":"PT-XXXXX","reportSuites":["mySuite1"]}</div>
+          <div class="toolbar">
+            <button class="button light" type="button" id="addField">Add field</button>
+            <button class="button ghost" type="button" id="loadSaasExample">Load SaaS example</button>
+            <button class="button ghost" type="button" id="loadFormExample">Load form example</button>
+            <button class="button ghost" type="button" id="clearFields">Clear fields</button>
           </div>
         </div>
       </div>
-      <!-- Input Fields -->
-      <div class="p-8 space-y-4 border-b mt-4">
-        <h3 class="font-semibold text-gray-700 flex items-center gap-2">
-          🧩 Key–Value Pairs
-          <span class="relative group">
-            <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for key-value pairs">❓</span>
-            <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-80 mt-2">
-              Define key/value pairs for Tealium.<br>
-              <strong>Tips:</strong>
-              <ul class="list-disc list-inside mt-1">
-                <li><code>key</code>: Custom tag spec name.</li>
-                <li><code>value</code>: Value (no quotes).</li>
-                <li><code>eVar#/prop#/event#</code>: Adobe Analytics mapping.</li>
-                <li>
-                  Use <code>|</code> for nested keys (e.g., <code>section|subsection</code>).
-                  <span class="ml-1 relative group">
-                    <span class="text-blue-600 cursor-help" aria-label="Nested key help">❓</span>
-                    <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2 left-1/2 transform -translate-x-1/2">
-                      For nested objects, use <code>|</code> to separate levels.<br>
-                      Example: <code>identityMap|email</code> creates <code>identityMap: { email: ... }</code>.
-                    </div>
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </span>
-        </h3>
-        <div v-for="(pair,i) in keyValuePairs" :key="i" class="flex space-x-2">
-          <input v-model="pair.key" placeholder="Key" class="flex-1 px-3 py-2 border rounded-lg focus:ring focus:outline-none focus:ring-2 focus:ring-blue-500 transition" aria-label="Key input">
-          <input v-model="pair.value" placeholder="Value" class="flex-1 px-3 py-2 border rounded-lg focus:ring focus:outline-none focus:ring-2 focus:ring-blue-500 transition" aria-label="Value input">
-          <input v-model="pair.analyticsKey" placeholder="eVar#/prop#/event#" class="flex-1 px-3 py-2 border rounded-lg focus:ring focus:outline-none focus:ring-2 focus:ring-blue-500 transition" aria-label="Analytics variable mapping">
-          <button @click="removeKeyValuePair(i)" class="h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-red-400 hover:bg-red-500 text-white" aria-label="Remove key-value pair">✕</button>
-          <button @click="duplicateKeyValuePair(i)" class="h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-yellow-400 hover:bg-yellow-500 text-white" aria-label="Duplicate key-value pair">⧉</button>
-        </div>
-        <button @click="addKeyValuePair" class="h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-green-500 hover:bg-green-600 text-white relative group" aria-label="Add new key-value pair">
-          ➕ Add Pair
-          <span class="ml-1 relative group">
-            <span class="text-blue-600 cursor-help" aria-label="Mapping strategy help">❓</span>
-            <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-80 mt-2 left-1/2 transform -translate-x-1/2">
-              <strong>Mapping strategy:</strong><br>
-              Keys are mapped as flat or nested (using <code>|</code>), and analytics variables (eVar/prop/event) are mapped into XDM and <code>data.__adobe.analytics</code>.<br>
-              To create an <code>identityMap</code> entry, use a key like <code>identityMap|email</code> with the identifier value.
-            </div>
-          </span>
-          <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-60 mt-2 left-1/2 transform -translate-x-1/2">
-            Add a new key, value, and Analytics variable.
+    </section>
+
+    <section class="output-area" id="outputs" style="margin-top: 18px;">
+      <div class="output-card">
+        <div class="output-title">
+          <div>
+            <h2>Engineering tag specification</h2>
+            <p>Use this as the Jira story, Confluence spec, or pull request acceptance criteria.</p>
           </div>
-        </button>
+          <div class="toolbar" style="margin: 0;">
+            <button class="button primary" type="button" data-copy="specOutput">Copy spec</button>
+            <button class="button light" type="button" id="downloadMarkdown">Download .md</button>
+          </div>
+        </div>
+        <pre id="specOutput"></pre>
       </div>
-      <!-- Outputs -->
-      <div class="p-8 space-y-8">
-        <div class="rounded-xl border border-gray-200 shadow-sm p-4 bg-white">
-          <div class="flex justify-between items-center mb-2">
-            <h4 class="font-semibold text-gray-800 flex items-center gap-2">
-              ✨ Tag Spec
-              <span class="relative group">
-                <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for Tag Spec">❓</span>
-                <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2">
-                  Formatted <code>utag.view()</code> or <code>utag.link()</code> payload.
-                </div>
-              </span>
-            </h4>
-            <button @click="copyToClipboard(formattedSnippet, 'Tag Spec')" class="inline-flex items-center gap-2 h-10 px-4 py-2 rounded-md transition shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-600 hover:bg-blue-700 text-white font-medium" aria-label="Copy Tag Spec to clipboard">
-              📋 <span>Copy</span>
-            </button>
+
+      <div class="output-card">
+        <div class="output-title">
+          <div>
+            <h2>Data layer contract</h2>
+            <p>Plain JavaScript object engineers can populate before firing the analytics call.</p>
           </div>
-          <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto text-sm ring-1 ring-slate-700">{{ formattedSnippet }}</pre>
+          <button class="button primary" type="button" data-copy="dataLayerOutput">Copy object</button>
         </div>
-        <div class="rounded-xl border border-gray-200 shadow-sm p-4 bg-white">
-          <div class="flex justify-between items-center mb-2">
-            <h4 class="font-semibold text-gray-800 flex items-center gap-2">
-              🌐 XDM Object
-              <span class="relative group">
-                <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for XDM Object">❓</span>
-                <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2">
-                  Key/value pairs mapped to AEP XDM schema for Web SDK.
-                </div>
-              </span>
-              <span class="relative group">
-                <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for identityMap">❓</span>
-                <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-80 mt-2 left-1/2 transform -translate-x-1/2">
-                  <strong>identityMap support:</strong><br>
-                  To populate <code>xdm.identityMap</code>, add a key like <code>identityMap|email</code> and a value (e.g., <code>scott@example.com</code>).<br>
-                  This will create the correct <code>identityMap</code> structure for Adobe Experience Platform, with <code>primary: true</code> and <code>authenticatedState: "authenticated"</code>.
-                </div>
-              </span>
-            </h4>
-            <button @click="copyToClipboard(xdmObject, 'XDM Object')" class="inline-flex items-center gap-2 h-10 px-4 py-2 rounded-md transition shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-600 hover:bg-blue-700 text-white font-medium" aria-label="Copy XDM Object to clipboard">
-              📋 <span>Copy</span>
-            </button>
-          </div>
-          <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto text-sm ring-1 ring-slate-700">{{ xdmObject }}</pre>
-        </div>
-        <div class="rounded-xl border border-gray-200 shadow-sm p-4 bg-white">
-          <div class="flex justify-between items-center mb-2">
-            <h4 class="font-semibold text-gray-800 flex items-center gap-2">
-              🧾 data.__adobe.analytics Object
-              <span class="relative group">
-                <span class="text-blue-600 text-sm hover:underline cursor-help" aria-label="Help for Adobe Analytics Object">❓</span>
-                <div class="absolute z-10 hidden group-hover:block focus-within:block bg-white border border-gray-200 shadow-lg rounded-lg p-2 text-xs w-72 mt-2">
-                  Mirrors Adobe's <code>data.__adobe.analytics</code> structure. See:
-                  <ul class="list-disc list-inside mt-1 space-y-1 text-blue-800">
-                    <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/data-var-mapping" target="_blank" class="hover:underline">Data Variable Mapping</a></li>
-                    <li><a href="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/xdm-var-mapping" target="_blank" class="hover:underline">XDM Schema Mapping</a></li>
-                  </ul>
-                </div>
-              </span>
-            </h4>
-            <button @click="copyToClipboard(analyticsObject, 'Adobe Analytics Object')" class="inline-flex items-center gap-2 h-10 px-4 py-2 rounded-md transition shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-600 hover:bg-blue-700 text-white font-medium" aria-label="Copy Adobe Analytics Object to clipboard">
-              📋 <span>Copy</span>
-            </button>
-          </div>
-          <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto text-sm ring-1 ring-slate-700">{{ analyticsObject }}</pre>
-        </div>
+        <pre id="dataLayerOutput"></pre>
       </div>
-      <!-- Copied Modal -->
-      <transition name="fade">
-        <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black/50 transition-all duration-300">
-          <div class="bg-white p-6 rounded-2xl shadow-xl max-w-xs text-center animate-pop">
-            <h3 class="text-xl font-bold mb-2">🎉 Copied!</h3>
-            <p>{{ modalType }} is now on your clipboard.</p>
-            <button @click="closeModal" class="mt-4 h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-600 text-white hover:bg-blue-700" aria-label="Close copied modal">
-              Close
-            </button>
+
+      <div class="output-card">
+        <div class="output-title">
+          <div>
+            <h2>Adobe Web SDK implementation</h2>
+            <p>Generated <code>alloy("sendEvent")</code> call with XDM and Adobe Analytics data mapping.</p>
+          </div>
+          <button class="button primary" type="button" data-copy="webSdkOutput">Copy Web SDK</button>
+        </div>
+        <pre id="webSdkOutput"></pre>
+      </div>
+
+      <div class="output-card">
+        <div class="output-title">
+          <div>
+            <h2>Tealium implementation</h2>
+            <p>Generated <code>utag.view()</code> or <code>utag.link()</code> call for teams still using Tealium as the event bus.</p>
+          </div>
+          <button class="button primary" type="button" data-copy="tealiumOutput">Copy Tealium</button>
+        </div>
+        <pre id="tealiumOutput"></pre>
+      </div>
+
+      <div class="output-card">
+        <div class="output-title">
+          <div>
+            <h2>Adobe Tags / Launch custom code</h2>
+            <p>Rule action starter code with a clear event contract, generated payload, and dispatch call.</p>
+          </div>
+          <button class="button primary" type="button" data-copy="launchOutput">Copy Launch code</button>
+        </div>
+        <pre id="launchOutput"></pre>
+      </div>
+
+      <div class="output-card">
+        <div class="output-title">
+          <div>
+            <h2>Mapping table CSV</h2>
+            <p>Useful for SDR alignment, Analytics admin review, and implementation inventory.</p>
+          </div>
+          <div class="toolbar" style="margin: 0;">
+            <button class="button purple" type="button" data-copy="csvOutput">Copy CSV</button>
+            <button class="button light" type="button" id="downloadCsv">Download CSV</button>
           </div>
         </div>
-      </transition>
-      <!-- Help Modal -->
-      <transition name="fade">
-        <div v-if="showHelpModal" class="fixed inset-0 flex items-center justify-center bg-black/50 transition-all duration-300 z-50">
-          <div class="bg-white p-6 rounded-2xl shadow-xl max-w-lg w-full text-left animate-pop">
-            <h3 class="text-2xl font-bold mb-3 text-blue-700">🧠 Section Help</h3>
-            <p class="mb-4 text-sm text-gray-700">{{ helpContent }}</p>
-            <button @click="closeHelpModal" class="mt-2 h-10 px-4 py-2 rounded-lg transition duration-150 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-600 text-white hover:bg-blue-700" aria-label="Close help modal">
-              Got it
-            </button>
+        <pre id="csvOutput"></pre>
+      </div>
+
+      <div class="output-card">
+        <div class="output-title">
+          <div>
+            <h2>QA checklist</h2>
+            <p>Use this to test the tag before release and reduce back-and-forth between analytics and engineering.</p>
           </div>
         </div>
-      </transition>
-    </div>
-  </div>
-  <!-- Vue 2 -->
-  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        <div class="checklist" id="qaChecklist"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+
   <script>
-    // Enhanced tracking: instrument Vue methods for analytics
-    function fireAllAnalytics(eventName, props) {
-      window.trackGA4Event && window.trackGA4Event(eventName, props);
-      window.trackPostHogEvent && window.trackPostHogEvent(eventName, props);
-      window.trackClarityEvent && window.trackClarityEvent(eventName, props);
-      window.trackPiwikEvent && window.trackPiwikEvent(eventName, props);
+    window.digitalData = window.digitalData || {
+      page: {
+        pageName: "Tag Spec Workbench",
+        siteSection: "Portfolio Tools",
+        pageType: "tool",
+        language: "en-US"
+      },
+      user: { authenticationStatus: "anonymous" },
+      eventData: {},
+      events: []
+    };
+
+    function trackWorkbench(action, detail = {}) {
+      const event = {
+        action,
+        tool_name: "Tag Spec Workbench",
+        tool_version: "2.0.0",
+        page_name: window.digitalData.page.pageName,
+        site_section: window.digitalData.page.siteSection,
+        page_type: window.digitalData.page.pageType,
+        timestamp: new Date().toISOString(),
+        ...detail
+      };
+      window.digitalData.eventData = event;
+      window.digitalData.events.push(event);
+      try {
+        if (window.dataLayer) window.dataLayer.push({ event: "ppms.cm:" + action, ...event });
+        if (typeof window.gtag === "function") window.gtag("event", action, event);
+        if (window.posthog && typeof window.posthog.capture === "function") window.posthog.capture(action, event);
+        if (typeof window.clarity === "function") {
+          window.clarity("event", action);
+          window.clarity("set", "tool_name", event.tool_name);
+        }
+        if (window._satellite && typeof window._satellite.track === "function") window._satellite.track("tool_interaction", event);
+        if (typeof window.alloy === "function") {
+          window.alloy("sendEvent", {
+            xdm: {
+              eventType: "web.webinteraction.linkClicks",
+              web: {
+                webPageDetails: { name: event.page_name, siteSection: event.site_section },
+                webInteraction: { name: action, type: "other" }
+              }
+            },
+            data: { tool: event }
+          });
+        }
+      } catch (error) {
+        console.warn("Tracking failed", error);
+      }
     }
-    new Vue({
-      el: '#app',
+
+    const state = {
+      pattern: "websdk",
+      fields: [
+        {
+          key: "ctaName",
+          value: "start_free_trial",
+          xdm: "web.webInteraction.name",
+          aa: "eVar12",
+          required: true
+        },
+        {
+          key: "ctaLocation",
+          value: "pricing_hero",
+          xdm: "_experience.analytics.customDimensions.eVars.eVar13",
+          aa: "eVar13",
+          required: true
+        },
+        {
+          key: "componentType",
+          value: "primary_button",
+          xdm: "_experience.analytics.customDimensions.props.prop7",
+          aa: "prop7",
+          required: false
+        },
+        {
+          key: "conversionIntent",
+          value: "trial_signup",
+          xdm: "eventType",
+          aa: "event12",
+          required: true
+        }
+      ]
+    };
+
+    const fieldRows = document.getElementById("fieldRows");
+    const inputs = {
+      eventName: document.getElementById("eventName"),
+      triggerType: document.getElementById("triggerType"),
+      owner: document.getElementById("owner"),
+      priority: document.getElementById("priority"),
+      businessPurpose: document.getElementById("businessPurpose"),
+      pageName: document.getElementById("pageName"),
+      siteSection: document.getElementById("siteSection"),
+      xdmEventType: document.getElementById("xdmEventType"),
+      datastreamId: document.getElementById("datastreamId")
+    };
+
+    function getMeta() {
+      return Object.fromEntries(Object.entries(inputs).map(([key, el]) => [key, el.value.trim()]));
+    }
+
+    function sanitizeIdentifier(value) {
+      return String(value || "tracking_event").replace(/[^a-zA-Z0-9_$]/g, "_").replace(/^(\d)/, "_$1");
+    }
+
+    function setNested(target, path, value) {
+      const parts = String(path || "").split(".").filter(Boolean);
+      if (!parts.length) return;
+      let current = target;
+      parts.forEach((part, index) => {
+        if (index === parts.length - 1) {
+          current[part] = value;
+        } else {
+          current[part] = current[part] || {};
+          current = current[part];
+        }
+      });
+    }
+
+    function analyticsMapping() {
+      const analytics = {};
+      const events = [];
+      state.fields.forEach(field => {
+        const aa = field.aa.trim();
+        if (!aa) return;
+        if (/^event\d+/i.test(aa)) {
+          events.push(aa);
+        } else {
+          analytics[aa] = field.value;
+        }
+      });
+      if (events.length) analytics.events = events.join(",");
+      return analytics;
+    }
+
+    function dataLayerObject() {
+      const meta = getMeta();
+      const payload = {
+        event: meta.eventName,
+        triggerType: meta.triggerType,
+        page: {
+          pageName: meta.pageName,
+          siteSection: meta.siteSection
+        },
+        attributes: {}
+      };
+      state.fields.forEach(field => {
+        payload.attributes[field.key] = field.value;
+      });
+      return payload;
+    }
+
+    function xdmObject() {
+      const meta = getMeta();
+      const xdm = {
+        eventType: meta.xdmEventType,
+        web: {
+          webPageDetails: {
+            name: meta.pageName,
+            siteSection: meta.siteSection
+          }
+        }
+      };
+      state.fields.forEach(field => {
+        if (field.xdm) setNested(xdm, field.xdm, field.value);
+      });
+      return xdm;
+    }
+
+    function webSdkCode() {
+      const meta = getMeta();
+      return `// Adobe Web SDK implementation for ${meta.eventName}
+const tagPayload = ${JSON.stringify(dataLayerObject(), null, 2)};
+
+alloy("sendEvent", {
+  xdm: ${JSON.stringify(xdmObject(), null, 2)},
+  data: {
+    __adobe: {
+      analytics: ${JSON.stringify(analyticsMapping(), null, 2)}
+    },
+    tagSpec: tagPayload
+  },
+  edgeConfigOverrides: {
+    datastreamId: "${meta.datastreamId}"
+  }
+});`;
+    }
+
+    function tealiumCode() {
+      const meta = getMeta();
+      const method = meta.triggerType === "page_view" ? "utag.view" : "utag.link";
+      const payload = {
+        tealium_event: meta.eventName,
+        page_name: meta.pageName,
+        site_section: meta.siteSection,
+        ...Object.fromEntries(state.fields.map(field => [field.key, field.value])),
+        ...analyticsMapping()
+      };
+      return `// Tealium implementation for ${meta.eventName}
+${method}(${JSON.stringify(payload, null, 2)});`;
+    }
+
+    function launchCode() {
+      const meta = getMeta();
+      const fnName = "fire_" + sanitizeIdentifier(meta.eventName);
+      return `// Adobe Tags / Launch custom code action
+// Rule trigger: ${meta.triggerType}
+// Owner: ${meta.owner}
+function ${fnName}() {
+  const tagPayload = ${JSON.stringify(dataLayerObject(), null, 2)};
+
+  window.digitalData = window.digitalData || {};
+  window.digitalData.eventData = tagPayload;
+
+  if (typeof alloy === "function") {
+    return alloy("sendEvent", {
+      xdm: ${JSON.stringify(xdmObject(), null, 2)},
       data: {
-        showInstructions: true,
-        eventType: 'utag.view()',
-        keyValuePairs: [],
-        showModal: false,
-        modalType: '',
-        showHelpModal: false,
-        helpContent: '',
-        showExtras: {
-          eVars: true,
-          props: true,
-          events: true,
-          identityMap: false,
-          datastream: false
+        __adobe: {
+          analytics: ${JSON.stringify(analyticsMapping(), null, 2)}
         },
-        identityNamespace: '',
-        identityId: '',
-        datastreamOverride: '',
-        advancedEdgeOverride: false,
-        edgeOverrideJson: `{
-  "datastreamId": "12345:prod",
-  "propertyToken": "PT-XXXXX",
-  "reportSuites": ["mySuite1", "mySuite2"]
-}`,
-        edgeOverrideError: ''
-      },
-      computed: {
-        formattedSnippet() {
-          if (!this.keyValuePairs.length) return this.eventType.replace('()', '') + '({});';
-          const p = {};
-          this.keyValuePairs.forEach(o => {
-            if (o.key && o.value) p[o.key] = o.value;
-          });
-          // If advancedEdgeOverride, include edgeConfigOverrides in root
-          if (this.showExtras.datastream && this.advancedEdgeOverride && this.validEdgeOverridesObj) {
-            p.edgeConfigOverrides = this.validEdgeOverridesObj;
-          } else if (this.showExtras.datastream && !this.advancedEdgeOverride && this.datastreamOverride) {
-            p.datastreamId = this.datastreamOverride;
-          }
-          return this.eventType.replace('()', '') + '(' + JSON.stringify(p, null, 2) + ');';
-        },
-        validEdgeOverridesObj() {
-          // Returns parsed edgeConfigOverrides object, or null if error
-          if (!this.advancedEdgeOverride) return null;
-          try {
-            if (!this.edgeOverrideJson.trim()) return null;
-            const obj = JSON.parse(this.edgeOverrideJson);
-            this.edgeOverrideError = '';
-            return obj;
-          } catch (e) {
-            this.edgeOverrideError = 'Invalid JSON: ' + (e.message || 'Malformed JSON');
-            return null;
-          }
-        },
-        xdmObject() {
-          const xdm = { xdm: { _experience: { analytics: {} } } };
-
-          if (this.showExtras.eVars || this.showExtras.props) {
-            xdm.xdm._experience.analytics.customDimensions = {};
-            if (this.showExtras.eVars) xdm.xdm._experience.analytics.customDimensions.eVars = {};
-            if (this.showExtras.props) xdm.xdm._experience.analytics.customDimensions.props = {};
-          }
-
-          if (this.showExtras.events) {
-            xdm.xdm._experience.analytics.events = {
-              event1to100: {},
-              event101to200: {}
-            };
-          }
-
-          this.keyValuePairs.forEach(o => {
-            const k = o.analyticsKey?.toLowerCase() || '', v = o.value;
-            if (this.showExtras.eVars && k.startsWith('evar')) {
-              xdm.xdm._experience.analytics.customDimensions.eVars[o.analyticsKey] = v;
-            } else if (this.showExtras.props && k.startsWith('prop')) {
-              xdm.xdm._experience.analytics.customDimensions.props[o.analyticsKey] = v;
-            } else if (this.showExtras.events && k.startsWith('event')) {
-              const eventNum = parseInt(k.replace('event', ''));
-              if (!isNaN(eventNum)) {
-                const parent = eventNum <= 100 ? 'event1to100' : 'event101to200';
-                xdm.xdm._experience.analytics.events[parent][o.analyticsKey] = { value: parseInt(v) || 0 };
-              }
-            }
-          });
-
-          if (this.showExtras.identityMap && this.identityNamespace && this.identityId) {
-            xdm.xdm.identityMap = {
-              [this.identityNamespace]: [{
-                id: this.identityId,
-                authenticatedState: "authenticated",
-                primary: true
-              }]
-            };
-          }
-
-          // Advanced edgeConfigOverrides takes priority
-          if (this.showExtras.datastream && this.advancedEdgeOverride && this.validEdgeOverridesObj) {
-            xdm.edgeConfigOverrides = this.validEdgeOverridesObj;
-          } else if (this.showExtras.datastream && !this.advancedEdgeOverride && this.datastreamOverride) {
-            xdm.datastreamId = this.datastreamOverride;
-          }
-
-          return JSON.stringify(xdm, null, 2);
-        },
-        analyticsObject() {
-          const analytics = {};
-          this.keyValuePairs.forEach(o => {
-            if (o.analyticsKey && o.value) analytics[o.analyticsKey] = o.value;
-          });
-          // Optionally, for completeness, could include edgeConfigOverrides in output if desired
-          let dataObj = { data: { __adobe: { analytics } } };
-          if (this.showExtras.datastream && this.advancedEdgeOverride && this.validEdgeOverridesObj) {
-            dataObj.edgeConfigOverrides = this.validEdgeOverridesObj;
-          } else if (this.showExtras.datastream && !this.advancedEdgeOverride && this.datastreamOverride) {
-            dataObj.datastreamId = this.datastreamOverride;
-          }
-          return JSON.stringify(dataObj, null, 2);
-        }
-      },
-      watch: {
-        advancedEdgeOverride(newVal) {
-          // Clear error when toggling
-          this.edgeOverrideError = '';
-        },
-        edgeOverrideJson() {
-          // Validate on change
-          if (this.advancedEdgeOverride) {
-            try {
-              if (!this.edgeOverrideJson.trim()) {
-                this.edgeOverrideError = '';
-                return;
-              }
-              JSON.parse(this.edgeOverrideJson);
-              this.edgeOverrideError = '';
-            } catch (e) {
-              this.edgeOverrideError = "Invalid JSON: Ensure structure matches Adobe's required schema.";
-            }
-          }
-        }
-      },
-      methods: {
-        toggleInstructions() {
-          this.showInstructions = !this.showInstructions;
-        },
-        setEventType(type) {
-          this.eventType = type;
-          fireAllAnalytics('set_event_type', { event_type: type });
-        },
-        addKeyValuePair() {
-          this.keyValuePairs.push({ key: '', value: '', analyticsKey: '' });
-          fireAllAnalytics('add_key_value_pair', { total_pairs: this.keyValuePairs.length });
-        },
-        removeKeyValuePair(i) {
-          this.keyValuePairs.splice(i, 1);
-          fireAllAnalytics('remove_key_value_pair', { index: i, total_pairs: this.keyValuePairs.length });
-        },
-        duplicateKeyValuePair(i) {
-          const original = this.keyValuePairs[i];
-          this.keyValuePairs.splice(i + 1, 0, { ...original });
-          fireAllAnalytics('duplicate_key_value_pair', { index: i, total_pairs: this.keyValuePairs.length });
-        },
-        copyToClipboard(txt, type) {
-          navigator.clipboard.writeText(txt).then(() => {
-            this.modalType = type;
-            this.showModal = true;
-            setTimeout(this.closeModal, 1200);
-            fireAllAnalytics('copy_to_clipboard', { copy_type: type });
-          });
-        },
-        closeModal() {
-          this.showModal = false;
-        },
-        openHelpModal(content) {
-          this.helpContent = content;
-          this.showHelpModal = true;
-        },
-        closeHelpModal() {
-          this.showHelpModal = false;
-        }
+        tagSpec: tagPayload
       }
     });
+  }
+
+  if (window.utag && typeof window.utag.link === "function") {
+    window.utag.link(tagPayload);
+  }
+}
+
+${fnName}();`;
+    }
+
+    function mappingCsv() {
+      const header = ["Field", "Sample Value", "XDM Path", "Adobe Analytics Variable", "Required"];
+      const rows = state.fields.map(field => [field.key, field.value, field.xdm, field.aa, field.required ? "Yes" : "No"]);
+      return [header, ...rows].map(row => row.map(csvEscape).join(",")).join("\n");
+    }
+
+    function csvEscape(value) {
+      const text = String(value ?? "");
+      return /[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+    }
+
+    function specMarkdown() {
+      const meta = getMeta();
+      return `# Tag Specification: ${meta.eventName}
+
+## Purpose
+${meta.businessPurpose}
+
+## Implementation Summary
+- Pattern: ${state.pattern}
+- Trigger: ${meta.triggerType}
+- Business owner: ${meta.owner}
+- Priority: ${meta.priority}
+- Page name: ${meta.pageName}
+- Site section: ${meta.siteSection}
+- XDM eventType: ${meta.xdmEventType}
+- Datastream: ${meta.datastreamId}
+
+## Data Contract
+| Field | Required | Sample Value | XDM Path | Adobe Analytics |
+|---|---:|---|---|---|
+${state.fields.map(field => `| ${field.key} | ${field.required ? "Yes" : "No"} | ${field.value} | ${field.xdm} | ${field.aa || "-"} |`).join("\n")}
+
+## Engineering Notes
+- Populate the data layer before firing the analytics event.
+- Do not hardcode sample values in production.
+- Preserve the exact field names unless the analytics owner updates this spec.
+- Confirm consent requirements before sending identifiers or personalization fields.
+- Validate with browser Network tab, Adobe Experience Platform Debugger, and the Event Payload Inspector.
+
+## Acceptance Criteria
+- Event fires once per intended user action.
+- Required fields are populated and non-empty.
+- Adobe Analytics variables match the mapping table.
+- Web SDK request contains expected XDM and data.__adobe.analytics objects.
+- QA evidence is attached before release.`;
+    }
+
+    function checklistItems() {
+      const meta = getMeta();
+      return [
+        `Confirm the ${meta.triggerType} trigger fires only when ${meta.eventName} should be measured.`,
+        "Verify required fields are present: " + state.fields.filter(field => field.required).map(field => field.key).join(", "),
+        "Confirm Adobe Analytics variables match the generated mapping table.",
+        "Confirm the Web SDK request includes the expected XDM eventType and data.__adobe.analytics object.",
+        "Check consent and privacy requirements before sending identifiers or profile-sensitive values.",
+        "Test in dev/stage Launch library before promoting to production.",
+        "Attach a Network tab screenshot or Payload Inspector export to the Jira ticket."
+      ];
+    }
+
+    function renderRows() {
+      fieldRows.innerHTML = state.fields.map((field, index) => `
+        <tr>
+          <td><input value="${escapeAttr(field.key)}" data-index="${index}" data-field="key" aria-label="Field name ${index + 1}" /></td>
+          <td><input value="${escapeAttr(field.value)}" data-index="${index}" data-field="value" aria-label="Sample value ${index + 1}" /></td>
+          <td><input value="${escapeAttr(field.xdm)}" data-index="${index}" data-field="xdm" aria-label="XDM path ${index + 1}" /></td>
+          <td><input value="${escapeAttr(field.aa)}" data-index="${index}" data-field="aa" aria-label="Adobe Analytics variable ${index + 1}" /></td>
+          <td>
+            <select data-index="${index}" data-field="required" aria-label="Required flag ${index + 1}">
+              <option value="true" ${field.required ? "selected" : ""}>Yes</option>
+              <option value="false" ${!field.required ? "selected" : ""}>No</option>
+            </select>
+          </td>
+          <td><button class="delete-button" type="button" data-delete="${index}" aria-label="Delete field ${index + 1}">x</button></td>
+        </tr>
+      `).join("");
+    }
+
+    function escapeAttr(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    function renderOutputs() {
+      document.getElementById("specOutput").textContent = specMarkdown();
+      document.getElementById("dataLayerOutput").textContent = JSON.stringify(dataLayerObject(), null, 2);
+      document.getElementById("webSdkOutput").textContent = webSdkCode();
+      document.getElementById("tealiumOutput").textContent = tealiumCode();
+      document.getElementById("launchOutput").textContent = launchCode();
+      document.getElementById("csvOutput").textContent = mappingCsv();
+      document.getElementById("qaChecklist").innerHTML = checklistItems().map((item, index) => `
+        <div class="check-item">
+          <span class="check-dot">${index + 1}</span>
+          <span>${item}</span>
+        </div>
+      `).join("");
+    }
+
+    function render() {
+      renderRows();
+      renderOutputs();
+    }
+
+    function updateFromDom() {
+      renderOutputs();
+      trackWorkbench("tag_spec_updated", {
+        field_count: state.fields.length,
+        pattern: state.pattern,
+        trigger_type: inputs.triggerType.value
+      });
+    }
+
+    function addField(field = { key: "newField", value: "sample_value", xdm: "data.newField", aa: "", required: false }) {
+      state.fields.push(field);
+      render();
+      trackWorkbench("tag_spec_field_added", { field_count: state.fields.length });
+    }
+
+    function loadExample(type) {
+      if (type === "form") {
+        inputs.eventName.value = "lead_form_submit";
+        inputs.triggerType.value = "form_submit";
+        inputs.owner.value = "Demand Generation";
+        inputs.priority.value = "High";
+        inputs.businessPurpose.value = "Measure qualified lead form submissions and preserve campaign, form, and offer context for Adobe Analytics, RTCDP audiences, and CJA reporting.";
+        inputs.pageName.value = "demo_request";
+        inputs.siteSection.value = "lead_generation";
+        inputs.xdmEventType.value = "web.formFilledOut";
+        state.fields = [
+          { key: "formName", value: "demo_request", xdm: "web.webInteraction.name", aa: "eVar21", required: true },
+          { key: "formStep", value: "complete", xdm: "_experience.analytics.customDimensions.eVars.eVar22", aa: "eVar22", required: true },
+          { key: "campaignId", value: "paid_search_q3", xdm: "marketing.trackingCode", aa: "campaign", required: false },
+          { key: "leadType", value: "enterprise", xdm: "_experience.analytics.customDimensions.props.prop12", aa: "prop12", required: true },
+          { key: "submitEvent", value: "1", xdm: "_experience.analytics.event1to100.event31.value", aa: "event31", required: true }
+        ];
+      } else {
+        inputs.eventName.value = "pricing_cta_click";
+        inputs.triggerType.value = "click";
+        inputs.owner.value = "Growth Marketing";
+        inputs.priority.value = "High";
+        inputs.businessPurpose.value = "Measure which pricing CTA, placement, and plan context drives trial-start intent so teams can optimize acquisition journeys and CJA reporting.";
+        inputs.pageName.value = "pricing";
+        inputs.siteSection.value = "marketing";
+        inputs.xdmEventType.value = "web.webinteraction.linkClicks";
+        state.fields = [
+          { key: "ctaName", value: "start_free_trial", xdm: "web.webInteraction.name", aa: "eVar12", required: true },
+          { key: "ctaLocation", value: "pricing_hero", xdm: "_experience.analytics.customDimensions.eVars.eVar13", aa: "eVar13", required: true },
+          { key: "planTier", value: "pro", xdm: "_experience.analytics.customDimensions.eVars.eVar14", aa: "eVar14", required: true },
+          { key: "componentType", value: "primary_button", xdm: "_experience.analytics.customDimensions.props.prop7", aa: "prop7", required: false },
+          { key: "conversionIntent", value: "trial_signup", xdm: "_experience.analytics.event1to100.event12.value", aa: "event12", required: true }
+        ];
+      }
+      render();
+      trackWorkbench("tag_spec_example_loaded", { example_type: type });
+    }
+
+    function copyText(id) {
+      const text = document.getElementById(id).textContent;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => showToast("Copied"));
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        showToast("Copied");
+      }
+      trackWorkbench("tag_spec_output_copied", { output_id: id });
+    }
+
+    function downloadFile(filename, text, type) {
+      const blob = new Blob([text], { type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+      trackWorkbench("tag_spec_output_downloaded", { filename });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    document.querySelectorAll(".segmented button").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".segmented button").forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        state.pattern = button.dataset.pattern;
+        updateFromDom();
+      });
+    });
+
+    fieldRows.addEventListener("input", event => {
+      const index = Number(event.target.dataset.index);
+      const fieldName = event.target.dataset.field;
+      if (!Number.isNaN(index) && fieldName) {
+        state.fields[index][fieldName] = fieldName === "required" ? event.target.value === "true" : event.target.value;
+        renderOutputs();
+      }
+    });
+
+    fieldRows.addEventListener("change", event => {
+      const index = Number(event.target.dataset.index);
+      const fieldName = event.target.dataset.field;
+      if (!Number.isNaN(index) && fieldName) {
+        state.fields[index][fieldName] = fieldName === "required" ? event.target.value === "true" : event.target.value;
+        updateFromDom();
+      }
+    });
+
+    fieldRows.addEventListener("click", event => {
+      const index = Number(event.target.dataset.delete);
+      if (!Number.isNaN(index)) {
+        state.fields.splice(index, 1);
+        render();
+        trackWorkbench("tag_spec_field_deleted", { field_count: state.fields.length });
+      }
+    });
+
+    Object.values(inputs).forEach(input => {
+      input.addEventListener("input", renderOutputs);
+      input.addEventListener("change", updateFromDom);
+    });
+
+    document.getElementById("addField").addEventListener("click", () => addField());
+    document.getElementById("loadSaasExample").addEventListener("click", () => loadExample("saas"));
+    document.getElementById("loadExampleHero").addEventListener("click", () => loadExample("saas"));
+    document.getElementById("loadFormExample").addEventListener("click", () => loadExample("form"));
+    document.getElementById("clearFields").addEventListener("click", () => {
+      state.fields = [];
+      render();
+      trackWorkbench("tag_spec_fields_cleared");
+    });
+
+    document.querySelectorAll("[data-copy]").forEach(button => {
+      button.addEventListener("click", () => copyText(button.dataset.copy));
+    });
+
+    document.getElementById("downloadMarkdown").addEventListener("click", () => {
+      downloadFile("tag-spec-" + sanitizeIdentifier(inputs.eventName.value) + ".md", specMarkdown(), "text/markdown;charset=utf-8");
+    });
+
+    document.getElementById("downloadCsv").addEventListener("click", () => {
+      downloadFile("tag-spec-mapping-" + sanitizeIdentifier(inputs.eventName.value) + ".csv", mappingCsv(), "text/csv;charset=utf-8");
+    });
+
+    document.addEventListener("click", event => {
+      const target = event.target.closest("button, a");
+      if (!target) return;
+      trackWorkbench("tag_spec_element_click", {
+        element_label: (target.textContent || target.getAttribute("aria-label") || target.tagName).trim().replace(/\s+/g, " ").slice(0, 120),
+        element_type: target.tagName.toLowerCase(),
+        destination: target.href || ""
+      });
+    });
+
+    render();
+    trackWorkbench("tag_spec_workbench_loaded", {
+      field_count: state.fields.length,
+      pattern: state.pattern
+    });
   </script>
-  <footer class="text-center text-xs text-gray-400 mt-16 mb-8">
-    Built with ❤️ by Scott Gresack · v1.0.1 · Updated May 26, 2025 · <a href="/portfolio/" class="text-blue-600 hover:underline">View Portfolio</a>
-  </footer>
 </body>
 </html>
