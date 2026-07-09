@@ -892,7 +892,7 @@
                 </ul>
                 <label for="aaEndpointInput" class="sr-only">Adobe Analytics endpoint input</label>
                 <textarea id="aaEndpointInput" class="w-full min-h-[130px] border border-orange-200 rounded p-3 mb-4"
-                    placeholder="Paste Adobe Analytics endpoint URLs or query strings here. Example: https://example.sc.omtrdc.net/b/ss/rsid/1/JS-2.25.0/s123456789?AQB=1&pageName=Home&v1=logged-in&events=event1,event2&c1=hero&AQE=1"
+                    placeholder="Paste Adobe Analytics endpoint URLs, raw query strings, or Tool2 captured JSON rows here. Example: https://example.sc.omtrdc.net/b/ss/rsid/1/JS-2.25.0/s123456789?AQB=1&pageName=Home&v1=logged-in&events=event1,event2&c1=hero&AQE=1"
                     aria-label="Adobe Analytics endpoint input"></textarea>
                 <div class="flex flex-col sm:flex-row sm:space-x-4 mb-4 space-y-2 sm:space-y-0">
                     <button onclick="parseAppMeasurementEndpoints()"
@@ -1250,6 +1250,118 @@
             return { raw: trimmed, endpointHost, reportSuite, params, grouped };
         }
 
+        function isCapturedAppMeasurementRow(row) {
+            return row && typeof row === 'object' && (
+                row.source === 'appmeasurement' ||
+                Boolean(row['aa.rawUrl']) ||
+                Object.keys(row).some(key => key.startsWith('aa.'))
+            );
+        }
+
+        function parseCapturedAppMeasurementInput(input) {
+            try {
+                const parsed = JSON.parse(input);
+                const rows = Array.isArray(parsed) ? parsed : [parsed];
+                const capturedRows = rows.filter(isCapturedAppMeasurementRow);
+                return capturedRows.length ? capturedRows : null;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function unsanitizeAAParamKey(key) {
+            return String(key || '').replace(/_dot_/g, '.');
+        }
+
+        function addCapturedParam(params, seen, key, value) {
+            const normalizedKey = unsanitizeAAParamKey(key);
+            if (!normalizedKey || seen.has(normalizedKey)) return;
+            seen.add(normalizedKey);
+            params.push({
+                key: normalizedKey,
+                label: describeAAParam(normalizedKey),
+                category: categoryForAAParam(normalizedKey),
+                value: decodeAAValue(value)
+            });
+        }
+
+        function flatCapturedRowToEndpoint(row) {
+            const params = [];
+            const seen = new Set();
+
+            Object.keys(row)
+                .filter(key => key.startsWith('aa.params.'))
+                .sort()
+                .forEach(key => addCapturedParam(params, seen, key.replace('aa.params.', ''), row[key]));
+
+            Object.keys(row)
+                .filter(key => key.startsWith('aa.props.'))
+                .sort()
+                .forEach(key => addCapturedParam(params, seen, key.replace('aa.props.prop', 'c'), row[key]));
+
+            Object.keys(row)
+                .filter(key => key.startsWith('aa.eVars.'))
+                .sort()
+                .forEach(key => addCapturedParam(params, seen, key.replace('aa.eVars.eVar', 'v'), row[key]));
+
+            Object.keys(row)
+                .filter(key => key.startsWith('aa.hierarchies.'))
+                .sort()
+                .forEach(key => addCapturedParam(params, seen, key.replace('aa.hierarchies.hier', 'h'), row[key]));
+
+            [
+                ['pageName', row['aa.pageName']],
+                ['g', row['aa.pageUrl']],
+                ['r', row['aa.referrer']],
+                ['server', row['aa.server']],
+                ['channel', row['aa.channel']],
+                ['pageType', row['aa.pageType']],
+                ['cc', row['aa.currencyCode']],
+                ['events', row['aa.events']],
+                ['products', row['aa.products']],
+                ['campaign', row['aa.campaign']],
+                ['pe', row['aa.link.type']],
+                ['pev1', row['aa.link.url']],
+                ['pev2', row['aa.link.name']],
+                ['mid', row['aa.identity.mid']],
+                ['vid', row['aa.identity.vid']],
+                ['aid', row['aa.identity.aid']],
+                ['mcorgid', row['aa.identity.mcorgid']],
+                ['page', row['aa.activityMap.page']],
+                ['link', row['aa.activityMap.link']],
+                ['region', row['aa.activityMap.region']],
+                ['pageIDType', row['aa.activityMap.pageIDType']],
+                ['pid', row['aa.activityMap.pid']],
+                ['pidt', row['aa.activityMap.pidt']],
+                ['oid', row['aa.activityMap.oid']],
+                ['ot', row['aa.activityMap.ot']],
+                ['s', row['aa.viewport.screen']],
+                ['bw', row['aa.viewport.browserWidth']],
+                ['bh', row['aa.viewport.browserHeight']]
+            ].forEach(([key, value]) => {
+                if (value !== undefined && value !== null && String(value) !== '') addCapturedParam(params, seen, key, value);
+            });
+
+            Object.keys(row)
+                .filter(key => key.startsWith('aa.contextData.'))
+                .sort()
+                .forEach(key => addCapturedParam(params, seen, key.replace('aa.contextData.', 's.'), row[key]));
+
+            const grouped = params.reduce((acc, param) => {
+                acc[param.category] = acc[param.category] || [];
+                acc[param.category].push(param);
+                return acc;
+            }, {});
+
+            return {
+                raw: row['aa.rawUrl'] || JSON.stringify(row),
+                endpointHost: row['aa.endpointHost'] || '',
+                reportSuite: row['aa.reportSuite'] || '',
+                params,
+                grouped
+            };
+        }
+
         function renderAppMeasurementRequestTable(rows) {
             const wrapper = document.getElementById('aaParserTableWrapper');
             const table = document.getElementById('aaParserTable');
@@ -1488,12 +1600,32 @@
             const results = document.getElementById('aaParserResults');
             if (!input) {
                 summary.classList.remove('hidden');
-                summary.textContent = 'Paste at least one Adobe Analytics endpoint URL or query string to parse.';
+                summary.textContent = 'Paste at least one Adobe Analytics endpoint URL, query string, or Tool2 captured JSON row to parse.';
                 results.innerHTML = '';
                 currentAppMeasurementRows = [];
                 renderAppMeasurementRequestTable([]);
                 return [];
             }
+
+            const capturedRows = parseCapturedAppMeasurementInput(input);
+            if (capturedRows) {
+                const endpoints = capturedRows.map(flatCapturedRowToEndpoint);
+                currentAppMeasurementRows = capturedRows.map(flatCapturedRowToTableRow);
+                renderAppMeasurementRequestTable(currentAppMeasurementRows);
+                results.innerHTML = endpoints.map(renderAAParsedEndpoint).join('');
+                const totalParams = endpoints.reduce((sum, endpoint) => sum + endpoint.params.length, 0);
+                const reportSuites = Array.from(new Set(currentAppMeasurementRows.map(row => row.reportSuite).filter(Boolean)));
+                summary.classList.remove('hidden');
+                summary.innerHTML = `<b>Parsed ${capturedRows.length} captured Tool2 AppMeasurement row${capturedRows.length === 1 ? '' : 's'} into a request inventory table.</b> ${totalParams} total normalized parameters detected.${reportSuites.length ? ` Report suite(s): ${reportSuites.join(', ')}.` : ''}`;
+                window.trackToolInteraction('appmeasurement_captured_json_parsed', {
+                    endpoint_count: capturedRows.length,
+                    parameter_count: totalParams,
+                    report_suites: reportSuites.join(','),
+                    table_row_count: currentAppMeasurementRows.length
+                });
+                return endpoints;
+            }
+
             const endpoints = input
                 .split(/\n+/)
                 .map(line => line.trim())
