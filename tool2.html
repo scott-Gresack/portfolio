@@ -641,15 +641,15 @@
             <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6 rounded" id="snippet-instructions">
                 <h2 class="text-lg font-medium mb-3">
                     Dynamic Flattening Script Builder
-                    <span class="ml-2 text-gray-400" tabindex="0" aria-label="Help for snippet builder" title="This section helps you generate customized flattening scripts for Alloy, Tealium, or digitalData.">🛈</span>
+                    <span class="ml-2 text-gray-400" tabindex="0" aria-label="Help for snippet builder" title="This section helps you generate customized monitoring scripts for Alloy, Tealium, digitalData, or Adobe Analytics AppMeasurement endpoints.">🛈</span>
                 </h2>
                 <p class="mb-2">
-                    Instantly generate a payload-flattening script for <b>Adobe Alloy (AEP Web SDK)</b>, <b>Tealium utag.view/link</b>, or <b>digitalData</b> data layers.
+                    Instantly generate a payload-flattening script for <b>Adobe Alloy (AEP Web SDK)</b>, <b>Tealium utag.view/link</b>, <b>digitalData</b> data layers, or <b>Adobe Analytics AppMeasurement /b/ss requests</b>.
                     <br>
                     <span class="text-gray-600">Choose your integration, toggle output options, and copy the ready-to-use script. Paste it in your browser’s console to capture and debug flattened event payloads.</span>
                 </p>
                 <ul class="list-disc pl-5 mb-3 text-sm text-gray-700">
-                    <li>Works for <b>Alloy</b>, <b>Tealium</b>, <b>digitalData</b>, or <b>all at once</b>.</li>
+                    <li>Works for <b>Alloy</b>, <b>Tealium</b>, <b>digitalData</b>, <b>AppMeasurement /b/ss endpoints</b>, or <b>all at once</b>.</li>
                     <li>Options:
                         <ul class="list-disc pl-5">
                             <li><b>Log to console</b>: See each flattened payload in real time.</li>
@@ -661,7 +661,7 @@
                 <div class="mb-4 p-3 bg-gray-100 border border-gray-300 rounded" id="snippet-config" aria-label="Snippet builder controls">
                   <label for="snippetType" class="block mb-2 font-medium" id="label-snippetType">
                     Script Type:
-                    <span class="sr-only" id="desc-snippetType">Choose which integration(s) to generate a script for: Alloy, digitalData, Tealium, or all.</span>
+                    <span class="sr-only" id="desc-snippetType">Choose which integration(s) to generate a script for: Alloy, digitalData, Tealium, AppMeasurement, or all.</span>
                   </label>
                   <select id="snippetType" aria-labelledby="label-snippetType desc-snippetType"
                           class="mb-3 p-2 border rounded w-full max-w-xs"
@@ -669,7 +669,8 @@
                     <option value="alloy">Adobe Alloy (AEP Web SDK)</option>
                     <option value="digitalData">digitalData (W3C/DTM/Adobe Launch)</option>
                     <option value="tealium">Tealium utag.view/link</option>
-                    <option value="all">All (Alloy, digitalData, Tealium)</option>
+                    <option value="appmeasurement">Adobe Analytics AppMeasurement (/b/ss)</option>
+                    <option value="all">All (Alloy, digitalData, Tealium, AppMeasurement)</option>
                   </select>
                   <div class="mb-2 flex flex-row gap-4">
                     <label class="inline-flex items-center" for="snippetIncludeConsole" title="Toggle to log flattened payloads to the browser console.">
@@ -703,7 +704,8 @@
                   <ul class="list-disc pl-5">
                     <li>Debug Alloy XDM events with console logging only.</li>
                     <li>Capture Tealium utag.view/link data and store for offline analysis.</li>
-                    <li>Monitor all integrations at once (Alloy, digitalData, Tealium) and log to both console and sessionStorage.</li>
+                    <li>Listen for Adobe Analytics <code>/b/ss</code> requests and store decoded props, eVars, events, products, context data, and Activity Map values.</li>
+                    <li>Monitor all integrations at once (Alloy, digitalData, Tealium, AppMeasurement) and log to both console and sessionStorage.</li>
                   </ul>
                   <span class="block mt-2">Paste the generated script into your browser’s devtools console (<kbd>F12</kbd> &gt; <b>Console</b>), interact with the site, and inspect the output.</span>
                 </div>
@@ -1901,10 +1903,174 @@ const SNIPPET_BLOCKS = {
   };
   ${opts.includeConsole ? `console.info('%c[TealiumMonitor] Active. Monitoring utag.view and utag.link calls.', 'color:#f59e0b;font-weight:bold;');` : ''}
 })();`,
+  appmeasurement: (opts) => `(function () {
+  const STORAGE_KEY = 'flattenedAlloyEvents';
+  const SECONDARY_STORAGE_KEY = 'appMeasurementEndpointEvents';
+  const seen = new Set();
+
+  function safeDecode(value) {
+    try {
+      return decodeURIComponent(String(value || '').replace(/\\+/g, ' '));
+    } catch (err) {
+      return String(value || '');
+    }
+  }
+
+  function sanitizeKey(key) {
+    return String(key || 'unknown')
+      .replace(/\\./g, '_dot_')
+      .replace(/[^a-zA-Z0-9_:-]/g, '_');
+  }
+
+  function readReportSuite(url) {
+    const parts = url.pathname.split('/').filter(Boolean);
+    const ssIndex = parts.indexOf('ss');
+    return ssIndex >= 0 && parts[ssIndex + 1] ? safeDecode(parts[ssIndex + 1]) : '';
+  }
+
+  function parseAppMeasurementUrl(rawUrl, transport) {
+    if (!rawUrl) return null;
+    const url = new URL(String(rawUrl), window.location.href);
+    if (!/\\/b\\/ss\\//i.test(url.pathname)) return null;
+
+    const params = new URLSearchParams(url.search);
+    const flat = {
+      source: 'appmeasurement',
+      'aa.transport': transport || 'unknown',
+      'aa.rawUrl': url.href,
+      'aa.endpointHost': url.host,
+      'aa.reportSuite': readReportSuite(url),
+      'aa.path': url.pathname,
+      'aa.capturedAt': new Date().toISOString()
+    };
+
+    params.forEach(function (value, key) {
+      const decoded = safeDecode(value);
+      flat['aa.params.' + sanitizeKey(key)] = decoded;
+
+      if (/^c\\d+$/i.test(key)) {
+        flat['aa.props.prop' + key.slice(1)] = decoded;
+      } else if (/^v\\d+$/i.test(key)) {
+        flat['aa.eVars.eVar' + key.slice(1)] = decoded;
+      } else if (/^h\\d+$/i.test(key)) {
+        flat['aa.hierarchies.hier' + key.slice(1)] = decoded;
+      } else if (/^l\\d+$/i.test(key)) {
+        flat['aa.lists.list' + key.slice(1)] = decoded;
+      } else if (/^s\\./i.test(key)) {
+        flat['aa.contextData.' + key] = decoded;
+      } else if (/^contextData\\./i.test(key)) {
+        flat['aa.contextData.' + key.replace(/^contextData\\./i, '')] = decoded;
+      }
+    });
+
+    flat['aa.pageName'] = safeDecode(params.get('pageName') || params.get('pid') || '');
+    flat['aa.pageUrl'] = safeDecode(params.get('g') || '');
+    flat['aa.referrer'] = safeDecode(params.get('r') || '');
+    flat['aa.server'] = safeDecode(params.get('server') || '');
+    flat['aa.channel'] = safeDecode(params.get('channel') || '');
+    flat['aa.pageType'] = safeDecode(params.get('pageType') || '');
+    flat['aa.currencyCode'] = safeDecode(params.get('cc') || '');
+    flat['aa.events'] = safeDecode(params.get('events') || '');
+    flat['aa.eventCount'] = flat['aa.events'] ? flat['aa.events'].split(',').filter(Boolean).length : 0;
+    flat['aa.products'] = safeDecode(params.get('products') || '');
+    flat['aa.campaign'] = safeDecode(params.get('campaign') || '');
+    flat['aa.link.type'] = safeDecode(params.get('pe') || '');
+    flat['aa.link.url'] = safeDecode(params.get('pev1') || '');
+    flat['aa.link.name'] = safeDecode(params.get('pev2') || params.get('pev3') || '');
+    flat['aa.identity.mid'] = safeDecode(params.get('mid') || '');
+    flat['aa.identity.vid'] = safeDecode(params.get('vid') || '');
+    flat['aa.identity.aid'] = safeDecode(params.get('aid') || '');
+    flat['aa.identity.mcorgid'] = safeDecode(params.get('mcorgid') || '');
+    flat['aa.activityMap.page'] = safeDecode(params.get('page') || '');
+    flat['aa.activityMap.link'] = safeDecode(params.get('link') || '');
+    flat['aa.activityMap.region'] = safeDecode(params.get('region') || '');
+    flat['aa.activityMap.pageIDType'] = safeDecode(params.get('pageIDType') || '');
+    flat['aa.activityMap.pid'] = safeDecode(params.get('pid') || '');
+    flat['aa.activityMap.pidt'] = safeDecode(params.get('pidt') || '');
+    flat['aa.activityMap.oid'] = safeDecode(params.get('oid') || '');
+    flat['aa.activityMap.ot'] = safeDecode(params.get('ot') || '');
+    flat['aa.viewport.screen'] = safeDecode(params.get('s') || '');
+    flat['aa.viewport.browserWidth'] = safeDecode(params.get('bw') || '');
+    flat['aa.viewport.browserHeight'] = safeDecode(params.get('bh') || '');
+    flat['aa.userAgent'] = safeDecode(params.get('v159') || '');
+
+    return flat;
+  }
+
+  function appendToStorage(key, row) {
+    const stored = sessionStorage.getItem(key);
+    const prev = stored ? JSON.parse(stored) : [];
+    prev.push(row);
+    sessionStorage.setItem(key, JSON.stringify(prev));
+  }
+
+  function capture(rawUrl, transport) {
+    try {
+      const flat = parseAppMeasurementUrl(rawUrl, transport);
+      if (!flat) return;
+      const dedupeKey = flat['aa.rawUrl'];
+      if (seen.has(dedupeKey)) return;
+      seen.add(dedupeKey);
+      ${opts.includeSessionStorage ? `
+      appendToStorage(STORAGE_KEY, flat);
+      appendToStorage(SECONDARY_STORAGE_KEY, flat);
+      ` : ''}
+      ${opts.includeConsole ? `console.log('%c[AppMeasurementMonitor] Captured Adobe Analytics /b/ss request:', 'color:#ea580c;font-weight:bold;', flat);` : ''}
+    } catch (err) {
+      ${opts.includeConsole ? `console.warn('[AppMeasurementMonitor] Failed to parse Adobe Analytics /b/ss request:', err, rawUrl);` : ''}
+    }
+  }
+
+  const originalFetch = window.fetch;
+  if (typeof originalFetch === 'function' && !originalFetch.__aaMonitorWrapped) {
+    window.fetch = function (input, init) {
+      const rawUrl = typeof input === 'string' ? input : (input && input.url);
+      capture(rawUrl, 'fetch');
+      return originalFetch.apply(this, arguments);
+    };
+    window.fetch.__aaMonitorWrapped = true;
+  }
+
+  const originalOpen = XMLHttpRequest.prototype.open;
+  if (originalOpen && !XMLHttpRequest.prototype.__aaMonitorWrapped) {
+    XMLHttpRequest.prototype.open = function (method, url) {
+      capture(url, 'xhr');
+      return originalOpen.apply(this, arguments);
+    };
+    XMLHttpRequest.prototype.__aaMonitorWrapped = true;
+  }
+
+  const originalSendBeacon = navigator.sendBeacon;
+  if (typeof originalSendBeacon === 'function' && !navigator.__aaMonitorBeaconWrapped) {
+    navigator.sendBeacon = function (url, data) {
+      capture(url, 'sendBeacon');
+      return originalSendBeacon.apply(this, arguments);
+    };
+    navigator.__aaMonitorBeaconWrapped = true;
+  }
+
+  const imagePrototype = window.HTMLImageElement && window.HTMLImageElement.prototype;
+  const imageSrcDescriptor = imagePrototype && Object.getOwnPropertyDescriptor(imagePrototype, 'src');
+  if (imagePrototype && imageSrcDescriptor && imageSrcDescriptor.set && !imagePrototype.__aaMonitorImageWrapped) {
+    Object.defineProperty(imagePrototype, 'src', {
+      configurable: true,
+      enumerable: imageSrcDescriptor.enumerable,
+      get: imageSrcDescriptor.get,
+      set: function (value) {
+        capture(value, 'image');
+        return imageSrcDescriptor.set.call(this, value);
+      }
+    });
+    imagePrototype.__aaMonitorImageWrapped = true;
+  }
+
+  ${opts.includeConsole ? `console.info('%c[AppMeasurementMonitor] Active. Listening for Adobe Analytics /b/ss requests. Refresh Payloads will read rows from sessionStorage.', 'color:#ea580c;font-weight:bold;');` : ''}
+})();`,
   all: (opts) => [
     SNIPPET_BLOCKS.alloy(opts),
     SNIPPET_BLOCKS.digitalData(opts),
-    SNIPPET_BLOCKS.tealium(opts)
+    SNIPPET_BLOCKS.tealium(opts),
+    SNIPPET_BLOCKS.appmeasurement(opts)
   ].join('\n\n')
 };
 
