@@ -1165,6 +1165,51 @@
             white-space: pre-wrap;
         }
 
+        .component-analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.85rem;
+            margin: 1.5rem 0;
+        }
+
+        .component-analytics-card {
+            padding: 1rem;
+            border: 1px solid rgba(15, 98, 254, 0.16);
+            border-radius: 1rem;
+            background: linear-gradient(180deg, rgba(15, 98, 254, 0.06), #fff);
+            box-shadow: var(--shadow-card);
+        }
+
+        .component-analytics-card span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 0.75rem;
+            border-radius: 999px;
+            background: var(--ink);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 900;
+        }
+
+        .component-analytics-card strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--ink);
+            font-size: 0.98rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .component-analytics-card p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 650;
+            line-height: 1.42;
+        }
+
         /* Contact Section */
         .contact {
             background: linear-gradient(180deg, var(--surface), #fff);
@@ -1284,7 +1329,8 @@
             .cdp-decision-grid,
             .saas-example-grid,
             .analytics-system-flow,
-            .event-taxonomy-grid {
+            .event-taxonomy-grid,
+            .component-analytics-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -2011,6 +2057,92 @@ trackInteraction({
   componentName: "PricingPlanSelector",
   valueSelected: "annual",
   outcome: "price_updated"
+});</code></pre>
+                    </div>
+
+                    <div class="component-analytics-grid" aria-label="Component analytics implementation controls">
+                        <div class="component-analytics-card">
+                            <span>01</span>
+                            <strong>Global analytics config</strong>
+                            <p>Turn tracking on for standard components at the application shell so every team starts from the same behavior.</p>
+                        </div>
+                        <div class="component-analytics-card">
+                            <span>02</span>
+                            <strong>Component-level override</strong>
+                            <p>Allow a specific button, modal, tooltip, card, or form to opt out, opt in, or override labels when the default is wrong.</p>
+                        </div>
+                        <div class="component-analytics-card">
+                            <span>03</span>
+                            <strong>Default event handler</strong>
+                            <p>Route normalized events through one function that can call Adobe Web SDK, GA4, Tealium, PostHog, or another adapter.</p>
+                        </div>
+                        <div class="component-analytics-card">
+                            <span>04</span>
+                            <strong>Privacy-safe labels</strong>
+                            <p>Provide explicit label overrides and blocking rules so sensitive text never leaks from component copy into analytics.</p>
+                        </div>
+                    </div>
+
+                    <div class="article-content-grid">
+                        <div class="article-panel">
+                            <h3>The CMS-Style Pattern to Borrow</h3>
+                            <p>A mature design-system analytics model does not make every product squad invent tracking from scratch. It provides a global configuration, component-level overrides, a default analytics handler, and a way to prevent sensitive content from being passed to tracking tools.</p>
+                            <p>That is the right mental model for enterprise front-end analytics: the design system owns the behavioral contract, while the destination adapter decides where the event goes.</p>
+                        </div>
+                        <div class="article-panel">
+                            <h3>What This Looks Like in Practice</h3>
+                            <p>Instead of asking every engineer to remember the correct Adobe, GA4, or Tealium call, the app configures analytics once. Components can still override when needed, but the default path is governed.</p>
+                            <ul>
+                                <li>Enable analytics globally for standard components.</li>
+                                <li>Disable analytics on sensitive or noisy component instances.</li>
+                                <li>Override labels when visible copy contains account, user, health, financial, or form-entered data.</li>
+                                <li>Swap adapters without rewriting product components.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="code-panel">
+                        <div class="code-panel-header">A TMS-agnostic component analytics API</div>
+                        <pre><code>import { configureAnalytics } from "@company/analytics-events";
+import { Button, Modal, Tooltip } from "@company/design-system";
+
+configureAnalytics({
+  components: {
+    buttonSendsAnalytics: true,
+    modalSendsAnalytics: true,
+    tooltipSendsAnalytics: false
+  },
+  defaultAnalyticsHandler(event) {
+    // The component emits one governed event contract.
+    // The adapter decides whether it becomes Adobe Web SDK, GA4, Tealium, PostHog, or server-side collection.
+    analyticsAdapter.send(event);
+  },
+  privacy: {
+    blockPii: true,
+    requireLabelOverrideFor: ["form", "account", "profile", "health", "financial"]
+  }
+});
+
+Button({
+  children: "Start free trial",
+  analytics: true,
+  analyticsEvent: {
+    eventType: "cta_click",
+    componentName: "PricingHero",
+    ctaType: "primary",
+    journeyStage: "consideration"
+  }
+});
+
+Modal({
+  title: "Account settings",
+  analytics: true,
+  analyticsLabelOverride: "account_settings_modal"
+});
+
+Tooltip({
+  content: "Sensitive helper text",
+  analytics: false
 });</code></pre>
                     </div>
 
