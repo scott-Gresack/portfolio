@@ -1961,7 +1961,7 @@
                         <div class="flow-arrow" aria-hidden="true">→</div>
                         <div class="analytics-system-card dark">
                             <strong>Shared Event Package</strong>
-                            <span>A small npm package standardizes behavioral events so front-end engineers import the contract instead of recreating tracking rules.</span>
+                            <span>A small npm package standardizes behavioral intent events so front-end engineers import the contract instead of recreating tracking rules.</span>
                             <ul>
                                 <li>Page events</li>
                                 <li>CTA events</li>
@@ -1973,9 +1973,9 @@
                             <strong>Destination Layer</strong>
                             <span>The adapter sends the same event contract to Adobe Web SDK, GA4, Tealium, Segment, PostHog, or whatever the enterprise uses next.</span>
                             <ul>
-                                <li>TMS agnostic</li>
+                                <li>Intent aware</li>
                                 <li>Vendor swappable</li>
-                                <li>Governed by schema</li>
+                                <li>Profile ready</li>
                             </ul>
                         </div>
                     </div>
@@ -1990,6 +1990,7 @@
                             <h3>The Principle</h3>
                             <p>If the design system defines how a button looks and behaves, it should also help define how a button is measured. The analytics layer should not be an afterthought attached downstream by whichever TMS happens to be installed.</p>
                             <p>The cleaner pattern is a governed event package that lives beside the component library. Engineers import the package, call the event helper, and the helper emits a consistent event contract to the configured destination adapter.</p>
+                            <p>That contract should reflect the user's intent, not just the DOM object they clicked. The business needs to know whether the user is comparing plans, asking for help, showing purchase intent, managing an account, or abandoning a task.</p>
                         </div>
                     </div>
 
@@ -1997,7 +1998,7 @@
                         <div class="event-taxonomy-card">
                             <h3>Page Events</h3>
                             <code>trackPage()</code>
-                            <p>Use for route changes, page templates, screen views, and meaningful content impressions.</p>
+                            <p>Use for route changes, page templates, screen views, and meaningful content impressions. The page should express context and journey intent, not just URL.</p>
                             <ul>
                                 <li>pageName</li>
                                 <li>pageType</li>
@@ -2009,25 +2010,25 @@
                         <div class="event-taxonomy-card">
                             <h3>CTA Events</h3>
                             <code>trackCta()</code>
-                            <p>Use for primary and secondary calls to action where intent, placement, and copy matter.</p>
+                            <p>Use for primary and secondary calls to action where intent, placement, and copy matter. A CTA should say what the user is trying to do.</p>
                             <ul>
                                 <li>ctaText</li>
                                 <li>ctaType</li>
+                                <li>userIntent</li>
                                 <li>componentName</li>
                                 <li>destinationUrl</li>
-                                <li>position</li>
                             </ul>
                         </div>
                         <div class="event-taxonomy-card">
                             <h3>Interaction Events</h3>
                             <code>trackInteraction()</code>
-                            <p>Use for product behaviors that are not simple CTA clicks: filters, tabs, accordions, search, sort, video, and forms.</p>
+                            <p>Use for product behaviors that are not simple CTA clicks: filters, tabs, accordions, search, sort, video, forms, and preference changes.</p>
                             <ul>
                                 <li>interactionName</li>
                                 <li>interactionType</li>
+                                <li>userIntent</li>
                                 <li>componentState</li>
                                 <li>valueSelected</li>
-                                <li>outcome</li>
                             </ul>
                         </div>
                     </div>
@@ -2040,12 +2041,14 @@ trackPage({
   pageName: "pricing",
   pageType: "marketing",
   siteSection: "growth",
-  journeyStage: "consideration"
+  journeyStage: "consideration",
+  userIntent: "evaluate_plan_options"
 });
 
 trackCta({
   ctaText: "Start free trial",
   ctaType: "primary",
+  userIntent: "start_trial",
   componentName: "PricingHero",
   destinationUrl: "/signup",
   position: 1
@@ -2054,10 +2057,72 @@ trackCta({
 trackInteraction({
   interactionName: "plan_toggle",
   interactionType: "billing_frequency",
+  userIntent: "compare_monthly_vs_annual",
   componentName: "PricingPlanSelector",
   valueSelected: "annual",
   outcome: "price_updated"
 });</code></pre>
+                    </div>
+
+                    <div class="article-content-grid">
+                        <div class="article-panel">
+                            <h3>Why Web SDK + CDP Is Different</h3>
+                            <p>Traditional analytics usually asks, “How many people clicked this?” That is useful, but it is not the whole job anymore. With Adobe Web SDK and a profile-enabled AEP dataset, the event can also become a real-time signal that enriches the customer's CDP profile.</p>
+                            <p>If identity is resolvable at the Edge, a CTA click can update more than a report. It can change audience eligibility, journey logic, personalization, suppression, propensity models, and next-best-action decisions.</p>
+                        </div>
+                        <div class="article-panel">
+                            <h3>The Profile-Ready Event Contract</h3>
+                            <p>For CDP use cases, the tag should express intent, identity context, consent state, and schema meaning. The event should answer what the person appears to be trying to accomplish and whether that signal is safe to activate.</p>
+                            <ul>
+                                <li><strong>Intent:</strong> compare plans, request advice, start application, abandon checkout, manage account.</li>
+                                <li><strong>Identity:</strong> ECID, authenticated ID, CRM ID, account ID, or other approved namespace.</li>
+                                <li><strong>Profile readiness:</strong> event lands in a dataset enabled for Profile when it should enrich RTCDP.</li>
+                                <li><strong>Activation safety:</strong> consent and data-use labels determine whether the signal can drive personalization.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="code-panel">
+                        <div class="code-panel-header">Intent-aware Web SDK event for CDP profile enrichment</div>
+                        <pre><code>alloy("sendEvent", {
+  xdm: {
+    eventType: "web.webinteraction.linkClicks",
+    identityMap: {
+      ECID: [{ id: ecid, authenticatedState: "ambiguous", primary: false }],
+      CRMID: [{ id: crmId, authenticatedState: "authenticated", primary: true }]
+    },
+    web: {
+      webPageDetails: {
+        name: "pricing",
+        siteSection: "growth"
+      },
+      webInteraction: {
+        name: "start_free_trial",
+        type: "other",
+        linkClicks: { value: 1 }
+      }
+    },
+    _company: {
+      userIntent: "start_trial",
+      journeyStage: "consideration",
+      componentName: "PricingHero",
+      profileSignal: true
+    },
+    consent: {
+      collect: { val: "y" }
+    }
+  },
+  data: {
+    analytics: {
+      ctaText: "Start free trial",
+      ctaType: "primary"
+    }
+  }
+});
+
+// CDP note:
+// This can enrich a Real-Time Customer Profile only when the mapped dataset is enabled for Profile,
+// identities are configured correctly, and consent/data-governance policies allow activation.</code></pre>
                     </div>
 
                     <div class="component-analytics-grid" aria-label="Component analytics implementation controls">
