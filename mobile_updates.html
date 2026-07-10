@@ -1,63 +1,66 @@
 <!DOCTYPE html>
-<!--
-  📱 Mobile Tag Spec Builder
-  Author: Scott Gresack
-  URL: https://scott-gresack.github.io/portfolio/mobile_updates
-
-  This interactive tool is designed for generating Adobe Mobile SDK payloads.
-  Features:
-  - Supports trackAction, trackState, and Edge.sendEvent calls.
-  - Dynamically builds payloads with key-value context and XDM identityMap.
-  - Generates native code snippets for Swift, Kotlin, and React Native.
-  - Supports Adobe Edge datastream override and identity stitching via identityMap.
-  - Live payload preview and session-local storage of input.
-
-  Best used for QA, testing journeys, and validating analytics setup across environments.
-
-  Adobe Recommendation:
-  When using identityMap, mark person-based identifiers (e.g., CRMID, email) as "primary".
--->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#1E40AF" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <link rel="apple-touch-icon" href="https://scott-gresack.github.io/portfolio/icons/icon-192x192.png">
-
-  <title>📱 Mobile Tag Spec Builder | Scott Gresack</title>
-  <meta name="description" content="Scott Gresack is a Martech Engineer and AEP Specialist with expertise in Adobe Experience Platform, Tealium iQ, and Customer Data Platforms. Explore real-world implementations for identity stitching, tag architecture, and XDM governance.">
-  <meta name="keywords" content="Martech Engineer, Adobe Experience Platform, AEP, CDP, Tealium iQ, Customer Data Platform, Tag Management, Identity Resolution, XDM Schema, Adobe Analytics, Adobe Web SDK, Adobe Target, Journey Orchestration, Real-Time Personalization, Martech Portfolio, Martech Jobs, Adobe Developer">
+  <title>Mobile SDK Event Workbench | Scott Gresack</title>
+  <meta name="description" content="A practical workbench for mobile analytics teams to design Adobe Mobile SDK, Adobe Edge Network, XDM, and Adobe Analytics payloads with implementation snippets and QA checks." />
+  <meta name="keywords" content="Adobe Mobile SDK, Adobe Edge Network, MobileCore trackAction, MobileCore trackState, XDM, Adobe Analytics, Web SDK, mobile analytics QA, app measurement, martech engineering" />
   <meta name="author" content="Scott Gresack" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/mobile_updates" />
-  <meta property="og:title" content="Scott Gresack | Martech Engineer | Adobe AEP & CDP Specialist">
-  <meta property="og:description" content="Explore Scott Gresack’s Martech portfolio — featuring advanced implementations in Adobe Experience Platform, tag governance, real-time identity stitching, and customer data strategy.">
-  <meta property="og:image" content="https://yourdomain.com/path/to/social-preview-image.png">
-  <meta property="og:url" content="https://yourdomain.com">
-  <meta property="og:type" content="website">
-  <meta name="twitter:title" content="Scott Gresack | Martech Engineer | AEP & CDP Expert">
-  <meta name="twitter:description" content="Portfolio featuring Adobe Experience Platform, real-time data collection, Tealium iQ, identity resolution, and scalable tracking architecture.">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://yourdomain.com/path/to/social-preview-image.png">
+  <link rel="canonical" href="https://scott-gresack.github.io/portfolio/mobile_updates.html" />
+  <meta property="og:title" content="Mobile SDK Event Workbench | Scott Gresack" />
+  <meta property="og:description" content="Generate mobile analytics specs, SDK snippets, XDM payloads, Adobe Analytics mappings, and QA checklists from one practical workbench." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scott-gresack.github.io/portfolio/mobile_updates.html" />
+  <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'GT-MQBSZT8H');
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8617TLMYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-Y8617TLMYK', { anonymize_ip: true });
+  </script>
 
-  <script defer type="application/ld+json">
+  <!-- PostHog -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture identify register register_once unregister reset get_distinct_id get_session_id get_session_replay_url set_config opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init("phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U", {
+      api_host: "https://us.i.posthog.com",
+      person_profiles: "always",
+      capture_pageview: true
+    });
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "pmp4efispy");
+  </script>
+
+  <!-- Adobe Launch / Web SDK container -->
+  <script async src="https://assets.adobedtm.com/0ded84b93882/71f267854b6d/launch-b015179db04d-development.min.js"></script>
+
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Mobile Tag Spec Builder",
+    "name": "Mobile SDK Event Workbench",
     "applicationCategory": "DeveloperTool",
     "operatingSystem": "Web",
-    "url": "https://scott-gresack.github.io/portfolio/mobile_updates",
+    "url": "https://scott-gresack.github.io/portfolio/mobile_updates.html",
     "author": {
       "@type": "Person",
       "name": "Scott Gresack"
@@ -65,569 +68,1762 @@
   }
   </script>
 
-  <script>
-    !function(t,e){
-      var o,n,p,r;
-      if (!e.__SV) {
-        window.posthog = e;
-        e._i = [];
-        e.init = function(i,s,a){
-          function g(t,e){
-            var o=e.split(".");
-            2==o.length && (t=t[o[0]], e=o[1]);
-            t[e] = function(){ t.push([e].concat(Array.prototype.slice.call(arguments,0))) };
-          }
-          p = t.createElement("script");
-          p.type = "text/javascript";
-          p.async = !0;
-          p.src = s.api_host + "/static/array.js";
-          r = t.getElementsByTagName("script")[0];
-          r.parentNode.insertBefore(p,r);
-          var u = e;
-          void 0 !== a ? u = e[a] = [] : a = "posthog";
-          u.people = u.people || [];
-          u.toString = function(t){
-            var e = "posthog";
-            return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e;
-          };
-          u.people.toString = function(){ return u.toString(1) + ".people (stub)" };
-          o = "init capture identify".split(" ");
-          for (n = 0; n < o.length; n++) g(u, o[n]);
-          e._i.push([i, s, a]);
-        };
-        e.__SV = 1;
-      }
-    }(document, window.posthog || []);
-    posthog.init('phc_poY0XlVu6WBmOsIKW4OwRT60oDXKjJrMhPz1tqhvK6U', {
-      api_host: 'https://us.i.posthog.com',
-      autocapture: true,
-      capture_pageview: true
-    });
-  </script>
-
-
-  <script defer>
-    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","pmp4efispy");
-  </script>
-
-  <script defer>
-    (function(window,document,dataLayerName,id){
-      window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});
-      var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
-      tags.async=!0;tags.src="https://scott-gresack.containers.piwik.pro/40c8a729-ebc6-4dfe-98be-6617064e43a9.js";
-      scripts.parentNode.insertBefore(tags,scripts);
-    })(window,document,'dataLayer','40c8a729-ebc6-4dfe-98be-6617064e43a9');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-
   <style>
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    :root {
+      color-scheme: light;
+      --ink: #111827;
+      --muted: #5d6675;
+      --subtle: #7b8494;
+      --panel: rgba(255, 255, 255, 0.84);
+      --panel-strong: rgba(255, 255, 255, 0.96);
+      --soft: #f5f7fb;
+      --line: rgba(17, 24, 39, 0.12);
+      --blue: #0a84ff;
+      --blue-dark: #075fbd;
+      --green: #15803d;
+      --amber: #b45309;
+      --red: #b91c1c;
+      --purple: #6d28d9;
+      --shadow: 0 30px 90px rgba(15, 23, 42, 0.13);
+      --radius: 18px;
     }
-    .animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(10, 132, 255, 0.16), transparent 30rem),
+        radial-gradient(circle at 88% 8%, rgba(21, 128, 61, 0.10), transparent 28rem),
+        linear-gradient(180deg, #fbfdff 0%, #ffffff 46%, #f6f8fb 100%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -48px;
+      z-index: 100;
+      background: #111827;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .skip-link:focus { top: 14px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.78);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    nav {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 850;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #111827, #1f5eff);
+      color: white;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .nav-links a {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 11px;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: rgba(10, 132, 255, 0.08);
+      color: var(--blue-dark);
+      outline: none;
+    }
+
+    main {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px 20px 72px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: clamp(28px, 5vw, 56px);
+      background:
+        linear-gradient(135deg, rgba(12, 18, 32, 0.95), rgba(8, 47, 105, 0.92)),
+        radial-gradient(circle at 88% 8%, rgba(10, 132, 255, 0.48), transparent 24rem);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -45% 42%;
+      height: 300px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      filter: blur(6px);
+      transform: rotate(-8deg);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.7fr);
+      gap: 28px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.10);
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(38px, 7vw, 78px);
+      line-height: 0.94;
+      letter-spacing: -0.07em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 20px 0 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.52;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .button,
+    button {
+      appearance: none;
+      border: 0;
+      min-height: 44px;
+      border-radius: 13px;
+      padding: 11px 15px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    button:hover,
+    .button:hover { transform: translateY(-1px); }
+
+    button:focus-visible,
+    .button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid rgba(10, 132, 255, 0.28);
+      outline-offset: 2px;
+    }
+
+    .primary { background: var(--blue); color: white; box-shadow: 0 12px 28px rgba(10, 132, 255, 0.30); }
+    .secondary { background: rgba(255, 255, 255, 0.12); color: white; border: 1px solid rgba(255, 255, 255, 0.22); }
+    .light { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+    .ghost { background: rgba(17, 24, 39, 0.06); color: var(--ink); }
+    .danger { background: rgba(185, 28, 28, 0.08); color: var(--red); }
+
+    .hero-card {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 22px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-card h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-card ol {
+      margin: 0;
+      padding-left: 20px;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    section { margin-top: 28px; }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .panel-header {
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .panel-header h2,
+    .panel-header h3 {
+      margin: 0;
+      font-size: clamp(21px, 2vw, 28px);
+      letter-spacing: -0.05em;
+    }
+
+    .panel-header p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 820px;
+    }
+
+    .panel-body { padding: 22px; }
+
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .purpose-card,
+    .metric-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .purpose-card strong,
+    .metric-card strong {
+      display: block;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+      font-size: 17px;
+    }
+
+    .purpose-card p,
+    .metric-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.48;
+      font-size: 15px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .metric-value {
+      display: block;
+      color: var(--blue-dark);
+      font-size: 30px;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .step {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.76);
+      min-height: 132px;
+    }
+
+    .step span {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      background: rgba(10, 132, 255, 0.10);
+      color: var(--blue-dark);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 7px;
+      letter-spacing: -0.03em;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.42;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(300px, 0.88fr) minmax(0, 1.12fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      color: #2c3440;
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.01em;
+    }
+
+    .hint {
+      color: var(--subtle);
+      font-size: 13px;
+      line-height: 1.38;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid rgba(17, 24, 39, 0.16);
+      border-radius: 12px;
+      padding: 11px 12px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink);
+      font: inherit;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 96px;
+      resize: vertical;
+      line-height: 1.45;
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(17, 24, 39, 0.05);
+    }
+
+    .segment {
+      min-height: 42px;
+      border-radius: 11px;
+      background: transparent;
+      color: var(--muted);
+      box-shadow: none;
+      padding: 9px 10px;
+    }
+
+    .segment[aria-pressed="true"] {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    .switch-row {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-height: 44px;
+      padding: 11px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.70);
+    }
+
+    .check input {
+      width: 18px;
+      height: 18px;
+      min-height: auto;
+      margin-top: 2px;
+    }
+
+    .field-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--panel-strong);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      color: #303846;
+      background: rgba(17, 24, 39, 0.04);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    td input,
+    td select {
+      min-height: 40px;
+      font-size: 14px;
+      border-radius: 10px;
+    }
+
+    td:first-child { width: 42px; }
+    td:last-child { width: 76px; }
+
+    .row-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .output-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tab {
+      min-height: 40px;
+      background: rgba(17, 24, 39, 0.06);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 12px;
+      box-shadow: none;
+      font-size: 14px;
+    }
+
+    .tab[aria-selected="true"] {
+      background: #111827;
+      color: white;
+    }
+
+    .output-shell {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #0d1117;
+      color: #d8e1ef;
+    }
+
+    .output-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      color: rgba(255, 255, 255, 0.80);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .output-toolbar div {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mini {
+      min-height: 34px;
+      border-radius: 10px;
+      padding: 7px 10px;
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.10);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      box-shadow: none;
+    }
+
+    pre {
+      margin: 0;
+      padding: 16px;
+      overflow: auto;
+      max-height: 520px;
+      font-size: 13px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      tab-size: 2;
+    }
+
+    code {
+      font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.94em;
+    }
+
+    .callout {
+      border: 1px solid rgba(10, 132, 255, 0.20);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(10, 132, 255, 0.07);
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #064e92;
+      letter-spacing: -0.02em;
+    }
+
+    .callout p,
+    .callout ul {
+      margin: 0;
+      color: #21435f;
+      line-height: 1.48;
+      font-size: 15px;
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .qa-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    .qa-item strong {
+      display: block;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .qa-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.42;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(80px);
+      opacity: 0;
+      z-index: 100;
+      max-width: calc(100vw - 32px);
+      border-radius: 999px;
+      padding: 12px 16px;
+      background: #111827;
+      color: white;
+      box-shadow: 0 18px 42px rgba(15, 23, 42, 0.28);
+      font-weight: 800;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    footer {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-content,
+      .workspace,
+      .purpose-grid,
+      .workflow,
+      .metric-grid { grid-template-columns: 1fr; }
+
+      .hero-card { max-width: 680px; }
+      .checklist { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+      }
+
+      main { padding: 18px 14px 56px; }
+      .hero { border-radius: 22px; padding: 24px; }
+      h1 { font-size: clamp(36px, 14vw, 54px); }
+      .hero-actions .button,
+      .hero-actions button { width: 100%; }
+      .panel-header { flex-direction: column; }
+      .panel-body,
+      .panel-header { padding: 18px; }
+      .form-grid,
+      .segmented { grid-template-columns: 1fr; }
+      table { min-width: 680px; }
+      .output-toolbar { align-items: flex-start; flex-direction: column; }
+      .output-toolbar div { width: 100%; }
+      .mini { flex: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
+<body>
+  <a class="skip-link" href="#builder">Skip to event builder</a>
 
-<body class="bg-white text-gray-900 font-sans antialiased leading-relaxed tracking-wide">
-
-  <header class="bg-white shadow sticky top-0 z-50 text-gray-900">
-    <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center text-sm font-medium">
-      <div class="font-semibold">Scott Gresack</div>
-      <div class="relative group">
-        <button class="hover:text-blue-600 transition flex items-center gap-1">
-          Tools ▼
-        </button>
-        <div class="absolute hidden group-hover:block bg-white border border-gray-200 mt-2 rounded-md shadow-lg text-sm z-50 min-w-[200px]">
-          <a href="https://scott-gresack.github.io/portfolio/tool2.html?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=alloy" class="block px-4 py-2 hover:bg-blue-50">Alloy Tool</a>
-          <a href="https://scott-gresack.github.io/portfolio/xdm_comparator?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=xdm" class="block px-4 py-2 hover:bg-blue-50">XDM Comparator</a>
-          <a href="https://scott-gresack.github.io/portfolio/tag_generator?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=tag" class="block px-4 py-2 hover:bg-blue-50">Tag Spec Tool</a>
-          <a href="https://scott-gresack.github.io/portfolio/mobile_updates?utm_source=portfolio&utm_medium=internal&utm_campaign=dropdown&utm_term=mobile" class="block px-4 py-2 hover:bg-blue-50">Mobile Tag Builder</a>
-        </div>
+  <header>
+    <nav aria-label="Primary navigation">
+      <a class="brand" href="https://scott-gresack.github.io/portfolio/">
+        <span class="brand-mark" aria-hidden="true">SG</span>
+        <span>Scott Gresack</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://scott-gresack.github.io/portfolio/">Portfolio</a>
+        <a href="https://scott-gresack.github.io/portfolio/tool2.html">Payload Inspector</a>
+        <a href="https://scott-gresack.github.io/portfolio/tag_generator.html">Tag Spec Workbench</a>
+        <a href="https://scott-gresack.github.io/portfolio/xdm_comparator.html">Migration Comparator</a>
       </div>
     </nav>
   </header>
 
-  <main class="flex flex-col items-center justify-center min-h-screen px-4 pb-24 animate-fadeInUp">
-    <div class="w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
-      <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 text-white p-8 rounded-t-3xl">
-        <h1 class="text-4xl font-extrabold tracking-tight">📱 Mobile Tag Spec Builder</h1>
-        <p class="mt-2 text-blue-100">Dynamically build <code>trackAction</code>, <code>trackState</code>, and Edge events with XDM preview.</p>
-      </div>
-      <div class="p-8 space-y-8">
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-900 space-y-2">
-          <h2 class="text-base font-semibold text-blue-800">🧭 How to Use This Tool (End-to-End)</h2>
-          <ul class="list-disc list-inside space-y-1">
-            <li>Select a tracking type: <code class="bg-blue-100 px-1 rounded">trackAction</code>, <code class="bg-blue-100 px-1 rounded">trackState</code>, or <code class="bg-blue-100 px-1 rounded">Edge.sendEvent</code>.</li>
-            <li>Add any key-value pairs relevant to your mobile event context (e.g. screen name, feature flags).</li>
-            <li>Use the XDM tab to add Adobe Experience Platform fields or schema-specific values.</li>
-            <li>Preview the generated payload — it will reflect your session and user context.</li>
-            <li>Copy the payload for use in your native app (Swift or Kotlin) or for QA validation.</li>
-            <li>Session data and PostHog logs help you validate behavior against backend or CJA.</li>
-            <li>Choose your SDK style (e.g., AEPEdgeBridge vs MobileCore) to see native API formats for iOS, Android, and React Native.</li>
-          </ul>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-content">
+        <div>
+          <p class="eyebrow">Mobile analytics implementation</p>
+          <h1 id="page-title">Design mobile events engineers can build and QA.</h1>
+          <p>
+            This workbench turns a mobile measurement requirement into a practical delivery package:
+            Adobe Mobile SDK calls, Edge Network payloads, XDM mappings, Adobe Analytics context, and QA checks.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#builder">Build a mobile event</a>
+            <button class="secondary" type="button" data-example="commerce">Load commerce example</button>
+            <button class="secondary" type="button" data-example="login">Load login example</button>
+          </div>
         </div>
-        <div id="root"></div>
-        <noscript class="text-center text-red-500 text-sm mt-4">Please enable JavaScript to use this tool.</noscript>
+        <aside class="hero-card" aria-label="How this tool works">
+          <h2>How it saves time</h2>
+          <ol>
+            <li>Define the user action, screen, owner, and measurement reason.</li>
+            <li>Map each field to XDM and Adobe Analytics once.</li>
+            <li>Generate snippets and QA checks for iOS, Android, and validation teams.</li>
+          </ol>
+        </aside>
       </div>
-      <footer class="bg-gray-50 text-gray-600 p-4 text-center rounded-b-3xl border-t text-sm">
-        Built with ❤️ by <a href="https://scott-gresack.github.io/portfolio/" class="text-blue-600 hover:underline">Scott Gresack</a>
-      </footer>
-    </div>
+    </section>
+
+    <section class="panel" aria-labelledby="purpose-title">
+      <div class="panel-header">
+        <div>
+          <h2 id="purpose-title">What this tool is expected to do</h2>
+          <p>
+            Mobile tagging breaks when product, analytics, and engineering teams interpret the same event differently.
+            This page creates one shared event contract before the code is written.
+          </p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="purpose-grid">
+          <article class="purpose-card">
+            <strong>Business clarity</strong>
+            <p>Captures the measurement question, funnel stage, and owner so the event has a reason beyond “send a hit.”</p>
+          </article>
+          <article class="purpose-card">
+            <strong>Engineering clarity</strong>
+            <p>Generates the method, payload, identity, datastream options, and native snippets needed to implement consistently.</p>
+          </article>
+          <article class="purpose-card">
+            <strong>QA clarity</strong>
+            <p>Produces the checks needed to validate Edge, Analytics, CJA, identity, lifecycle context, and naming quality.</p>
+          </article>
+        </div>
+        <div class="metric-grid" aria-label="Live spec summary">
+          <div class="metric-card">
+            <span class="metric-value" id="metric-fields">0</span>
+            <strong>Mapped fields</strong>
+            <p>XDM and Analytics variables defined for this event.</p>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value" id="metric-required">0</span>
+            <strong>Required fields</strong>
+            <p>Inputs engineering and QA should treat as mandatory.</p>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value" id="metric-method">trackAction</span>
+            <strong>SDK method</strong>
+            <p>The selected implementation path for this mobile moment.</p>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value" id="metric-risk">Medium</span>
+            <strong>QA risk</strong>
+            <p>Estimated risk based on identity, datastream, and mapping choices.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="workflow-title">
+      <div class="panel-header">
+        <div>
+          <h2 id="workflow-title">Recommended mobile analytics workflow</h2>
+          <p>
+            Use the workbench like a lightweight implementation design review. The goal is not just a code snippet;
+            it is agreement on what the app should measure, where the data lands, and how it proves business value.
+          </p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="workflow">
+          <article class="step">
+            <span>1</span>
+            <strong>Name the mobile moment</strong>
+            <p>Define the screen or action in user language, then choose trackAction, trackState, or Edge sendEvent.</p>
+          </article>
+          <article class="step">
+            <span>2</span>
+            <strong>Define the value</strong>
+            <p>State why the event matters: conversion, adoption, engagement, retention, or troubleshooting.</p>
+          </article>
+          <article class="step">
+            <span>3</span>
+            <strong>Map the data</strong>
+            <p>Connect each mobile field to XDM and the legacy Analytics variable it replaces or supports.</p>
+          </article>
+          <article class="step">
+            <span>4</span>
+            <strong>Generate the code</strong>
+            <p>Give iOS and Android teams a concrete payload with identity and datastream assumptions visible.</p>
+          </article>
+          <article class="step">
+            <span>5</span>
+            <strong>Validate the contract</strong>
+            <p>Confirm app behavior, Edge forwarding, Analytics values, CJA readiness, and downstream activation use.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="builder" class="workspace" aria-label="Mobile event builder">
+      <form class="panel" id="event-form">
+        <div class="panel-header">
+          <div>
+            <h2>Event builder</h2>
+            <p>Start with the user moment and the measurement reason. The generated payload updates as you type.</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="field full">
+            <label>SDK method</label>
+            <div class="segmented" role="group" aria-label="SDK method">
+              <button class="segment" type="button" data-method="trackAction" aria-pressed="true">trackAction</button>
+              <button class="segment" type="button" data-method="trackState" aria-pressed="false">trackState</button>
+              <button class="segment" type="button" data-method="sendEvent" aria-pressed="false">Edge sendEvent</button>
+            </div>
+            <span class="hint">Use trackState for screen views, trackAction for interactions, and sendEvent when the app is sending XDM-first Edge events.</span>
+          </div>
+
+          <div class="form-grid" style="margin-top:16px;">
+            <div class="field">
+              <label for="platform">Platform</label>
+              <select id="platform">
+                <option>iOS</option>
+                <option>Android</option>
+                <option>React Native</option>
+                <option>Cross-platform</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="event-name">Event or screen name</label>
+              <input id="event-name" value="product_detail_view" />
+            </div>
+            <div class="field">
+              <label for="screen-name">Screen name</label>
+              <input id="screen-name" value="Product Detail" />
+            </div>
+            <div class="field">
+              <label for="funnel-stage">Journey stage</label>
+              <select id="funnel-stage">
+                <option>Discovery</option>
+                <option selected>Consideration</option>
+                <option>Conversion</option>
+                <option>Onboarding</option>
+                <option>Retention</option>
+                <option>Support</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="owner">Business owner</label>
+              <input id="owner" value="Mobile Product Analytics" />
+            </div>
+            <div class="field">
+              <label for="datastream">Datastream ID or environment</label>
+              <input id="datastream" value="mobile-prod-datastream" />
+            </div>
+            <div class="field full">
+              <label for="question">Measurement question</label>
+              <textarea id="question">Are users viewing product details before adding items to the cart, and does this behavior improve conversion rate?</textarea>
+            </div>
+            <div class="field">
+              <label for="identity-namespace">Identity namespace</label>
+              <input id="identity-namespace" value="ECID" />
+            </div>
+            <div class="field">
+              <label for="identity-value">Sample identity value</label>
+              <input id="identity-value" value="sample-ecid-1234567890" />
+              <span class="hint">Use examples only. Do not put real customer identifiers into this public page.</span>
+            </div>
+          </div>
+
+          <div class="switch-row" aria-label="Payload options">
+            <label class="check">
+              <input id="include-identity" type="checkbox" checked />
+              <span><strong>Include identityMap</strong><br><span class="hint">Needed when the event should stitch to profile or support person-level analysis.</span></span>
+            </label>
+            <label class="check">
+              <input id="include-analytics" type="checkbox" checked />
+              <span><strong>Include data.__adobe.analytics</strong><br><span class="hint">Useful for Adobe Analytics parity and CJA migration validation.</span></span>
+            </label>
+            <label class="check">
+              <input id="include-lifecycle" type="checkbox" checked />
+              <span><strong>Include lifecycle context</strong><br><span class="hint">Adds app ID, foreground/background context, OS, and SDK metadata placeholders.</span></span>
+            </label>
+            <label class="check">
+              <input id="include-datastream" type="checkbox" />
+              <span><strong>Show datastream override</strong><br><span class="hint">Helpful for QA, staging, or sandbox routing; avoid hard-coding overrides in production without governance.</span></span>
+            </label>
+          </div>
+        </div>
+      </form>
+
+      <section class="panel" aria-labelledby="output-title">
+        <div class="panel-header">
+          <div>
+            <h2 id="output-title">Generated delivery package</h2>
+            <p>Copy the artifact that matches the audience: brief for stakeholders, JSON for QA, snippets for engineers, CSV for tag specs.</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="output-tabs" role="tablist" aria-label="Output type">
+            <button class="tab" type="button" role="tab" aria-selected="true" data-output="brief">Brief</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-output="edge">Edge JSON</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-output="analytics">Analytics JSON</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-output="swift">Swift</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-output="kotlin">Kotlin</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-output="csv">CSV</button>
+          </div>
+          <div class="output-shell">
+            <div class="output-toolbar">
+              <span id="output-label">Implementation brief</span>
+              <div>
+                <button class="mini" type="button" id="copy-output">Copy</button>
+                <button class="mini" type="button" id="download-output">Download</button>
+              </div>
+            </div>
+            <pre id="output-code" tabindex="0"></pre>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel" aria-labelledby="mapping-title">
+      <div class="panel-header">
+        <div>
+          <h2 id="mapping-title">Field mapping contract</h2>
+          <p>
+            Add the fields that engineering should send. The point is to prevent vague requests like “track product clicked”
+            from becoming inconsistent app payloads.
+          </p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="field-table-wrap" role="region" aria-label="Field mapping table" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Field key</th>
+                <th>Sample value</th>
+                <th>XDM path</th>
+                <th>AA variable</th>
+                <th>Required</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody id="field-rows"></tbody>
+          </table>
+        </div>
+        <div class="row-actions">
+          <button class="light" type="button" id="add-field">Add field</button>
+          <button class="ghost" type="button" data-example="screen">Load screen view example</button>
+          <button class="ghost" type="button" data-example="commerce">Load commerce example</button>
+          <button class="ghost" type="button" data-example="login">Load login example</button>
+          <button class="danger" type="button" id="clear-fields">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="qa-title">
+      <div class="panel-header">
+        <div>
+          <h2 id="qa-title">QA and governance checks</h2>
+          <p>
+            These are the practical checks that keep mobile instrumentation from creating downstream reporting debt.
+          </p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="checklist" id="qa-list"></div>
+        <div class="callout" style="margin-top:16px;">
+          <strong>Security and privacy guardrail</strong>
+          <p>
+            This tool stores only the current spec in the browser localStorage. Do not enter production PII, customer IDs,
+            secrets, access tokens, datastream secrets, or private app keys. Tracking events sent by this page contain only
+            aggregate usage metadata, such as selected method and field count.
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
-<script>
-  const { createApp, ref, computed, onMounted, watch } = Vue;
+  <footer>
+    <p>Built as a practical mobile analytics workbench for Adobe Experience Platform and Adobe Analytics migration teams.</p>
+  </footer>
 
-  createApp({
-    setup() {
-      const eventType = ref('trackAction');
-      const keyValues = ref([{ category: 'contextData', key: '', value: '' }]);
-      const overrideDatastream = ref(false);
-      const datastreamId = ref('');
-      const sendIdentityMap = ref(false);
-      const identityNamespace = ref('email');
-      const identityId = ref('user@example.com');
-      const apiStyle = ref('bridge'); // 'bridge', 'core', 'legacy'
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-      const copied = ref('');
+  <script>
+    (function () {
+      const storageKey = "sg.mobileSdkWorkbench.v2";
+      const defaultFields = [
+        { key: "productId", value: "sku-12345", xdm: "productListItems[0].SKU", aa: "eVar12", required: true },
+        { key: "productName", value: "Premium plan", xdm: "productListItems[0].name", aa: "eVar13", required: true },
+        { key: "category", value: "subscriptions", xdm: "productListItems[0].category", aa: "prop5", required: false },
+        { key: "interactionType", value: "detail_view", xdm: "web.webInteraction.type", aa: "event14", required: true }
+      ];
 
-      const addKeyValue = () => keyValues.value.push({ category: 'contextData', key: '', value: '' });
-
-      // Remove key-value pair safely
-      const removeKeyValue = (index) => {
-        if (Array.isArray(keyValues.value)) {
-          keyValues.value.splice(index, 1);
-        } else {
-          console.warn('Attempted to remove keyValue from a non-array:', keyValues.value);
+      const examples = {
+        screen: {
+          method: "trackState",
+          platform: "iOS",
+          eventName: "home_screen_view",
+          screenName: "Home",
+          stage: "Discovery",
+          owner: "Mobile Product Analytics",
+          datastream: "mobile-prod-datastream",
+          question: "Are users reaching the home screen successfully, and which entry paths create downstream engagement?",
+          identityNamespace: "ECID",
+          identityValue: "sample-ecid-1234567890",
+          fields: [
+            { key: "screenName", value: "Home", xdm: "web.webPageDetails.name", aa: "pageName", required: true },
+            { key: "screenType", value: "home", xdm: "_experience.analytics.customDimensions.eVars.eVar20", aa: "eVar20", required: true },
+            { key: "entrySource", value: "push_notification", xdm: "marketing.trackingCode", aa: "campaign", required: false },
+            { key: "appSection", value: "dashboard", xdm: "_experience.analytics.customDimensions.props.prop7", aa: "prop7", required: false }
+          ]
+        },
+        commerce: {
+          method: "trackAction",
+          platform: "Cross-platform",
+          eventName: "product_detail_view",
+          screenName: "Product Detail",
+          stage: "Consideration",
+          owner: "Mobile Product Analytics",
+          datastream: "mobile-prod-datastream",
+          question: "Are users viewing product details before adding items to cart, and does this improve conversion rate?",
+          identityNamespace: "ECID",
+          identityValue: "sample-ecid-1234567890",
+          fields: defaultFields
+        },
+        login: {
+          method: "sendEvent",
+          platform: "Android",
+          eventName: "account_login_success",
+          screenName: "Sign In",
+          stage: "Onboarding",
+          owner: "Identity and Lifecycle Marketing",
+          datastream: "mobile-auth-prod",
+          question: "Did authenticated users sign in successfully so profile stitching, journey eligibility, and retention reporting can be trusted?",
+          identityNamespace: "CRMID",
+          identityValue: "sample-crm-id-12345",
+          fields: [
+            { key: "loginStatus", value: "success", xdm: "_experience.customerJourneyManagement.messageInteraction.interactionType", aa: "event1", required: true },
+            { key: "authMethod", value: "passwordless", xdm: "_tenant.authMethod", aa: "eVar42", required: true },
+            { key: "accountType", value: "subscriber", xdm: "_tenant.accountType", aa: "eVar43", required: false },
+            { key: "journeyEligible", value: "true", xdm: "_tenant.journeyEligible", aa: "prop12", required: false }
+          ]
         }
       };
 
-      const jsonPayload = computed(() => {
-        // Build up payload based on categories
+      const state = {
+        method: "trackAction",
+        activeOutput: "brief",
+        fields: defaultFields.map(clone)
+      };
+
+      const els = {
+        form: document.getElementById("event-form"),
+        methodButtons: Array.from(document.querySelectorAll("[data-method]")),
+        exampleButtons: Array.from(document.querySelectorAll("[data-example]")),
+        tabs: Array.from(document.querySelectorAll("[data-output]")),
+        rows: document.getElementById("field-rows"),
+        outputCode: document.getElementById("output-code"),
+        outputLabel: document.getElementById("output-label"),
+        copyOutput: document.getElementById("copy-output"),
+        downloadOutput: document.getElementById("download-output"),
+        addField: document.getElementById("add-field"),
+        clearFields: document.getElementById("clear-fields"),
+        qaList: document.getElementById("qa-list"),
+        toast: document.getElementById("toast"),
+        metrics: {
+          fields: document.getElementById("metric-fields"),
+          required: document.getElementById("metric-required"),
+          method: document.getElementById("metric-method"),
+          risk: document.getElementById("metric-risk")
+        },
+        inputs: {
+          platform: document.getElementById("platform"),
+          eventName: document.getElementById("event-name"),
+          screenName: document.getElementById("screen-name"),
+          stage: document.getElementById("funnel-stage"),
+          owner: document.getElementById("owner"),
+          datastream: document.getElementById("datastream"),
+          question: document.getElementById("question"),
+          identityNamespace: document.getElementById("identity-namespace"),
+          identityValue: document.getElementById("identity-value"),
+          includeIdentity: document.getElementById("include-identity"),
+          includeAnalytics: document.getElementById("include-analytics"),
+          includeLifecycle: document.getElementById("include-lifecycle"),
+          includeDatastream: document.getElementById("include-datastream")
+        }
+      };
+
+      function clone(value) {
+        return JSON.parse(JSON.stringify(value));
+      }
+
+      function readInputs() {
+        return {
+          method: state.method,
+          platform: els.inputs.platform.value,
+          eventName: clean(els.inputs.eventName.value) || "unnamed_mobile_event",
+          screenName: clean(els.inputs.screenName.value) || "Unknown Screen",
+          stage: els.inputs.stage.value,
+          owner: clean(els.inputs.owner.value) || "Unassigned",
+          datastream: clean(els.inputs.datastream.value) || "default-datastream",
+          question: clean(els.inputs.question.value) || "What business question should this mobile event answer?",
+          identityNamespace: clean(els.inputs.identityNamespace.value) || "ECID",
+          identityValue: clean(els.inputs.identityValue.value) || "sample-id",
+          includeIdentity: els.inputs.includeIdentity.checked,
+          includeAnalytics: els.inputs.includeAnalytics.checked,
+          includeLifecycle: els.inputs.includeLifecycle.checked,
+          includeDatastream: els.inputs.includeDatastream.checked,
+          fields: state.fields.filter(field => clean(field.key))
+        };
+      }
+
+      function clean(value) {
+        return String(value || "").trim();
+      }
+
+      function toBool(value) {
+        return value === true || value === "true";
+      }
+
+      function renderRows() {
+        els.rows.innerHTML = "";
+        state.fields.forEach((field, index) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td><input aria-label="Field key ${index + 1}" data-row="${index}" data-field="key" value="${escapeAttr(field.key)}"></td>
+            <td><input aria-label="Sample value ${index + 1}" data-row="${index}" data-field="value" value="${escapeAttr(field.value)}"></td>
+            <td><input aria-label="XDM path ${index + 1}" data-row="${index}" data-field="xdm" value="${escapeAttr(field.xdm)}"></td>
+            <td><input aria-label="Adobe Analytics variable ${index + 1}" data-row="${index}" data-field="aa" value="${escapeAttr(field.aa)}"></td>
+            <td>
+              <select aria-label="Required setting ${index + 1}" data-row="${index}" data-field="required">
+                <option value="true" ${toBool(field.required) ? "selected" : ""}>Yes</option>
+                <option value="false" ${!toBool(field.required) ? "selected" : ""}>No</option>
+              </select>
+            </td>
+            <td><button class="mini" type="button" data-remove="${index}">Remove</button></td>
+          `;
+          els.rows.appendChild(tr);
+        });
+      }
+
+      function escapeAttr(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/"/g, "&quot;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      function setByPath(target, path, value) {
+        if (!path) return;
+        const safePath = path.replace(/\[(\d+)\]/g, ".$1");
+        const parts = safePath.split(".").filter(Boolean);
+        let pointer = target;
+        parts.forEach((part, index) => {
+          const isLast = index === parts.length - 1;
+          const next = parts[index + 1];
+          if (isLast) {
+            pointer[part] = coerceValue(value);
+            return;
+          }
+          if (!Object.prototype.hasOwnProperty.call(pointer, part)) {
+            pointer[part] = /^\d+$/.test(next) ? [] : {};
+          }
+          pointer = pointer[part];
+        });
+      }
+
+      function coerceValue(value) {
+        if (value === "true") return true;
+        if (value === "false") return false;
+        if (value !== "" && !Number.isNaN(Number(value)) && /^-?\d+(\.\d+)?$/.test(value)) return Number(value);
+        return value;
+      }
+
+      function buildAnalytics(spec) {
         const contextData = {};
-        let actionName = '', stateName = '', products = '';
-        keyValues.value.forEach(({ category, key, value }) => {
-          if (category === 'actionName') {
-            actionName = value;
-          } else if (category === 'stateName') {
-            stateName = value;
-          } else if (category === 'products') {
-            products = value;
-          } else if (category === 'contextData' && key) {
-            contextData[key] = value;
+        spec.fields.forEach(field => {
+          contextData[field.key] = coerceValue(field.value);
+        });
+        if (spec.includeLifecycle) {
+          contextData["a.AppID"] = "Sample App 1.0.0";
+          contextData["a.OSVersion"] = spec.platform;
+          contextData["a.Launches"] = "lifecycle-enabled";
+        }
+
+        const analytics = {
+          pageName: spec.screenName,
+          linkName: spec.method === "trackState" ? spec.screenName : spec.eventName,
+          linkType: spec.method === "trackAction" ? "other" : "",
+          contextData
+        };
+
+        spec.fields.forEach(field => {
+          const variable = clean(field.aa);
+          if (/^event/i.test(variable)) {
+            analytics.events = analytics.events ? `${analytics.events},${variable}` : variable;
+          }
+          if (/^eVar/i.test(variable) || /^prop/i.test(variable)) {
+            analytics[variable] = coerceValue(field.value);
           }
         });
 
-        if (eventType.value === 'trackAction' || eventType.value === 'trackState') {
-          return {
-            data: {
-              __adobe: {
-                analytics: {
-                  linkName: eventType.value === 'trackAction' ? actionName : stateName,
-                  linkType: eventType.value === 'trackAction' ? 'other' : '',
-                  cp: 'foreground',
-                  products,
-                  contextData: {
-                    "a.AppID": "myApp 1.0 (1)",
-                    ...contextData
-                  }
-                }
+        return { __adobe: { analytics } };
+      }
+
+      function buildXdm(spec) {
+        const xdm = {
+          eventType: eventTypeFor(spec),
+          timestamp: new Date().toISOString(),
+          web: {
+            webPageDetails: {
+              name: spec.screenName,
+              URL: "app://" + spec.screenName.toLowerCase().replace(/\s+/g, "-")
+            },
+            webInteraction: {
+              name: spec.eventName,
+              type: spec.method === "trackState" ? "screenView" : "other"
+            }
+          },
+          _experience: {
+            analytics: {
+              customDimensions: {
+                eVars: {},
+                props: {}
               }
             }
-          };
-        }
+          },
+          _implementation: {
+            owner: spec.owner,
+            journeyStage: spec.stage,
+            measurementQuestion: spec.question,
+            platform: spec.platform
+          }
+        };
 
-        // For sendEvent/Edge payloads, just flatten contextData
-        const base = {};
-        Object.assign(base, contextData);
-        if (sendIdentityMap.value && identityNamespace.value && identityId.value) {
-          base["xdm"] = base["xdm"] || {};
-          base["xdm"]["identityMap"] = {
-            [identityNamespace.value]: [
+        spec.fields.forEach(field => {
+          setByPath(xdm, field.xdm, field.value);
+          const variable = clean(field.aa);
+          if (/^eVar/i.test(variable)) xdm._experience.analytics.customDimensions.eVars[variable] = coerceValue(field.value);
+          if (/^prop/i.test(variable)) xdm._experience.analytics.customDimensions.props[variable] = coerceValue(field.value);
+        });
+
+        if (spec.includeIdentity) {
+          xdm.identityMap = {
+            [spec.identityNamespace]: [
               {
-                id: identityId.value,
-                authenticatedState: "authenticated",
-                primary: true
+                id: spec.identityValue,
+                authenticatedState: spec.identityNamespace.toUpperCase() === "ECID" ? "ambiguous" : "authenticated",
+                primary: spec.identityNamespace.toUpperCase() !== "ECID"
               }
             ]
           };
         }
-        return base;
-      });
 
-      const swiftCode = computed(() => {
-        const payload = JSON.stringify(jsonPayload.value, null, 2);
-        if (apiStyle.value === 'bridge') {
-          if (eventType.value === 'sendEvent') {
-            return `let xdmData = jsonPayload["xdm"] as? [String: Any] ?? [:]
-let dataPayload = jsonPayload["data"] as? [String: Any]
-let event = ExperienceEvent(xdm: xdmData, data: dataPayload,
-                           datastreamIdOverride: overrideDatastream.value ? datastreamId.value : nil,
-                           datastreamConfigOverride: overrideDatastream.value && datastreamId.value ? ["datastreamId": datastreamId.value] : nil)
-Edge.sendEvent(event: event)
-`;
-          } else {
-            let call = `AEPEdgeBridge.sendEvent(with: ${payload}`;
-            if (overrideDatastream.value && datastreamId.value) {
-              call += `, datastreamId: "${datastreamId.value}"`;
-            }
-            if (sendIdentityMap.value) {
-              call += `, identityMap: identityMap`; // assume user creates identityMap object earlier
-            }
-            call += `)`;
-            return call;
-          }
-        } else {
-          return `ACPExtension.${eventType.value}(withData: ${payload})`;
+        return xdm;
+      }
+
+      function eventTypeFor(spec) {
+        if (spec.method === "trackState") return "web.webpagedetails.pageViews";
+        if (/cart|purchase|checkout|product/i.test(spec.eventName)) return "commerce.productViews";
+        if (/login|sign/i.test(spec.eventName)) return "web.webinteraction.linkClicks";
+        return "web.webinteraction.linkClicks";
+      }
+
+      function buildEdgePayload(spec) {
+        const payload = { xdm: buildXdm(spec) };
+        if (spec.includeAnalytics) {
+          payload.data = buildAnalytics(spec);
         }
-      });
+        if (spec.includeDatastream) {
+          payload.edgeConfigOverrides = {
+            datastreamId: spec.datastream
+          };
+        }
+        return payload;
+      }
 
-      const kotlinCode = computed(() => {
-        const payload = JSON.stringify(jsonPayload.value, null, 2);
-        if (apiStyle.value === 'bridge') {
-          if (eventType.value === 'sendEvent') {
-            return `val xdmData = jsonPayload["xdm"] as? Map<String, Any> ?: emptyMap()
-val dataPayload = jsonPayload["data"] as? Map<String, Any>
+      function buildBrief(spec) {
+        const required = spec.fields.filter(field => toBool(field.required)).map(field => field.key).join(", ") || "None";
+        return [
+          "# Mobile SDK Event Spec",
+          "",
+          `Event: ${spec.eventName}`,
+          `SDK method: ${spec.method}`,
+          `Platform: ${spec.platform}`,
+          `Screen: ${spec.screenName}`,
+          `Journey stage: ${spec.stage}`,
+          `Owner: ${spec.owner}`,
+          `Datastream/environment: ${spec.datastream}`,
+          "",
+          "## Business reason",
+          spec.question,
+          "",
+          "## What engineering should implement",
+          `- Send this event when the user reaches or performs: ${spec.eventName}.`,
+          `- Include ${spec.fields.length} mapped field(s); required fields: ${required}.`,
+          `- Include identityMap: ${spec.includeIdentity ? "Yes" : "No"}.`,
+          `- Include data.__adobe.analytics for Analytics parity: ${spec.includeAnalytics ? "Yes" : "No"}.`,
+          `- Include lifecycle context: ${spec.includeLifecycle ? "Yes" : "No"}.`,
+          "",
+          "## Why this matters",
+          "This makes the mobile event reusable across Adobe Analytics, Customer Journey Analytics, RTCDP segmentation, QA, and activation use cases. It also prevents each team from rebuilding the same interpretation downstream."
+        ].join("\n");
+      }
+
+      function buildSwift(spec) {
+        const edge = JSON.stringify(buildEdgePayload(spec), null, 2);
+        if (spec.method === "trackState") {
+          return `import AEPCore
+
+let contextData: [String: String] = ${swiftDictionary(spec)}
+MobileCore.track(state: "${spec.screenName}", data: contextData)`;
+        }
+        if (spec.method === "trackAction") {
+          return `import AEPCore
+
+let contextData: [String: String] = ${swiftDictionary(spec)}
+MobileCore.track(action: "${spec.eventName}", data: contextData)`;
+        }
+        return `import AEPEdge
+
+let experienceEvent = ExperienceEvent(
+  xdm: ${edge}
+)
+Edge.sendEvent(experienceEvent: experienceEvent)`;
+      }
+
+      function buildKotlin(spec) {
+        const map = spec.fields.map(field => `  "${field.key}" to "${String(field.value).replace(/"/g, '\\"')}"`).join(",\n");
+        if (spec.method === "trackState") {
+          return `import com.adobe.marketing.mobile.MobileCore
+
+val contextData = mapOf(
+${map}
+)
+MobileCore.trackState("${spec.screenName}", contextData)`;
+        }
+        if (spec.method === "trackAction") {
+          return `import com.adobe.marketing.mobile.MobileCore
+
+val contextData = mapOf(
+${map}
+)
+MobileCore.trackAction("${spec.eventName}", contextData)`;
+        }
+        return `import com.adobe.marketing.mobile.Edge
+import com.adobe.marketing.mobile.ExperienceEvent
+
 val event = ExperienceEvent.Builder()
-    .setXdmSchema(xdmData)
-    .apply { dataPayload?.let { setData(it) } }
-    .apply { if (overrideDatastream.value && datastreamId.value.isNotEmpty()) setDatastreamConfigOverride(mapOf("datastreamId" to datastreamId.value)) }
-    .build()
-Edge.sendEvent(event)
-`;
-          } else {
-            let call = `AEPEdgeBridge.sendEvent(mapOf(\n${payload}\n)`;
-            if (overrideDatastream.value && datastreamId.value) {
-              call += `, datastreamId = "${datastreamId.value}"`;
-            }
-            if (sendIdentityMap.value) {
-              call += `, identityMap = identityMap)`; 
-            } else {
-              call += `)`;
-            }
-            return call;
+  .setXdmSchema(${JSON.stringify(buildXdm(spec), null, 2)})
+  .build()
+Edge.sendEvent(event, null)`;
+      }
+
+      function swiftDictionary(spec) {
+        const lines = spec.fields.map(field => `  "${field.key}": "${String(field.value).replace(/"/g, '\\"')}"`);
+        return "[\n" + lines.join(",\n") + "\n]";
+      }
+
+      function buildCsv(spec) {
+        const rows = [["field_key", "sample_value", "xdm_path", "adobe_analytics_variable", "required"]];
+        spec.fields.forEach(field => rows.push([field.key, field.value, field.xdm, field.aa, toBool(field.required) ? "yes" : "no"]));
+        return rows.map(row => row.map(csvEscape).join(",")).join("\n");
+      }
+
+      function csvEscape(value) {
+        const stringValue = String(value ?? "");
+        if (/[",\n]/.test(stringValue)) return `"${stringValue.replace(/"/g, '""')}"`;
+        return stringValue;
+      }
+
+      function qaItems(spec) {
+        const required = spec.fields.filter(field => toBool(field.required)).length;
+        return [
+          {
+            title: "App trigger",
+            text: `Confirm ${spec.eventName} fires only on the intended ${spec.method === "trackState" ? "screen view" : "interaction"} and does not double-fire during refresh, back navigation, or app resume.`
+          },
+          {
+            title: "Required fields",
+            text: `${required} required field(s) must be present with non-empty values before this event is accepted.`
+          },
+          {
+            title: "Identity",
+            text: spec.includeIdentity ? `Validate identityMap namespace ${spec.identityNamespace} is approved and does not expose sensitive values.` : "Identity is disabled; confirm this event does not need profile stitching or audience eligibility."
+          },
+          {
+            title: "Adobe Analytics parity",
+            text: spec.includeAnalytics ? "Validate data.__adobe.analytics values against the legacy AppMeasurement report suite and processing rules." : "Analytics mapping is disabled; confirm this is XDM-first and does not require AA parity."
+          },
+          {
+            title: "CJA readiness",
+            text: "Confirm the XDM paths are included in the schema, dataset, connection, and CJA data view with expected names."
+          },
+          {
+            title: "Environment routing",
+            text: spec.includeDatastream ? `Confirm override routing to ${spec.datastream} is allowed for this environment.` : "Confirm the app uses the correct configured datastream for production, staging, and QA builds."
           }
-        } else {
-          return `MobileCore.${eventType.value}(mapOf(\n${payload}\n))`;
-        }
-      });
+        ];
+      }
 
-      const reactNativeCode = computed(() => {
-        const payload = JSON.stringify(jsonPayload.value, null, 2);
-        if (apiStyle.value === 'bridge') {
-          if (eventType.value === 'sendEvent') {
-            return `const { xdm, data } = jsonPayload;
-const event = {
-  xdm: xdm || {},
-  data: data || undefined,
-  datastreamIdOverride: overrideDatastream.value ? datastreamId.value : undefined,
-  datastreamConfigOverride: overrideDatastream.value && datastreamId.value ? { datastreamId: datastreamId.value } : undefined
-};
-Edge.sendEvent(event);
-`;
-          } else {
-            let call = `AEPEdgeBridge.sendEvent(${payload}`;
-            const options = [];
-            if (overrideDatastream.value && datastreamId.value) {
-              options.push(`datastreamId: "${datastreamId.value}"`);
-            }
-            if (sendIdentityMap.value) {
-              options.push(`identityMap: identityMap`);
-            }
-            if (options.length) {
-              call += `, { ${options.join(', ')} }`;
-            }
-            call += `);`;
-            return call;
-          }
-        } else {
-          return `ACPExtension.${eventType.value}(${payload});`;
-        }
-      });
+      function getOutput(spec) {
+        const outputs = {
+          brief: { label: "Implementation brief", extension: "md", value: buildBrief(spec) },
+          edge: { label: "Edge Network payload", extension: "json", value: JSON.stringify(buildEdgePayload(spec), null, 2) },
+          analytics: { label: "data.__adobe.analytics", extension: "json", value: JSON.stringify(buildAnalytics(spec), null, 2) },
+          swift: { label: "Swift snippet", extension: "swift", value: buildSwift(spec) },
+          kotlin: { label: "Kotlin snippet", extension: "kt", value: buildKotlin(spec) },
+          csv: { label: "Mapping CSV", extension: "csv", value: buildCsv(spec) }
+        };
+        return outputs[state.activeOutput] || outputs.brief;
+      }
 
-      const overridesCode = computed(() => {
-        const parts = [];
-        if (overrideDatastream.value && datastreamId.value) {
-          parts.push(`datastreamId: "${datastreamId.value}"`);
-        }
-        if (sendIdentityMap.value && identityNamespace.value && identityId.value) {
-          parts.push(`identityMap: { "${identityNamespace.value}": [{ id: "${identityId.value}", authenticatedState: "ambiguous", primary: true }] }`);
-        }
-        return parts.length ? `{ ${parts.join(', ')} }` : 'None';
-      });
-
-      const copyToClipboard = (content, label) => {
-        navigator.clipboard.writeText(content).then(() => {
-          copied.value = `✅ Copied ${label}`;
-          setTimeout(() => copied.value = '', 2000);
+      function renderQa(spec) {
+        els.qaList.innerHTML = "";
+        qaItems(spec).forEach(item => {
+          const article = document.createElement("article");
+          article.className = "qa-item";
+          article.innerHTML = `<strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.text)}</p>`;
+          els.qaList.appendChild(article);
         });
-      };
-
-      onMounted(() => {
-        const saved = localStorage.getItem('mobilePayload');
-        if (saved) keyValues.value = JSON.parse(saved);
-      });
-
-      watch(jsonPayload, (val) => {
-        localStorage.setItem('mobilePayload', JSON.stringify(keyValues.value));
-      });
-
-      // Contextual Help modal logic
-      const showHelpModal = ref(false);
-      const helpSection = ref('');
-      function openHelp(section) {
-        helpSection.value = section;
-        showHelpModal.value = true;
       }
-      const helpContent = computed(() => {
-        switch (helpSection.value) {
-          case 'eventType': return {
-            title: 'Event Type',
-            guide: `Choose which method to simulate. "trackAction" and "trackState" are standard mobile analytics events. Use "Edge.sendEvent" for XDM calls.`,
-            sample: eventType.value === 'trackAction'
-              ? { code: `AEPEdgeBridge.trackAction("add_to_cart", data: { "productId": "123" })`, payload: `{ "productId": "123" }` }
-              : eventType.value === 'trackState'
-              ? { code: `AEPEdgeBridge.trackState("Product Detail", data: { "screen": "detail" })`, payload: `{ "screen": "detail" }` }
-              : { code: `AEPEdgeBridge.sendEvent(with: { "xdm": { "eventType": "commerce.purchases" } })`, payload: `{ "xdm": { "eventType": "commerce.purchases" } }` }
-          };
-          case 'apiStyle': return {
-            title: 'SDK API Style',
-            guide: `Select which SDK integration method matches your mobile app. AEPEdgeBridge is recommended for modern Swift/Kotlin apps; ACPExtension/MobileCore for legacy apps.`,
-            sample: { code: `AEPEdgeBridge.sendEvent(...)` }
-          };
-          case 'context': return {
-            title: 'Context Key-Value Pairs',
-            guide: `Add any keys and values representing your event context—screen names, feature flags, or any business-relevant data. These are sent to Adobe as the payload.`,
-            sample: { payload: `{ "screen": "Home", "featureFlag": true }` }
-          };
-          case 'overrides': return {
-            title: 'Adobe Edge Overrides',
-            guide: `Optionally override the Datastream ID (to send to a different Adobe config) or send an identityMap (for identity stitching, login flows, etc.). Useful for QA, sandboxes, or testing user journeys.`,
-            sample: { code: `datastreamId: "my-qa-stream", identityMap: { "email": [{ id: "user@example.com" }] }` }
-          };
-          default: return { title: '', guide: '', sample: {} };
+
+      function escapeHtml(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function calculateRisk(spec) {
+        let score = 0;
+        if (spec.includeIdentity) score += 2;
+        if (spec.includeDatastream) score += 1;
+        if (spec.fields.some(field => !clean(field.xdm))) score += 2;
+        if (spec.fields.some(field => toBool(field.required) && !clean(field.value))) score += 2;
+        if (spec.method === "sendEvent") score += 1;
+        if (score >= 5) return "High";
+        if (score >= 2) return "Medium";
+        return "Low";
+      }
+
+      function updateMetrics(spec) {
+        els.metrics.fields.textContent = String(spec.fields.length);
+        els.metrics.required.textContent = String(spec.fields.filter(field => toBool(field.required)).length);
+        els.metrics.method.textContent = spec.method;
+        els.metrics.risk.textContent = calculateRisk(spec);
+      }
+
+      function render() {
+        renderRows();
+        const spec = readInputs();
+        const output = getOutput(spec);
+        els.outputLabel.textContent = output.label;
+        els.outputCode.textContent = output.value;
+        renderQa(spec);
+        updateMetrics(spec);
+        persist(spec);
+      }
+
+      function persist(spec) {
+        const payload = {
+          ...spec,
+          activeOutput: state.activeOutput
+        };
+        localStorage.setItem(storageKey, JSON.stringify(payload));
+      }
+
+      function restore() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+          if (!saved) return;
+          state.method = saved.method || state.method;
+          state.activeOutput = saved.activeOutput || state.activeOutput;
+          state.fields = Array.isArray(saved.fields) && saved.fields.length ? saved.fields.map(clone) : state.fields;
+          els.inputs.platform.value = saved.platform || els.inputs.platform.value;
+          els.inputs.eventName.value = saved.eventName || els.inputs.eventName.value;
+          els.inputs.screenName.value = saved.screenName || els.inputs.screenName.value;
+          els.inputs.stage.value = saved.stage || els.inputs.stage.value;
+          els.inputs.owner.value = saved.owner || els.inputs.owner.value;
+          els.inputs.datastream.value = saved.datastream || els.inputs.datastream.value;
+          els.inputs.question.value = saved.question || els.inputs.question.value;
+          els.inputs.identityNamespace.value = saved.identityNamespace || els.inputs.identityNamespace.value;
+          els.inputs.identityValue.value = saved.identityValue || els.inputs.identityValue.value;
+          els.inputs.includeIdentity.checked = saved.includeIdentity !== false;
+          els.inputs.includeAnalytics.checked = saved.includeAnalytics !== false;
+          els.inputs.includeLifecycle.checked = saved.includeLifecycle !== false;
+          els.inputs.includeDatastream.checked = saved.includeDatastream === true;
+        } catch (error) {
+          console.warn("Unable to restore mobile workbench state", error);
         }
-      });
+      }
 
-      return {
-        eventType,
-        keyValues,
-        overrideDatastream,
-        datastreamId,
-        sendIdentityMap,
-        identityNamespace,
-        identityId,
-        apiStyle,
-        jsonPayload,
-        addKeyValue,
-        removeKeyValue,
-        swiftCode,
-        kotlinCode,
-        reactNativeCode,
-        overridesCode,
-        copyToClipboard,
-        copied,
-        showHelpModal,
-        helpSection,
-        openHelp,
-        helpContent
-      };
-    },
-    template: `
-      <div class="space-y-6">
-        <!-- Legend for live help -->
-        <div class="mb-4 text-blue-800 text-sm flex items-center">
-          <span class="inline-block bg-blue-100 text-blue-700 rounded-full px-2 py-0.5 mr-2">?</span>
-          <span>Click any <span class="font-bold">question mark</span> icon for live help and code samples for that section.</span>
-        </div>
+      function setMethod(method) {
+        state.method = method;
+        els.methodButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.method === method)));
+        trackMobileWorkbench("method_selected", { method });
+        render();
+      }
 
-        <!-- Event type dropdown -->
-        <div>
-          <label class="block font-semibold flex items-center">
-            Event Type
-            <button @click="openHelp('eventType')" title="Help for Event Type" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for Event Type">?</button>
-          </label>
-          <select v-model="eventType" class="w-full border rounded p-2 mt-2">
-            <option value="trackAction">trackAction</option>
-            <option value="trackState">trackState</option>
-            <option value="sendEvent">Edge.sendEvent</option>
-          </select>
-          <p class="text-xs text-gray-500 mt-1">
-            Choose which method you want to simulate. <code>trackAction</code> and <code>trackState</code> are standard mobile analytics events. Use <code>sendEvent</code> for Adobe Edge Network calls with XDM.
-          </p>
-        </div>
+      function setOutput(output) {
+        state.activeOutput = output;
+        els.tabs.forEach(tab => tab.setAttribute("aria-selected", String(tab.dataset.output === output)));
+        trackMobileWorkbench("output_selected", { output });
+        render();
+      }
 
-        <div class="space-y-2">
-          <label class="block font-semibold flex items-center">
-            📚 SDK API Style
-            <button @click="openHelp('apiStyle')" title="Help for SDK API Style" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for SDK API Style">?</button>
-          </label>
-          <select v-model="apiStyle" class="w-full border rounded p-2">
-            <option value="bridge">AEPEdgeBridge (Modern)</option>
-            <option value="core">ACPExtension / MobileCore</option>
-            <option value="legacy">Legacy Objective-C Syntax (soon)</option>
-          </select>
-          <p class="text-xs text-gray-500 mt-1">
-            Select the SDK integration method. <code>AEPEdgeBridge</code> reflects v4+ API for Swift and Kotlin. <code>ACPExtension</code> and <code>MobileCore</code> are legacy wrappers. Use this to match your app's SDK version.
-          </p>
-        </div>
+      function applyExample(name) {
+        const example = examples[name];
+        if (!example) return;
+        state.fields = example.fields.map(clone);
+        els.inputs.platform.value = example.platform;
+        els.inputs.eventName.value = example.eventName;
+        els.inputs.screenName.value = example.screenName;
+        els.inputs.stage.value = example.stage;
+        els.inputs.owner.value = example.owner;
+        els.inputs.datastream.value = example.datastream;
+        els.inputs.question.value = example.question;
+        els.inputs.identityNamespace.value = example.identityNamespace;
+        els.inputs.identityValue.value = example.identityValue;
+        setMethod(example.method);
+        showToast(`${capitalize(name)} example loaded`);
+        trackMobileWorkbench("example_loaded", { example: name, field_count: state.fields.length });
+      }
 
-        <!-- Context data -->
-        <div>
-          <label class="block font-semibold mb-2 flex items-center">
-            Context Key-Value Pairs
-            <button @click="openHelp('context')" title="Help for Context Key-Value Pairs" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for Context Key-Value Pairs">?</button>
-          </label>
-          <p class="text-xs text-gray-500 mt-1">
-            These represent your event's context data — anything from screen names to custom flags. They map directly into the payload structure.
-          </p>
-          <div v-for="(pair, index) in keyValues" :key="index" class="mt-3 space-y-1">
-            <div class="flex space-x-2 items-center">
-              <select v-model="pair.category" class="border border-gray-300 rounded-md p-2 w-1/3 focus:ring-blue-500 focus:border-blue-500 transition">
-                <!-- For trackAction/trackState -->
-                <template v-if="eventType !== 'sendEvent'">
-                  <option value="actionName">Action Name</option>
-                  <option value="stateName">State Name</option>
-                  <option value="products">Products</option>
-                  <option value="contextData">Context Data</option>
-                </template>
-                <!-- For Edge.sendEvent -->
-                <template v-else>
-                  <option value="eVar">eVar</option>
-                  <option value="prop">prop</option>
-                  <option value="event">event</option>
-                  <option value="contextData">Context Data</option>
-                </template>
-              </select>
-              <template v-if="pair.category === 'contextData'">
-                <input v-model="pair.key" placeholder="Key" class="border border-gray-300 rounded-md p-2 w-1/3 focus:ring-blue-500 focus:border-blue-500 transition" />
-                <input v-model="pair.value" placeholder="Value" class="border border-gray-300 rounded-md p-2 w-1/3 focus:ring-blue-500 focus:border-blue-500 transition" />
-              </template>
-              <template v-else>
-                <input v-model="pair.value" :placeholder="pair.category === 'products' ? 'Products string' : pair.category === 'actionName' ? 'Action name' : pair.category === 'stateName' ? 'State name' : pair.category"
-                       class="border border-gray-300 rounded-md p-2 flex-1 focus:ring-blue-500 focus:border-blue-500 transition" />
-              </template>
-              <button @click="removeKeyValue(index)" class="text-red-500 hover:underline">Remove</button>
-            </div>
-          </div>
-          <button @click="addKeyValue" class="text-sm text-blue-600 hover:underline" title="Add a new key-value pair to the context payload">+ Add Pair</button>
-        </div>
+      function capitalize(value) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
+      }
 
-        <!-- Optional AEP controls -->
-        <div v-if="eventType === 'sendEvent'" class="border-t pt-4 space-y-4">
-          <label class="font-semibold block flex items-center">
-            ⚙️ Adobe Edge Overrides
-            <button @click="openHelp('overrides')" title="Help for Edge Overrides" class="ml-2 rounded-full bg-blue-100 p-1 text-blue-700 hover:bg-blue-200" aria-label="Help for Edge Overrides">?</button>
-          </label>
-          <label class="flex items-center space-x-2">
-            <input type="checkbox" v-model="overrideDatastream" />
-            <span>Override Datastream ID</span>
-          </label>
-          <input v-if="overrideDatastream" v-model="datastreamId" class="border p-2 rounded w-full" placeholder="Datastream ID" title="Optional: Adobe Datastream ID to override default configuration" />
-          <p v-if="overrideDatastream" class="text-xs text-gray-500">
-            Use this if you want to route the event to a different Adobe Datastream (e.g. for QA, staging, or a separate sandbox).
-          </p>
+      function showToast(message) {
+        els.toast.textContent = message;
+        els.toast.classList.add("visible");
+        window.clearTimeout(showToast.timeout);
+        showToast.timeout = window.setTimeout(() => els.toast.classList.remove("visible"), 2200);
+      }
 
-          <label class="flex items-center space-x-2 mt-2" title="Send XDM identityMap to enable user-level stitching and personalization.">
-            <input type="checkbox" v-model="sendIdentityMap" />
-            <span>Send identityMap</span>
-          </label>
-          <div v-if="sendIdentityMap" class="space-y-2">
-            <input v-model="identityNamespace" class="border p-2 rounded w-full" placeholder="Namespace (e.g. email, ECID, username)" title="Adobe Identity namespace (e.g., email, ECID, username)" />
-            <input v-model="identityId" class="border p-2 rounded w-full" placeholder="ID Value (e.g. user@example.com)" title="Actual ID value to map in identityMap (e.g. user@example.com)" />
-            <p class="text-xs text-gray-500">
-              The identityMap sends user identifiers like ECID, email, or custom namespaces to Adobe Edge. This enables identity resolution, personalization, and profile stitching across channels.
-            </p>
-          </div>
-        </div>
+      async function copyActiveOutput() {
+        const spec = readInputs();
+        const output = getOutput(spec);
+        await navigator.clipboard.writeText(output.value);
+        showToast(`${output.label} copied`);
+        trackMobileWorkbench("output_copied", { output: state.activeOutput, field_count: spec.fields.length });
+      }
 
-        <!-- Live JSON output -->
-        <div class="bg-gray-50 border p-4 rounded">
-          <label class="font-semibold block mb-2 flex items-center">Generated Payload</label>
-          <p class="text-xs text-gray-500 mb-2">This JSON represents the payload you will send to the Adobe Edge Network or MobileCore analytics method based on your selection above.</p>
-          <pre class="text-sm text-gray-800"><code>{{ JSON.stringify(jsonPayload, null, 2) }}</code></pre>
-          <p class="text-xs text-gray-500 mt-1">Overrides: {{ overridesCode }}</p>
-        </div>
+      function downloadActiveOutput() {
+        const spec = readInputs();
+        const output = getOutput(spec);
+        const blob = new Blob([output.value], { type: output.extension === "json" ? "application/json" : "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${spec.eventName || "mobile-event-spec"}.${output.extension}`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        showToast(`${output.label} downloaded`);
+        trackMobileWorkbench("output_downloaded", { output: state.activeOutput, field_count: spec.fields.length });
+      }
 
-        <!-- Platform outputs -->
-        <div class="grid md:grid-cols-2 gap-4">
-          <div class="bg-white border p-4 rounded">
-            <div class="flex justify-between items-center mb-1">
-              <h3 class="font-semibold">📱 Swift (iOS)</h3>
-              <button @click="copyToClipboard(swiftCode, 'Swift')" class="text-blue-600 text-sm hover:underline">Copy</button>
-            </div>
-            <pre class="text-sm text-gray-800"><code>{{ swiftCode }}</code></pre>
-          </div>
+      function trackMobileWorkbench(action, detail) {
+        const payload = {
+          event: "mobile_sdk_workbench",
+          action,
+          page_name: "mobile_updates",
+          method: state.method,
+          field_count: state.fields.length,
+          ...detail
+        };
 
-          <div class="bg-white border p-4 rounded">
-            <div class="flex justify-between items-center mb-1">
-              <h3 class="font-semibold">🤖 Kotlin / Java (Android)</h3>
-              <button @click="copyToClipboard(kotlinCode, 'Kotlin')" class="text-blue-600 text-sm hover:underline">Copy</button>
-            </div>
-            <pre class="text-sm text-gray-800"><code>{{ kotlinCode }}</code></pre>
-          </div>
+        window.digitalData = window.digitalData || {};
+        window.digitalData.eventData = payload;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(payload);
 
-          <div class="bg-white border p-4 rounded md:col-span-2">
-            <div class="flex justify-between items-center mb-1">
-              <h3 class="font-semibold">⚛️ React Native</h3>
-              <button @click="copyToClipboard(reactNativeCode, 'React Native')" class="text-blue-600 text-sm hover:underline">Copy</button>
-            </div>
-            <pre class="text-sm text-gray-800"><code>{{ reactNativeCode }}</code></pre>
-          </div>
-        </div>
-        <p v-if="copied" class="text-green-600 text-sm">{{ copied }}</p>
+        if (typeof window.gtag === "function") {
+          window.gtag("event", action, {
+            event_category: "mobile_sdk_workbench",
+            event_label: payload.method,
+            field_count: payload.field_count
+          });
+        }
+        if (window.posthog && typeof window.posthog.capture === "function") {
+          window.posthog.capture("mobile_sdk_workbench_" + action, payload);
+        }
+        if (typeof window.clarity === "function") {
+          window.clarity("event", "mobile_sdk_workbench_" + action);
+        }
+        if (window._satellite && typeof window._satellite.track === "function") {
+          window._satellite.track("mobile_sdk_workbench", payload);
+        }
+        if (typeof window.alloy === "function") {
+          window.alloy("sendEvent", {
+            xdm: {
+              eventType: "web.webinteraction.linkClicks",
+              web: { webInteraction: { name: "mobile_sdk_workbench_" + action, type: "other" } }
+            },
+            data: { eventData: payload }
+          }).catch(function () {});
+        }
+      }
 
-        <!-- Contextual Help Modal -->
-        <div v-if="showHelpModal" class="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-          <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative animate-fadeInUp">
-            <button @click="showHelpModal = false" class="absolute top-2 right-2 text-gray-400 hover:text-blue-600 text-2xl">&times;</button>
-            <h2 class="text-lg font-bold mb-2">{{ helpContent.title }}</h2>
-            <div class="mb-3">
-              <p class="text-sm mb-2">{{ helpContent.guide }}</p>
-              <div v-if="helpContent.sample && helpContent.sample.code">
-                <div class="text-xs text-gray-500 mb-1">Code Sample</div>
-                <pre class="bg-gray-100 p-3 rounded text-xs">{{ helpContent.sample.code }}</pre>
-              </div>
-              <div v-if="helpContent.sample && helpContent.sample.payload">
-                <div class="text-xs text-gray-500 mb-1">Sample Payload</div>
-                <pre class="bg-gray-100 p-3 rounded text-xs">{{ helpContent.sample.payload }}</pre>
-              </div>
-            </div>
-            <div v-if="helpSection === 'eventType'">
-              <div class="text-xs text-blue-800 mt-2">
-                <a href="https://medium.com/@ctobin_60705/aep-validation-plugins-with-public-api-support-239637d3b63a" target="_blank" class="underline">Read about validation plugins</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `
-  }).mount('#root');
-</script>
+      function bindEvents() {
+        els.methodButtons.forEach(button => {
+          button.addEventListener("click", () => setMethod(button.dataset.method));
+        });
+        els.tabs.forEach(tab => {
+          tab.addEventListener("click", () => setOutput(tab.dataset.output));
+        });
+        els.exampleButtons.forEach(button => {
+          button.addEventListener("click", () => applyExample(button.dataset.example));
+        });
+        Object.values(els.inputs).forEach(input => {
+          input.addEventListener("input", render);
+          input.addEventListener("change", render);
+        });
+        els.rows.addEventListener("input", event => {
+          const row = event.target.dataset.row;
+          const field = event.target.dataset.field;
+          if (row === undefined || !field) return;
+          state.fields[Number(row)][field] = field === "required" ? event.target.value === "true" : event.target.value;
+          render();
+        });
+        els.rows.addEventListener("click", event => {
+          const row = event.target.dataset.remove;
+          if (row === undefined) return;
+          state.fields.splice(Number(row), 1);
+          render();
+          trackMobileWorkbench("field_removed", { field_count: state.fields.length });
+        });
+        els.addField.addEventListener("click", () => {
+          state.fields.push({ key: "newField", value: "", xdm: "_tenant.newField", aa: "", required: false });
+          render();
+          trackMobileWorkbench("field_added", { field_count: state.fields.length });
+        });
+        els.clearFields.addEventListener("click", () => {
+          state.fields = [];
+          render();
+          showToast("Fields cleared");
+          trackMobileWorkbench("fields_cleared", { field_count: 0 });
+        });
+        els.copyOutput.addEventListener("click", copyActiveOutput);
+        els.downloadOutput.addEventListener("click", downloadActiveOutput);
+      }
+
+      restore();
+      bindEvents();
+      setMethod(state.method);
+      setOutput(state.activeOutput);
+      render();
+      trackMobileWorkbench("page_ready", { field_count: state.fields.length });
+    })();
+  </script>
+
+  <!-- Syncs GA session ID to PostHog for cross-tool journey analysis. -->
+  <script>
+    (function checkPostHogAndSyncGA(attempts) {
+      attempts = attempts || 0;
+      if (window.posthog && typeof window.posthog.register === "function") {
+        const gaCookie = document.cookie.split("; ").find(row => row.startsWith("_ga="));
+        if (gaCookie) {
+          const parts = gaCookie.split(".");
+          if (parts.length >= 4) {
+            const sessionId = parts[2] + "." + parts[3];
+            window.posthog.register({ ga_session_id: sessionId });
+            window.posthog.capture("pageview_with_ga_session", { ga_session_id: sessionId, page_name: "mobile_updates" });
+          }
+        }
+      } else if (attempts < 10) {
+        setTimeout(function () { checkPostHogAndSyncGA(attempts + 1); }, 300);
+      }
+    })();
+  </script>
 </body>
-<!-- Syncs GA session ID to PostHog for identity resolution -->
-<script>
-  (function checkPostHogAndSyncGA(attempts = 0) {
-    if (window.posthog && typeof posthog.register === 'function') {
-      const gaCookie = document.cookie.split('; ').find(row => row.startsWith('_ga='));
-      if (gaCookie) {
-        const parts = gaCookie.split('.');
-        if (parts.length >= 4) {
-          const sessionId = `${parts[2]}.${parts[3]}`;
-          console.log('[PostHog] Registered GA session ID:', sessionId);
-          posthog.register({ ga_session_id: sessionId });
-          posthog.capture('pageview_with_ga_session', { ga_session_id: sessionId });
-        }
-      }
-    } else if (attempts < 10) {
-      setTimeout(() => checkPostHogAndSyncGA(attempts + 1), 300);
-    } else {
-      console.warn('[PostHog] register function not available after retrying.');
-    }
-  })();
-</script>
 </html>

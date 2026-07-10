@@ -1026,6 +1026,145 @@
             padding-left: 1.2rem;
         }
 
+        .analytics-system-flow {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+            gap: 0.85rem;
+            align-items: stretch;
+            margin: 0 0 1.5rem;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 1.25rem;
+            background:
+                linear-gradient(135deg, rgba(15, 98, 254, 0.08), rgba(11, 16, 32, 0.04)),
+                #fff;
+            box-shadow: var(--shadow-card);
+        }
+
+        .analytics-system-card {
+            min-height: 160px;
+            padding: 1rem;
+            border: 1px solid rgba(15, 98, 254, 0.14);
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.86);
+        }
+
+        .analytics-system-card.dark {
+            background: var(--ink);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .analytics-system-card strong {
+            display: block;
+            margin-bottom: 0.55rem;
+            color: inherit;
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .analytics-system-card span,
+        .analytics-system-card li {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 650;
+            line-height: 1.38;
+        }
+
+        .analytics-system-card.dark span,
+        .analytics-system-card.dark li {
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .analytics-system-card ul {
+            margin-top: 0.65rem;
+            padding-left: 1.1rem;
+        }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .event-taxonomy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .event-taxonomy-card {
+            padding: 1.2rem;
+            border: 1px solid var(--border);
+            border-radius: 1.1rem;
+            background: #fff;
+            box-shadow: var(--shadow-card);
+        }
+
+        .event-taxonomy-card h3 {
+            color: var(--ink);
+            font-size: 1.12rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+
+        .event-taxonomy-card code {
+            display: inline-block;
+            margin: 0.6rem 0;
+            padding: 0.35rem 0.55rem;
+            border-radius: 0.5rem;
+            background: var(--surface-strong);
+            color: var(--secondary-color);
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+
+        .event-taxonomy-card p,
+        .event-taxonomy-card li {
+            color: var(--text-secondary);
+            font-weight: 650;
+            line-height: 1.48;
+        }
+
+        .event-taxonomy-card ul {
+            margin-top: 0.6rem;
+            padding-left: 1.1rem;
+        }
+
+        .code-panel {
+            margin: 1.5rem 0;
+            border-radius: 1.15rem;
+            overflow: hidden;
+            border: 1px solid rgba(11, 16, 32, 0.12);
+            background: #0b1020;
+            box-shadow: var(--shadow-card);
+        }
+
+        .code-panel-header {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 0.82rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .code-panel pre {
+            margin: 0;
+            padding: 1rem;
+            overflow: auto;
+            color: #dbeafe;
+            font-size: 0.86rem;
+            line-height: 1.55;
+            white-space: pre-wrap;
+        }
+
         /* Contact Section */
         .contact {
             background: linear-gradient(180deg, var(--surface), #fff);
@@ -1143,8 +1282,15 @@
 
             .cdp-sequence,
             .cdp-decision-grid,
-            .saas-example-grid {
+            .saas-example-grid,
+            .analytics-system-flow,
+            .event-taxonomy-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .flow-arrow {
+                min-height: 32px;
+                transform: rotate(90deg);
             }
 
             .cdp-step:not(:last-child)::after {
@@ -1494,6 +1640,23 @@
 
                     <article class="blog-card">
                         <div class="blog-content">
+                            <div class="blog-meta">Architecture note · Analytics engineering</div>
+                            <h3 class="blog-title">
+                                <a href="#analytics-design-system" onclick="openArticleModal('analytics-design-system'); return false;">Analytics Events Belong in the Design System</a>
+                            </h3>
+                            <p>A practical model for pairing behavioral events with front-end components so teams stop rebuilding page, CTA, and interaction tracking from scratch.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">#AnalyticsEngineering</span>
+                                <span class="blog-tag">#DesignSystems</span>
+                                <span class="blog-tag">#Frontend</span>
+                                <span class="blog-tag">#TMSAgnostic</span>
+                            </div>
+                            <button type="button" class="article-trigger" onclick="openArticleModal('analytics-design-system')">Read Article</button>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-content">
                             <div class="blog-meta">4 min read · Updated Feb 2024</div>
                             <h3 class="blog-title">
                                 <a href="/blog/unifying-mobile-data-cdp.html">Unifying Mobile Data for CDP</a>
@@ -1732,6 +1895,177 @@
             </article>
         </div>
 
+        <div id="analytics-design-system" class="article-modal" aria-hidden="true" onclick="if (event.target === this) closeArticleModal('analytics-design-system')">
+            <article class="article-dialog" role="dialog" aria-modal="true" aria-labelledby="analytics-design-system-title">
+                <div class="article-modal-header">
+                    <h2 id="analytics-design-system-title" class="article-modal-title">Analytics Events Belong in the Design System</h2>
+                    <button type="button" class="article-close" aria-label="Close article" onclick="closeArticleModal('analytics-design-system')">&times;</button>
+                </div>
+                <div class="article-modal-body">
+                    <div class="analytics-system-flow" aria-label="Analytics design system operating model">
+                        <div class="analytics-system-card">
+                            <strong>Design System</strong>
+                            <span>Buttons, cards, forms, modals, navigation, page templates, and interaction patterns already define how users experience the product.</span>
+                            <ul>
+                                <li>Component names</li>
+                                <li>Design tokens</li>
+                                <li>Interaction states</li>
+                            </ul>
+                        </div>
+                        <div class="flow-arrow" aria-hidden="true">→</div>
+                        <div class="analytics-system-card dark">
+                            <strong>Shared Event Package</strong>
+                            <span>A small npm package standardizes behavioral events so front-end engineers import the contract instead of recreating tracking rules.</span>
+                            <ul>
+                                <li>Page events</li>
+                                <li>CTA events</li>
+                                <li>Interaction events</li>
+                            </ul>
+                        </div>
+                        <div class="flow-arrow" aria-hidden="true">→</div>
+                        <div class="analytics-system-card">
+                            <strong>Destination Layer</strong>
+                            <span>The adapter sends the same event contract to Adobe Web SDK, GA4, Tealium, Segment, PostHog, or whatever the enterprise uses next.</span>
+                            <ul>
+                                <li>TMS agnostic</li>
+                                <li>Vendor swappable</li>
+                                <li>Governed by schema</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="article-content-grid">
+                        <div class="article-panel">
+                            <h3>The Problem</h3>
+                            <p>Most analytics implementations treat behavioral events as one-off tickets. A product team launches a new page, an engineer asks what to tag, an analyst writes a spreadsheet, a tag manager rule gets patched, and the same naming debates repeat on the next feature.</p>
+                            <p>That creates wheel reinvention. Page views, CTA clicks, form interactions, modal opens, and feature engagement should not be re-designed every sprint. They are product behaviors, and product behaviors belong close to the design system and front-end component model.</p>
+                        </div>
+                        <div class="article-panel">
+                            <h3>The Principle</h3>
+                            <p>If the design system defines how a button looks and behaves, it should also help define how a button is measured. The analytics layer should not be an afterthought attached downstream by whichever TMS happens to be installed.</p>
+                            <p>The cleaner pattern is a governed event package that lives beside the component library. Engineers import the package, call the event helper, and the helper emits a consistent event contract to the configured destination adapter.</p>
+                        </div>
+                    </div>
+
+                    <div class="event-taxonomy-grid">
+                        <div class="event-taxonomy-card">
+                            <h3>Page Events</h3>
+                            <code>trackPage()</code>
+                            <p>Use for route changes, page templates, screen views, and meaningful content impressions.</p>
+                            <ul>
+                                <li>pageName</li>
+                                <li>pageType</li>
+                                <li>siteSection</li>
+                                <li>contentId</li>
+                                <li>journeyStage</li>
+                            </ul>
+                        </div>
+                        <div class="event-taxonomy-card">
+                            <h3>CTA Events</h3>
+                            <code>trackCta()</code>
+                            <p>Use for primary and secondary calls to action where intent, placement, and copy matter.</p>
+                            <ul>
+                                <li>ctaText</li>
+                                <li>ctaType</li>
+                                <li>componentName</li>
+                                <li>destinationUrl</li>
+                                <li>position</li>
+                            </ul>
+                        </div>
+                        <div class="event-taxonomy-card">
+                            <h3>Interaction Events</h3>
+                            <code>trackInteraction()</code>
+                            <p>Use for product behaviors that are not simple CTA clicks: filters, tabs, accordions, search, sort, video, and forms.</p>
+                            <ul>
+                                <li>interactionName</li>
+                                <li>interactionType</li>
+                                <li>componentState</li>
+                                <li>valueSelected</li>
+                                <li>outcome</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="code-panel">
+                        <div class="code-panel-header">What “import the package and WHAMO” can look like</div>
+                        <pre><code>import { trackPage, trackCta, trackInteraction } from "@company/analytics-events";
+
+trackPage({
+  pageName: "pricing",
+  pageType: "marketing",
+  siteSection: "growth",
+  journeyStage: "consideration"
+});
+
+trackCta({
+  ctaText: "Start free trial",
+  ctaType: "primary",
+  componentName: "PricingHero",
+  destinationUrl: "/signup",
+  position: 1
+});
+
+trackInteraction({
+  interactionName: "plan_toggle",
+  interactionType: "billing_frequency",
+  componentName: "PricingPlanSelector",
+  valueSelected: "annual",
+  outcome: "price_updated"
+});</code></pre>
+                    </div>
+
+                    <div class="article-content-grid">
+                        <div class="article-panel">
+                            <h3>What the npm Package Should Own</h3>
+                            <p>The package should own the event vocabulary, required fields, validation, naming rules, privacy guardrails, and adapter interface. It should not hard-code the business into a specific tag manager.</p>
+                            <ul>
+                                <li>TypeScript types for page, CTA, form, content, media, search, commerce, and product events.</li>
+                                <li>Runtime validation so missing required fields fail loudly in development.</li>
+                                <li>Adapters for Adobe Web SDK, GA4, Tealium, Segment, PostHog, or a custom endpoint.</li>
+                                <li>Consent checks and PII blocking before the event leaves the browser.</li>
+                                <li>Debug mode so QA can see the normalized event before it is sent.</li>
+                            </ul>
+                        </div>
+                        <div class="article-panel">
+                            <h3>Why TMS Agnostic Matters</h3>
+                            <p>Enterprises change vendors. They migrate from AppMeasurement to Web SDK, from one tag manager to another, from web-only analytics to product analytics, or from client-side collection to server-side forwarding.</p>
+                            <p>If the front end only knows the enterprise event contract, the destination can change without rewriting every component. The adapter changes. The product code mostly stays stable.</p>
+                        </div>
+                        <div class="article-panel">
+                            <h3>How This Helps Front-End Engineers</h3>
+                            <p>Engineers should not have to memorize every eVar, prop, event, GA4 parameter, XDM path, or TMS rule. They should work with a predictable API that matches how they already build components.</p>
+                            <ol>
+                                <li>Install the package.</li>
+                                <li>Import the event helper.</li>
+                                <li>Pass component-level metadata.</li>
+                                <li>Let the adapter translate the contract.</li>
+                                <li>Use debug output and automated tests to prove it works.</li>
+                            </ol>
+                        </div>
+                        <div class="article-panel">
+                            <h3>How This Helps Analytics Teams</h3>
+                            <p>Analytics teams get governance upstream instead of cleanup downstream. They can define one event taxonomy, publish versioned contracts, and reduce the number of brittle tag-manager patches needed to keep reporting alive.</p>
+                            <ul>
+                                <li>Fewer duplicate event names.</li>
+                                <li>Cleaner page, CTA, and interaction reporting.</li>
+                                <li>Better CJA and RTCDP readiness.</li>
+                                <li>Clearer QA because every event has an expected schema.</li>
+                            </ul>
+                        </div>
+                        <div class="article-panel">
+                            <h3>Operating Model</h3>
+                            <p>The event package should be owned jointly by analytics engineering, front-end platform, and design system maintainers. Product teams request new event patterns the same way they request new components or tokens.</p>
+                            <p>That governance model keeps analytics close to the user experience. The design system explains what the user can do; the event system explains what the business can learn from it.</p>
+                        </div>
+                        <div class="article-panel">
+                            <h3>The Long-Term Payoff</h3>
+                            <p>The payoff is not just prettier code. It is less repeated work, faster launches, more trustworthy behavioral data, easier platform migrations, and a front end that can support Adobe, GA4, product analytics, experimentation, and CDP activation without rebuilding the measurement layer every time.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
         <section id="contact" class="contact">
             <div class="container">
                 <h2 class="section-title">Work With Scott</h2>
@@ -1770,12 +2104,13 @@
         function openArticleModal(id) {
             const modal = document.getElementById(id);
             if (!modal) return;
+            const title = modal.querySelector('.article-modal-title')?.textContent?.trim() || id;
             modal.classList.add('is-open');
             modal.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
             trackPortfolioEvent('article_modal_open', {
                 articleId: id,
-                articleTitle: 'What Should a CDP Actually Produce?'
+                articleTitle: title
             });
         }
 
@@ -1798,7 +2133,7 @@
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href') === '#cdp-output-framework') return;
+                if (this.getAttribute('href') === '#cdp-output-framework' || this.getAttribute('href') === '#analytics-design-system') return;
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
