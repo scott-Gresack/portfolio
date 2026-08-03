@@ -33,6 +33,7 @@
     <meta charset="UTF-8" />
     <!-- Ensure responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="msvalidate.01" content="D0E46C0BF3B8E93ED731F95332FB14EC" />
     <!-- Tool-specific title and metadata -->
     <meta name="ppms.tool_name" content="Alloy and AppMeasurement Payload Analyzer" />
     <meta name="ppms.tool_version" content="1.1.0" />
@@ -46,6 +47,7 @@
         content="AppMeasurement parser, Adobe Analytics endpoint parser, b/ss parser, flattening script builder, Alloy, Tealium, digitalData, AEP Web SDK, sessionStorage, console logging, dynamic script, event debugging, payload analyzer, Martech, Scott Gresack, Adobe, Tag Management, analytics, CDP, JavaScript snippet, XDM, JSON, data layer" />
     <!-- Author -->
     <meta name="author" content="Scott Gresack" />
+    <meta name="creator" content="Scott Gresack" />
     <!-- Allow indexing -->
     <meta name="robots" content="index, follow" />
     <!-- Canonical URL -->
@@ -55,18 +57,19 @@
 
     <!-- Open Graph tags -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Scott Gresack — MarTech Architecture Portfolio" />
     <meta property="og:url" content="https://scott-gresack.github.io/portfolio/tool2.html" />
     <meta property="og:title" content="Alloy and AppMeasurement Payload Analyzer | Adobe Analytics, Web SDK, Tealium" />
     <meta property="og:description"
         content="Generate flattening scripts for Alloy, Tealium, and digitalData, then parse Adobe Analytics AppMeasurement /b/ss endpoints for migration and QA. By Scott Gresack." />
-    <meta property="og:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+    <meta property="og:image" content="https://scott-gresack.github.io/portfolio/favicon.png" />
 
     <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Alloy and AppMeasurement Payload Analyzer | Adobe Analytics, Web SDK, Tealium" />
     <meta name="twitter:description"
         content="Debug Web SDK, Tealium, digitalData, and Adobe Analytics AppMeasurement endpoint payloads in one browser-based QA tool. By Scott Gresack." />
-    <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/assets/preview-image.png" />
+    <meta name="twitter:image" content="https://scott-gresack.github.io/portfolio/favicon.png" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MQBSZT8H"></script>
     <script>
@@ -81,30 +84,98 @@
     </script>
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
         {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Scott Gresack",
-            "url": "https://scott-gresack.github.io/portfolio/",
-            "sameAs": ["https://www.linkedin.com/in/scottgresack/"],
-            "jobTitle": "Martech Engineer | AEP + CDP Expert",
-            "worksFor": {
-                "@type": "Organization",
-                "name": "CVS Health"
+          "@type": "WebPage",
+          "@id": "https://scott-gresack.github.io/portfolio/tool2.html#webpage",
+          "url": "https://scott-gresack.github.io/portfolio/tool2.html",
+          "name": "Alloy and AppMeasurement Payload Analyzer",
+          "description": "Inspect Adobe Web SDK, Tealium, digitalData, and Adobe Analytics AppMeasurement endpoint payloads for implementation, migration, and QA.",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://scott-gresack.github.io/portfolio/#website"
+          },
+          "mainEntity": {
+            "@id": "https://scott-gresack.github.io/portfolio/tool2.html#application"
+          },
+          "author": {
+            "@id": "https://scott-gresack.github.io/portfolio/#scott-gresack"
+          },
+          "breadcrumb": {
+            "@id": "https://scott-gresack.github.io/portfolio/tool2.html#breadcrumb"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://scott-gresack.github.io/portfolio/tool2.html#application",
+          "name": "Event Payload Inspector and AppMeasurement Parser",
+          "alternateName": "Alloy and AppMeasurement Payload Analyzer",
+          "description": "Browser-based developer tool for inspecting Adobe Web SDK, AppMeasurement, Tealium, digitalData, XDM, and Adobe Analytics collection payloads during implementation and migration QA.",
+          "applicationCategory": "DeveloperApplication",
+          "applicationSubCategory": "Analytics debugging and migration QA",
+          "operatingSystem": "Web",
+          "browserRequirements": "Requires JavaScript and a modern web browser",
+          "url": "https://scott-gresack.github.io/portfolio/tool2.html",
+          "isAccessibleForFree": true,
+          "featureList": [
+            "Adobe Web SDK and XDM payload inspection",
+            "Adobe Analytics AppMeasurement /b/ss request parsing",
+            "Tealium and digitalData object flattening",
+            "Analytics implementation and migration QA",
+            "JSON and CSV export"
+          ],
+          "author": {
+            "@id": "https://scott-gresack.github.io/portfolio/#scott-gresack"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://scott-gresack.github.io/portfolio/#scott-gresack",
+          "name": "Scott Gresack",
+          "url": "https://scott-gresack.github.io/portfolio/",
+          "image": "https://scott-gresack.github.io/portfolio/favicon.png",
+          "jobTitle": "Senior MarTech Architect and Principal Adobe AEP Consultant",
+          "sameAs": [
+            "https://www.linkedin.com/in/scottgresack/",
+            "https://github.com/scott-gresack"
+          ],
+          "knowsAbout": [
+            "Adobe Experience Platform",
+            "Adobe Real-Time CDP",
+            "Customer Journey Analytics",
+            "Adobe Journey Optimizer",
+            "Adobe Web SDK",
+            "Adobe Analytics",
+            "AppMeasurement",
+            "Experience Data Model (XDM)",
+            "Tealium iQ",
+            "Digital analytics",
+            "Identity resolution",
+            "MarTech architecture"
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://scott-gresack.github.io/portfolio/tool2.html#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Scott Gresack Portfolio",
+              "item": "https://scott-gresack.github.io/portfolio/"
             },
-            "knowsAbout": [
-                "Adobe Web SDK",
-                "Tealium iQ",
-                "Adobe Experience Platform",
-                "Customer Data Platform",
-                "Martech Architecture",
-                "Tag Management",
-                "Digital Analytics",
-                "Identity Resolution",
-                "Real-Time Personalization",
-                "XDM Schema Design"
-            ]
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Event Payload Inspector",
+              "item": "https://scott-gresack.github.io/portfolio/tool2.html"
+            }
+          ]
         }
+      ]
+    }
     </script>
 
     <!-- PostHog Analytics -->
