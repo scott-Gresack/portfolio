@@ -150,11 +150,6 @@ _Explore live examples and tools at [scott-gresack.github.io/portfolio](https://
 
 ---
 
-## 🤝 Let’s Connect
-
-I'm open to consulting opportunities, speaking engagements, and collaborations across Martech, CDP architecture, and data governance. Feel free to reach out!
-
----
 
 ---
 
