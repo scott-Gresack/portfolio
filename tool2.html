@@ -860,7 +860,7 @@
                 <div class="grid gap-3 md:grid-cols-3">
                     <a href="#snippet-instructions" class="block rounded-lg border border-slate-200 bg-white p-4 hover:border-blue-300 hover:shadow-sm">
                         <div class="text-sm font-semibold text-blue-700 mb-1">1. Generate a listener</div>
-                        <p class="text-sm text-gray-700">Create a script that captures Alloy, digitalData, Tealium, or AppMeasurement traffic while you use a site.</p>
+                        <p class="text-sm text-gray-700">Create a script that captures Alloy, digitalData, appEventData, Tealium, or AppMeasurement traffic while you use a site.</p>
                     </a>
                     <a href="#appmeasurement-parser" class="block rounded-lg border border-slate-200 bg-white p-4 hover:border-orange-300 hover:shadow-sm">
                         <div class="text-sm font-semibold text-orange-700 mb-1">2. Decode AA requests</div>
@@ -879,15 +879,15 @@
                     <span class="ml-2 text-gray-400" tabindex="0" aria-label="Help for snippet builder" title="This section helps you generate customized monitoring scripts for Alloy, Tealium, digitalData, or Adobe Analytics AppMeasurement endpoints.">🛈</span>
                 </h2>
                 <p class="mb-2">
-                    Generate a temporary browser-console script for <b>Adobe Alloy (AEP Web SDK)</b>, <b>Tealium utag.view/link</b>, <b>digitalData</b> data layers, or <b>Adobe Analytics AppMeasurement /b/ss requests</b>.
+                    Generate a temporary browser-console script for <b>Adobe Alloy (AEP Web SDK)</b>, <b>Tealium utag.view/link</b>, <b>digitalData</b> or <b>appEventData</b> data layers, or <b>Adobe Analytics AppMeasurement /b/ss requests</b>.
                     <br>
                     <span class="text-gray-600">Choose the source you need, copy the script, paste it into DevTools, interact with the site, then bring the captured rows back here for review.</span>
                 </p>
                 <ul class="list-disc pl-5 mb-3 text-sm text-gray-700">
-                    <li>Works for <b>Alloy</b>, <b>Tealium</b>, <b>digitalData</b>, <b>AppMeasurement /b/ss endpoints</b>, or <b>all at once</b>.</li>
+                    <li>Works for <b>Alloy</b>, <b>Tealium</b>, <b>digitalData</b>, <b>appEventData</b>, <b>AppMeasurement /b/ss endpoints</b>, or <b>all at once</b>.</li>
                     <li>Options:
                         <ul class="list-disc pl-5">
-                            <li><b>Log to console</b>: See each flattened payload in real time.</li>
+                            <li><b>Log to console</b>: See flattened payloads; appEventData prints a table every 10 seconds.</li>
                             <li><b>Store in sessionStorage</b>: Persist all payloads for later download/analysis.</li>
                         </ul>
                     </li>
@@ -896,16 +896,17 @@
                 <div class="mb-4 p-3 bg-gray-100 border border-gray-300 rounded" id="snippet-config" aria-label="Snippet builder controls">
                   <label for="snippetType" class="block mb-2 font-medium" id="label-snippetType">
                     Script Type:
-                    <span class="sr-only" id="desc-snippetType">Choose which integration(s) to generate a script for: Alloy, digitalData, Tealium, AppMeasurement, or all.</span>
+                    <span class="sr-only" id="desc-snippetType">Choose which integration(s) to generate a script for: Alloy, digitalData, appEventData, Tealium, AppMeasurement, or all.</span>
                   </label>
                   <select id="snippetType" aria-labelledby="label-snippetType desc-snippetType"
                           class="mb-3 p-2 border rounded w-full max-w-xs"
                           title="Select which integration to generate a flattening script for.">
                     <option value="alloy">Adobe Alloy (AEP Web SDK)</option>
                     <option value="digitalData">digitalData (W3C/DTM/Adobe Launch)</option>
+                    <option value="appEventData">appEventData (colored table every 10 seconds)</option>
                     <option value="tealium">Tealium utag.view/link</option>
                     <option value="appmeasurement">Adobe Analytics AppMeasurement (/b/ss)</option>
-                    <option value="all">All (Alloy, digitalData, Tealium, AppMeasurement)</option>
+                    <option value="all">All (Alloy, digitalData, appEventData, Tealium, AppMeasurement)</option>
                   </select>
                   <div class="mb-2 flex flex-row gap-4">
                     <label class="inline-flex items-center" for="snippetIncludeConsole" title="Toggle to log flattened payloads to the browser console.">
@@ -927,6 +928,7 @@
                     Generate Script
                   </button>
                 </div>
+                <p class="text-sm text-gray-600 mb-3">The <b>appEventData</b> option captures existing queue entries and new <code>window.appEventData.push(...)</code> events, including a data layer created later. Object data layers are checked for changes every 500 ms. Every 10 seconds, console logging prints a native table plus colored field rows (native table cells do not support custom colors). Storage uses <code>flattenedAppEventDataEvents</code>. Run <code>appEventDataMonitor.stop()</code> to stop, or <code>copy(JSON.stringify(appEventDataMonitor.getRows()))</code> in DevTools and paste into Step 3 on this page to inspect captured rows.</p>
                 <div class="relative mt-2 mb-2" aria-label="Script output area">
                     <pre class="bg-gray-800 text-white p-4 rounded overflow-x-auto" aria-live="polite"><code id="alloyScript"></code></pre>
                     <button onclick="copyScript()"
@@ -940,7 +942,7 @@
                     <li>Debug Alloy XDM events with console logging only.</li>
                     <li>Capture Tealium utag.view/link data and store for offline analysis.</li>
                     <li>Listen for Adobe Analytics <code>/b/ss</code> requests and store decoded props, eVars, events, products, context data, and Activity Map values.</li>
-                    <li>Monitor all integrations at once (Alloy, digitalData, Tealium, AppMeasurement) and log to both console and sessionStorage.</li>
+                    <li>Monitor all integrations at once (Alloy, digitalData, appEventData, Tealium, AppMeasurement) and log to both console and sessionStorage.</li>
                   </ul>
                   <span class="block mt-2">Paste the generated script into your browser’s devtools console (<kbd>F12</kbd> &gt; <b>Console</b>), interact with the site, and inspect the output.</span>
                 </div>
@@ -2247,8 +2249,145 @@
 </script>
 <!-- Dynamic Script Generator Logic for Snippet Builder (Refactored & Analytics-integrated) -->
 <script>
+function appEventDataCapture(opts) {
+  const STORAGE_KEY = 'flattenedAppEventDataEvents';
+  if (window.appEventDataMonitor && typeof window.appEventDataMonitor.stop === 'function') {
+    window.appEventDataMonitor.stop();
+  }
+  let pending = [];
+  let history = [];
+  let attached = null;
+  let originalPush = null;
+  let wrappedPush = null;
+  let ownPushDescriptor = null;
+  let lastSnapshot;
+  let stopped = false;
+  const colors = ['#2563eb', '#059669', '#9333ea', '#d97706'];
+  let batch = 0;
+
+  function flatten(value, prefix = 'appEventData', result = Object.create(null), ancestors = new WeakSet()) {
+    if (value && typeof value === 'object') {
+      if (ancestors.has(value)) {
+        result[prefix] = '[Circular]';
+        return result;
+      }
+      ancestors.add(value);
+      const keys = Object.keys(value);
+      if (!keys.length) result[prefix] = Array.isArray(value) ? '[]' : '{}';
+      keys.forEach(key => flatten(value[key], prefix + '.' + key, result, ancestors));
+      ancestors.delete(value);
+    } else {
+      result[prefix] = typeof value === 'bigint' ? String(value) : value;
+    }
+    return result;
+  }
+
+  function capture(value) {
+    try {
+      const row = Object.assign(Object.create(null), {
+        source: 'appEventData',
+        capturedAt: new Date().toISOString()
+      }, flatten(value));
+      pending.push(row);
+      history.push(row);
+      if (opts.includeSessionStorage) {
+        try {
+          const saved = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '[]');
+          sessionStorage.setItem(STORAGE_KEY, JSON.stringify((Array.isArray(saved) ? saved : []).concat(row)));
+        } catch (error) {
+          if (opts.includeConsole) console.warn('[appEventData] Storage unavailable; capture continues in memory.', error);
+        }
+      }
+    } catch (error) {
+      if (opts.includeConsole) console.warn('[appEventData] Could not capture event.', error);
+    }
+  }
+
+  function detach() {
+    if (attached && attached.push === wrappedPush) {
+      if (ownPushDescriptor) Object.defineProperty(attached, 'push', ownPushDescriptor);
+      else delete attached.push;
+    }
+    attached = null;
+  }
+
+  function observe() {
+    if (stopped) return;
+    const layer = window.appEventData;
+    if (Array.isArray(layer)) {
+      if (layer === attached && layer.push === wrappedPush) return;
+      const changedLayer = layer !== attached;
+      detach();
+      attached = layer;
+      ownPushDescriptor = Object.getOwnPropertyDescriptor(layer, 'push');
+      originalPush = layer.push;
+      const delegate = originalPush;
+      wrappedPush = function (...items) {
+        if (!stopped) items.forEach(capture);
+        return delegate.apply(this, items);
+      };
+      try {
+        Object.defineProperty(layer, 'push', { configurable: true, writable: true, enumerable: ownPushDescriptor ? ownPushDescriptor.enumerable : false, value: wrappedPush });
+      } catch (error) {
+        if (opts.includeConsole) console.warn('[appEventData] Queue cannot be monitored.', error);
+        return;
+      }
+      if (changedLayer) layer.forEach(capture);
+      lastSnapshot = undefined;
+    } else {
+      detach();
+      if (layer == null) { lastSnapshot = undefined; return; }
+      try {
+        const snapshot = JSON.stringify(flatten(layer));
+        if (snapshot !== lastSnapshot) {
+          capture(layer);
+          lastSnapshot = snapshot;
+        }
+      } catch (error) {
+        if (opts.includeConsole) console.warn('[appEventData] Could not read data layer.', error);
+      }
+    }
+  }
+
+  function print() {
+    observe();
+    const rows = pending;
+    pending = [];
+    if (!opts.includeConsole) return;
+    const color = colors[batch++ % colors.length];
+    console.group('%c[appEventData] ' + new Date().toLocaleTimeString() + ' — ' + rows.length + ' event(s) / 10 seconds', 'color:' + color + ';font-weight:bold;');
+    console.table(rows);
+    // Native console.table cells cannot be styled. These aligned field rows supply color.
+    const fields = rows.flatMap((row, index) => Object.entries(row).map(([field, value]) => ({ event: index + 1, field, value })));
+    if (fields.length) {
+      const width = Math.min(70, fields.reduce((max, row) => Math.max(max, row.field.length), 5));
+      console.log('%cEvent | ' + 'Field'.padEnd(width) + ' | Value', 'color:' + color + ';font-weight:bold;');
+      fields.forEach(row => console.log('%c' + String(row.event).padEnd(5) + ' | %s | %s', 'color:' + colors[(row.event - 1) % colors.length] + ';', row.field.padEnd(width), String(row.value)));
+    } else {
+      console.log('%cNo new events. Waiting for window.appEventData.', 'color:' + color + ';');
+    }
+    console.groupEnd();
+  }
+
+  const watchTimer = setInterval(observe, 500);
+  const printTimer = setInterval(print, 10000);
+  window.appEventDataMonitor = {
+    getRows: () => history.map(row => Object.assign({}, row)),
+    table: print,
+    stop() {
+      stopped = true;
+      clearInterval(watchTimer);
+      clearInterval(printTimer);
+      detach();
+    }
+  };
+  observe();
+  if (opts.includeConsole) console.info('%c[appEventData] Active. Tables every 10 seconds. Stop: appEventDataMonitor.stop(). Export: copy(JSON.stringify(appEventDataMonitor.getRows())).', 'color:#059669;font-weight:bold;');
+}
+
 // Snippet blocks for dynamic builder
 const SNIPPET_BLOCKS = {
+  appEventData: (opts) => '(' + appEventDataCapture.toString() + ')(' + JSON.stringify(opts) + ');',
   alloy: (opts) => `(function () {
   const STORAGE_KEY = 'flattenedAlloyEvents';
   function flatten(obj, prefix = '', res = {}) {
@@ -2603,6 +2742,7 @@ const SNIPPET_BLOCKS = {
   all: (opts) => [
     SNIPPET_BLOCKS.alloy(opts),
     SNIPPET_BLOCKS.digitalData(opts),
+    SNIPPET_BLOCKS.appEventData(opts),
     SNIPPET_BLOCKS.tealium(opts),
     SNIPPET_BLOCKS.appmeasurement(opts)
   ].join('\n\n')
