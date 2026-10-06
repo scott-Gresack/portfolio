@@ -2385,55 +2385,81 @@ function appEventDataCapture(opts) {
   if (opts.includeConsole) console.info('%c[appEventData] Active. Tables every 10 seconds. Stop: appEventDataMonitor.stop(). Export: copy(JSON.stringify(appEventDataMonitor.getRows())).', 'color:#059669;font-weight:bold;');
 }
 
+function alloyTableCapture(opts) {
+  const KEY = 'flattenedAlloyEvents';
+  const existing = window.__alloyTableMonitor;
+  if (existing) { existing.start(opts); return; }
+  let pending = [], timer = null, active = false, count = 0, warned = false;
+  function flatten(value, path, out = {}) {
+    if (value !== null && typeof value === 'object') {
+      const keys = Object.keys(value);
+      if (!keys.length) out[path] = Array.isArray(value) ? '[]' : '{}';
+      keys.forEach(key => flatten(value[key], path + '.' + key, out));
+    } else out[path] = value;
+    return out;
+  }
+  function flush() {
+    if (!opts.includeConsole || !pending.length) return;
+    const batch = pending.splice(0);
+    const rows = batch.flatMap(item => Object.entries(item.payload).map(([field, value]) => ({
+      Event: item.number, Captured: item.time, Type: item.type, Field: field, Value: value
+    })));
+    console.groupCollapsed('%c Web SDK %c ' + batch.length + ' event(s) · ' + new Date().toLocaleTimeString(),
+      'background:#0f766e;color:white;font-weight:bold;padding:4px 8px;border-radius:4px',
+      'color:#38bdf8;font-weight:bold');
+    try {
+      console.table(rows, ['Event', 'Captured', 'Type', 'Field', 'Value']);
+      console.log('Flattened payloads:', batch.map(item => item.payload));
+    } finally { console.groupEnd(); }
+  }
+  window.__alloyMonitors = window.__alloyMonitors || [];
+  window.__alloyMonitors.push({
+    __isAlloyTableMonitor: true,
+    onBeforeNetworkRequest(data) {
+      if (!active) return;
+      try {
+        const events = data?.payload?.events;
+        if (!Array.isArray(events) || !events.length) return;
+        const captured = events.map(event => ({
+          number: ++count, time: new Date().toLocaleTimeString(),
+          type: event.xdm?.eventType || '(not specified)',
+          payload: { ...(event.xdm ? flatten(event.xdm, 'xdm') : {}),
+            ...(event.data ? flatten(event.data, 'data') : {}) }
+        }));
+        if (opts.includeConsole) pending.push(...captured);
+        if (opts.includeSessionStorage) {
+          try {
+            const stored = JSON.parse(sessionStorage.getItem(KEY) || '[]');
+            sessionStorage.setItem(KEY, JSON.stringify([
+              ...(Array.isArray(stored) ? stored : []), ...captured.map(item => item.payload)
+            ].slice(-500)));
+          } catch (error) {
+            if (!warned && opts.includeConsole) console.warn('[AlloyMonitor] Storage unavailable; console capture continues.', error);
+            warned = true;
+          }
+        }
+      } catch (error) {
+        if (opts.includeConsole) console.warn('[AlloyMonitor] Capture failed:', error);
+      }
+    },
+    onCommandResolved() {}, onNetworkResponse() {}, onNetworkError() {}
+  });
+  window.__alloyTableMonitor = {
+    flush,
+    stop() { clearInterval(timer); timer = null; active = false; flush(); },
+    start(options = opts) {
+      flush(); opts = options; clearInterval(timer); active = true;
+      timer = opts.includeConsole ? setInterval(flush, 10000) : null;
+    }
+  };
+  window.__alloyTableMonitor.start();
+  if (opts.includeConsole) console.info('%c[AlloyMonitor] Web SDK tables every 10 seconds. Flush: __alloyTableMonitor.flush(). Stop: __alloyTableMonitor.stop().', 'color:#14b8a6;font-weight:bold');
+}
+
 // Snippet blocks for dynamic builder
 const SNIPPET_BLOCKS = {
   appEventData: (opts) => '(' + appEventDataCapture.toString() + ')(' + JSON.stringify(opts) + ');',
-  alloy: (opts) => `(function () {
-  const STORAGE_KEY = 'flattenedAlloyEvents';
-  function flatten(obj, prefix = '', res = {}) {
-    if (Array.isArray(obj)) {
-      obj.forEach((item, i) => flatten(item, \`\${prefix}\${prefix ? '.' : ''}\${i}\`, res));
-    } else if (typeof obj === 'object' && obj !== null) {
-      for (const key in obj) {
-        if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
-        flatten(obj[key], \`\${prefix}\${prefix ? '.' : ''}\${key}\`, res);
-      }
-    } else {
-      res[prefix] = obj;
-    }
-    return res;
-  }
-  window.__alloyMonitors = window.__alloyMonitors || [];
-  if (!window.__alloyMonitors.some(m => m.__isFlattenMonitor)) {
-    window.__alloyMonitors.push({
-      __isFlattenMonitor: true,
-      onBeforeNetworkRequest(data) {
-        try {
-          const events = data?.payload?.events;
-          if (!Array.isArray(events) || !events.length) return;
-          events.forEach(event => {
-            const flatXDM = event.xdm ? flatten(event.xdm, 'xdm') : {};
-            const flatData = event.data ? flatten(event.data, 'data') : {};
-            const combined = { ...flatXDM, ...flatData };
-            ${opts.includeSessionStorage ? `
-            const stored = sessionStorage.getItem(STORAGE_KEY);
-            const prev = stored ? JSON.parse(stored) : [];
-            prev.push(combined);
-            sessionStorage.setItem(STORAGE_KEY, JSON.stringify(prev));
-            ` : ''}
-            ${opts.includeConsole ? `console.log('%c[AlloyMonitor] Captured Flattened Alloy Payload:', 'color:#f97316;font-weight:bold;', combined);` : ''}
-          });
-        } catch (err) {
-          ${opts.includeConsole ? `console.warn('[AlloyMonitor] Error flattening event payload:', err);` : ''}
-        }
-      },
-      onCommandResolved() {},
-      onNetworkResponse() {},
-      onNetworkError() {}
-    });
-    ${opts.includeConsole ? `console.info('%c[AlloyMonitor] Active. Monitoring Alloy events.', 'color:#4ade80;font-weight:bold;');` : ''}
-  }
-})();`,
+  alloy: (opts) => '(' + alloyTableCapture.toString() + ')(' + JSON.stringify(opts) + ');',
   digitalData: (opts) => `(function () {
   const STORAGE_KEY = 'flattenedDigitalDataEvents';
   function flatten(obj, prefix = '', res = {}) {
