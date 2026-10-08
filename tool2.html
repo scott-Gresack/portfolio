@@ -920,6 +920,7 @@
                       <span class="ml-1 text-gray-400" aria-label="Stores all flattened events in sessionStorage for later download.">🛈</span>
                     </label>
                   </div>
+                  <p class="text-sm text-gray-600 mb-2">Adobe Web SDK: with console logging enabled, new events appear every 10 seconds in an expanded group with a table and color-coded event logs. Table cells use the browser’s default colors. Paste the script before triggering events. Use <code>__alloyTableMonitor.flush()</code> to print immediately or <code>__alloyTableMonitor.stop()</code> to stop.</p>
                   <button type="button" id="generateSnippetBtn"
                           class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
                           aria-label="Generate Script"
@@ -2404,12 +2405,20 @@ function alloyTableCapture(opts) {
     const rows = batch.flatMap(item => Object.entries(item.payload).map(([field, value]) => ({
       Event: item.number, Captured: item.time, Type: item.type, Field: field, Value: value
     })));
-    console.groupCollapsed('%c Web SDK %c ' + batch.length + ' event(s) · ' + new Date().toLocaleTimeString(),
+    console.group('%c Adobe Web SDK %c ' + batch.length + ' event(s) · 10-second batch · ' + new Date().toLocaleTimeString(),
       'background:#0f766e;color:white;font-weight:bold;padding:4px 8px;border-radius:4px',
       'color:#38bdf8;font-weight:bold');
     try {
       console.table(rows, ['Event', 'Captured', 'Type', 'Field', 'Value']);
-      console.log('Flattened payloads:', batch.map(item => item.payload));
+      // Native console.table cells cannot be styled; matching event logs supply color.
+      const colors = ['#38bdf8', '#4ade80', '#fbbf24', '#c084fc', '#fb923c'];
+      batch.forEach(item => {
+        const style = 'color:' + colors[(item.number - 1) % colors.length] + ';font-weight:bold;';
+        console.log('%c[Adobe Web SDK] Event ' + item.number + ' · ' + item.type + ' · ' + item.time, style, item.payload);
+        Object.entries(item.payload).forEach(([field, value]) => {
+          console.log('%c' + field + ' %c→', style, 'color:#94a3b8;', value);
+        });
+      });
     } finally { console.groupEnd(); }
   }
   window.__alloyMonitors = window.__alloyMonitors || [];
